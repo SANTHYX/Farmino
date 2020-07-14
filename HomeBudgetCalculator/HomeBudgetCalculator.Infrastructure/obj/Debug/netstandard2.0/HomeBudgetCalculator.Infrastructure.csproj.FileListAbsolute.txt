@@ -1,0 +1,12 @@
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\bin\Debug\netstandard2.0\HomeBudgetCalculator.Core.dll
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.csprojAssemblyReference.cache
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.AssemblyInfoInputs.cache
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.AssemblyInfo.cs
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\bin\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.deps.json
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\bin\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.dll
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\bin\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.pdb
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\bin\Debug\netstandard2.0\HomeBudgetCalculator.Core.pdb
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.csproj.CopyComplete
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.dll
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.pdb
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Infrastructure\obj\Debug\netstandard2.0\HomeBudgetCalculator.Infrastructure.csproj.CoreCompileInputs.cache

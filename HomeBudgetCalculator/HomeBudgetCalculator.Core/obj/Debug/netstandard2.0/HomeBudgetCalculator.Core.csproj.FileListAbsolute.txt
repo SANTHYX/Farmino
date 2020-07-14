@@ -1,0 +1,9 @@
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\bin\Debug\netstandard2.0\HomeBudgetCalculator.Core.deps.json
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\bin\Debug\netstandard2.0\HomeBudgetCalculator.Core.dll
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\bin\Debug\netstandard2.0\HomeBudgetCalculator.Core.pdb
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\obj\Debug\netstandard2.0\HomeBudgetCalculator.Core.csprojAssemblyReference.cache
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\obj\Debug\netstandard2.0\HomeBudgetCalculator.Core.AssemblyInfoInputs.cache
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\obj\Debug\netstandard2.0\HomeBudgetCalculator.Core.AssemblyInfo.cs
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\obj\Debug\netstandard2.0\HomeBudgetCalculator.Core.csproj.CoreCompileInputs.cache
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\obj\Debug\netstandard2.0\HomeBudgetCalculator.Core.dll
+D:\REPOZYTORIUM\HomeBudgetCalculator\HomeBudgetCalculator.Core\obj\Debug\netstandard2.0\HomeBudgetCalculator.Core.pdb
