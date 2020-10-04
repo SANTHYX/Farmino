@@ -2,6 +2,7 @@
   <header id="navbar-wraper">
     <nav id="navbar">
       <router-link to="Home" tag="h1"><a>Logo</a></router-link>
+      <search-bar></search-bar>
       <div id="standard-menu">
         <ul>
           <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
@@ -19,9 +20,15 @@
 <script>
 import MenuButton from './mobile/MenuButton.vue';
 import MoblieMenu from './mobile/MobileMenu.vue';
+import SearchBar from './SearchBar.vue';
 
 export default {
   name: 'navbar-wraper',
+  components: {
+    MenuButton,
+    MoblieMenu,
+    SearchBar,
+  },
   data() {
     return {
       showMenu: false,
@@ -31,10 +38,6 @@ export default {
     ShowMenu(input) {
       this.showMenu = input;
     },
-  },
-  components: {
-    MenuButton,
-    MoblieMenu,
   },
 };
 </script>
