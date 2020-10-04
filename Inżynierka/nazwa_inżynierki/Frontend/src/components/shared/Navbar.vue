@@ -9,7 +9,7 @@
         <li><a href="#">Item4</a></li>
       </ul>
     </div>
-    <menu-button @buttonState="ShowMenu"></menu-button>
+    <menu-button @button-state="ShowMenu"></menu-button>
   </nav>
 </template>
 
