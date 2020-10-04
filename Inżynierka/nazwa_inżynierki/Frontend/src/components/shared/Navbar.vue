@@ -36,18 +36,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 #navbar {
+  font-family: 'Lato', sans-serif;
   display: flex;
   justify-content: space-around;
   background: rgb(57, 77, 143);
 
   a {
+    font-weight: 700;
     color: white;
     text-decoration: none;
   }
 
   h1 {
+    font-weight: 900;
     color: white;
     align-self: center;
   }
