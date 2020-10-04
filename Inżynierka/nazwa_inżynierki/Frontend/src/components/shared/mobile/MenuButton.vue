@@ -31,16 +31,16 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45px;
-    height: 45px;
-    margin: 0.6rem;
+    width: 36px;
+    height: 36px;
+    margin: 0.8rem 0.6rem;
     border: 2px solid white;
     border-radius: 7px;
     cursor: pointer;
 
     #lines {
       display: flex;
-      width: 26.7px;
+      width: 25.7px;
       border: 2px solid white;
       position: relative;
       border-radius: 10px;
@@ -50,21 +50,24 @@ export default {
     #lines::after {
       content: '';
       position: absolute;
+      z-index: 1;
       display: flex;
       justify-self: center;
       align-self: center;
-      width: 19px;
+      width: 18px;
       border: 2px solid white;
       border-radius: 10px;
+      transition: 0.34s;
     }
     #lines::before {
-      transform: translateY(12px);
+      transform: translateY(7px);
     }
     #lines::after {
-      transform: translateY(-12px);
+      transform: translateY(-7px);
     }
   }
 }
+
 @media screen and(max-width: $tablet) {
   #menu-button {
     display: flex;
