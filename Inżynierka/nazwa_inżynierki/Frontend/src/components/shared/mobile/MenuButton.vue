@@ -24,7 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../sass/_variables.scss';
 #menu-button {
   display: none;
 
@@ -66,7 +65,6 @@ export default {
     }
   }
 }
-
 @media screen and(max-width: $tablet) {
   #menu-button {
     display: flex;

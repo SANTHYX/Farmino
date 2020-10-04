@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-navbar></v-navbar>
-    <router-view></router-view>
+    <router-view id="view"></router-view>
     <v-footer></v-footer>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-#app {
-  height: 150vh;
+#view {
+  min-height: 100vh;
 }
 </style>

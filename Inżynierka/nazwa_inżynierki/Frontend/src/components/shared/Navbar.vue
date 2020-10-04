@@ -36,7 +36,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../sass/_variables.scss';
 
 #navbar {
   display: flex;
