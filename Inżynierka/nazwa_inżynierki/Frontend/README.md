@@ -1,4 +1,4 @@
-# navbar
+# Frontend
 
 ## Project setup
 ```
