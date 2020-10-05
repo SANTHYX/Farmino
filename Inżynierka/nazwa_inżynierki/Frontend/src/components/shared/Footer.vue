@@ -17,6 +17,6 @@ export default {
   align-items: center;
   font-family: 'Roboto Condensed', sans-serif;
   padding: 1rem;
-  background: rgb(177, 180, 177);
+  background: rgb(255, 255, 255);
 }
 </style>
