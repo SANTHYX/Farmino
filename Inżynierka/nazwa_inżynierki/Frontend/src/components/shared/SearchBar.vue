@@ -1,6 +1,7 @@
 <template>
   <div id="search-bar">
-    <input type="search" name="search-bar" id="search-bar-form" />
+    <input type="search" name="search-bar" id="search-bar-form" placeholder="Szukaj" />
+    <button id="search-btn">Szukaj</button>
   </div>
 </template>
 
@@ -16,11 +17,25 @@ export default {
   align-items: center;
 
   #search-bar-form {
+    font-size: 1rem;
+    font-family: 'Roboto Condensed', sans-serif;
     height: 35px;
-    width: 23vw;
-    min-width: 200px;
+    width: 19vw;
+    min-width: 170px;
     border: none;
-    border-radius: 20px;
+    border-radius: 7px 0px 0px 7px;
+    padding: 0 0.7rem;
+  }
+
+  #search-btn {
+    font-size: 1rem;
+    height: 35px;
+    border: none;
+    padding: 0 0.4rem;
+    border-radius: 0px 7px 7px 0px;
+    cursor: pointer;
+    background: greenyellow;
+    font-family: 'Roboto Condensed', sans-serif;
   }
 }
 </style>

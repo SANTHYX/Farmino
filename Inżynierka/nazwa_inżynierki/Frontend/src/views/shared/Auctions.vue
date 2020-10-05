@@ -1,5 +1,7 @@
 <template>
-  <div id="auctions"></div>
+  <section id="auctions">
+    <h1>Welcome in Auctions</h1>
+  </section>
 </template>
 
 <script>

@@ -1,17 +1,15 @@
 <template>
-  <section id="home">
-    <h1>Header</h1>
+  <section id="login">
+    <h1>Login</h1>
   </section>
 </template>
 
 <script>
-export default {
-  name: 'home',
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
-#home {
+#login {
   h1 {
     font-size: 5rem;
   }

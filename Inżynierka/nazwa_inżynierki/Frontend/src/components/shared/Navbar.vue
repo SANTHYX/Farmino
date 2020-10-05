@@ -6,9 +6,13 @@
       <div id="standard-menu">
         <ul>
           <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
-          <li><a href="#">Item2</a></li>
-          <li><a href="#">Item3</a></li>
-          <li><a href="#">Item4</a></li>
+          <router-link to="offers" tag="li" exact="exact"><a>Oferty</a></router-link>
+          <router-link to="register" tag="li" exact="exact" id="registery-btn"
+            ><a>Zarejestruj się</a></router-link
+          >
+          <router-link to="login" tag="li" exact="exact" id="login-btn"
+            ><a>Zaloguj się</a></router-link
+          >
         </ul>
       </div>
       <menu-button @button-state="ShowMenu"></menu-button>
@@ -44,10 +48,10 @@ export default {
 
 <style lang="scss" scoped>
 #navbar {
-  font-family: 'Roboto Condensed', sans-serif;
   display: flex;
   justify-content: space-around;
-  background: rgb(59, 179, 216);
+  background: rgb(56, 230, 192);
+  font-family: 'Roboto Condensed', sans-serif;
 
   a {
     font-weight: 400;
@@ -72,12 +76,16 @@ export default {
 
       li {
         font-size: 1.1rem;
-        margin: 0 0.5rem;
-        padding: 1.3rem;
+        padding: 1.4rem;
         transition: 0.34s;
+
+        a {
+          padding: 0.3rem;
+          font-weight: 400;
+        }
       }
       li:hover {
-        background: rgb(103, 103, 236);
+        background: rgb(152, 152, 241);
       }
     }
   }
