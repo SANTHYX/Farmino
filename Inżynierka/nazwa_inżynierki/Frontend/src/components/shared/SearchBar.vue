@@ -25,6 +25,7 @@ export default {
     border: none;
     border-radius: 7px 0px 0px 7px;
     padding: 0 0.7rem;
+    background: rgb(241, 245, 184);
   }
 
   #search-btn {
@@ -34,7 +35,7 @@ export default {
     padding: 0 0.4rem;
     border-radius: 0px 7px 7px 0px;
     cursor: pointer;
-    background: greenyellow;
+    background: rgb(241, 169, 34);
     font-family: 'Roboto Condensed', sans-serif;
   }
 }

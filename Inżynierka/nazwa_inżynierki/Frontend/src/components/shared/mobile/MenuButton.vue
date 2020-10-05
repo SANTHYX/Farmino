@@ -34,14 +34,14 @@ export default {
     width: 36px;
     height: 36px;
     margin: 0.8rem 0.6rem;
-    border: 2px solid white;
+    border: 2px solid rgb(42, 42, 42);
     border-radius: 7px;
     cursor: pointer;
 
     #lines {
       display: flex;
       width: 25.7px;
-      border: 2px solid white;
+      border: 2px solid rgb(42, 42, 42);
       position: relative;
       border-radius: 10px;
     }
@@ -55,7 +55,7 @@ export default {
       justify-self: center;
       align-self: center;
       width: 18px;
-      border: 2px solid white;
+      border: 2px solid rgb(42, 42, 42);
       border-radius: 10px;
       transition: 0.34s;
     }

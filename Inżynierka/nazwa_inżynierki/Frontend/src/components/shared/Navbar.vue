@@ -1,7 +1,9 @@
 <template>
   <header id="navbar-wraper">
+    <div id="logo">
+      <router-link to="/" tag="h1"><a>Logo</a></router-link>
+    </div>
     <nav id="navbar">
-      <router-link to="Home" tag="h1"><a>Logo</a></router-link>
       <search-bar></search-bar>
       <div id="standard-menu">
         <ul>
@@ -47,50 +49,63 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#navbar {
-  display: flex;
-  justify-content: space-around;
-  background: rgb(51, 102, 149);
+#navbar-wraper {
+  position: fixed;
+  width: 100vw;
   font-family: 'Roboto Condensed', sans-serif;
 
-  a {
-    font-weight: 400;
-    color: white;
-    text-decoration: none;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-    color: white;
-    align-self: center;
+  #logo {
+    display: flex;
+    justify-content: center;
+    background: white;
+    border-bottom: 0.3px solid rgb(199, 199, 199);
 
     a {
-      font-weight: 700;
+      text-decoration: none;
+      color: black;
     }
   }
 
-  #standard-menu {
-    ul {
-      display: flex;
-      list-style: none;
+  #navbar {
+    display: flex;
+    justify-content: space-around;
+    background: white;
 
-      li {
-        font-size: 1.1rem;
-        padding: 1.4rem;
-        transition: 0.34s;
+    a {
+      font-weight: 400;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+    }
 
-        a {
-          padding: 0.3rem;
-          font-weight: 400;
-        }
+    h1 {
+      font-size: 1.8rem;
+      color: rgb(0, 0, 0);
+      align-self: center;
+
+      a {
+        font-weight: 700;
       }
-      li:hover {
-        background: rgb(152, 152, 241);
+    }
+
+    #standard-menu {
+      ul {
+        display: flex;
+        list-style: none;
+
+        li {
+          font-size: 1.1rem;
+          padding: 1rem;
+          transition: 0.34s;
+
+          a {
+            padding: 0.3rem;
+            font-weight: 400;
+          }
+        }
       }
     }
   }
 }
-
 @media screen and(max-width: $tablet) {
   #standard-menu {
     display: none;
