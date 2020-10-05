@@ -50,7 +50,7 @@ export default {
 #navbar {
   display: flex;
   justify-content: space-around;
-  background: rgb(56, 230, 192);
+  background: rgb(51, 102, 149);
   font-family: 'Roboto Condensed', sans-serif;
 
   a {

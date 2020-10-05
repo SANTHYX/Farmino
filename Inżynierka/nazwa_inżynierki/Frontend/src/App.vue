@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-navbar></v-navbar>
+    <v-navbar id="navbar"></v-navbar>
     <router-view id="view"></router-view>
     <v-footer></v-footer>
   </div>
@@ -23,6 +23,10 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+#navbar {
+  position: fixed;
+  width: 100vw;
 }
 #view {
   min-height: 100vh;
