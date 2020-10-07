@@ -1,7 +1,7 @@
 <template>
   <header id="navbar-wraper">
     <div id="logo">
-      <router-link to="/" tag="h1"><a>Logo</a></router-link>
+      <router-link to="/" tag="h1"><a>Farmino</a></router-link>
     </div>
     <nav id="navbar">
       <search-bar></search-bar>

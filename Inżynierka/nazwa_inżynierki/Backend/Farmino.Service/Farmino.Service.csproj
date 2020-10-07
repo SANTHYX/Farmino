@@ -4,4 +4,24 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="EF\**" />
+    <EmbeddedResource Remove="EF\**" />
+    <None Remove="EF\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+    <Folder Include="DTO\" />
+    <Folder Include="Mapper\" />
+    <Folder Include="Commands\" />
+    <Folder Include="IoC\" />
+    <Folder Include="ORM\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Farmino.Data\Farmino.Data.csproj" />
+  </ItemGroup>
+
 </Project>
