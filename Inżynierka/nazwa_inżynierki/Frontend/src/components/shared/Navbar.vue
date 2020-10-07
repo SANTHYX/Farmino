@@ -70,6 +70,7 @@ export default {
     display: flex;
     justify-content: space-around;
     background: white;
+    border-bottom: 0.3px solid rgb(199, 199, 199);
 
     a {
       font-weight: 400;

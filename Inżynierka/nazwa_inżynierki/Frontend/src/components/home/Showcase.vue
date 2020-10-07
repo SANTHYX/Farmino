@@ -62,7 +62,7 @@ export default {
     }
   }
 }
-@media screen and(max-width:850px) {
+@media screen and(max-width:880px) {
   #showcase {
     #hero-image {
       #text-wraper {
