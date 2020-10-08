@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmino.Data.Enums;
+using System;
 
 namespace Farmino.Data.Models
 {
@@ -9,6 +10,7 @@ namespace Farmino.Data.Models
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
         public Address Address { get; protected set; }
+        public Role Role { get; protected set; }
         public DateTime UpdatedOn { get; protected set; }
         public DateTime CreatedOn { get; protected set; }
     }

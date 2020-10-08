@@ -16,8 +16,6 @@
     <Folder Include="Mapper\" />
     <Folder Include="Commands\" />
     <Folder Include="IoC\" />
-    <Folder Include="ORM\" />
-    <Folder Include="Service\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
