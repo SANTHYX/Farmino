@@ -1,3 +1,5 @@
+using AutoMapper;
+using Farmino.Service.Mapper;
 using Farmino.Service.ORM;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +26,7 @@ namespace Farmino.API
             services.AddDbContext<FarminoDbContext>(opt => 
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionContext"),
                 b =>b.MigrationsAssembly("Farmino.Service")));
+            services.AddAutoMapper(typeof(AutoMapperCfg));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

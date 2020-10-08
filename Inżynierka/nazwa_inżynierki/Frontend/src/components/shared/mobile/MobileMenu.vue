@@ -24,7 +24,7 @@ export default {
   justify-content: center;
   align-items: center;
   font-family: 'Roboto Condensed', sans-serif;
-  background: rgb(22, 176, 214);
+  background: rgb(255, 255, 255);
 
   li {
     list-style: none;
@@ -36,7 +36,8 @@ export default {
       font-size: 1.15rem;
       padding: 1rem 100vw;
       text-decoration: none;
-      color: aliceblue;
+      color: rgb(0, 0, 0);
+      border-bottom: 0.3px solid rgb(199, 199, 199);
     }
   }
   li:active,
