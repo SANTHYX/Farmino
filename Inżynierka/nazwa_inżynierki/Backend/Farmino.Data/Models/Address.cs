@@ -1,13 +1,18 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Farmino.Data.Models
 {
     public class Address
     {
         public Guid Id { get; protected set; }
+        [Required]
         public string City { get; protected set; }
+        [Required]
         public string PostalCode { get; protected set; }
+        [Required]
         public string Street { get; protected set; }
+        [Required]
         public int StreetNumber { get; protected set; }
 
         public Address(string city, string postalCode, string street, int streetNumber)
@@ -60,11 +65,11 @@ namespace Farmino.Data.Models
         }
         public void SetStreetNumber(int streetNumber)
         {
-            if(streetNumber <= 0)
+            if (streetNumber <= 0)
             {
                 throw new Exception("StreetNumber is invalid");
             }
-            if(streetNumber == StreetNumber)
+            if (streetNumber == StreetNumber)
             {
                 return;
             }

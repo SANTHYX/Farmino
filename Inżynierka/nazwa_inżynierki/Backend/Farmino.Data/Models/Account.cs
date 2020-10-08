@@ -1,19 +1,24 @@
 ﻿using Farmino.Data.Extensions;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Farmino.Data.Models
 {
     public class Account
     {
+        [Required]
         public string Login { get; protected set; }
+        [Required]
         public string Password { get; protected set; }
+        [Required]
         public string Email { get; protected set; }
         public string Salt { get; protected set; }
 
-        public Account(string login, string password, string salt)
+        public Account(string login, string password, string email, string salt)
         {
             SetLogin(login);
             SetPassword(password);
+            SetEmail(email);
             SetSalt(salt);
         }
 
@@ -74,7 +79,7 @@ namespace Farmino.Data.Models
 
             Email = email;
         }
-        public static Account Create(string login, string password, string salt)
-            => new Account(login, password, salt);
+        public static Account Create(string login, string password, string email, string salt)
+            => new Account(login, password, email, salt);
     }
 }
