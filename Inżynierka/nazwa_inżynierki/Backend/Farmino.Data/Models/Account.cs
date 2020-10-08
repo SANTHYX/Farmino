@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmino.Data.Extensions;
+using System;
 
 namespace Farmino.Data.Models
 {
@@ -6,6 +7,7 @@ namespace Farmino.Data.Models
     {
         public string Login { get; protected set; }
         public string Password { get; protected set; }
+        public string Email { get; protected set; }
         public string Salt { get; protected set; }
 
         public Account(string login, string password, string salt)
@@ -54,6 +56,23 @@ namespace Farmino.Data.Models
 
             
             Salt = salt;
+        }
+        public void SetEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new Exception("Email dont include WhiteSpaces and cannot be empty");
+            }
+            if (!email.IsEmail())
+            {
+                throw new Exception("Email is Invalid");
+            }
+            if (email == Email)
+            {
+                return;
+            }
+
+            Email = email;
         }
         public static Account Create(string login, string password, string salt)
             => new Account(login, password, salt);
