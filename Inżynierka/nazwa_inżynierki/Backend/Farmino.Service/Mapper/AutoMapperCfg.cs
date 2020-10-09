@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Farmino.Data.Models;
+using Farmino.Service.DTO;
 
 namespace Farmino.Service.Mapper
 {
@@ -9,7 +8,8 @@ namespace Farmino.Service.Mapper
     {
         public AutoMapperCfg()
         {
-            
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Address, AddressDTO>().ReverseMap();
         }
     }
 }

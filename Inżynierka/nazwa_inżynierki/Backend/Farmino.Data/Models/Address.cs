@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Farmino.Data.Models
 {
     public class Address
     {
+        [NotNull, Required]
         public Guid Id { get; protected set; }
         [Required]
         public string City { get; protected set; }
@@ -14,6 +16,10 @@ namespace Farmino.Data.Models
         public string Street { get; protected set; }
         [Required]
         public int StreetNumber { get; protected set; }
+        [Required]
+        public DateTime UpdatedOn { get; protected set; }
+        [Required]
+        public DateTime CreatedOn { get; protected set; }
 
         public Address(string city, string postalCode, string street, int streetNumber)
         {
@@ -22,6 +28,7 @@ namespace Farmino.Data.Models
             SetPostalCode(postalCode);
             SetStreet(street);
             SetStreetNumber(streetNumber);
+            CreatedOn = UpdatedOn = DateTime.Now;
         }
 
         public void SetCity(string city)
@@ -36,6 +43,7 @@ namespace Farmino.Data.Models
             }
 
             City = city;
+            UpdatedOn = DateTime.Now;
         }
         public void SetPostalCode(string postalCode)
         {
@@ -49,6 +57,7 @@ namespace Farmino.Data.Models
             }
 
             PostalCode = postalCode;
+            UpdatedOn = DateTime.Now;
         }
         public void SetStreet(string street)
         {
@@ -62,6 +71,7 @@ namespace Farmino.Data.Models
             }
 
             Street = street;
+            UpdatedOn = DateTime.Now;
         }
         public void SetStreetNumber(int streetNumber)
         {
@@ -75,6 +85,7 @@ namespace Farmino.Data.Models
             }
 
             StreetNumber = streetNumber;
+            UpdatedOn = DateTime.Now;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Farmino.Data.Models
         public string Password { get; protected set; }
         [Required]
         public string Email { get; protected set; }
+        [Required]
         public string Salt { get; protected set; }
 
         public Account(string login, string password, string email, string salt)
