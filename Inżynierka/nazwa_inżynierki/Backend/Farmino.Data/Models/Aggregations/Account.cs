@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Farmino.Data.Models
+namespace Farmino.Data.Models.Aggregations
 {
     public class Account
     {
