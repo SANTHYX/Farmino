@@ -7,9 +7,10 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IUserService : IService
     {
-        Task<ServiceResponse<UserDTO>> GetUserAsync();
+        Task<ServiceResponse<UserDTO>> GetUserAsync(string login);
         Task<ServiceResponse<IEnumerable<UserDTO>>> GetAllUsersAsync();
-        Task <ServiceResponse<UserDTO>> RegisterUserAsync();
+        Task <ServiceResponse<UserDTO>> RegisterUserAsync(string firstName, string lastName,
+            string login, string password, string email, int role);
         Task <ServiceResponse<UserDTO>> EditUserAsync();
     }
 }

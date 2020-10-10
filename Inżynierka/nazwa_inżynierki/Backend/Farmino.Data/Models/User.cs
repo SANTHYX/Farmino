@@ -16,7 +16,6 @@ namespace Farmino.Data.Models
         public string LastName { get; protected set; }
         [Required]
         public Account Account { get; protected set; }
-        [Required]
         public Address Address { get; protected set; }
         [Required]
         public Role Role { get; protected set; }
@@ -25,9 +24,13 @@ namespace Farmino.Data.Models
         [Required]
         public DateTime CreatedOn { get; protected set; }
 
-        public User()
+        public User(string firstName, string lastName, string login, string password, string email, int role)
         {
             Id = Guid.NewGuid();
+            SetFirstName(firstName);
+            SetLastName(lastName);
+            SetAccount(login, password, email);
+            SetRole(role);
             CreatedOn = UpdatedOn = DateTime.Now;
         }
 
@@ -59,9 +62,16 @@ namespace Farmino.Data.Models
             LastName = lastName;
             UpdatedOn = DateTime.Now;
         }
-        public void SetAccount(Account account)
+        public void SetAccount(string login, string password, string email)
         {
-            Account = account;
+            Account = Account.Create(login, password, email, "salt");
+        }
+        public void SetRole(int role)
+        {
+            if (role>1 && role < 0)
+            {
+                throw new Exception("This role dosn't exist");
+            }
         }
     }
 }
