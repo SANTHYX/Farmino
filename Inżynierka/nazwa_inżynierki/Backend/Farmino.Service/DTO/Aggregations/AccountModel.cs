@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Farmino.Service.DTO.Aggregations
+﻿namespace Farmino.Service.DTO.Aggregations
 {
     public class AccountModel
     {

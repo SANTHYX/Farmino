@@ -2,7 +2,7 @@
 
 namespace Farmino.Service.Service.ServiceResponse
 {
-    public class ServiceResponse<T> where T : IService
+    public class ServiceResponse<T>
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
