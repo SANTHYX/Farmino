@@ -26,7 +26,7 @@ namespace Farmino.Data.Models.Aggregations
         {
             if (string.IsNullOrWhiteSpace(login))
             {
-                throw new Exception("Invalid Email");
+                throw new Exception("Invalid Login");
             }
             if (login == Login)
             {
@@ -68,7 +68,7 @@ namespace Farmino.Data.Models.Aggregations
             {
                 throw new Exception("Email dont include WhiteSpaces and cannot be empty");
             }
-            if (!email.IsEmail())
+            if (email.IsEmail())
             {
                 throw new Exception("Email is Invalid");
             }

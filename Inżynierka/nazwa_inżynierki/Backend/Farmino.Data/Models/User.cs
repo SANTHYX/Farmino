@@ -17,20 +17,23 @@ namespace Farmino.Data.Models
         [Required]
         public Account Account { get; protected set; }
         public Address Address { get; protected set; }
-        [Required]
         public Role Role { get; protected set; }
         [Required]
         public DateTime UpdatedOn { get; protected set; }
         [Required]
         public DateTime CreatedOn { get; protected set; }
 
-        public User(string firstName, string lastName, string login, string password, string email, int role)
+        public User()
+        {
+
+        }
+        public User(string firstName, string lastName, Account account/*, int role*/)
         {
             Id = Guid.NewGuid();
             SetFirstName(firstName);
             SetLastName(lastName);
-            SetAccount(login, password, email);
-            SetRole(role);
+            SetAccount(account);
+            /*SetRole(role);*/
             CreatedOn = UpdatedOn = DateTime.Now;
         }
 
@@ -62,9 +65,9 @@ namespace Farmino.Data.Models
             LastName = lastName;
             UpdatedOn = DateTime.Now;
         }
-        public void SetAccount(string login, string password, string email)
+        public void SetAccount(Account account)
         {
-            Account = Account.Create(login, password, email, "salt");
+            Account = account;
         }
         public void SetRole(int role)
         {

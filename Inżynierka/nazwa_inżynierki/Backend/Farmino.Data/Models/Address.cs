@@ -6,7 +6,7 @@ namespace Farmino.Data.Models
 {
     public class Address
     {
-        [NotNull, Required]
+        [Required]
         public Guid Id { get; protected set; }
         [Required]
         public string City { get; protected set; }
@@ -16,11 +16,17 @@ namespace Farmino.Data.Models
         public string Street { get; protected set; }
         [Required]
         public int StreetNumber { get; protected set; }
+        public Guid UserId { get; protected set; }
+        public User User { get; protected set; }
         [Required]
         public DateTime UpdatedOn { get; protected set; }
         [Required]
         public DateTime CreatedOn { get; protected set; }
 
+        public Address()
+        {
+
+        }
         public Address(string city, string postalCode, string street, int streetNumber)
         {
             Id = Guid.NewGuid();

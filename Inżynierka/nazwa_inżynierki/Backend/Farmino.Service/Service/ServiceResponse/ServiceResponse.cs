@@ -5,8 +5,8 @@ namespace Farmino.Service.Service.ServiceResponse
 {
     public class ServiceResponse<T>
     {
-        public bool IsSuccess { get; set; } = new HttpResponseMessage().IsSuccessStatusCode;
-        public string Message { get; set; } = new Exception().Message;
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
         public T Data { get; set; }
     }
 }

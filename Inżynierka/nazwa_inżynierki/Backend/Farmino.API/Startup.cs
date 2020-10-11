@@ -1,4 +1,6 @@
+using Autofac;
 using AutoMapper;
+using Farmino.Service.IoC.Modules;
 using Farmino.Service.Mapper;
 using Farmino.Service.ORM;
 using Microsoft.AspNetCore.Builder;
@@ -23,10 +25,14 @@ namespace Farmino.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<FarminoDbContext>(opt => 
-                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionContext"),
-                b =>b.MigrationsAssembly("Farmino.Service")));
+            services.AddDbContext<FarminoDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                b=>b.MigrationsAssembly("Farmino.Service")));
             services.AddAutoMapper(typeof(AutoMapperCfg));
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<MainModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

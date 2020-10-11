@@ -10,7 +10,8 @@ namespace Farmino.Service.Service.Interfaces
         Task<ServiceResponse<UserDTO>> GetUserAsync(string login);
         Task<ServiceResponse<IEnumerable<UserDTO>>> GetAllUsersAsync();
         Task <ServiceResponse<UserDTO>> RegisterUserAsync(string firstName, string lastName,
-            string login, string password, string email, int role);
-        Task <ServiceResponse<UserDTO>> EditUserAsync();
+            string login, string password, string email/*, int role*/);
+        Task <ServiceResponse<UserDTO>> EditUserAsync(string firstName, string lastName,
+            string login, string password, string email);
     }
 }
