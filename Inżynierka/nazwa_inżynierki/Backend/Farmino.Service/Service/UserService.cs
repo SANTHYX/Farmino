@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Farmino.Data.Models;
+using Farmino.Data.Models.Aggregations;
 using Farmino.Service.DTO;
 using Farmino.Service.ORM;
 using Farmino.Service.Service.Interfaces;
@@ -22,23 +22,26 @@ namespace Farmino.Service.Service
             _mapper = mapper;
             _context = context;
         }
+
         public async Task<UserDTO> GetUserAsync(string login)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login);
+            var user = await _context.Users.Include(x => x.PersonalData)
+                .FirstOrDefaultAsync(x => x.Login == login);
             return _mapper.Map<User, UserDTO>(user);
         }
 
         public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = await _context.Users.Include(x=>x.PersonalData)
+                .ToListAsync();
             return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
         }
 
-        public async Task RegisterAsync(string login, string password)
+        public async Task RegisterAsync(string login, string password, string email)
         {
             if (!_context.Users.Where(x => x.Login == login).Any())
             {
-                _context.Add(new User(login, password));
+                _context.Add(new User(login, password, email));
                 await _context.SaveChangesAsync();
             }
             else
@@ -47,13 +50,17 @@ namespace Farmino.Service.Service
             }
         }
 
-        public async Task EditAsync(string login,string newLogin, string newPassword)
+        public async Task EditAsync(string login,string newLogin, 
+            string newPassword, string newEmail)
         {
             if (!_context.Users.Where(x => x.Login == newLogin).Any())
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login);
+
                 user.SetLogin(newLogin);
                 user.SetPassword(newPassword);
+                user.SetEmail(newEmail);
+
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }

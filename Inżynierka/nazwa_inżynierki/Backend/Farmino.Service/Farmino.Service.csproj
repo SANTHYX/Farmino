@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Farmino.Data\Farmino.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTO\Aggregations\" />
-  </ItemGroup>
-
 </Project>

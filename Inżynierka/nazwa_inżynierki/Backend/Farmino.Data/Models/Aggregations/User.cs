@@ -1,23 +1,34 @@
-﻿using System;
+﻿using Farmino.Data.Extensions;
+using Farmino.Data.Models.Entities;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace Farmino.Data.Models
+namespace Farmino.Data.Models.Aggregations
 {
     public class User
     {
+        [Key]
         public Guid Id { get; protected set; }
+        [Required]
         public string Login { get; protected set; }
+        [Required]
         public string Password { get; protected set; }
+        [Required]
+        public string Email { get; protected set; }
+        [Required]
         public string Salt { get; protected set; }
+        public PersonalData PersonalData { get;protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 
         protected User()
         {}
-        public User(string login, string password)
+        public User(string login, string password, string email)
         {
             Id = Guid.NewGuid();
             SetPassword(password);
             SetLogin(login);
+            SetEmail(email);
             Salt = "salt";
             CreatedAt = UpdatedAt = DateTime.Now;
         }
@@ -62,6 +73,20 @@ namespace Farmino.Data.Models
             }
 
             Salt = salt;
+            UpdatedAt = DateTime.Now;
+        }
+        public void SetEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email) && !email.IsEmail())
+            {
+                throw new Exception("Salt is invalid");
+            }
+            if (Email == email)
+            {
+                return;
+            }
+
+            Email = email;
             UpdatedAt = DateTime.Now;
         }
     }

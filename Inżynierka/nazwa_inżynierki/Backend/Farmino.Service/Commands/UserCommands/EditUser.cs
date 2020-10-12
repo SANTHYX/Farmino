@@ -7,5 +7,6 @@ namespace Farmino.Service.Commands.UserCommands
         public string Login { get; set; }
         public string NewLogin { get; set; }
         public string NewPassword { get; set; }
+        public string NewEmail { get; set; }
     }
 }

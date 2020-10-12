@@ -13,9 +13,11 @@ namespace Farmino.Service.Handlers.UserHandlers
         {
             _service = service;
         }
+
         public async Task HandleAsync(EditUser command)
         {
-            await _service.EditAsync(command.Login, command.NewLogin, command.NewPassword);
+            await _service.EditAsync(command.Login, command.NewLogin, 
+                command.NewPassword, command.NewEmail);
         }
     }
 }
