@@ -9,7 +9,6 @@ namespace Farmino.Service.Mapper
         public AutoMapperCfg()
         {
             CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<Address, AddressDTO>().ReverseMap();
         }
     }
 }

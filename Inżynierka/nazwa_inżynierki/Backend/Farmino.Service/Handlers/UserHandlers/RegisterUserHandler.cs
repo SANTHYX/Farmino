@@ -1,9 +1,9 @@
-﻿using Farmino.Service.Commands.User;
+﻿using Farmino.Service.Commands.UserCommands;
 using Farmino.Service.Handlers.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System.Threading.Tasks;
 
-namespace Farmino.Service.Handlers.User
+namespace Farmino.Service.Handlers.UserHandlers
 {
     public class RegisterUserHandler : ICommandHandler<RegisterUser>
     {
@@ -15,8 +15,7 @@ namespace Farmino.Service.Handlers.User
         }
         public async Task HandleAsync(RegisterUser command)
         {
-            await _service.RegisterUserAsync(command.FirstName, command.LastName,
-                command.Login, command.Password, command.Email);
+            await _service.RegisterAsync(command.Login, command.Password);
         }
     }
 }

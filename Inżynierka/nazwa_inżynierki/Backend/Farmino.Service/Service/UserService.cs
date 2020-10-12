@@ -1,88 +1,66 @@
 ﻿using AutoMapper;
 using Farmino.Data.Models;
-using Farmino.Data.Models.Aggregations;
 using Farmino.Service.DTO;
 using Farmino.Service.ORM;
 using Farmino.Service.Service.Interfaces;
-using Farmino.Service.Service.ServiceResponse;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service
 {
     public class UserService : IUserService
     {
-        private readonly FarminoDbContext _context;
         private readonly IMapper _mapper;
+        private readonly FarminoDbContext _context;
 
-        public UserService(FarminoDbContext context, IMapper mapper)
+        public UserService(IMapper mapper, FarminoDbContext context)
         {
-            _context = context;
             _mapper = mapper;
+            _context = context;
+        }
+        public async Task<UserDTO> GetUserAsync(string login)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login);
+            return _mapper.Map<User, UserDTO>(user);
         }
 
-        public async Task<ServiceResponse<UserDTO>> EditUserAsync(string firstName, string lastName,
-            string login, string password, string email)
+        public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            ServiceResponse<UserDTO> serviceResponse = new ServiceResponse<UserDTO>();
+            var users = await _context.Users.ToListAsync();
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
+        }
 
-            try
+        public async Task RegisterAsync(string login, string password)
+        {
+            if (!_context.Users.Where(x => x.Login == login).Any())
             {
-                var user = await _context.Users.FirstOrDefaultAsync(x => x.Account.Login == login);
-
-                user.SetFirstName(firstName);
-                user.SetLastName(lastName);
-                user.Account.SetLogin(login);
-                user.Account.SetPassword(password);
-                user.Account.SetEmail(email);
-                _context.Update(user);
-
-                serviceResponse.IsSuccess = new HttpResponseMessage().IsSuccessStatusCode;
-                serviceResponse.Message = "User has been updated!";
+                _context.Add(new User(login, password));
+                await _context.SaveChangesAsync();
             }
-            catch (Exception error)
+            else
             {
-                serviceResponse.IsSuccess = new HttpResponseMessage().IsSuccessStatusCode;
-                serviceResponse.Message = error.Message;
+                throw new Exception($"User with login ${login} already exist");
             }
-
-            return serviceResponse;
         }
-        public async Task<ServiceResponse<IEnumerable<UserDTO>>> GetAllUsersAsync()
+
+        public async Task EditAsync(string login,string newLogin, string newPassword)
         {
-            ServiceResponse<IEnumerable<UserDTO>> serviceResponse = new ServiceResponse<IEnumerable<UserDTO>>();
-
-            var usersList = await _context.Users.ToListAsync();
-
-            serviceResponse.IsSuccess = new HttpResponseMessage().IsSuccessStatusCode;
-            serviceResponse.Data = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(usersList);
-            return serviceResponse;
-        }
-        public async Task<ServiceResponse<UserDTO>> GetUserAsync(string login)
-        {
-            ServiceResponse<UserDTO> serviceResponse = new ServiceResponse<UserDTO>();
-
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Account.Login == login);
-
-            serviceResponse.IsSuccess = new HttpResponseMessage().IsSuccessStatusCode;
-            serviceResponse.Data = _mapper.Map<User, UserDTO>(user);
-            return serviceResponse;
-        }
-        public async Task<ServiceResponse<UserDTO>> RegisterUserAsync(string firstName, string lastName, 
-            string login, string password, string email/*,int role*/)
-        {
-            ServiceResponse<UserDTO> serviceResponse = new ServiceResponse<UserDTO>();
-
-             var user = new User(firstName, lastName, Account.Create(login, password, email, "salty") /*,role*/);
-             _context.Users.Add(user);
-             await _context.SaveChangesAsync();
-
-             serviceResponse.IsSuccess = new HttpResponseMessage().IsSuccessStatusCode;
-             serviceResponse.Message = "User has been created";
-             return serviceResponse;
+            if (!_context.Users.Where(x => x.Login == newLogin).Any())
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login);
+                user.SetLogin(newLogin);
+                user.SetPassword(newPassword);
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("This login is already taken");
+            }
         }
     }
 }

@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Aggregations\" />
+    <Folder Include="Models\Entities\" />
+    <Folder Include="Models\Value-Objects\" />
+  </ItemGroup>
+
 </Project>

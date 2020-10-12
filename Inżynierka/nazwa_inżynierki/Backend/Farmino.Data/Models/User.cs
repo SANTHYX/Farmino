@@ -1,80 +1,68 @@
-﻿using Farmino.Data.Enums;
-using Farmino.Data.Models.Aggregations;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+﻿using System;
 
 namespace Farmino.Data.Models
 {
     public class User
     {
-        [NotNull, Required]
         public Guid Id { get; protected set; }
-        [Required]
-        public string FirstName { get; protected set; }
-        [Required]
-        public string LastName { get; protected set; }
-        [Required]
-        public Account Account { get; protected set; }
-        public Address Address { get; protected set; }
-        public Role Role { get; protected set; }
-        [Required]
-        public DateTime UpdatedOn { get; protected set; }
-        [Required]
-        public DateTime CreatedOn { get; protected set; }
+        public string Login { get; protected set; }
+        public string Password { get; protected set; }
+        public string Salt { get; protected set; }
+        public DateTime CreatedAt { get; protected set; }
+        public DateTime UpdatedAt { get; protected set; }
 
-        public User()
-        {
-
-        }
-        public User(string firstName, string lastName, Account account/*, int role*/)
+        protected User()
+        {}
+        public User(string login, string password)
         {
             Id = Guid.NewGuid();
-            SetFirstName(firstName);
-            SetLastName(lastName);
-            SetAccount(account);
-            /*SetRole(role);*/
-            CreatedOn = UpdatedOn = DateTime.Now;
+            SetPassword(password);
+            SetLogin(login);
+            Salt = "salt";
+            CreatedAt = UpdatedAt = DateTime.Now;
         }
 
-        public void SetFirstName(string firstName)
+        public void SetLogin(string login)
         {
-            if (string.IsNullOrWhiteSpace(firstName))
+            if (string.IsNullOrWhiteSpace(login))
             {
-                throw new Exception("FirstName cannot be empty");
+                throw new Exception("Name is invalid");
             }
-            if (firstName == FirstName)
+            if (login == Login)
             {
                 return;
             }
 
-            FirstName = firstName;
-            UpdatedOn = DateTime.Now;
+            Login = login;
+            UpdatedAt = DateTime.Now;
         }
-        public void SetLastName(string lastName)
+        public void SetPassword(string password)
         {
-            if (string.IsNullOrWhiteSpace(lastName))
+            if (string.IsNullOrWhiteSpace(password))
             {
-                throw new Exception("LastName cannot be empty");
+                throw new Exception("Password is invalid");
             }
-            if (lastName == LastName)
+            if (password == Password)
             {
                 return;
             }
 
-            LastName = lastName;
-            UpdatedOn = DateTime.Now;
+            Password = password;
+            UpdatedAt = DateTime.Now;
         }
-        public void SetAccount(Account account)
+        public void SetSalt(string salt)
         {
-            Account = account;
-        }
-        public void SetRole(int role)
-        {
-            if (role>1 && role < 0)
+            if (string.IsNullOrWhiteSpace(salt))
             {
-                throw new Exception("This role dosn't exist");
+                throw new Exception("Salt is invalid");
             }
+            if (salt == Salt)
+            {
+                return;
+            }
+
+            Salt = salt;
+            UpdatedAt = DateTime.Now;
         }
     }
 }

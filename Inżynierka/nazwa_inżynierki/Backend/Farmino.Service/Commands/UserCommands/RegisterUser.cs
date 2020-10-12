@@ -1,0 +1,10 @@
+﻿using Farmino.Service.Commands.Interfaces;
+
+namespace Farmino.Service.Commands.UserCommands
+{
+    public class RegisterUser : ICommand
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+    }
+}
