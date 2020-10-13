@@ -2,9 +2,9 @@
   <div id="mobile-menu" showMenu="showMenu">
     <ul v-if="showMenu">
       <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
-      <li><a>Second</a></li>
-      <li><a>Thrid</a></li>
-      <li><a>Forth</a></li>
+      <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
+      <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
+      <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
     </ul>
   </div>
 </template>
