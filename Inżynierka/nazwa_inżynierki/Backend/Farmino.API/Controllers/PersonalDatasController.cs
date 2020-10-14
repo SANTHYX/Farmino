@@ -18,20 +18,6 @@ namespace Farmino.API.Controllers
         {
             _dispatcher = dispatcher;
         }
-      
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-    
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SetPersonalData command)

@@ -18,5 +18,6 @@ export default {
   font-family: 'Roboto Condensed', sans-serif;
   padding: 1rem;
   background: rgb(255, 255, 255);
+  border-top: 0.3px solid rgb(199, 199, 199);
 }
 </style>
