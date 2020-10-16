@@ -1,1 +1,5 @@
 //Global Utilities//
+
+.form-field{
+    @include input-field;
+}

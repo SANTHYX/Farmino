@@ -1,11 +1,11 @@
 <template>
   <div id="account-inputs">
     <label for="login">Login</label>
-    <input type="text" name="login" id="login-form" />
+    <input type="text" name="login" id="login-form" class="form-field" />
     <label for="password">Hasło</label>
-    <input type="password" name="password" id="password-form" />
+    <input type="password" name="password" id="password-form" class="form-field" />
     <label for="email">Email</label>
-    <input type="email" name="email" id="email-form" />
+    <input type="email" name="email" id="email-form" class="form-field" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #account-inputs {
   display: flex;
   flex-direction: column;

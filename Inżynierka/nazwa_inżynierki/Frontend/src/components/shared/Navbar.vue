@@ -50,8 +50,8 @@ export default {
 
 <style lang="scss" scoped>
 #navbar-wraper {
-  //position: fixed;
-  //width: 100vw;
+  position: fixed;
+  width: 100vw;
   font-family: 'Roboto Condensed', sans-serif;
 
   #logo {

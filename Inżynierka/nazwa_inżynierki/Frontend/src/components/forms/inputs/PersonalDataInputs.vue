@@ -1,11 +1,29 @@
 <template>
   <div id="personal-data-input">
     <label for="first-name">Imię</label>
-    <input type="text" name="first-name" id="first-name-input" placeholder="Jan" />
+    <input
+      type="text"
+      name="first-name"
+      id="first-name-input"
+      class="form-field"
+      placeholder="Jan"
+    />
     <label for="last-name">Nazwisko</label>
-    <input type="text" name="last-name" id="last-name-input" placeholder="Kowalski" />
+    <input
+      type="text"
+      name="last-name"
+      id="last-name-input"
+      class="form-field"
+      placeholder="Kowalski"
+    />
     <label for="phone-number">Nr.Telefonu</label>
-    <input type="text" name="phone-number" id="phone-number-input" placeholder="555-333-222" />
+    <input
+      type="text"
+      name="phone-number"
+      id="phone-number-input"
+      class="form-field"
+      placeholder="555-333-222"
+    />
   </div>
 </template>
 
@@ -15,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #personal-data-input {
   display: flex;
   flex-direction: column;

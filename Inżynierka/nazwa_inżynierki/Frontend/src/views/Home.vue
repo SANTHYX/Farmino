@@ -1,13 +1,16 @@
 <template>
   <div id="home">
-    <div id="showcase">
-      <div id="hero-image">
-        <div id="text-wraper">
-          <h1><span>Wymieniaj I Nabywaj</span> Nie Ruszajac Się Z Domu</h1>
-          <p>Licytuj oraz kupuj przedmioty szybko, wygodnie i bezpiecznie</p>
+    <div id="content">
+      <div id="showcase">
+        <div id="hero-image">
+          <div id="text-wraper">
+            <h1><span>Wymieniaj I Nabywaj</span> Nie Ruszajac Się Z Domu</h1>
+            <p>Licytuj oraz kupuj przedmioty szybko, wygodnie i bezpiecznie</p>
+          </div>
+          <a href="#about-us" id="btn">Dowiedz się więcej</a>
         </div>
-        <a href="#about-us" id="btn">Dowiedz się więcej</a>
       </div>
+      <div></div>
     </div>
   </div>
 </template>
@@ -18,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #showcase {
   display: flex;
   justify-content: center;

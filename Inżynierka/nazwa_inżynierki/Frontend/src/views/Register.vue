@@ -1,8 +1,10 @@
 <template>
   <div id="register">
-    <div id="layout"></div>
-    <div id="register-section">
-      <register-form></register-form>
+    <div id="content">
+      <div id="content-section"></div>
+      <div id="register-section">
+        <register-form></register-form>
+      </div>
     </div>
   </div>
 </template>
@@ -19,15 +21,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#register {
-  #layout {
-    width: 70vw;
+#content {
+  display: flex;
+  font-family: 'Roboto Condensed', sans-serif;
+
+  #register-section {
+    background: rgb(246, 233, 108);
+    width: 30vw;
     height: 100vh;
   }
-  #register-section {
-    display: flex;
-    justify-content: flex-end;
-    width: 100vw;
+  #content-section {
+    background: green;
+    width: 70vw;
     height: 100vh;
   }
 }
