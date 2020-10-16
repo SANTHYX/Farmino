@@ -1,6 +1,9 @@
 <template>
   <div id="register">
-    <register-form></register-form>
+    <div id="layout"></div>
+    <div id="register-section">
+      <register-form></register-form>
+    </div>
   </div>
 </template>
 
@@ -15,4 +18,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+#register {
+  #layout {
+    width: 70vw;
+    height: 100vh;
+  }
+  #register-section {
+    display: flex;
+    justify-content: flex-end;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+</style>
