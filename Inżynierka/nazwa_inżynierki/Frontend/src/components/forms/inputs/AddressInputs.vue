@@ -1,10 +1,10 @@
 <template>
   <div id="address-input">
-    <label for="city">Miejscowość</label>
+    <label for="city" class="form-label">Miejscowość</label>
     <input type="text" name="city" id="city-input" class="form-field" placeholder="Warszawa" />
-    <label for="street">Ulica</label>
+    <label for="street" class="form-label">Ulica</label>
     <input type="text" name="street" id="street-input" class="form-field" placeholder="Kaliska" />
-    <label for="postalcode">Kod Pocztowy</label>
+    <label for="postalcode" class="form-label">Kod Pocztowy</label>
     <input
       type="text"
       name="postalcode"
@@ -12,7 +12,7 @@
       class="form-field"
       placeholder="21-345"
     />
-    <label for="housenumber">Nr.Domu</label>
+    <label for="housenumber" class="form-label">Nr.Domu</label>
     <input
       type="text"
       name="housenumber"

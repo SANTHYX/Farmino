@@ -1,6 +1,6 @@
 <template>
   <div id="personal-data-input">
-    <label for="first-name">Imię</label>
+    <label for="first-name" class="form-label">Imię</label>
     <input
       type="text"
       name="first-name"
@@ -8,7 +8,7 @@
       class="form-field"
       placeholder="Jan"
     />
-    <label for="last-name">Nazwisko</label>
+    <label for="last-name" class="form-label">Nazwisko</label>
     <input
       type="text"
       name="last-name"
@@ -16,7 +16,7 @@
       class="form-field"
       placeholder="Kowalski"
     />
-    <label for="phone-number">Nr.Telefonu</label>
+    <label for="phone-number" class="form-label">Nr.Telefonu</label>
     <input
       type="text"
       name="phone-number"

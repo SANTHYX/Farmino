@@ -1,7 +1,6 @@
 <template>
   <div id="register">
     <div id="content">
-      <div id="content-section"></div>
       <div id="register-section">
         <register-form></register-form>
       </div>
@@ -23,17 +22,7 @@ export default {
 <style lang="scss" scoped>
 #content {
   display: flex;
+  justify-content: center;
   font-family: 'Roboto Condensed', sans-serif;
-
-  #register-section {
-    background: rgb(246, 233, 108);
-    width: 30vw;
-    height: 100vh;
-  }
-  #content-section {
-    background: green;
-    width: 70vw;
-    height: 100vh;
-  }
 }
 </style>

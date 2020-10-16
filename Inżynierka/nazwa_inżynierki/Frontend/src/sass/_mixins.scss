@@ -1,6 +1,8 @@
 //Global Mixins//
 
-@mixin input-field(){
-    border-radius: 7px;
-    border:2px solid rgb(219, 219, 219);
+@mixin input-field($rad, $width, $height){
+    border-radius: $rad;
+    width:$width;
+    height:$height;
+    border:2px solid #ccc6c6;
 }
