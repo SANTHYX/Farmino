@@ -24,5 +24,6 @@ export default {
   display: flex;
   justify-content: center;
   font-family: 'Roboto Condensed', sans-serif;
+  min-height: 100vh;
 }
 </style>

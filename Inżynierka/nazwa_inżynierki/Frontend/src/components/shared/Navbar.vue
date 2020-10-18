@@ -12,7 +12,7 @@
           <router-link to="register" tag="li" exact="exact" id="registery-btn"
             ><a>Zarejestruj się</a></router-link
           >
-          <router-link to="login" tag="li" exact="exact" id="login-btn"
+          <router-link to="signin" tag="li" exact="exact" id="login-btn"
             ><a>Zaloguj się</a></router-link
           >
         </ul>

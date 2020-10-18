@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Entities;
+using Farmino.Data.Models.Value_Objects;
 using Farmino.Service.ORM;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,14 +19,16 @@ namespace Farmino.Service.Service
         }
 
         public async Task SetPersonalDataAsync(string login, string firstName,
-            string lastName, string phoneNumber)
+            string lastName, string phoneNumber, string city, string street, string postalCode, int houseNumber)
         {
             if (_context.Users.Where(x => x.Login == login).Any())
             {
                 var user = await _context.Users.
                     FirstOrDefaultAsync(x => x.Login == login);
+                var address = Address.Create(city, street, postalCode, houseNumber);
+
                 _context.PersonalDatas.Add(new PersonalData(firstName, lastName,
-                    phoneNumber, user.Id));
+                    phoneNumber, user.Id, address));
                 await _context.SaveChangesAsync(); 
             }
             else throw new Exception("Cannot connect PersonalData with " +

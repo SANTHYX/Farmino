@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Farmino.Service.Commands.PersonalDataCommands;
 using Farmino.Service.Handlers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Farmino.API.Controllers
 {
@@ -32,12 +30,6 @@ namespace Farmino.API.Controllers
         {
             await _dispatcher.DispatchAsync(command);
             return Ok("Data has been edited");
-        }
-
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

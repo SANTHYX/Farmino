@@ -11,5 +11,19 @@ namespace Farmino.Service.ORM
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
         { 
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<PersonalData>(x =>
+            {
+                x.OwnsOne(y => y.Address, z =>
+                {
+                    z.Property(q => q.City).HasColumnName("City");
+                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber");
+                    z.Property(q => q.PostalCode).HasColumnName("PostalCode");
+                    z.Property(q => q.Street).HasColumnName("Street");
+                });
+            });
+        }
     }
 }

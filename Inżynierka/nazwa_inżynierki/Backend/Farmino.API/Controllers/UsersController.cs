@@ -44,11 +44,5 @@ namespace Farmino.API.Controllers
             await _dispatcher.DispatchAsync(command);
             return Created("User has been updated", await _service.GetUserAsync(command.NewLogin));
         }
-
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

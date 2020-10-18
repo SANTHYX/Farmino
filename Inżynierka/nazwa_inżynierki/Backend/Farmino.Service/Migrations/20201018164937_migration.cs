@@ -32,7 +32,11 @@ namespace Farmino.Service.Migrations
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<Guid>(nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    PostalCode = table.Column<string>(nullable: true),
+                    HouseNumber = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -1,5 +1,6 @@
 ﻿using Farmino.Data.Extensions;
 using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Value_Objects;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,21 +17,23 @@ namespace Farmino.Data.Models.Entities
         public string LastName { get; protected set; }
         [Required]
         public string PhoneNumber { get; protected set; }
-        [Required]
+        [Required] 
         public Guid UserId { get; protected set; }
         [ForeignKey("UserId")]
         public User User { get; protected set; }
+        public Address Address { get; protected set; }
 
         protected PersonalData()
         {}
         public PersonalData(string firstName, string lastName, 
-            string phoneNumber, Guid userId)
+            string phoneNumber, Guid userId, Address address)
         {
             Id = Guid.NewGuid();
             SetFirstName(firstName);
             SetLastName(lastName);
             SetPhoneNumber(phoneNumber);
             SetUserId(userId);
+            SetAddress(address);
         }
 
         public void SetFirstName(string firstName)
@@ -88,6 +91,11 @@ namespace Farmino.Data.Models.Entities
             }
 
             UserId = userId;
+        }
+
+        public void SetAddress(Address address)
+        {
+            Address = address;
         }
     }
 }

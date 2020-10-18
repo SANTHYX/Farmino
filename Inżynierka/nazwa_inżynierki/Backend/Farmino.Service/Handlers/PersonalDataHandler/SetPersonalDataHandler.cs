@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.PersonalDataHandler
         public async Task HandleAsync(SetPersonalData command)
         {
             await _service.SetPersonalDataAsync(command.Login, command.FirstName,
-                command.LastName, command.PhoneNumber);
+                command.LastName, command.PhoneNumber, command.City, command.Street, command.PostalCode, command.HouseNumber);
         }
     }
 }

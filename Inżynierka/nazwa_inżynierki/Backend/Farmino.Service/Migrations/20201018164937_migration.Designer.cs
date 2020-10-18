@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201012190103_migration")]
+    [Migration("20201018164937_migration")]
     partial class migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,6 +90,35 @@ namespace Farmino.Service.Migrations
                         .HasForeignKey("Farmino.Data.Models.Entities.PersonalData", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("Farmino.Data.Models.Value_Objects.Address", "Address", b1 =>
+                        {
+                            b1.Property<Guid>("PersonalDataId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("City")
+                                .HasColumnName("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("HouseNumber")
+                                .HasColumnName("HouseNumber")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("PostalCode")
+                                .HasColumnName("PostalCode")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnName("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("PersonalDataId");
+
+                            b1.ToTable("PersonalDatas");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonalDataId");
+                        });
                 });
 #pragma warning restore 612, 618
         }

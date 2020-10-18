@@ -21,6 +21,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
   },
   {
+    path: '/offers',
+    name: 'Offers',
+    component: () => import(/* webpackChunkName: "offers" */ '../views/Offers.vue'),
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: () => import(/* webpackChunkName: "signin" */ '../views/SignIn.vue'),
+  },
+  {
     path: '*',
     redirect: {
       name: 'Home',

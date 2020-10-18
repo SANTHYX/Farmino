@@ -1,11 +1,11 @@
 <template>
   <div id="register-form">
-    <h1>Rejestracja</h1>
+    <h1>{{ title }}</h1>
     <div id="form-wraper">
       <account-inputs v-if="stage === 'account'"></account-inputs>
       <personal-data-inputs v-else-if="stage === 'personalData'"></personal-data-inputs>
       <address-inputs v-else></address-inputs>
-      <button id="form-btn">Dalej</button>
+      <button id="form-btn" @click="changeStage">Dalej</button>
     </div>
   </div>
 </template>
@@ -20,7 +20,19 @@ export default {
   data() {
     return {
       stage: 'account',
+      title: 'Tworzenie Konta',
     };
+  },
+  methods: {
+    changeStage() {
+      if (this.stage === 'account') {
+        this.stage = 'personalData';
+        this.title = 'Dane Presonalne';
+      } else {
+        this.stage = 'address';
+        this.title = 'Dane Adresowe';
+      }
+    },
   },
   components: {
     AccountInputs,
@@ -56,7 +68,7 @@ export default {
 
     #form-btn {
       align-self: center;
-      margin: 2.3rem 0;
+      margin: 1.5rem 0;
       width: 6rem;
       height: 2rem;
       font-family: 'Roboto Condensed', sans-serif;
