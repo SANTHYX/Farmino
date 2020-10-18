@@ -2,7 +2,7 @@
 
 namespace Farmino.Service.Commands.PersonalDataCommands
 {
-    public class EditPersonalData : ICommand
+    public class EditGeneralData : ICommand
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

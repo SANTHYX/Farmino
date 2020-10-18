@@ -46,7 +46,7 @@ namespace Farmino.Service.Service
             }
             else
             {
-                throw new Exception($"User with login ${login} already exist");
+                throw new Exception($"User with login {login} already exist");
             }
         }
 

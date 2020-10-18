@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace Farmino.Service.Handlers.PersonalDataHandler
 {
-    public class EditPersonalDataHandler : ICommandHandler<EditPersonalData>
+    public class EditGeneralDataHandler : ICommandHandler<EditGeneralData>
     {
         private readonly IPersonalDataService _service;
 
-        public EditPersonalDataHandler(IPersonalDataService service)
+        public EditGeneralDataHandler(IPersonalDataService service)
         {
             _service = service;
         }
 
-        public async Task HandleAsync(EditPersonalData command)
+        public async Task HandleAsync(EditGeneralData command)
         {
-            await _service.EditPersonalDataAsync(command.Login, command.FirstName,
+            await _service.EditGeneralDataAsync(command.Login, command.FirstName,
                 command.LastName, command.PhoneNumber);
         }
     }

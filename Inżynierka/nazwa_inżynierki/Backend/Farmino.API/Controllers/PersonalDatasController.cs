@@ -21,15 +21,24 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Post([FromBody] SetPersonalData command)
         {
             await _dispatcher.DispatchAsync(command);
-            return Ok("Data has been seted");
+            return Ok("Data has been seted completly");
         }
 
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] EditPersonalData command)
+        [Route("personalDatas/generalData")]
+        public async Task<IActionResult> Put([FromBody] EditGeneralData command)
         {
             await _dispatcher.DispatchAsync(command);
-            return Ok("Data has been edited");
+            return Ok("Data has been edited completly");
+        }
+
+        [HttpPut]
+        [Route("personalDatas/personalAddress")]
+        public async Task<IActionResult> Put([FromBody] EditPersonalAddress command)
+        {
+            await _dispatcher.DispatchAsync(command);
+            return Ok("Address has been edited completly");
         }
     }
 }

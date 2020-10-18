@@ -19,23 +19,25 @@ namespace Farmino.Service.Service
         }
 
         public async Task SetPersonalDataAsync(string login, string firstName,
-            string lastName, string phoneNumber, string city, string street, string postalCode, int houseNumber)
+            string lastName, string phoneNumber, Address address)
         {
             if (_context.Users.Where(x => x.Login == login).Any())
             {
                 var user = await _context.Users.
                     FirstOrDefaultAsync(x => x.Login == login);
-                var address = Address.Create(city, street, postalCode, houseNumber);
-
-                _context.PersonalDatas.Add(new PersonalData(firstName, lastName,
+                if (!_context.PersonalDatas.Where(x => x.UserId == user.Id).Any())
+                {
+                    _context.PersonalDatas.Add(new PersonalData(firstName, lastName,
                     phoneNumber, user.Id, address));
-                await _context.SaveChangesAsync(); 
+                    await _context.SaveChangesAsync();
+                }
+                else throw new Exception($"Connection already exist");
             }
-            else throw new Exception("Cannot connect PersonalData with " +
+            else throw new Exception("Cannot connect PersonalData on " +
                 "User that doesnt exist ");
         }
 
-        public async Task EditPersonalDataAsync(string login, string firstName,
+        public async Task EditGeneralDataAsync(string login, string firstName,
             string lastName, string phoneNumber)
         {
             if (_context.Users.Where(x => x.Login == login).Any())
@@ -52,8 +54,27 @@ namespace Farmino.Service.Service
                 _context.PersonalDatas.Update(personalData);
                 await _context.SaveChangesAsync();
             }
-            else throw new Exception("Cannot edit PersonalData with " +
+            else throw new Exception("Cannot edit PersonalData on " +
                 "User that doesnt exist ");
+        }
+
+        public async Task EditPersonalAddressAsync(string login, string city, string street,
+            string postalCode, int houseNumber)
+        {
+            if (_context.Users.Where(x=>x.Login == login).Any())
+            {
+                var user = await _context.Users.
+                     FirstOrDefaultAsync(x => x.Login == login);
+                var personalData = await _context.PersonalDatas.
+                    FirstOrDefaultAsync(x => x.UserId == user.Id);
+
+                personalData.SetAddress(Address.Create(city, street, 
+                    postalCode, houseNumber));
+
+                _context.PersonalDatas.Update(personalData);
+                await _context.SaveChangesAsync();
+            }
+                
         }
     }
 }

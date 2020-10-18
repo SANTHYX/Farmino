@@ -1,4 +1,5 @@
-﻿using Farmino.Service.Commands.PersonalDataCommands;
+﻿using Farmino.Data.Models.Value_Objects;
+using Farmino.Service.Commands.PersonalDataCommands;
 using Farmino.Service.Handlers.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System.Threading.Tasks;
@@ -15,8 +16,11 @@ namespace Farmino.Service.Handlers.PersonalDataHandler
         }
         public async Task HandleAsync(SetPersonalData command)
         {
+            var address = Address.Create(command.Address.City, command.Address.Street,
+                command.Address.PostalCode, command.Address.HouseNumber);
+
             await _service.SetPersonalDataAsync(command.Login, command.FirstName,
-                command.LastName, command.PhoneNumber, command.City, command.Street, command.PostalCode, command.HouseNumber);
+                command.LastName, command.PhoneNumber, address);
         }
     }
 }

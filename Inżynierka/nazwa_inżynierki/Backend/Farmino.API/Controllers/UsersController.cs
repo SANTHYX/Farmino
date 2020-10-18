@@ -34,7 +34,8 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Post([FromBody] RegisterUser command)
         {
             await _dispatcher.DispatchAsync(command);
-            return Created("User has been created", await _service.GetUserAsync(command.Login));
+            return Created("User has been created completly", 
+                await _service.GetUserAsync(command.Login));
         }
 
 
@@ -42,7 +43,8 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Put([FromBody] EditUser command)
         {
             await _dispatcher.DispatchAsync(command);
-            return Created("User has been updated", await _service.GetUserAsync(command.NewLogin));
+            return Created("User has been updated completly",
+                await _service.GetUserAsync(command.NewLogin));
         }
     }
 }

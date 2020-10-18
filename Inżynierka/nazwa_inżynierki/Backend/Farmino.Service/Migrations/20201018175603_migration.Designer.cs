@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201018164937_migration")]
-    partial class migration
+    [Migration("20201018175603_migration")]
+    partial class Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
