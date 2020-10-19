@@ -38,7 +38,7 @@ namespace Farmino.Data.Models.Entities
 
         public void SetFirstName(string firstName)
         {
-            if (string.IsNullOrEmpty(firstName))
+            if (string.IsNullOrWhiteSpace(firstName))
             {
                 throw new Exception("FirstName cannot be empty");
             }
@@ -52,7 +52,7 @@ namespace Farmino.Data.Models.Entities
 
         public void SetLastName(string lastName)
         {
-            if (string.IsNullOrEmpty(lastName))
+            if (string.IsNullOrWhiteSpace(lastName))
             {
                 throw new Exception("LastName cannot be empty");
             }
