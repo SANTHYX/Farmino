@@ -1,11 +1,8 @@
 using Autofac;
-using AutoMapper;
+using Farmino.API.Installers;
 using Farmino.Service.IoC.Modules;
-using Farmino.Service.Mapper;
-using Farmino.Service.ORM;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,9 +22,7 @@ namespace Farmino.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<FarminoDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                b=>b.MigrationsAssembly("Farmino.Service")));
-            services.AddAutoMapper(typeof(AutoMapperCfg));
+            MainInstaller.InstallServiceConfiguration(services, Configuration);
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
