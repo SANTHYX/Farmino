@@ -51,7 +51,7 @@ namespace Farmino.Data.Models.Value_Objects
         {
             if (string.IsNullOrWhiteSpace(postalCode))
             {
-                throw new Exception("PsotalCode cannot be empty");
+                throw new Exception("PostalCode cannot be empty");
             }
             if (postalCode == PostalCode)
             {
@@ -63,9 +63,9 @@ namespace Farmino.Data.Models.Value_Objects
 
         public void SetHouseNumber(int houseNumber)
         {
-            if (houseNumber == 0)
+            if (houseNumber <= 0)
             {
-                throw new Exception("PsotalCode cannot be empty");
+                throw new Exception("HouseNumber is invalid");
             }
             if (houseNumber == HouseNumber)
             {
