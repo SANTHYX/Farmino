@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Farmino.Service.Commands.Interfaces;
 using Farmino.Service.Commands.UserCommands;
-using Farmino.Service.Handlers.Interfaces;
-using Farmino.Service.Service.Interfaces;
+using Farmino.Service.Dispatchers.Interfaces;
+using Farmino.Service.DTO;
+using Farmino.Service.Queries.UserQueries;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -11,40 +14,38 @@ namespace Farmino.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService _service;
-        private readonly ICommandDispatcher _dispatcher;
-
-        public UsersController(IUserService service, ICommandDispatcher dispatcher)
+        private readonly ICommandDispatcher _commandDispatcher;
+        private readonly IQueryDispatcher _queryDispatcher;
+        public UsersController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
         {
-            _service = service;
-            _dispatcher = dispatcher;
+            _commandDispatcher = commandDispatcher;
+            _queryDispatcher = queryDispatcher;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
-            => Ok(await _service.GetAllUsersAsync());
+        [Route("/users/single")]
+        public async Task<IActionResult> Get([FromQuery] GetUser query)
+            => Ok(await _queryDispatcher.HandleAsync<GetUser, UserDTO>(query));
 
-
-        [HttpGet("{login}")]
-        public async Task<IActionResult> Get(string login)
-            => Ok(await _service.GetUserAsync(login));
+        [HttpGet]
+        [Route("/users/all")]
+        public async Task<IActionResult> Get([FromQuery] BrowseUsers query)
+          => Ok(await _queryDispatcher.HandleAsync<BrowseUsers, IEnumerable<UserDTO>>(query));
 
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterUser command)
         {
-            await _dispatcher.DispatchAsync(command);
-            return Created("User has been created completly", 
-                await _service.GetUserAsync(command.Login));
+            await _commandDispatcher.DispatchAsync(command);
+            return Ok("User has been created completly");
         }
 
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditUser command)
         {
-            await _dispatcher.DispatchAsync(command);
-            return Created("User has been updated completly",
-                await _service.GetUserAsync(command.NewLogin));
+            await _commandDispatcher.DispatchAsync(command);
+            return Ok("User has been updated completly");
         }
     }
 }

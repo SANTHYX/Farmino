@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Farmino.Service.Commands.PersonalDataCommands;
-using Farmino.Service.Handlers.Interfaces;
+using Farmino.Service.Dispatchers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 

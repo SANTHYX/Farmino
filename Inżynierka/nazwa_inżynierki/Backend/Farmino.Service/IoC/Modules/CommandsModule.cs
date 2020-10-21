@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using Farmino.Service.Commands.Dispatcher;
+using Farmino.Service.Commands.Dispatchers;
+using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.Handlers.Interfaces;
 using System.Reflection;
 

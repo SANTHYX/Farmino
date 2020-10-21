@@ -1,7 +1,7 @@
 ﻿using Farmino.Service.Commands.Interfaces;
 using System.Threading.Tasks;
 
-namespace Farmino.Service.Handlers.Interfaces
+namespace Farmino.Service.Dispatchers.Interfaces
 {
     public interface ICommandDispatcher : ICommand
     {

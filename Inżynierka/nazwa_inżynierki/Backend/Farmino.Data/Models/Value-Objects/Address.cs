@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmino.Data.Exceptions;
+using System;
 
 namespace Farmino.Data.Models.Value_Objects
 {
@@ -23,7 +24,8 @@ namespace Farmino.Data.Models.Value_Objects
         {
             if (string.IsNullOrEmpty(city))
             {
-                throw new Exception("City cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidCity,
+                    "City cannot be empty");
             }
             if (city == City)
             {

@@ -1,5 +1,6 @@
 using Autofac;
 using Farmino.API.Installers;
+using Farmino.API.Middleware;
 using Farmino.Service.IoC.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,8 @@ namespace Farmino.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware(typeof(ExceptionMiddlewareHandler));
 
             app.UseEndpoints(endpoints =>
             {

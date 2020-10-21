@@ -1,10 +1,11 @@
 ﻿using Autofac;
 using Farmino.Service.Commands.Interfaces;
+using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.Handlers.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace Farmino.Service.Commands.Dispatcher
+namespace Farmino.Service.Commands.Dispatchers
 {
     public class CommandDispatcher : ICommandDispatcher
     {
@@ -12,8 +13,9 @@ namespace Farmino.Service.Commands.Dispatcher
 
         public CommandDispatcher(IComponentContext componentContext)
         {
-            _componentContext = componentContext;
+            _componentContext = componentContext;     
         }
+
         public async Task DispatchAsync<T>(T command) where T : ICommand
         {
             if (command == null)

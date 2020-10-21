@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Commands\Dispatchers\CommandDispatcher.cs~RF144f787.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="6.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.2" />
     <PackageReference Include="AutoMapper" Version="10.0.0" />
