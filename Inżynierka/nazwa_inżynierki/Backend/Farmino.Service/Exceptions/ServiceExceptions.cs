@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Farmino.Data.Exceptions;
+using System;
 
 namespace Farmino.Service.Exceptions
 {
-    public class ServiceExceptions : Data.Exceptions.ApplicationExceptions
+    public class ServiceExceptions : ApplicationExceptions
     {
         public ServiceExceptions()
         {

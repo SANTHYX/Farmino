@@ -1,4 +1,5 @@
-﻿using Farmino.Data.Extensions;
+﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Extensions;
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Value_Objects;
 using System;
@@ -40,7 +41,8 @@ namespace Farmino.Data.Models.Entities
         {
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                throw new Exception("FirstName cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidFirstName,
+                    "FirstName cannot be empty");
             }
             if(firstName == FirstName)
             {
@@ -54,7 +56,8 @@ namespace Farmino.Data.Models.Entities
         {
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                throw new Exception("LastName cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidLastName, 
+                    "LastName cannot be empty");
             }
             if (lastName == LastName)
             {
@@ -68,12 +71,13 @@ namespace Farmino.Data.Models.Entities
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
-                throw new Exception("Number is invalid");
+                throw new DataExceptions(DataErrorCodes.InvalidPhoneNumber,
+                    "Number is invalid");
             }
             if (!phoneNumber.IsNumber())
             {
-                throw new Exception("Number is too short or too long, " +
-                    "number should contain 9 numbers");
+                throw new DataExceptions(DataErrorCodes.InvalidPhoneNumber,
+                    "Number is too short or too long,number should contain 9 numbers");
             }
             if(phoneNumber == PhoneNumber)
             {
@@ -87,7 +91,8 @@ namespace Farmino.Data.Models.Entities
         {
             if (userId == Guid.Empty)
             {
-                throw new Exception("Foregin key is empty");
+                throw new DataExceptions(DataErrorCodes.InvalidUserId,
+                    "Foregin key is empty");
             }
 
             UserId = userId;

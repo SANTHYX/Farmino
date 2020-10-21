@@ -1,5 +1,6 @@
 ﻿using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.Value_Objects;
+using Farmino.Service.Exceptions;
 using Farmino.Service.ORM;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -31,10 +32,11 @@ namespace Farmino.Service.Service
                     phoneNumber, user.Id, address));
                     await _context.SaveChangesAsync();
                 }
-                else throw new Exception($"Connection already exist");
+                else throw new ServiceExceptions(ServiceErrorCodes.AlreadyConnected,
+                    "Connection already exist");
             }
-            else throw new Exception("Cannot connect PersonalData on " +
-                "User that doesnt exist ");
+            else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
+                "Cannot connect PersonalData on User that doesnt exist ");
         }
 
         public async Task EditGeneralDataAsync(string login, string firstName,
@@ -54,8 +56,8 @@ namespace Farmino.Service.Service
                 _context.PersonalDatas.Update(personalData);
                 await _context.SaveChangesAsync();
             }
-            else throw new Exception("Cannot edit PersonalData on " +
-                "User that doesnt exist ");
+            else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
+                "Cannot connect PersonalData on User that doesnt exist ");
         }
 
         public async Task EditPersonalAddressAsync(string login, string city, string street,

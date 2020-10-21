@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Farmino.Data.Exceptions
 {
@@ -39,3 +37,4 @@ namespace Farmino.Data.Exceptions
 
         }
     }
+}

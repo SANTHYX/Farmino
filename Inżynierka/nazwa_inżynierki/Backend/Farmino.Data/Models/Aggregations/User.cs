@@ -1,4 +1,5 @@
-﻿using Farmino.Data.Extensions;
+﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Extensions;
 using Farmino.Data.Models.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -37,7 +38,8 @@ namespace Farmino.Data.Models.Aggregations
         {
             if (string.IsNullOrWhiteSpace(login))
             {
-                throw new Exception("Name is invalid");
+                throw new DataExceptions(DataErrorCodes.InvalidLogin,
+                    "Name is invalid");
             }
             if (login == Login)
             {
@@ -51,7 +53,8 @@ namespace Farmino.Data.Models.Aggregations
         {
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new Exception("Password is invalid");
+                throw new DataExceptions(DataErrorCodes.InvalidPassword,
+                    "Password is invalid");
             }
             if (password == Password)
             {
@@ -65,7 +68,8 @@ namespace Farmino.Data.Models.Aggregations
         {
             if (string.IsNullOrWhiteSpace(salt))
             {
-                throw new Exception("Salt is invalid");
+                throw new DataExceptions(DataErrorCodes.InvalidSalt,
+                    "Salt is invalid");
             }
             if (salt == Salt)
             {
@@ -79,7 +83,8 @@ namespace Farmino.Data.Models.Aggregations
         {
             if (string.IsNullOrWhiteSpace(email) && !email.IsEmail())
             {
-                throw new Exception("Salt is invalid");
+                throw new DataExceptions(DataErrorCodes.InvalidEmail,
+                    "Email is invalid");
             }
             if (Email == email)
             {

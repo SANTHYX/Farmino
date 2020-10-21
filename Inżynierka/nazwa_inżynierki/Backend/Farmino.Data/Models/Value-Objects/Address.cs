@@ -39,7 +39,8 @@ namespace Farmino.Data.Models.Value_Objects
         {
             if (string.IsNullOrEmpty(street))
             {
-                throw new Exception("Street cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidStreet,
+                    "Street cannot be empty");
             }
             if (street == Street)
             {
@@ -53,7 +54,8 @@ namespace Farmino.Data.Models.Value_Objects
         {
             if (string.IsNullOrWhiteSpace(postalCode))
             {
-                throw new Exception("PostalCode cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidPostalCode,
+                    "PostalCode cannot be empty");
             }
             if (postalCode == PostalCode)
             {
@@ -67,7 +69,8 @@ namespace Farmino.Data.Models.Value_Objects
         {
             if (houseNumber <= 0)
             {
-                throw new Exception("HouseNumber is invalid");
+                throw new DataExceptions(DataErrorCodes.InvalidHouseNumber,
+                    "HouseNumber is invalid");
             }
             if (houseNumber == HouseNumber)
             {

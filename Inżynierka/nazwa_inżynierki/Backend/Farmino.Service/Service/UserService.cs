@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Farmino.Data.Models.Aggregations;
 using Farmino.Service.DTO;
+using Farmino.Service.Exceptions;
 using Farmino.Service.ORM;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,10 +44,8 @@ namespace Farmino.Service.Service
                 _context.Add(new User(login, password, email));
                 await _context.SaveChangesAsync();
             }
-            else
-            {
-                throw new Exception($"User with login {login} already exist");
-            }
+            else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
+                    $"User with login {login} already exist");
         }
 
         public async Task EditAsync(string login,string newLogin, 
@@ -64,10 +62,8 @@ namespace Farmino.Service.Service
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }
-            else
-            {
-                throw new Exception("This login is already taken");
-            }
+            else throw new ServiceExceptions(ServiceErrorCodes.LoginAlreadyTaken,
+                    "This login is already taken");
         }
     }
 }
