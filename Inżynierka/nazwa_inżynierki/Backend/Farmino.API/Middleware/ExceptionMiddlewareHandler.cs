@@ -1,5 +1,4 @@
-﻿using Farmino.Data.Exceptions;
-using Farmino.Service.Exceptions;
+﻿using Farmino.Service.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -31,7 +30,6 @@ namespace Farmino.API.Middleware
 
         public static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var errorCode = "Error";
             var exceptionType = exception.GetType();
             HttpStatusCode statusCode;
             switch (exception)
@@ -42,7 +40,6 @@ namespace Farmino.API.Middleware
 
                 case ServiceExceptions e when exceptionType == typeof(ServiceExceptions):
                     statusCode = HttpStatusCode.BadRequest;
-                    errorCode = e.Code;
                     break;
 
                 default:
@@ -50,7 +47,7 @@ namespace Farmino.API.Middleware
                     break;
             }
 
-            var response = new { code = errorCode, message = exception.Message };
+            var response = new { message = exception.Message };
             var payload = JsonConvert.SerializeObject(response);
             context.Response.ContentType = "applicaton/json";
             context.Response.StatusCode = (int)statusCode;
