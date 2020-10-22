@@ -1,6 +1,6 @@
-﻿using Farmino.Data.Models.Value_Objects;
+﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Models.Value_Objects;
 using Moq;
-using System;
 using Xunit;
 
 namespace Farmino.UnitTests.Models.Value_Objects
@@ -22,7 +22,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
             string expected = "City cannot be empty";
             string testValue = string.Empty;
 
-            var result = Assert.Throws<Exception>(() => _address.Object.SetCity(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _address.Object.SetCity(testValue));
             Assert.Equal(expected, result.Message);
         }
 
@@ -59,7 +59,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
             string expected = "Street cannot be empty";
             string testValue = string.Empty;
 
-            var result = Assert.Throws<Exception>(() => _address.Object.SetStreet(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _address.Object.SetStreet(testValue));
             Assert.Equal(expected, result.Message);
         }
 
@@ -96,7 +96,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
             string expected = "PostalCode cannot be empty";
             string testValue = string.Empty;
 
-            var result = Assert.Throws<Exception>(() => _address.Object.SetPostalCode(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _address.Object.SetPostalCode(testValue));
             Assert.Equal(expected, result.Message);
         }
 
@@ -106,7 +106,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
             string expected = "PostalCode cannot be empty";
             string testValue = "  ";
 
-            var result = Assert.Throws<Exception>(() => _address.Object.SetPostalCode(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _address.Object.SetPostalCode(testValue));
             Assert.Equal(expected, result.Message);
         }
 
@@ -143,7 +143,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
             string expected = "HouseNumber is invalid";
             int testValue = 0;
 
-            var result = Assert.Throws<Exception>(()=>_address.Object.SetHouseNumber(testValue));
+            var result = Assert.Throws<DataExceptions>(()=>_address.Object.SetHouseNumber(testValue));
             Assert.Equal(expected, result.Message);
         }
 
@@ -153,7 +153,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
             string expected = "HouseNumber is invalid";
             int testValue = -1;
 
-            var result = Assert.Throws<Exception>(() => _address.Object.SetHouseNumber(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _address.Object.SetHouseNumber(testValue));
             Assert.Equal(expected, result.Message);
         }
 

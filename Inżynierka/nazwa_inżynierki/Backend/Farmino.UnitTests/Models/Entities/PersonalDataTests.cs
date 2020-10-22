@@ -1,4 +1,5 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.Value_Objects;
 using Moq;
 using System;
@@ -23,7 +24,7 @@ namespace Farmino.UnitTests.Models.Entities
             string expected = "FirstName cannot be empty";
             string testValue = string.Empty;
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetFirstName(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetFirstName(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -34,7 +35,7 @@ namespace Farmino.UnitTests.Models.Entities
             string expected = "FirstName cannot be empty";
             string testValue = "    ";
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetFirstName(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetFirstName(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -73,7 +74,7 @@ namespace Farmino.UnitTests.Models.Entities
             string expected = "LastName cannot be empty";
             string testValue = string.Empty;
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetLastName(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetLastName(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -84,7 +85,7 @@ namespace Farmino.UnitTests.Models.Entities
             string expected = "LastName cannot be empty";
             string testValue = "    ";
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetLastName(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetLastName(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -123,7 +124,7 @@ namespace Farmino.UnitTests.Models.Entities
             string expected = "Number is invalid";
             string testValue = string.Empty;
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetPhoneNumber(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetPhoneNumber(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -134,7 +135,7 @@ namespace Farmino.UnitTests.Models.Entities
             string expected = "Number is invalid";
             string testValue = "    ";
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetPhoneNumber(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetPhoneNumber(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -142,10 +143,10 @@ namespace Farmino.UnitTests.Models.Entities
         [Fact]
         public void PhoneNumber_field_should_throw_exception_if_passed_argument_have_less_numbers()
         {
-            string expected = "Number is too short or too long, number should contain 9 numbers";
+            string expected = "Number is too short or too long,number should contain 9 numbers";
             string testValue = "356-241-2";
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetPhoneNumber(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetPhoneNumber(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -153,10 +154,10 @@ namespace Farmino.UnitTests.Models.Entities
         [Fact]
         public void PhoneNumber_field_should_throw_exception_if_passed_argument_have_more_numbers()
         {
-            string expected = "Number is too short or too long, number should contain 9 numbers";
+            string expected = "Number is too short or too long,number should contain 9 numbers";
             string testValue = "356-241-2278";
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetPhoneNumber(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetPhoneNumber(testValue));
 
             Assert.Equal(expected, result.Message);
         }
@@ -181,7 +182,7 @@ namespace Farmino.UnitTests.Models.Entities
             Guid testValue = Guid.Empty;
             string expected = "Foregin key is empty";
 
-            var result = Assert.Throws<Exception>(() => _personalData.Object.SetUserId(testValue));
+            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetUserId(testValue));
 
             Assert.Equal(expected, result.Message);
         }

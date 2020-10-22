@@ -1,5 +1,4 @@
 ﻿using Farmino.Data.Exceptions;
-using System;
 
 namespace Farmino.Data.Models.Value_Objects
 {
