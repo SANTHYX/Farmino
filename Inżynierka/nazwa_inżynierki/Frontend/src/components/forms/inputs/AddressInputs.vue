@@ -24,8 +24,20 @@
 </template>
 
 <script>
+import {} from 'vuelidate/lib/validators';
+
 export default {
   name: 'address-input',
+  data() {
+    return {
+      address: {
+        city: '',
+        street: '',
+        postalCode: '',
+        houseNumber: '',
+      },
+    };
+  },
 };
 </script>
 

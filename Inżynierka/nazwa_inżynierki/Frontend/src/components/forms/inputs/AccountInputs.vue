@@ -10,8 +10,24 @@
 </template>
 
 <script>
+import { email } from 'vuelidate/lib/validators';
+
 export default {
   name: 'account-inputs',
+  data() {
+    return {
+      user: {
+        login: '',
+        password: '',
+        email: '',
+      },
+    };
+  },
+  validators: {
+    login: {},
+    password: {},
+    email: {},
+  },
 };
 </script>
 
