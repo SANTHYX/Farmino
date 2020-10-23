@@ -1,9 +1,23 @@
 <template>
   <div id="address-input">
     <label for="city" class="form-label">Miejscowość</label>
-    <input type="text" name="city" id="city-input" class="form-field" placeholder="Warszawa" />
+    <input
+      type="text"
+      name="city"
+      id="city-input"
+      class="form-field"
+      placeholder="Warszawa"
+      v-model="city"
+    />
     <label for="street" class="form-label">Ulica</label>
-    <input type="text" name="street" id="street-input" class="form-field" placeholder="Kaliska" />
+    <input
+      type="text"
+      name="street"
+      id="street-input"
+      class="form-field"
+      placeholder="Kaliska"
+      v-model="street"
+    />
     <label for="postalcode" class="form-label">Kod Pocztowy</label>
     <input
       type="text"
@@ -11,6 +25,7 @@
       id="postalcode-input"
       class="form-field"
       placeholder="21-345"
+      v-model="postalCode"
     />
     <label for="housenumber" class="form-label">Nr.Domu</label>
     <input
@@ -19,6 +34,7 @@
       id="housenumber-input"
       class="form-field"
       placeholder="8"
+      v-model="houseNumber"
     />
   </div>
 </template>
