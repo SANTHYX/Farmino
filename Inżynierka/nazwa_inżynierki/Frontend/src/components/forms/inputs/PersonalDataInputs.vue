@@ -27,12 +27,11 @@
       placeholder="557-231-282"
       v-model="personalData.phoneNumber"
     />
-    <button @click="returnData">Hi</button>
   </div>
 </template>
 
 <script>
-import {} from 'vuelidate/lib/validators';
+import { required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'personal-data-input',
@@ -45,10 +44,22 @@ export default {
       },
     };
   },
-  methods: {
-    returnData() {
-      console.log(this.personalData);
+  validations: {
+    personalData: {
+      firstName: { required },
+      lastName: { required },
+      phoneNumber: { required },
     },
+  },
+  validationGroup: ['personalData.firstName', 'personalData.lastName', 'personalData.phoneNumbe'],
+  methods: {
+    IsPersonalDataValid() {
+      this.$emit('IsPersonalDataValid', this.$v.$invalid());
+      console.log('Invoked passing boolean value about personal data validation result to Parent!');
+    },
+  },
+  beforeDestroy() {
+    this.IsPersonalDataValid();
   },
 };
 </script>

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {} from 'vuelidate/lib/validators';
+import { required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'address-input',
@@ -53,6 +53,24 @@ export default {
         houseNumber: '',
       },
     };
+  },
+  validations: {
+    address: {
+      city: { required },
+      street: { required },
+      postalCode: { required },
+      houseNumber: { required },
+    },
+  },
+  validationGroup: ['address.city', 'address.street', 'address.postalCode', 'address.houseNumber'],
+  methods: {
+    IsAddressValid() {
+      this.$emit('IsAddressValid', this.$v.$invalid());
+      console.log('Invoked passing boolean value about address validation result to Parent!');
+    },
+  },
+  beforeDestroy() {
+    this.IsAddressValid();
   },
 };
 </script>

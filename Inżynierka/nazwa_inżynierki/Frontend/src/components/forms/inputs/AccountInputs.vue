@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {} from 'vuelidate/lib/validators';
+import { required, email } from 'vuelidate/lib/validators';
 
 export default {
   name: 'account-inputs',
@@ -29,10 +29,22 @@ export default {
       },
     };
   },
-  validators: {
-    login: {},
-    password: {},
-    email: {},
+  validations: {
+    user: {
+      login: { required },
+      password: { required },
+      email: { required, email },
+    },
+  },
+  validationGroup: ['user.login', 'user.password', 'login.email'],
+  methods: {
+    IsAccountValid() {
+      this.$emit('IsAddressValid', this.$v.$invalid());
+      console.log('Invoked passing boolean value about Account validation result to Parent!');
+    },
+  },
+  beforeDestroy() {
+    this.IsAccountValid();
   },
 };
 </script>
