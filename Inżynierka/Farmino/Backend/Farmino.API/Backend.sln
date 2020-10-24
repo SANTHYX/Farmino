@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farmino.Data", "..\Farmino.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farmino.Service", "..\Farmino.Service\Farmino.Service.csproj", "{6716B5BA-C9D9-4785-821A-C39ECBBBC9F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmino.UnitTests", "..\Farmino.UnitTests\Farmino.UnitTests.csproj", "{466DEA34-64A6-494E-BB3A-650469BE7A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farmino.UnitTests", "..\Farmino.UnitTests\Farmino.UnitTests.csproj", "{466DEA34-64A6-494E-BB3A-650469BE7A80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

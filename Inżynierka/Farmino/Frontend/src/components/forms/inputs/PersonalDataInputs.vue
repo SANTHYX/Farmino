@@ -54,7 +54,7 @@ export default {
   validationGroup: ['personalData.firstName', 'personalData.lastName', 'personalData.phoneNumbe'],
   methods: {
     IsPersonalDataValid() {
-      this.$emit('IsPersonalDataValid', this.$v.$invalid());
+      this.$emit('IsPersonalDataValid', this.$v.$invalid);
       console.log('Invoked passing boolean value about personal data validation result to Parent!');
     },
   },

@@ -39,12 +39,9 @@ export default {
   validationGroup: ['user.login', 'user.password', 'login.email'],
   methods: {
     IsAccountValid() {
-      this.$emit('IsAddressValid', this.$v.$invalid());
+      this.$emit('IsAddressValid', this.$v.$invalid);
       console.log('Invoked passing boolean value about Account validation result to Parent!');
     },
-  },
-  beforeDestroy() {
-    this.IsAccountValid();
   },
 };
 </script>

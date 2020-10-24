@@ -65,7 +65,7 @@ export default {
   validationGroup: ['address.city', 'address.street', 'address.postalCode', 'address.houseNumber'],
   methods: {
     IsAddressValid() {
-      this.$emit('IsAddressValid', this.$v.$invalid());
+      this.$emit('IsAddressValid', this.$v.$invalid);
       console.log('Invoked passing boolean value about address validation result to Parent!');
     },
   },
