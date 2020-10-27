@@ -1,6 +1,7 @@
 <template>
   <div id="register-form">
     <h1>{{ title }}</h1>
+    <hr />
     <div id="account-reg-form" v-if="registerationStage === 'user'">
       <label for="login" class="form-label">Login</label>
       <input type="text" name="login" class="form-field" v-model="$v.user.login.$model" />
