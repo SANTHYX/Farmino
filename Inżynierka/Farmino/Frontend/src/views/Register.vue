@@ -2,19 +2,19 @@
   <div id="register">
     <div id="content">
       <div id="register-section">
-        <register-form></register-form>
+        <registeration-form></registeration-form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import RegisterForm from '../components/forms/RegisterForm.vue';
+import RegisterationForm from '../components/forms/RegisterationForm.vue';
 
 export default {
   name: 'register',
   components: {
-    RegisterForm,
+    RegisterationForm,
   },
 };
 </script>

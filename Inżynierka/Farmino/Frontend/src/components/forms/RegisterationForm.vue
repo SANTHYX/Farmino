@@ -37,7 +37,43 @@
       />
       <button @click="validatePDForm" :disabled="$v.personalDataValidation.$invalid">Dalej</button>
     </div>
-    <div id="address-reg-form" v-else-if="registerationStage === 'address'"></div>
+    <div id="address-reg-form" v-else-if="registerationStage === 'address'">
+      <label for="city" class="form-label">Miejscowość</label>
+      <input
+        type="text"
+        name="city"
+        class="form-field"
+        placeholder="Warszawa"
+        v-model="$v.user.personalData.address.city.$model"
+      />
+      <label for="street" class="form-label">Ulica</label>
+      <input
+        type="text"
+        name="city"
+        class="form-field"
+        placeholder="Powstanców"
+        v-model="$v.user.personalData.address.street.$model"
+      />
+      <label for="postalCode" class="form-label">Kod Pocztowy</label>
+      <input
+        type="text"
+        name="city"
+        class="form-field"
+        placeholder="35-234"
+        v-model="$v.user.personalData.address.postalCode.$model"
+      />
+      <label for="houseNumber" class="form-label">Kod Pocztowy</label>
+      <input
+        type="number"
+        name="houseNumber"
+        class="form-field"
+        placeholder="1"
+        v-model="$v.user.personalData.address.houseNumber.$model"
+      />
+      <button type="submit" @click.prevent="" :disabled="$v.addressValidation.$invalid">
+        Rejestruj
+      </button>
+    </div>
   </div>
 </template>
 
@@ -102,10 +138,6 @@ export default {
       this.registerationStage = 'address';
       this.title = 'Adres';
     },
-    async RegisterUser() {
-      try {
-      } catch (error) {}
-    },
   },
 };
 </script>
@@ -119,7 +151,8 @@ export default {
   height: 100vh;
 
   #account-reg-form,
-  #personalData-reg-form {
+  #personalData-reg-form,
+  #address-reg-form {
     display: flex;
     flex-direction: column;
   }
