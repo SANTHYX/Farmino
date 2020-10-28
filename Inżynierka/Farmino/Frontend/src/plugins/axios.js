@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const devFarminoAPI = axios.create({
-  baseURL: 'https://localhost:5006',
+  baseURL: 'http://localhost:8080',
 });
 
 export default devFarminoAPI;

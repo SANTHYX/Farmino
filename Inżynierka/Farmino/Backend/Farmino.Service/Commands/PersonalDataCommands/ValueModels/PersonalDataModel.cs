@@ -1,9 +1,6 @@
-﻿using Farmino.Service.Commands.Interfaces;
-using Farmino.Service.Commands.PersonalDataCommands.ValueModels;
-
-namespace Farmino.Service.Commands.PersonalDataCommands
+﻿namespace Farmino.Service.Commands.PersonalDataCommands.ValueModels
 {
-    public class SetPersonalData : ICommand
+    public class PersonalDataModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

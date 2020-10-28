@@ -45,6 +45,10 @@ namespace Farmino.API
 
             app.UseAuthorization();
 
+            app.UseCors(x => {
+                x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+
             app.UseMiddleware(typeof(ExceptionMiddlewareHandler));
 
             app.UseEndpoints(endpoints =>

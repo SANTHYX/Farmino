@@ -63,15 +63,15 @@
         placeholder="35-234"
         v-model="$v.user.personalData.address.postalCode.$model"
       />
-      <label for="houseNumber" class="form-label">Kod Pocztowy</label>
+      <label for="houseNumber" class="form-label">Numer</label>
       <input
         type="number"
         name="houseNumber"
         class="form-field"
         placeholder="1"
-        v-model="$v.user.personalData.address.houseNumber.$model"
+        v-model.trim.number="$v.user.personalData.address.houseNumber.$model"
       />
-      <button type="submit" @click.prevent="" :disabled="$v.addressValidation.$invalid">
+      <button type="submit" @click.prevent="RegisterUser" :disabled="$v.addressValidation.$invalid">
         Rejestruj
       </button>
     </div>
@@ -80,6 +80,7 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators';
+import devFarminoAPI from '../../plugins/axios';
 
 export default {
   name: 'register-form',
@@ -94,13 +95,13 @@ export default {
         personalData: {
           firstName: '',
           lastName: '',
-          phoneNumber: '',
           address: {
             city: '',
             street: '',
             postalCode: '',
             houseNumber: 0,
           },
+          phoneNumber: '',
         },
       },
     };
@@ -138,6 +139,14 @@ export default {
     validatePDForm() {
       this.registerationStage = 'address';
       this.title = 'Adres';
+    },
+    async RegisterUser() {
+      try {
+        await devFarminoAPI.post('/users', this.user);
+        console.log('Completed');
+      } catch (err) {
+        console.log(err.message);
+      }
     },
   },
 };

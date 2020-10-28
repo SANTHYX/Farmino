@@ -17,14 +17,6 @@ namespace Farmino.API.Controllers
             _dispatcher = dispatcher;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] SetPersonalData command)
-        {
-            await _dispatcher.DispatchAsync(command);
-            return Ok("Data has been seted completly");
-        }
-
-
         [HttpPut]
         [Route("personalDatas/generalData")]
         public async Task<IActionResult> Put([FromBody] EditGeneralData command)
