@@ -32,6 +32,11 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] BrowseUsers query)
           => Ok(await _queryDispatcher.HandleAsync<BrowseUsers, IEnumerable<UserDTO>>(query));
 
+        [HttpGet]
+        [Route("/users/isLoginAvaliable")]
+        public async Task<IActionResult> Get([FromQuery] CheckIfLoginIsAvaliable query)
+          => Ok(await _queryDispatcher.HandleAsync<CheckIfLoginIsAvaliable, LoginAvalibilityDTO>(query));
+
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterUser command)

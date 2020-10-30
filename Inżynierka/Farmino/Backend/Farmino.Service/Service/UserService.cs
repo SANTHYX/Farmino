@@ -2,6 +2,7 @@
 using Farmino.Data.Models.Aggregations;
 using Farmino.Service.DTO;
 using Farmino.Service.Exceptions;
+using Farmino.Service.Extensions.Models;
 using Farmino.Service.ORM;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ namespace Farmino.Service.Service
 
         public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            var users = await _context.Users.Include(x=>x.PersonalData)
+            var users = await _context.Users.Include(x => x.PersonalData)
                 .ToListAsync();
             return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
         }
@@ -48,7 +49,7 @@ namespace Farmino.Service.Service
                     $"User with login {login} already exist");
         }
 
-        public async Task EditAsync(string login,string newLogin, 
+        public async Task EditAsync(string login, string newLogin,
             string newPassword, string newEmail)
         {
             if (!_context.Users.Where(x => x.Login == newLogin).Any())
@@ -65,5 +66,18 @@ namespace Farmino.Service.Service
             else throw new ServiceExceptions(ServiceErrorCodes.LoginAlreadyTaken,
                     "This login is already taken");
         }
+
+        public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string login)
+        {
+            if (await _context.Users.FirstOrDefaultAsync(x => x.Login == login) == null)
+            {
+                return _mapper.Map<LoginAvalibility, LoginAvalibilityDTO>(LoginAvalibility.Create(true));
+            }
+            else
+            {
+                return _mapper.Map<LoginAvalibility, LoginAvalibilityDTO>(LoginAvalibility.Create(false));
+            }
+        }
+            
     }
 }

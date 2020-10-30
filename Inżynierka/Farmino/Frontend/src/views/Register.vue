@@ -23,6 +23,7 @@ export default {
 #content {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-family: 'Roboto Condensed', sans-serif;
   min-height: 100vh;
 }
