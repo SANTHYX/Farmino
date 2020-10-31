@@ -2,7 +2,11 @@
   <div id="personal-data-step">
     <div id="personalData-reg-form">
       <div id="input-wraper">
-        <label for="first-name" class="form-label">Imię</label>
+        <label
+          for="first-name"
+          :class="[!$v.personalData.firstName.$error ? 'form-label' : 'error-label']"
+          >Imię</label
+        >
         <input
           type="text"
           name="first-name"
@@ -15,7 +19,11 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="last-name" class="form-label">Nazwisko</label>
+        <label
+          for="last-name"
+          :class="[!$v.personalData.lasttName.$error ? 'form-label' : 'error-label']"
+          >Nazwisko</label
+        >
         <input
           type="text"
           name="last-name"
@@ -28,7 +36,11 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="phone-number" class="form-label">Nr.Telefonu</label>
+        <label
+          for="phone-number"
+          :class="[!$v.personalData.phoneNumber.$error ? 'form-label' : 'error-label']"
+          >Nr.Telefonu</label
+        >
         <input
           type="text"
           name="phone-number"

@@ -2,7 +2,9 @@
   <div id="address-step">
     <div id="address-reg-form">
       <div id="input-wraper">
-        <label for="city" class="form-label">Miejscowość</label>
+        <label for="city" :class="[!$v.address.city.$error ? 'form-label' : 'error-label']"
+          >Miejscowość</label
+        >
         <input
           type="text"
           name="city"
@@ -15,7 +17,9 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="street" class="form-label">Ulica</label>
+        <label for="street" :class="[!$v.address.street.$error ? 'form-label' : 'error-label']"
+          >Ulica</label
+        >
         <input
           type="text"
           name="city"
@@ -28,10 +32,14 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="postalCode" class="form-label">Kod Pocztowy</label>
+        <label
+          for="postalCode"
+          :class="[!$v.address.postalCode.$error ? 'form-label' : 'error-label']"
+          >Kod Pocztowy</label
+        >
         <input
           type="text"
-          name="city"
+          name="postalCode"
           :class="[!$v.address.postalCode.$error ? 'form-field' : 'error-field']"
           placeholder="35-234"
           v-model="$v.address.postalCode.$model"
@@ -41,7 +49,11 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="houseNumber" class="form-label">Numer</label>
+        <label
+          for="houseNumber"
+          :class="[!$v.address.houseNumber.$error ? 'form-label' : 'error-label']"
+          >Numer</label
+        >
         <input
           type="number"
           name="houseNumber"

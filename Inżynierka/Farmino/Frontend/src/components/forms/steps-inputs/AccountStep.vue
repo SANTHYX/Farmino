@@ -2,7 +2,9 @@
   <div id="account-step">
     <div id="account-reg-form">
       <div id="input-wraper">
-        <label for="login" class="form-label">Login</label>
+        <label for="login" :class="[!$v.user.login.$error ? 'form-label' : 'error-label']"
+          >Login</label
+        >
         <input
           type="text"
           name="login"
@@ -17,7 +19,9 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="password" class="form-label">Hasło</label>
+        <label for="password" :class="[!$v.user.password.$error ? 'form-label' : 'error-label']"
+          >Hasło</label
+        >
         <input
           type="password"
           name="password"
@@ -29,7 +33,9 @@
         </div>
       </div>
       <div id="input-wraper">
-        <label for="email" class="form-label">E-mail</label>
+        <label for="email" :class="[!$v.user.email.$error ? 'form-label' : 'error-label']"
+          >E-mail</label
+        >
         <input
           type="email"
           name="email"

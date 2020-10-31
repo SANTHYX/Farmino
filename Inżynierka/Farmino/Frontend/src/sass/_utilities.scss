@@ -13,11 +13,16 @@
     font-weight: lighter;
 }
 
+.error-label{
+ @extend .form-label;
+ @extend .error-message;
+}
+
 .error-message{
-    color: rgb(218, 38, 38);
+    color: rgb(246, 122, 122);
 }
 
 .error-field{
-    @include input-field(6px, 15rem, 2.2rem);
-    border: 2px solid rgb(218, 38, 38);
+    @extend .form-field;
+    border: 2px solid rgb(246, 122, 122);
 }
