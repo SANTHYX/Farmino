@@ -8,10 +8,15 @@
     margin-top: 20px;
     margin-left: 3px;
     margin-bottom: 3px;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: lighter;
 }
 
 .error-message{
     color: rgb(218, 38, 38);
+}
+
+.error-field{
+    @include input-field(6px, 15rem, 2.2rem);
+    border: 2px solid rgb(218, 38, 38);
 }

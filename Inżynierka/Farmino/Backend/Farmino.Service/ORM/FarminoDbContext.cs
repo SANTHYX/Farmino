@@ -18,10 +18,10 @@ namespace Farmino.Service.ORM
             {
                 x.OwnsOne(y => y.Address, z =>
                 {
-                    z.Property(q => q.City).HasColumnName("City");
-                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber");
-                    z.Property(q => q.PostalCode).HasColumnName("PostalCode");
-                    z.Property(q => q.Street).HasColumnName("Street");
+                    z.Property(q => q.City).HasColumnName("City").IsRequired();
+                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").IsRequired();
+                    z.Property(q => q.PostalCode).HasColumnName("PostalCode").IsRequired();
+                    z.Property(q => q.Street).HasColumnName("Street").IsRequired();
                 });
             });
         }

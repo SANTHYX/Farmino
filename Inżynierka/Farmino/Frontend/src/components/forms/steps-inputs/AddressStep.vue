@@ -6,11 +6,11 @@
         <input
           type="text"
           name="city"
-          class="form-field"
+          :class="[!$v.address.city.$error ? 'form-field' : 'error-field']"
           placeholder="Warszawa"
-          v-model="$v.address.city.$model"
+          v-model.lazy="$v.address.city.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.address.city.$error">
           <p class="error-message" v-if="!$v.address.city.required">Pole jest wymagane</p>
         </div>
       </div>
@@ -19,11 +19,11 @@
         <input
           type="text"
           name="city"
-          class="form-field"
+          :class="[!$v.address.street.$error ? 'form-field' : 'error-field']"
           placeholder="Powstanców"
-          v-model="$v.address.street.$model"
+          v-model.lazy="$v.address.street.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.address.street.$error">
           <p class="error-message" v-if="!$v.address.street.required">Pole jest wymagane</p>
         </div>
       </div>
@@ -32,11 +32,11 @@
         <input
           type="text"
           name="city"
-          class="form-field"
+          :class="[!$v.address.postalCode.$error ? 'form-field' : 'error-field']"
           placeholder="35-234"
           v-model="$v.address.postalCode.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.address.postalCode.$error">
           <p class="error-message" v-if="!$v.address.postalCode.required">Pole jest wymagane</p>
         </div>
       </div>
@@ -45,11 +45,11 @@
         <input
           type="number"
           name="houseNumber"
-          class="form-field"
+          :class="[!$v.address.houseNumber.$error ? 'form-field' : 'error-field']"
           placeholder="1"
           v-model.trim.number="$v.address.houseNumber.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.address.houseNumber.$error">
           <p class="error-message" v-if="!$v.address.houseNumber.required">Pole jest wymagane</p>
           <p class="error-message" v-if="$v.address.houseNumber.numeric">
             Wartość musi być liczbą
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     passDataToParent() {
-      this.$emit('address-event', this.address);
+      this.$emit('address-event', { address: this.address });
     },
   },
 };

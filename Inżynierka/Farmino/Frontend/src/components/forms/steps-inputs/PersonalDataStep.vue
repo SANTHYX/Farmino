@@ -6,11 +6,11 @@
         <input
           type="text"
           name="first-name"
-          class="form-field"
+          :class="[!$v.personalData.firstName.$error ? 'form-field' : 'error-field']"
           placeholder="Jan"
-          v-model="$v.personalData.firstName.$model"
+          v-model.lazy="$v.personalData.firstName.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.personalData.firstName.$error">
           <p class="error-message" v-if="!$v.personalData.firstName.required">Pole jest wymagane</p>
         </div>
       </div>
@@ -19,11 +19,11 @@
         <input
           type="text"
           name="last-name"
-          class="form-field"
+          :class="[!$v.personalData.lastName.$error ? 'form-field' : 'error-field']"
           placeholder="Kowalski"
-          v-model="$v.personalData.lastName.$model"
+          v-model.lazy="$v.personalData.lastName.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.personalData.lastName.$error">
           <p class="error-message" v-if="!$v.personalData.lastName.required">Pole jest wymagane</p>
         </div>
       </div>
@@ -32,11 +32,11 @@
         <input
           type="text"
           name="phone-number"
-          class="form-field"
+          :class="[!$v.personalData.phoneNumber.$error ? 'form-field' : 'error-field']"
           placeholder="545-167-316"
-          v-model="$v.personalData.phoneNumber.$model"
+          v-model.lazy="$v.personalData.phoneNumber.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.personalData.phoneNumber.$error">
           <p class="error-message" v-if="!$v.personalData.phoneNumber.required">
             Pole jest wymagane
           </p>
@@ -84,6 +84,7 @@ export default {
   methods: {
     passDataToParent() {
       this.$emit('personalData-event', { personalData: this.personalData, nextStep: 'address' });
+      console.log(this.personalData);
     },
   },
 };

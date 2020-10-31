@@ -25,11 +25,7 @@ export default {
   },
   data() {
     return {
-      user: {
-        personalData: {
-          address: {},
-        },
-      },
+      user: {},
       recentStep: 'account',
     };
   },
@@ -40,7 +36,7 @@ export default {
     },
     setPersonalData(payload) {
       this.recentStep = payload.nextStep;
-      this.user.personalData = payload.user;
+      this.user.personalData = payload.personalData;
     },
     async setAddressData(payload) {
       this.user.personalData.address = payload.address;

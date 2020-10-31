@@ -3,8 +3,13 @@
     <div id="account-reg-form">
       <div id="input-wraper">
         <label for="login" class="form-label">Login</label>
-        <input type="text" name="login" class="form-field" v-model.trim="$v.user.login.$model" />
-        <div id="error-message-wraper">
+        <input
+          type="text"
+          name="login"
+          :class="[!$v.user.login.$error ? 'form-field' : 'error-field']"
+          v-model.lazy="$v.user.login.$model"
+        />
+        <div id="error-message-wraper" v-if="$v.user.login.$error">
           <p class="error-message" v-if="!$v.user.login.required">Pole jest wymagane</p>
           <p class="error-message" v-else-if="!$v.user.login.LoginAvability">
             Ten login jest już zajęty
@@ -16,17 +21,22 @@
         <input
           type="password"
           name="password"
-          class="form-field"
-          v-model="$v.user.password.$model"
+          :class="[!$v.user.password.$error ? 'form-field' : 'error-field']"
+          v-model.lazy="$v.user.password.$model"
         />
-        <div id="error-message-wraper">
+        <div id="error-message-wraper" v-if="$v.user.password.$error">
           <p class="error-message" v-if="!$v.user.password.required">Pole jest wymagane</p>
         </div>
       </div>
       <div id="input-wraper">
         <label for="email" class="form-label">E-mail</label>
-        <input type="email" name="email" class="form-field" v-model="$v.user.email.$model" />
-        <div id="error-message-wraper">
+        <input
+          type="email"
+          name="email"
+          :class="[!$v.user.email.$error ? 'form-field' : 'error-field']"
+          v-model.lazy="$v.user.email.$model"
+        />
+        <div id="error-message-wraper" v-if="$v.user.email.$error">
           <p class="error-message" v-if="!$v.user.email.required">Pole jest wymagane</p>
           <p class="error-message" v-if="!$v.user.email.email">Email nie poprawny</p>
         </div>
