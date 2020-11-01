@@ -9,7 +9,8 @@
           type="text"
           name="login"
           :class="[!$v.user.login.$error ? 'form-field' : 'error-field']"
-          v-model.lazy="$v.user.login.$model"
+          @blur="$v.user.login.$touch()"
+          v-model="user.login"
         />
         <div id="error-message-wraper" v-if="$v.user.login.$error">
           <p class="error-message" v-if="!$v.user.login.required">Pole jest wymagane</p>
@@ -26,7 +27,8 @@
           type="password"
           name="password"
           :class="[!$v.user.password.$error ? 'form-field' : 'error-field']"
-          v-model.lazy="$v.user.password.$model"
+          @blur="$v.user.password.$touch()"
+          v-model="user.password"
         />
         <div id="error-message-wraper" v-if="$v.user.password.$error">
           <p class="error-message" v-if="!$v.user.password.required">Pole jest wymagane</p>
@@ -40,7 +42,8 @@
           type="email"
           name="email"
           :class="[!$v.user.email.$error ? 'form-field' : 'error-field']"
-          v-model.lazy="$v.user.email.$model"
+          @blur="$v.user.email.$touch()"
+          v-model="user.email"
         />
         <div id="error-message-wraper" v-if="$v.user.email.$error">
           <p class="error-message" v-if="!$v.user.email.required">Pole jest wymagane</p>

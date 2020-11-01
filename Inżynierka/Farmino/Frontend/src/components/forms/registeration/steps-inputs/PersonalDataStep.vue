@@ -12,7 +12,8 @@
           name="first-name"
           :class="[!$v.personalData.firstName.$error ? 'form-field' : 'error-field']"
           placeholder="Jan"
-          v-model.lazy="$v.personalData.firstName.$model"
+          @blur="$v.personalData.firstName.$touch()"
+          v-model="personalData.firstName"
         />
         <div id="error-message-wraper" v-if="$v.personalData.firstName.$error">
           <p class="error-message" v-if="!$v.personalData.firstName.required">Pole jest wymagane</p>
@@ -29,7 +30,8 @@
           name="last-name"
           :class="[!$v.personalData.lastName.$error ? 'form-field' : 'error-field']"
           placeholder="Kowalski"
-          v-model.lazy="$v.personalData.lastName.$model"
+          @blur="$v.personalData.lastName.$touch()"
+          v-model="personalData.lastName"
         />
         <div id="error-message-wraper" v-if="$v.personalData.lastName.$error">
           <p class="error-message" v-if="!$v.personalData.lastName.required">Pole jest wymagane</p>
@@ -46,7 +48,8 @@
           name="phone-number"
           :class="[!$v.personalData.phoneNumber.$error ? 'form-field' : 'error-field']"
           placeholder="545-167-316"
-          v-model.lazy="$v.personalData.phoneNumber.$model"
+          @blur="$v.personalData.phoneNumber.$touch()"
+          v-model="personalData.phoneNumber"
         />
         <div id="error-message-wraper" v-if="$v.personalData.phoneNumber.$error">
           <p class="error-message" v-if="!$v.personalData.phoneNumber.required">

@@ -10,7 +10,8 @@
           name="city"
           :class="[!$v.address.city.$error ? 'form-field' : 'error-field']"
           placeholder="Warszawa"
-          v-model.lazy="$v.address.city.$model"
+          @blur="$v.address.city.$touch()"
+          v-model="address.city"
         />
         <div id="error-message-wraper" v-if="$v.address.city.$error">
           <p class="error-message" v-if="!$v.address.city.required">Pole jest wymagane</p>
@@ -25,7 +26,8 @@
           name="city"
           :class="[!$v.address.street.$error ? 'form-field' : 'error-field']"
           placeholder="Powstanców"
-          v-model.lazy="$v.address.street.$model"
+          @blur="$v.address.street.$touch()"
+          v-model="address.street"
         />
         <div id="error-message-wraper" v-if="$v.address.street.$error">
           <p class="error-message" v-if="!$v.address.street.required">Pole jest wymagane</p>
@@ -42,7 +44,8 @@
           name="postalCode"
           :class="[!$v.address.postalCode.$error ? 'form-field' : 'error-field']"
           placeholder="35-234"
-          v-model="$v.address.postalCode.$model"
+          @blur="$v.address.postalCode.$touch()"
+          v-model="address.postalCode"
         />
         <div id="error-message-wraper" v-if="$v.address.postalCode.$error">
           <p class="error-message" v-if="!$v.address.postalCode.required">Pole jest wymagane</p>
@@ -59,7 +62,8 @@
           name="houseNumber"
           :class="[!$v.address.houseNumber.$error ? 'form-field' : 'error-field']"
           placeholder="1"
-          v-model.trim.number="$v.address.houseNumber.$model"
+          @blur="$v.address.houseNumber.$touch()"
+          v-model.number="address.houseNumber"
         />
         <div id="error-message-wraper" v-if="$v.address.houseNumber.$error">
           <p class="error-message" v-if="!$v.address.houseNumber.required">Pole jest wymagane</p>
