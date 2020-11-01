@@ -54,7 +54,7 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators';
-import devFarminoApi from '../../../plugins/axios';
+import devFarminoApi from '../../../../plugins/axios';
 
 export default {
   name: 'account-step',

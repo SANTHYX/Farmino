@@ -26,7 +26,6 @@ export default {
   #showcase {
     display: flex;
     justify-content: center;
-    font-family: 'Roboto Condensed', sans-serif;
 
     #hero-image {
       display: flex;

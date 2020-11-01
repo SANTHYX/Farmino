@@ -18,7 +18,6 @@ export default {
 
   #search-bar-form {
     font-size: 1rem;
-    font-family: 'Roboto Condensed', sans-serif;
     height: 35px;
     width: 19vw;
     min-width: 170px;

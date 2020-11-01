@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import RegisterationForm from '../components/forms/RegisterationForm.vue';
+import RegisterationForm from '../components/forms/registeration/RegisterationForm.vue';
 
 export default {
   name: 'register',
@@ -24,7 +24,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Roboto Condensed', sans-serif;
   min-height: 100vh;
 }
 </style>

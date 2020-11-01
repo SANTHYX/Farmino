@@ -14,7 +14,7 @@
 
 <script>
 import AccountStep from './steps-inputs/AccountStep.vue';
-import devFarminoApi from '../../plugins/axios';
+import devFarminoApi from '../../../plugins/axios';
 
 export default {
   name: 'registeration-form',

@@ -71,7 +71,9 @@
           </p>
         </div>
       </div>
-      <button @click="passDataToParent" :disabled="$v.address.$invalid">Rejestruj</button>
+      <button type="submit" @submit.prevent="passDataToParent" :disabled="$v.address.$invalid">
+        Rejestruj
+      </button>
     </div>
   </div>
 </template>

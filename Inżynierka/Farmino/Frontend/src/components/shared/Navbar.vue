@@ -52,7 +52,6 @@ export default {
 #navbar-wraper {
   position: fixed;
   width: 100vw;
-  font-family: 'Roboto Condensed', sans-serif;
 
   #logo {
     display: flex;

@@ -23,7 +23,6 @@ export default {
   display: none;
   justify-content: center;
   align-items: center;
-  font-family: 'Roboto Condensed', sans-serif;
   background: rgb(255, 255, 255);
 
   li {
