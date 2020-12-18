@@ -1,7 +1,7 @@
 //Global Utilities//
 
 .form-field{
-    @include input-field(6px, 15rem, 2.2rem);
+    @include input-field(6px, 15rem, 2.1rem);
 }
 
 .form-label{
@@ -10,7 +10,6 @@
     margin-bottom: 3px;
     font-size: 1.05rem;
     color:#615f5f;
-    font-weight: lighter;
 }
 
 .error-label{

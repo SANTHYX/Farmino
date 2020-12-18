@@ -14,5 +14,6 @@
         public static string InvalidPassword => "invalid_password";
         public static string InvalidEmail => "invalid_email";
         public static string InvalidSalt => "invalid_salt";
+        public static string InvalidTitle => "invalid_title";
     }
 }

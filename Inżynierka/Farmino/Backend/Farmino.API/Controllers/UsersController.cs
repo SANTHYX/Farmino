@@ -37,14 +37,12 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] CheckIfLoginIsAvaliable query)
           => Ok(await _queryDispatcher.HandleAsync<CheckIfLoginIsAvaliable, LoginAvalibilityDTO>(query));
 
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterUser command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("User has been created completly");
         }
-
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditUser command)

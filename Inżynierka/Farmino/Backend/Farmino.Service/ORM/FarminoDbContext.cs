@@ -6,22 +6,22 @@ namespace Farmino.Service.ORM
 {
     public class FarminoDbContext : DbContext
     {
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<PersonalData> PersonalDatas { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
         { 
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<PersonalData>(x =>
+            builder.Entity<Profile>(x =>
             {
                 x.OwnsOne(y => y.Address, z =>
                 {
-                    z.Property(q => q.City).HasColumnName("City").IsRequired();
-                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").IsRequired();
-                    z.Property(q => q.PostalCode).HasColumnName("PostalCode").IsRequired();
-                    z.Property(q => q.Street).HasColumnName("Street").IsRequired();
+                    z.Property(q => q.City).HasColumnName("City");
+                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber");
+                    z.Property(q => q.PostalCode).HasColumnName("PostalCode");
+                    z.Property(q => q.Street).HasColumnName("Street");
                 });
             });
         }

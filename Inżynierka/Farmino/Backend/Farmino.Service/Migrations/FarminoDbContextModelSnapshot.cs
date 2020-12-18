@@ -52,7 +52,7 @@ namespace Farmino.Service.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.PersonalData", b =>
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,20 +78,20 @@ namespace Farmino.Service.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("PersonalDatas");
+                    b.ToTable("Profiles");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.PersonalData", b =>
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
-                        .WithOne("PersonalData")
-                        .HasForeignKey("Farmino.Data.Models.Entities.PersonalData", "UserId")
+                        .WithOne("Profile")
+                        .HasForeignKey("Farmino.Data.Models.Entities.Profile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.OwnsOne("Farmino.Data.Models.Value_Objects.Address", "Address", b1 =>
                         {
-                            b1.Property<Guid>("PersonalDataId")
+                            b1.Property<Guid>("ProfileId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("City")
@@ -110,12 +110,12 @@ namespace Farmino.Service.Migrations
                                 .HasColumnName("Street")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("PersonalDataId");
+                            b1.HasKey("ProfileId");
 
-                            b1.ToTable("PersonalDatas");
+                            b1.ToTable("Profiles");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonalDataId");
+                                .HasForeignKey("ProfileId");
                         });
                 });
 #pragma warning restore 612, 618

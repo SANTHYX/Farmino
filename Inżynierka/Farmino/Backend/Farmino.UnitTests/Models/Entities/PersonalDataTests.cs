@@ -9,12 +9,12 @@ namespace Farmino.UnitTests.Models.Entities
 {
     public class PersonalDataTests
     {
-        private readonly Mock<PersonalData> _personalData;
+        private readonly Mock<Profile> _personalData;
         private readonly Mock<Address> _address;
 
         public PersonalDataTests()
         {
-            _personalData = new Mock<PersonalData>();
+            _personalData = new Mock<Profile>();
             _address = new Mock<Address>();
         }
 

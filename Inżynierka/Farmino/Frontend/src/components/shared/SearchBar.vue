@@ -1,13 +1,35 @@
 <template>
   <div id="search-bar">
-    <input type="search" name="search-bar" id="search-bar-form" placeholder="Szukaj" />
-    <button id="search-btn">Szukaj</button>
+    <input
+      type="search"
+      name="search-bar"
+      id="search-bar-form"
+      placeholder="Szukaj"
+      v-model="phrase"
+    />
+    <button id="search-btn" @click="search">Szukaj</button>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'search-bar',
+  data() {
+    return {
+      phrase: '',
+    };
+  },
+  methods: {
+    ...mapMutations({
+      SET_PHRASE: 'search/SET_PHRASE',
+    }),
+    search() {
+      this.SET_PHRASE({ phrase: this.phrase });
+      this.$router.push('/search');
+    },
+  },
 };
 </script>
 

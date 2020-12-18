@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Farmino.Service.Queries.UserQueries
 {
-    public class BrowseUsers : IQuery<IEnumerable<UserDTO>>
+    public class BrowseUsers : Pagination, IQuery<IEnumerable<UserDTO>>
     {
     }
 }

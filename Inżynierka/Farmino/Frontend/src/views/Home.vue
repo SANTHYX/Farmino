@@ -31,11 +31,10 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: linear-gradient(0deg, rgba(226, 221, 137, 0.66) 0%,rgba(209, 163, 13, 0.64) 100%),
+      background: linear-gradient(0deg, rgba(226, 221, 137, 0.66) 0%,rgba(184, 144, 15, 0.64) 100%),
         url('../assets/images/noah-buscher-tractor-unsplash.jpg') no-repeat center center/cover;
       height: 100vh;
       width: 100%;
-
       #text-wraper {
         display: flex;
         flex-direction: column;
@@ -44,11 +43,9 @@ export default {
         font-weight: 700;
         font-size: 1.7rem;
         margin: 0 3rem;
-
         span {
           color: rgb(255, 255, 255);
         }
-
         p {
           margin-top: 0.5rem;
           font-size: 1.3rem;

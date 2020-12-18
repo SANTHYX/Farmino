@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'auctions',
+};
 </script>
 
 <style lang="scss" scoped></style>

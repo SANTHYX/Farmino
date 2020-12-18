@@ -7,13 +7,13 @@ using Farmino.Service.Extensions.Models;
 
 namespace Farmino.Service.Mapper
 {
-    public class AutoMapperCfg : Profile
+    public class AutoMapperCfg : AutoMapper.Profile
     {
         public AutoMapperCfg()
         {
             //Models
             CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<PersonalData, PersonalDataDTO>().ReverseMap();
+            CreateMap<Data.Models.Entities.Profile, ProfileDTO>().ReverseMap();
             CreateMap<Address,AddressDTO>().ReverseMap();
             //Extensions
             CreateMap<LoginAvalibility, LoginAvalibilityDTO>().ReverseMap();

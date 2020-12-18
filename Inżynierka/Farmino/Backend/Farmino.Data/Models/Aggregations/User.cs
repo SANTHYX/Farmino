@@ -18,12 +18,12 @@ namespace Farmino.Data.Models.Aggregations
         public string Email { get; protected set; }
         [Required]
         public string Salt { get; protected set; }
-        public PersonalData PersonalData { get;protected set; }
+        public Profile Profile { get;protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 
         protected User()
-        {}
+        { }
         public User(string login, string password, string email)
         {
             Id = Guid.NewGuid();
@@ -93,6 +93,10 @@ namespace Farmino.Data.Models.Aggregations
 
             Email = email;
             UpdatedAt = DateTime.Now;
+        }
+        public void SetProfile(Profile profile)
+        {
+            Profile = profile;
         }
     }
 }

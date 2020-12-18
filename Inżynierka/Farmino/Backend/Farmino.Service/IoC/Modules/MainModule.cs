@@ -9,6 +9,7 @@ namespace Farmino.Service.IoC.Modules
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule<CommandsModule>();
             builder.RegisterModule<QueryModule>();
+            builder.RegisterModule<RepositoryModule>();
         }
     }
 }

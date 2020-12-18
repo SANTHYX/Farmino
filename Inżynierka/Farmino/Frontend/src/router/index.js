@@ -31,6 +31,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "signin" */ '../views/SignIn.vue'),
   },
   {
+    path: '/search',
+    name: 'Search',
+    component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
+  },
+  {
     path: '*',
     redirect: {
       name: 'Home',

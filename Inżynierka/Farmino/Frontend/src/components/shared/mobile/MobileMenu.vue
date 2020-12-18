@@ -23,7 +23,7 @@ export default {
   display: none;
   justify-content: center;
   align-items: center;
-  background: rgb(255, 255, 255);
+  background: rgb(253, 251, 251);
 
   li {
     list-style: none;
