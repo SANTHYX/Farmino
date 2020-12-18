@@ -15,12 +15,16 @@ const user = {
     },
     async LOGIN(state, { login, password }) {
       try {
-        await api.post('/signin', { login, password });
+        await api.post('/login', { login, password });
         state.user = await api.get(`/user/${login}`).data;
       } catch (error) {
         console.log(error.message);
       }
     },
+    async CREATE_PROFILE(state, { firstName, lastName, phoneNumber }) {},
+    async EDIT_PROFILE(state, { firstName, lastName, phoneNumber }) {},
+    async ADD_ADDRESS(state, { city, street, postalCode, houseNumber }) {},
+    async EDIT_ADDRESS(state, { city, street, postalCode, houseNumber }) {},
     LOGOUT(state) {
       state.user = {};
     },
