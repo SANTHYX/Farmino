@@ -12,9 +12,11 @@ namespace Farmino.Service.Service
         private readonly IUserRepository _userRepository;
         private readonly IProfileRepository _profileRepository;
 
-        public AddressService()
+        public AddressService(IUserRepository userRepository, 
+            IProfileRepository profileRepository)
         {
-
+            _userRepository = userRepository;
+            _profileRepository = profileRepository;
         }
 
         public async Task SetAddressAsync(string login, string city, string street,
