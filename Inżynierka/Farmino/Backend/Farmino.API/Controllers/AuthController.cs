@@ -17,10 +17,19 @@ namespace Farmino.API.Controllers
         }
 
         [HttpPost]
+        [Route("/auth/login")]
         public async Task<IActionResult> Post([FromBody] LoginModel command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok(command.Token);
         }
+        /*
+        [HttpPost]
+        [Route("auth/refresh")]
+        public async Task<IActionResult> Post([FromBody])
+        {
+            await _commandDispatcher.DispatchAsync(command);
+        }
+        */
     }
 }

@@ -53,13 +53,15 @@
           <p class="error-message" v-if="!$v.user.email.email">Email nie poprawny</p>
         </div>
       </div>
-      <button @submit.prevent="register(user)">Zarejestruj</button>
+      <button @click="Register(user)" :disabled="$v.user.$invalid">
+        Zarejestruj
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import { required, email } from 'vuelidate/lib/validators';
 import api from '@/plugins/axios';
 
@@ -88,8 +90,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      register: 'user/REGISTER',
+    ...mapActions({
+      Register: 'user/REGISTER',
     }),
   },
 };

@@ -20,8 +20,8 @@ namespace Farmino.Service.Security
 
         public TokenDTO GenerateToken(UserDTO user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_confgiuration
-                    .GetSection("TokenSettings:Key").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.
+                GetBytes(_confgiuration.GetSection("TokenSettings:Key").Value));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescription = new JwtSecurityToken
@@ -33,9 +33,10 @@ namespace Farmino.Service.Security
                     new Claim(JwtRegisteredClaimNames.Email,user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, new Guid().ToString())
                 },
-                expires: DateTime.Now.AddMinutes(2),
+                expires: DateTimeOffset.Now.AddMinutes(Double.Parse(
+                    _confgiuration.GetSection("TokenSettings:ExpireTime").Value)).DateTime,
                 signingCredentials: credentials
-                );
+                ); ;
 
             var token = new JwtSecurityTokenHandler().WriteToken(tokenDescription);
 
@@ -44,6 +45,11 @@ namespace Farmino.Service.Security
                 Token = token,
                 GeneratedAt = DateTime.Now
             };
+        }
+
+        public TokenDTO RefreshToken(TokenDTO token)
+        {
+            throw new NotImplementedException();
         }
     }
 }

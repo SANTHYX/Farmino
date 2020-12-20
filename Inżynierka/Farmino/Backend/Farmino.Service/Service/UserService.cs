@@ -71,7 +71,7 @@ namespace Farmino.Service.Service
 
         public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string login)
         {
-            if (await _repository.IsUserExist(login))
+            if (!await _repository.IsUserExist(login))
             {
                 return _mapper.Map<LoginAvalibility, 
                     LoginAvalibilityDTO>(LoginAvalibility.Create(true));

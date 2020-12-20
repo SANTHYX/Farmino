@@ -4,13 +4,13 @@
     <hr />
     <div id="inputs-wraper">
       <label for="login" class="form-label">Login lub email</label>
-      <input type="text" name="login" class="form-field" v-model="$v.user.userName.$model" />
+      <input type="text" name="login" class="form-field" v-model="$v.user.login.$model" />
     </div>
     <div id="inputs-wraper">
       <label for="password" class="form-label">Hasło</label>
       <input type="password" name="password" class="form-field" v-model="$v.user.password.$model" />
     </div>
-    <button type="submit" @submit.prevent="login(user)" :disabled="$v.user.$invalid">
+    <button @click="Login(user)" :disabled="$v.user.$invalid">
       Zaloguj się
     </button>
   </div>
@@ -25,20 +25,20 @@ export default {
   data() {
     return {
       user: {
-        userName: '',
+        login: '',
         password: '',
       },
     };
   },
   validations: {
     user: {
-      userName: { required },
+      login: { required },
       password: { required },
     },
   },
   methods: {
     ...mapActions({
-      login: 'user/LOGIN',
+      Login: 'user/LOGIN',
     }),
   },
 };
@@ -52,13 +52,13 @@ export default {
   align-items: center;
   flex-direction: column;
   hr {
-      margin-top: 0.2rem;
-      width: 200px;
-      color: rgb(245, 245, 245);
-    }
-    h1 {
-      color: rgb(63, 63, 63);
-    }
+    margin-top: 0.2rem;
+    width: 200px;
+    color: rgb(245, 245, 245);
+  }
+  h1 {
+    color: rgb(63, 63, 63);
+  }
   #inputs-wraper {
     display: flex;
     flex-direction: column;
