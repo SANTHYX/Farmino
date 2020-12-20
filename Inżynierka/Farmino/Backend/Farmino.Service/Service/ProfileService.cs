@@ -18,7 +18,7 @@ namespace Farmino.Service.Service
             _profileRepository = profileRepository;
         }
 
-        public async Task SetProfileAsync(string login, string firstName,
+        public async Task CreateProfileAsync(string login, string firstName,
             string lastName, string phoneNumber)
         {
             if (await _userRepository.IsUserExist(login))
@@ -28,7 +28,7 @@ namespace Farmino.Service.Service
 
                 profile.SetUser(user);
 
-                await _profileRepository.SetProfile(profile);
+                await _profileRepository.CreateProfile(profile);
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
                 "Cannot connect Profile on User that doesnt exist ");

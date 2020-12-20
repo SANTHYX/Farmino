@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Farmino.Service.Handlers.AddressHandler
 {
-    public class SetAddressHandler : ICommandHandler<EditAddress>
+    public class SetAddressHandler : ICommandHandler<SetAddress>
     {
         private readonly IAddressService _service;
 
@@ -14,9 +14,9 @@ namespace Farmino.Service.Handlers.AddressHandler
             _service = service;
         }
         
-        public async Task HandleAsync(EditAddress command)
+        public async Task HandleAsync(SetAddress command)
         {
-            await _service.EditAddressAsync(command.Login, command.City,
+            await _service.SetAddressAsync(command.Login, command.City,
                 command.Street, command.PostalCode, command.HouseNumber);
         }
     }

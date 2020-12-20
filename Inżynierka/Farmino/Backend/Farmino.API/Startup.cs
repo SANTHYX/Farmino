@@ -43,6 +43,8 @@ namespace Farmino.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseCors(x => {

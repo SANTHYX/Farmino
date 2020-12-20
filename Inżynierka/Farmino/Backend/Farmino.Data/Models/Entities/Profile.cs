@@ -84,17 +84,6 @@ namespace Farmino.Data.Models.Entities
             PhoneNumber = phoneNumber;
         }
 
-        public void SetUserId(Guid userId)
-        {
-            if (userId == Guid.Empty)
-            {
-                throw new DataExceptions(DataErrorCodes.InvalidUserId,
-                    "Foregin key is empty");
-            }
-
-            UserId = userId;
-        }
-
         public void SetAddress(Address address)
         {
             Address = address;

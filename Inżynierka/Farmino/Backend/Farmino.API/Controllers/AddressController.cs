@@ -1,17 +1,17 @@
-﻿using Farmino.Service.Commands.AddressCommands;
+﻿using System.Threading.Tasks;
+using Farmino.Service.Commands.AddressCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Farmino.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class AddressesController : ControllerBase
+    public class AddressController : ControllerBase
     {
         private readonly ICommandDispatcher _commandDispatcher;
 
-        public AddressesController(ICommandDispatcher commandDispatcher)
+        public AddressController(ICommandDispatcher commandDispatcher)
         {
             _commandDispatcher = commandDispatcher;
         }
@@ -20,14 +20,14 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Post([FromBody] SetAddress command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Address has been setted completly");
+            return Ok("Address has been added completly");
         }
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditAddress command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Address has been edited completly");
+            return Ok("Address has been editted completly");
         }
     }
 }

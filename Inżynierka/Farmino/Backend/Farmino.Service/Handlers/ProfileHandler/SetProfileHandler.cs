@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.ProfileHandler
 
         public async Task HandleAsync(SetProfil command)
         {
-            await _service.SetProfileAsync(command.Login, command.FirstName,
+            await _service.CreateProfileAsync(command.Login, command.FirstName,
                 command.LastName, command.PhoneNumber);
         }
     }

@@ -8,7 +8,7 @@ namespace Farmino.Service.Repositories.Interfaces
     public interface IProfileRepository : IRepository
     {
         Task<Profile> GetAsync(Guid id);
-        Task SetProfile(Profile profile);
+        Task CreateProfile(Profile profile);
         Task EditProfile(Profile profile);
     }
 }

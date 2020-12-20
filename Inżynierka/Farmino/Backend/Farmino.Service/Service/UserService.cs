@@ -5,6 +5,7 @@ using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
 using Farmino.Service.Extensions.Models;
 using Farmino.Service.Repositories.Interfaces;
+using Farmino.Service.Security.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,11 +16,13 @@ namespace Farmino.Service.Service
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _repository;
+        private readonly IEncryption _encryption;
 
-        public UserService(IMapper mapper, IUserRepository repository)
+        public UserService(IMapper mapper, IUserRepository repository, IEncryption encryption)
         {
             _mapper = mapper;
             _repository = repository;
+            _encryption = encryption;
         }
 
         public async Task<UserDTO> GetUserAsync(string login)
@@ -38,7 +41,10 @@ namespace Farmino.Service.Service
         {
             if (!await _repository.IsUserExist(login))
             {
-                await _repository.RegisterAsync(new User(login, password, email));
+                var salt = _encryption.GenerateSalt(password);
+                var hashedPassword = _encryption.GenerateHash(password, salt);
+
+                await _repository.RegisterAsync(new User(login, hashedPassword, salt, email));
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
                     $"User with login {login} already exist");
@@ -51,7 +57,11 @@ namespace Farmino.Service.Service
             {
                 var user = await _repository.GetAsync(login);
                 user.SetLogin(newLogin);
-                user.SetPassword(newPassword);
+
+                var salt = _encryption.GenerateSalt(newPassword);
+                var newHashedPassword = _encryption.GenerateHash(newPassword, salt);
+                user.SetPassword(newHashedPassword);
+
                 user.SetEmail(newEmail);
                 await _repository.EditAsync(user);
             }
@@ -63,12 +73,11 @@ namespace Farmino.Service.Service
         {
             if (await _repository.IsUserExist(login))
             {
-                return _mapper.Map<LoginAvalibility, LoginAvalibilityDTO>(LoginAvalibility.Create(true));
+                return _mapper.Map<LoginAvalibility, 
+                    LoginAvalibilityDTO>(LoginAvalibility.Create(true));
             }
-            else
-            {
-                return _mapper.Map<LoginAvalibility, LoginAvalibilityDTO>(LoginAvalibility.Create(false));
-            }
+            else return _mapper.Map<LoginAvalibility, 
+                LoginAvalibilityDTO>(LoginAvalibility.Create(false));
         }
             
     }

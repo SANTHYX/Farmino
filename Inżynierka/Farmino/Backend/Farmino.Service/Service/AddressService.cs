@@ -27,7 +27,7 @@ namespace Farmino.Service.Service
                 var user = await _userRepository.GetAsync(login);
                 var profil = await _profileRepository.GetAsync(user.Profile.Id);
 
-                profil.SetAddress(new Address(city, street, postalCode, houseNumber));
+                profil.SetAddress(Address.Create(city, street, postalCode, houseNumber));
 
                 await _profileRepository.EditProfile(profil);
             }

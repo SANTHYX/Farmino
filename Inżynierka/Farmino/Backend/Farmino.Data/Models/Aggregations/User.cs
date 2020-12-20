@@ -24,13 +24,13 @@ namespace Farmino.Data.Models.Aggregations
 
         protected User()
         { }
-        public User(string login, string password, string email)
+        public User(string login, string password, string salt, string email)
         {
             Id = Guid.NewGuid();
             SetPassword(password);
             SetLogin(login);
             SetEmail(email);
-            Salt = "salt";
+            SetSalt(salt);
             CreatedAt = UpdatedAt = DateTime.Now;
         }
 
