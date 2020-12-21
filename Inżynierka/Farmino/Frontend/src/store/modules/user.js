@@ -1,130 +1,37 @@
-import api from '@/plugins/axios';
+import userService from '@/service/userService';
 
 const user = {
   namespaced: true,
   state: {
     user: {},
+    token: '',
   },
   mutations: {
-    REGISTER(state, { login, email, password }) {
-      try {
-        api.post('/users', { login, email, password });
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    LOGIN(state, { login, password }) {
-      try {
-        const response = api.post('/auth/login/', { login, password });
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    CREATE_PROFILE(state, { firstName, lastName, phoneNumber }) {
-      try {
-        api.post('/profiles', {
-          login: state.user.login,
-          firstName,
-          lastName,
-          phoneNumber,
-        });
-        state.user.profile = {
-          firstName,
-          lastName,
-          phoneNumber,
-        };
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    EDIT_PROFILE(state, { firstName, lastName, phoneNumber }) {
-      try {
-        api.put('/profiles', {
-          login: state.user.login,
-          firstName,
-          lastName,
-          phoneNumber,
-        });
-        state.user.profile = {
-          firstName,
-          lastName,
-          phoneNumber,
-        };
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    ADD_ADDRESS(state, { city, street, postalCode, houseNumber }) {
-      try {
-        api.post('/address', {
-          login: state.user.login,
-          city,
-          street,
-          postalCode,
-          houseNumber,
-        });
-        state.user.profile.address = {
-          city,
-          street,
-          postalCode,
-          houseNumber,
-        };
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    EDIT_ADDRESS(state, { city, street, postalCode, houseNumber }) {
-      try {
-        api.put('/address', {
-          login: state.user.login,
-          city,
-          street,
-          postalCode,
-          houseNumber,
-        });
-        state.user.profile.address = {
-          city,
-          street,
-          postalCode,
-          houseNumber,
-        };
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    LOGOUT(state) {
+    CLEAR_STATE: (state) => {
       state.user = {};
+    },
+    SET_USER: (state, userObj) => {
+      state.user.login = userObj.login;
+      state.user.email = userObj.email;
+    },
+    SET_ADDRESS: (state, addressObj) => {
+      state.user.profile.address = addressObj;
+    },
+    SET_PROFILE: (state, profileObj) => {
+      state.user.profile = profileObj;
+    },
+    SET_TOKEN: (state, tokenModel) => {
+      state.token = tokenModel;
     },
   },
   actions: {
-    async REGISTER({ commit }, { login, email, password }) {
-      await commit('REGISTER', { login, email, password });
+    REGISTER: async ({ login, password, email }) => {
+      await userService.register({ login, password, email });
     },
-    LOGIN({ commit }, { login, password }) {
-      commit('LOGIN', { login, password });
-    },
-    CREATE_PROFILE({ commit }, { firstName, lastName, phoneNumber }) {
-      commit('CREATE_PROFILE', { firstName, lastName, phoneNumber });
-    },
-    EDIT_PROFILE({ commit }, { firstName, lastName, phoneNumber }) {
-      commit('EDIT_PROFILE', { firstName, lastName, phoneNumber });
-    },
-    ADD_ADDRESS({ commit }, { city, street, postalCode, houseNumber }) {
-      commit('ADD_ADDRESS', {
-        city,
-        street,
-        postalCode,
-        houseNumber,
-      });
-    },
-    EDIT_ADDRESS({ commit }, { city, street, postalCode, houseNumber }) {
-      commit('EDIT_ADDRESS', {
-        city,
-        street,
-        postalCode,
-        houseNumber,
-      });
+    LOGIN: async ({ commit }, { login, password }) => {
+      const { token, userObj } = await userService.login({ login, password });
+      commit('SET_TOKEN', token);
+      commit('SET_USER', userObj);
     },
   },
 };
