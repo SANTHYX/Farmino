@@ -13,7 +13,7 @@ namespace Farmino.Service.IoC.Modules
             builder.RegisterAssemblyTypes(assembly).Where(x => x.IsAssignableTo<IEncryption>())
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(assembly).Where(x => x.IsAssignableTo<ITokenHandler>())
+            builder.RegisterAssemblyTypes(assembly).Where(x => x.IsAssignableTo<ITokenManager>())
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }

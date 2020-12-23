@@ -1,7 +1,7 @@
 ﻿using Farmino.Data.Exceptions;
 using Farmino.Data.Extensions;
 using Farmino.Data.Models.Aggregations;
-using Farmino.Data.Models.Value_Objects;
+using Farmino.Data.Models.ValueObjects;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,8 +24,8 @@ namespace Farmino.Data.Models.Entities
         public User User { get; protected set; }
         public Address Address { get; protected set; }
 
-        protected Profile()
-        {}
+        protected Profile() { }
+
         public Profile(string firstName, string lastName, string phoneNumber)
         {
             Id = Guid.NewGuid();

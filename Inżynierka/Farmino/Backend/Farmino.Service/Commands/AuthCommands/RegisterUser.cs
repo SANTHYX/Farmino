@@ -1,7 +1,6 @@
 ﻿using Farmino.Service.Commands.Interfaces;
-using Farmino.Service.Commands.ProfileCommands.ValueModels;
 
-namespace Farmino.Service.Commands.UserCommands
+namespace Farmino.Service.Commands.AuthCommands
 {
     public class RegisterUser : ICommand
     {

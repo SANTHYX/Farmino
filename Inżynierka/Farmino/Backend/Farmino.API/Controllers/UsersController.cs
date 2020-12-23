@@ -27,6 +27,7 @@ namespace Farmino.API.Controllers
         [Route("/users/single")]
         public async Task<IActionResult> Get([FromQuery] GetUser query)
             => Ok(await _queryDispatcher.HandleAsync<GetUser, UserDTO>(query));
+
         [Authorize]
         [HttpGet]
         [Route("/users/all")]
@@ -38,18 +39,11 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] CheckIfLoginIsAvaliable query)
           => Ok(await _queryDispatcher.HandleAsync<CheckIfLoginIsAvaliable, LoginAvalibilityDTO>(query));
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] RegisterUser command)
-        {
-            await _commandDispatcher.DispatchAsync(command);
-            return Ok("User has been created completly");
-        }
-
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditUser command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("User has been updated completly");
+            return Ok("User has been updated");
         }
     }
 }

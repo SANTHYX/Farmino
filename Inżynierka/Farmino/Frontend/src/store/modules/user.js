@@ -33,6 +33,14 @@ const user = {
       commit('SET_TOKEN', token);
       commit('SET_USER', userObj);
     },
+    CREATE_PROFILE: async ({ commit }, {
+      login, firstName, lastName, phoneNumber,
+    }) => {
+      await userService.createProfile({
+        login, firstName, lastName, phoneNumber,
+      });
+      commit('SET_PROFILE', { firstName, lastName, phoneNumber });
+    },
   },
 };
 

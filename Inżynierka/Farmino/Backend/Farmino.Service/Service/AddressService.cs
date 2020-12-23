@@ -1,4 +1,4 @@
-﻿using Farmino.Data.Models.Value_Objects;
+﻿using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
 using Farmino.Service.Repositories.Interfaces;
@@ -29,7 +29,8 @@ namespace Farmino.Service.Service
 
                 profil.SetAddress(Address.Create(city, street, postalCode, houseNumber));
 
-                await _profileRepository.EditProfile(profil);
+                _profileRepository.EditProfile(profil);
+                await _profileRepository.SaveChanges();
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
                 "Cannot connect Address on User that doesnt exist ");
@@ -48,7 +49,8 @@ namespace Farmino.Service.Service
                 profil.Address.SetPostalCode(postalCode);
                 profil.Address.SetHouseNumber(houseNumber);
 
-                await _profileRepository.EditProfile(profil);
+                _profileRepository.EditProfile(profil);
+                await _profileRepository.SaveChanges();
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
                 "Cannot connect Address on User that doesnt exist ");

@@ -15,5 +15,7 @@
         public static string InvalidEmail => "invalid_email";
         public static string InvalidSalt => "invalid_salt";
         public static string InvalidTitle => "invalid_title";
+        public static string InvalidRefreshToken => "invalid_refresh_token";
+        public static string InvalidToken => "invalid_refresh_token";
     }
 }

@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace Farmino.Service.Handlers.AuthHandler
 {
-    public class LoginHandler : ICommandHandler<LoginModel>
+    public class RevokeTokenHandler : ICommandHandler<RevokeToken>
     {
         private readonly IAuthService _authService;
 
-        public LoginHandler(IAuthService authService)
+        public RevokeTokenHandler(IAuthService authService)
         {
             _authService = authService;
         }
 
-        public async Task HandleAsync(LoginModel command)
+        public async Task HandleAsync(RevokeToken command)
         {
-            command.Token = await _authService.Login(command.Login, command.Password);           
+            await _authService.RevokeToken(command.Refresh);
         }
     }
 }

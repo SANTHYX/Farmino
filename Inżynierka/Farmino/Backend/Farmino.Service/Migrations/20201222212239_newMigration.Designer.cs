@@ -10,16 +10,45 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201217200131_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20201222212239_newMigration")]
+    partial class newMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.1");
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("GeneratedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
 
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.User", b =>
                 {
@@ -83,6 +112,17 @@ namespace Farmino.Service.Migrations
                     b.ToTable("Profiles");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
@@ -91,26 +131,26 @@ namespace Farmino.Service.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Farmino.Data.Models.Value_Objects.Address", "Address", b1 =>
+                    b.OwnsOne("Farmino.Data.Models.ValueObjects.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("ProfileId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("City")
-                                .HasColumnName("City")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("City");
 
                             b1.Property<int>("HouseNumber")
-                                .HasColumnName("HouseNumber")
-                                .HasColumnType("int");
+                                .HasColumnType("int")
+                                .HasColumnName("HouseNumber");
 
                             b1.Property<string>("PostalCode")
-                                .HasColumnName("PostalCode")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("PostalCode");
 
                             b1.Property<string>("Street")
-                                .HasColumnName("Street")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Street");
 
                             b1.HasKey("ProfileId");
 
@@ -119,6 +159,15 @@ namespace Farmino.Service.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("ProfileId");
                         });
+
+                    b.Navigation("Address");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.User", b =>
+                {
+                    b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
         }

@@ -29,6 +29,7 @@ namespace Farmino.Service.Service
                 profile.SetUser(user);
 
                 await _profileRepository.CreateProfile(profile);
+                await _profileRepository.SaveChanges();
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
                 "Cannot connect Profile on User that doesnt exist ");
@@ -46,7 +47,8 @@ namespace Farmino.Service.Service
                 profil.SetLastName(lastName);
                 profil.SetPhoneNumber(phoneNumber);
 
-                await _profileRepository.EditProfile(profil);
+                _profileRepository.EditProfile(profil);
+                await _profileRepository.SaveChanges();
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserDontExist,
                 "Cannot connect Profile on User that doesnt exist ");

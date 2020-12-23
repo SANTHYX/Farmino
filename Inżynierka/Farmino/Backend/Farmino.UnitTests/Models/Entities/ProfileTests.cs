@@ -1,18 +1,17 @@
 ﻿using Farmino.Data.Exceptions;
 using Farmino.Data.Models.Entities;
-using Farmino.Data.Models.Value_Objects;
+using Farmino.Data.Models.ValueObjects;
 using Moq;
-using System;
 using Xunit;
 
 namespace Farmino.UnitTests.Models.Entities
 {
-    public class PersonalDataTests
+    public class ProfileTests
     {
         private readonly Mock<Profile> _personalData;
         private readonly Mock<Address> _address;
 
-        public PersonalDataTests()
+        public ProfileTests()
         {
             _personalData = new Mock<Profile>();
             _address = new Mock<Address>();
@@ -174,28 +173,6 @@ namespace Farmino.UnitTests.Models.Entities
 
             Assert.Equal(expected, result);
             Assert.Equal(before, result);
-        }
-
-        [Fact]
-        public void PhoneNumber_field_should_thorw_exception_if_passed_value_will_be_empty_guid()
-        {
-            Guid testValue = Guid.Empty;
-            string expected = "Foregin key is empty";
-
-            var result = Assert.Throws<DataExceptions>(() => _personalData.Object.SetUserId(testValue));
-
-            Assert.Equal(expected, result.Message);
-        }
-
-        [Fact]
-        public void PhoneNumber_field_should_thorw_exception_if_passed_value_will_be_correct_Guid()
-        {
-            Guid testValue = Guid.NewGuid();
-            Guid expected = testValue;
-            _personalData.Object.SetUserId(testValue);
-            var result = _personalData.Object.UserId;
-
-            Assert.Equal(expected, result);
         }
     }
 }

@@ -15,55 +15,44 @@ namespace Farmino.Service.Service
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
-        private readonly IUserRepository _repository;
+        private readonly IUserRepository _userRepository;
         private readonly IEncryption _encryption;
 
-        public UserService(IMapper mapper, IUserRepository repository, IEncryption encryption)
+        public UserService(IMapper mapper, IUserRepository userRepository,
+            IEncryption encryption)
         {
             _mapper = mapper;
-            _repository = repository;
+            _userRepository = userRepository;
             _encryption = encryption;
         }
 
         public async Task<UserDTO> GetUserAsync(string login)
         {
-            var user = await _repository.GetAsync(login);
+            var user = await _userRepository.GetAsync(login);
             return _mapper.Map<User, UserDTO>(user);
         }
 
         public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            var users = await _repository.BrowseAsync();
+            var users = await _userRepository.BrowseAsync();
             return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
-        }
-
-        public async Task RegisterAsync(string login, string password, string email)
-        {
-            if (!await _repository.IsUserExist(login))
-            {
-                var salt = _encryption.GenerateSalt(password);
-                var hashedPassword = _encryption.GenerateHash(password, salt);
-
-                await _repository.RegisterAsync(new User(login, hashedPassword, salt, email));
-            }
-            else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
-                    $"User with login {login} already exist");
         }
 
         public async Task EditAsync(string login, string newLogin,
             string newPassword, string newEmail)
         {
-            if (!await _repository.IsUserExist(login))
+            if (!await _userRepository.IsUserExist(login))
             {
-                var user = await _repository.GetAsync(login);
-                user.SetLogin(newLogin);
-
+                var user = await _userRepository.GetAsync(login);
                 var salt = _encryption.GenerateSalt(newPassword);
                 var newHashedPassword = _encryption.GenerateHash(newPassword, salt);
-                user.SetPassword(newHashedPassword);
 
+                user.SetLogin(newLogin);
+                user.SetPassword(newHashedPassword);
                 user.SetEmail(newEmail);
-                await _repository.EditAsync(user);
+
+                _userRepository.EditAsync(user);
+                await _userRepository.SaveChanges();
             }
             else throw new ServiceExceptions(ServiceErrorCodes.LoginAlreadyTaken,
                     "This login is already taken");
@@ -71,7 +60,7 @@ namespace Farmino.Service.Service
 
         public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string login)
         {
-            if (!await _repository.IsUserExist(login))
+            if (!await _userRepository.IsUserExist(login))
             {
                 return _mapper.Map<LoginAvalibility, 
                     LoginAvalibilityDTO>(LoginAvalibility.Create(true));

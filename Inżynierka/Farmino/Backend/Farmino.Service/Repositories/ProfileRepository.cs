@@ -16,10 +16,9 @@ namespace Farmino.Service.Repositories
             _context = context;
         }
 
-        public async Task EditProfile(Profile profile)
+        public void EditProfile(Profile profile)
         {
             _context.Profiles.Update(profile);
-            await _context.SaveChangesAsync();
         }
 
         public async Task<Profile> GetAsync(Guid id)
@@ -28,6 +27,10 @@ namespace Farmino.Service.Repositories
         public async Task CreateProfile(Profile profile)
         {
             await _context.Profiles.AddAsync(profile);
+        }
+
+        public async Task SaveChanges()
+        {
             await _context.SaveChangesAsync();
         }
     }

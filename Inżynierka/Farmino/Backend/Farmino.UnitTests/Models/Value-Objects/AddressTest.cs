@@ -1,5 +1,5 @@
 ﻿using Farmino.Data.Exceptions;
-using Farmino.Data.Models.Value_Objects;
+using Farmino.Data.Models.ValueObjects;
 using Moq;
 using Xunit;
 

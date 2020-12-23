@@ -22,8 +22,8 @@ namespace Farmino.Data.Models.Aggregations
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 
-        protected User()
-        { }
+        protected User() { }
+
         public User(string login, string password, string salt, string email)
         {
             Id = Guid.NewGuid();

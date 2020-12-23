@@ -20,14 +20,14 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Post([FromBody] SetProfil command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Profil has been setted completly");
+            return Ok("Profil has been setted");
         }
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditProfile command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Profile has been edited completly");
+            return Ok("Profile has been edited");
         }
     }
 }

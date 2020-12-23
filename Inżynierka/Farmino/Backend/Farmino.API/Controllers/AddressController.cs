@@ -20,14 +20,14 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Post([FromBody] SetAddress command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Address has been added completly");
+            return Ok("Address has been added");
         }
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditAddress command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Address has been editted completly");
+            return Ok("Address has been editted");
         }
     }
 }

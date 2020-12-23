@@ -1,15 +1,15 @@
-﻿using Farmino.Service.Commands.UserCommands;
+﻿using Farmino.Service.Commands.AuthCommands;
 using Farmino.Service.Handlers.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System.Threading.Tasks;
 
-namespace Farmino.Service.Handlers.UserHandlers
+namespace Farmino.Service.Handlers.AuthHandler
 {
     public class RegisterUserHandler : ICommandHandler<RegisterUser>
     {
-        private readonly IUserService _service;
+        private readonly IAuthService _service;
 
-        public RegisterUserHandler(IUserService service, IProfileService dataService)
+        public RegisterUserHandler(IAuthService service)
         {
             _service = service;
         }

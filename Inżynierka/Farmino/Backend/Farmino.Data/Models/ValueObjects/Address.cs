@@ -1,6 +1,6 @@
 ﻿using Farmino.Data.Exceptions;
 
-namespace Farmino.Data.Models.Value_Objects
+namespace Farmino.Data.Models.ValueObjects
 {
     public class Address
     {

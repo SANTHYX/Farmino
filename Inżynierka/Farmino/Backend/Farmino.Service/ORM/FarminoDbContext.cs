@@ -6,8 +6,9 @@ namespace Farmino.Service.ORM
 {
     public class FarminoDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
         { 
         }
