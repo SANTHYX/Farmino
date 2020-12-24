@@ -6,6 +6,9 @@ const user = {
     user: {},
     token: '',
   },
+  getters: {
+    IS_USER_LOGGED: (state) => JSON.stringify(state.user) !== '{}',
+  },
   mutations: {
     CLEAR_STATE: (state) => {
       state.user = {};
@@ -37,7 +40,10 @@ const user = {
       login, firstName, lastName, phoneNumber,
     }) => {
       await userService.createProfile({
-        login, firstName, lastName, phoneNumber,
+        login,
+        firstName,
+        lastName,
+        phoneNumber,
       });
       commit('SET_PROFILE', { firstName, lastName, phoneNumber });
     },

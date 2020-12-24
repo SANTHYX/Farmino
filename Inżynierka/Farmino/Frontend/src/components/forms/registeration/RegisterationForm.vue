@@ -53,6 +53,10 @@
           <p class="error-message" v-if="!$v.user.email.email">Email nie poprawny</p>
         </div>
       </div>
+      <div id="checkbox-wraper">
+        <input type="checkbox" name="regulations-confirmation" id="regulation-checkbox" />
+        <label for="">Akceptuje warunki regulaminu</label>
+      </div>
       <button @click="Register(user)" :disabled="$v.user.$invalid">
         Zarejestruj
       </button>
@@ -115,6 +119,9 @@ export default {
     #input-wraper {
       display: flex;
       flex-direction: column;
+    }
+    #checkbox-wraper {
+      display: flex;
     }
   }
 }

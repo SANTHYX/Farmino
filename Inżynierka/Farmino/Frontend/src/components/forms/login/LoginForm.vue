@@ -10,6 +10,7 @@
       <label for="password" class="form-label">Hasło</label>
       <input type="password" name="password" class="form-field" v-model="$v.user.password.$model" />
     </div>
+    <p>Nie pamiętam hasła</p>
     <button @click="Login(user)" :disabled="$v.user.$invalid">
       Zaloguj się
     </button>

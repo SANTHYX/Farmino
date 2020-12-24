@@ -17,7 +17,7 @@ export default {
   methods: {
     sendState() {
       this.clicked = !this.clicked;
-      this.$emit('button-state', this.clicked);
+      this.$emit('mobile-menu-event', this.clicked);
     },
   },
 };

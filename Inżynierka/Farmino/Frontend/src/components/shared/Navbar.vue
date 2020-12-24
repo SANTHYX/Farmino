@@ -5,7 +5,7 @@
     </div>
     <nav id="navbar">
       <search-bar></search-bar>
-      <div id="standard-menu">
+      <div id="nav-menu" v-if="!isUserLoged">
         <ul>
           <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
           <router-link to="offers" tag="li" exact="exact"><a>Oferty</a></router-link>
@@ -17,13 +17,15 @@
           >
         </ul>
       </div>
-      <menu-button @button-state="ShowMenu"></menu-button>
+      <div id="nav-menu" v-else></div>
+      <menu-button @mobile-menu-event="ShowMenu"></menu-button>
     </nav>
     <moblie-menu :showMenu="showMenu"></moblie-menu>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import MenuButton from './mobile/MenuButton.vue';
 import MoblieMenu from './mobile/MobileMenu.vue';
 import SearchBar from './SearchBar.vue';
@@ -39,6 +41,11 @@ export default {
     return {
       showMenu: false,
     };
+  },
+  computed: {
+    ...mapGetters({
+      isUserLoged: 'user/IS_USER_LOGGED',
+    }),
   },
   methods: {
     ShowMenu(input) {
@@ -80,7 +87,7 @@ export default {
         font-weight: 700;
       }
     }
-    #standard-menu {
+    #nav-menu {
       ul {
         display: flex;
         list-style: none;
@@ -98,7 +105,7 @@ export default {
   }
 }
 @media screen and(max-width: $tablet) {
-  #standard-menu {
+  #nav-menu {
     display: none;
   }
 }
