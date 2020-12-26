@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Farmino.Data.Models.Entities
+namespace Farmino.Data.Enums
 {
-    public class Customer
+    public enum WeightUnits
     {
     }
 }
