@@ -33,5 +33,8 @@ namespace Farmino.Data.Models.ValueObjects
         {
             throw new NotImplementedException();
         }
+
+        public static Weight Create(string unit, double value)
+            => new Weight(unit, value);
     }
 }

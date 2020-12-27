@@ -21,12 +21,7 @@ namespace Farmino.Data.Models.Aggregations
         }
 
         public void SetUser(User user)
-        {
-            if (User == user)
-            {
-                return;
-            }
-
+        {     
             User = user;
         }
     }

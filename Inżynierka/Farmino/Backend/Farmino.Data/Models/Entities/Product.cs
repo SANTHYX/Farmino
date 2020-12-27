@@ -40,17 +40,37 @@ namespace Farmino.Data.Models.Entities
 
         public void SetPrice(decimal price)
         {
-            throw new NotImplementedException();
+            if (price <= 0)
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductPrice,
+                    "Price cannot be less or equal zero");
+            }
+            if (Price == price)
+            {
+                return;
+            }
+
+            Price = price;
         }
 
         public void SetQuantity(int quantity)
         {
-            throw new NotImplementedException();
+            if (quantity < 0)
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductQuantity,
+                    "Product quantity cannot be less than zero");
+            }
+            if (Quantity == quantity)
+            {
+                return;
+            }
+
+            Quantity = quantity;
         }
 
         public void SetWeight(Weight weight)
         {
-            throw new NotImplementedException();
+            Weight = weight;
         }
     }
 }

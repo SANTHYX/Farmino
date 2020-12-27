@@ -11,6 +11,7 @@ namespace Farmino.Service.ORM
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
         public virtual DbSet<Farmer> Farmers { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
         { 
         }

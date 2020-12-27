@@ -19,6 +19,38 @@ namespace Farmino.Service.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Farmer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Farmers");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
@@ -108,6 +140,28 @@ namespace Farmino.Service.Migrations
                         .IsUnique();
 
                     b.ToTable("Profiles");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Customer", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Farmer", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>

@@ -1,6 +1,8 @@
 ﻿using Farmino.Data.Models.Aggregations;
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Repositories
@@ -17,6 +19,9 @@ namespace Farmino.Service.Repositories
         {
             await _context.Farmers.AddAsync(farmer);
         }
+
+        public async Task<Farmer> GetAsync(Guid userId)
+            => await _context.Farmers.FirstOrDefaultAsync(x => x.UserId == userId);
 
         public async Task SaveAsync()
         {

@@ -41,7 +41,7 @@ namespace Farmino.Data.Models.Entities
                 throw new DataExceptions(DataErrorCodes.InvalidFirstName,
                     "FirstName cannot be empty");
             }
-            if(firstName == FirstName)
+            if (firstName == FirstName)
             {
                 return;
             }
@@ -76,7 +76,7 @@ namespace Farmino.Data.Models.Entities
                 throw new DataExceptions(DataErrorCodes.InvalidPhoneNumber,
                     "Number is too short or too long,number should contain 9 numbers");
             }
-            if(phoneNumber == PhoneNumber)
+            if (phoneNumber == PhoneNumber)
             {
                 return;
             }
