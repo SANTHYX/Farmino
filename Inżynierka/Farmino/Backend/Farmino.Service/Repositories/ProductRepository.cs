@@ -2,6 +2,7 @@
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,6 +32,9 @@ namespace Farmino.Service.Repositories
 
         public async Task<Product> GetAsync(string name)
             => await _context.Products.FirstOrDefaultAsync(x => x.Name == name);
+
+        public async Task<Product> GetAsync(Guid id)
+            => await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task SaveChanges()
         {

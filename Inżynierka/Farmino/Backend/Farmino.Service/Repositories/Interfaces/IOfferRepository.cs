@@ -10,6 +10,7 @@ namespace Farmino.Service.Repositories.Interfaces
         Task AddAsync(Offer offer);
         Task<Offer> GetAsync(Guid id);
         Task<IEnumerable<Offer>> GetAllAsync();
+        void RemoveAsync(Offer offer);
         void EditAsync(Offer offer);
         Task SaveChanges();
     }

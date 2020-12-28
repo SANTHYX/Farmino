@@ -34,6 +34,11 @@ namespace Farmino.Service.Repositories
         public async Task<Offer> GetAsync(Guid id)
             => await _context.Offers.Include(x => x.Product).Include(y => y.Farmer).FirstOrDefaultAsync(z => z.Id == id);
 
+        public void RemoveAsync(Offer offer)
+        {
+            _context.Offers.Remove(offer);
+        }
+
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
