@@ -1,14 +1,17 @@
-﻿using Farmino.Data.Exceptions;
+﻿using Farmino.Data.Enums;
+using Farmino.Data.Exceptions;
 using System;
 
 namespace Farmino.Data.Models.ValueObjects
 {
     public class Weight
     {
-        public string Unit { get; protected set; }
+        public WeightUnits Unit { get; protected set; }
         public double Value { get; protected set; }
 
-        public Weight(string unit, double value)
+        protected Weight() { } 
+
+        public Weight(int unit, double value)
         {
             SetUnit(unit);
             SetValue(value);
@@ -29,12 +32,22 @@ namespace Farmino.Data.Models.ValueObjects
             Value = value;
         }
 
-        public void SetUnit(string unit)
+        public void SetUnit(int unit)
         {
-            throw new NotImplementedException();
+            if (!Enum.IsDefined(typeof(WeightUnits), unit))
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
+                    "This unit are not existing in our system");
+            }
+            if ((int)Unit == unit)
+            {
+                return;
+            }
+
+            Unit = (WeightUnits)unit;
         }
 
-        public static Weight Create(string unit, double value)
+        public static Weight Create(int unit, double value)
             => new Weight(unit, value);
     }
 }

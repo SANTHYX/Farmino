@@ -25,5 +25,6 @@
         public static string InvalidProductPrice => "invalid_product_price";
         //Weight
         public static string InvalidProductWeightValue => "invalid_product_weight_value";
+        public static string InvalidProductWeightUnit => "invalid_product_weight_unit";
     }
 }

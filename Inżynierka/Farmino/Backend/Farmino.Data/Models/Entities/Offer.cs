@@ -10,7 +10,6 @@ namespace Farmino.Data.Models.Entities
         public Farmer Farmer { get; protected set; }
         public string Title { get; protected set; }
         public string Description { get; protected set; }
-        public Guid ProductId { get; protected set; }
         public Product Product { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 

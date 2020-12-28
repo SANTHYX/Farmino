@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201227185804_myMigration")]
+    [Migration("20201228171846_myMigration")]
     partial class myMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,8 @@ namespace Farmino.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Customers");
                 });
@@ -48,7 +49,8 @@ namespace Farmino.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Farmers");
                 });
@@ -60,17 +62,21 @@ namespace Farmino.Service.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ExpiresAt")
+                        .HasMaxLength(10)
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("GeneratedAt")
+                        .HasMaxLength(10)
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsRevoked")
+                        .HasMaxLength(1)
                         .HasColumnType("bit");
 
                     b.Property<string>("Token")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -89,30 +95,96 @@ namespace Farmino.Service.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasMaxLength(10)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<string>("Salt")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<DateTime>("UpdatedAt")
+                        .HasMaxLength(10)
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Offer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasMaxLength(10)
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FarmerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FarmerId");
+
+                    b.ToTable("Offers");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<Guid>("OfferId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasMaxLength(10)
+                        .HasPrecision(2)
+                        .HasColumnType("decimal(2,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OfferId")
+                        .IsUnique();
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
@@ -123,15 +195,18 @@ namespace Farmino.Service.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -147,8 +222,8 @@ namespace Farmino.Service.Migrations
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Customer", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Customer")
+                        .HasForeignKey("Farmino.Data.Models.Aggregations.Customer", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -158,8 +233,8 @@ namespace Farmino.Service.Migrations
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Farmer", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Farmer")
+                        .HasForeignKey("Farmino.Data.Models.Aggregations.Farmer", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -169,12 +244,59 @@ namespace Farmino.Service.Migrations
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
-                        .WithMany()
+                        .WithMany("RefreshTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Offer", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.Farmer", "Farmer")
+                        .WithMany("Offers")
+                        .HasForeignKey("FarmerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Farmer");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Entities.Offer", "Offer")
+                        .WithOne("Product")
+                        .HasForeignKey("Farmino.Data.Models.Entities.Product", "OfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("Farmino.Data.Models.ValueObjects.Weight", "Weight", b1 =>
+                        {
+                            b1.Property<Guid>("ProductId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Unit")
+                                .HasMaxLength(1)
+                                .HasColumnType("int")
+                                .HasColumnName("Unit");
+
+                            b1.Property<double>("Value")
+                                .HasMaxLength(5)
+                                .HasColumnType("float")
+                                .HasColumnName("WeightValue");
+
+                            b1.HasKey("ProductId");
+
+                            b1.ToTable("Products");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProductId");
+                        });
+
+                    b.Navigation("Offer");
+
+                    b.Navigation("Weight");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
@@ -191,19 +313,23 @@ namespace Farmino.Service.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)")
+                                .HasMaxLength(30)
+                                .HasColumnType("nvarchar(30)")
                                 .HasColumnName("City");
 
                             b1.Property<int>("HouseNumber")
+                                .HasMaxLength(3)
                                 .HasColumnType("int")
                                 .HasColumnName("HouseNumber");
 
                             b1.Property<string>("PostalCode")
-                                .HasColumnType("nvarchar(max)")
+                                .HasMaxLength(7)
+                                .HasColumnType("nvarchar(7)")
                                 .HasColumnName("PostalCode");
 
                             b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)")
+                                .HasMaxLength(30)
+                                .HasColumnType("nvarchar(30)")
                                 .HasColumnName("Street");
 
                             b1.HasKey("ProfileId");
@@ -219,9 +345,25 @@ namespace Farmino.Service.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Farmer", b =>
+                {
+                    b.Navigation("Offers");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.User", b =>
                 {
+                    b.Navigation("Customer");
+
+                    b.Navigation("Farmer");
+
                     b.Navigation("Profile");
+
+                    b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Offer", b =>
+                {
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

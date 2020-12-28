@@ -1,17 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Farmino.Data.Models.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace Farmino.Data.Models.Aggregations
 {
     public class Farmer
     {
-        [Key]
         public Guid Id { get; protected set; }
-        [Required]
         public Guid UserId { get; protected set; }
-        [ForeignKey("UserId")]
         public User User { get; protected set; }
+        public IEnumerable<Offer> Offers { get; protected set; }
 
         protected Farmer() { }
 

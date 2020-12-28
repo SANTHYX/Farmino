@@ -11,6 +11,8 @@ namespace Farmino.Data.Models.Entities
         public decimal Price { get; protected set; }
         public int Quantity { get; protected set; }
         public Weight Weight { get; protected set; }
+        public Guid OfferId { get; protected set; }
+        public Offer Offer { get; protected set; }
 
         protected Product() { }
 

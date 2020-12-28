@@ -70,12 +70,11 @@ namespace Farmino.Service.Service
         public async Task<TokenDTO> RefreshToken(string token, string refresh)
         {
             var refreshToken = await _refreshTokenRepository.GetTokenAsync(refresh);
-            var user = await _userRepository.GetAsync(refreshToken.UserId);
 
             if (refreshToken == null)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.RefreshTokenDontExist,
-                    "RefreshToken is empty");
+                    "RefreshToken is empty or invalid");
             }
             if (refreshToken.IsRevoked)
             {
@@ -87,6 +86,7 @@ namespace Farmino.Service.Service
                 throw new ServiceExceptions(ServiceErrorCodes.RefreshTokenIsActive,
                     "RefreshToken is still avalivable");
             }
+            var user = await _userRepository.GetAsync(refreshToken.UserId);
             var generatedToken = _tokenManager.GenerateToken(user);
 
             refreshToken.SetRevoke(true);

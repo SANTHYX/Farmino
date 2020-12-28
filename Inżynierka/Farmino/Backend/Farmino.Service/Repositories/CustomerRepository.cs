@@ -2,7 +2,6 @@
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Repositories
@@ -18,11 +17,11 @@ namespace Farmino.Service.Repositories
 
         public async Task AddAsync(Customer customer)
         {
-            await _context.AddAsync(customer);
+            await _context.Customers.AddAsync(customer);
         }
 
-        public async Task<Customer> GetAsync(Guid id)
-            => await _context.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+        public async Task<Customer> GetAsync(string login)
+            => await _context.Customers.Include(x => x.User).FirstOrDefaultAsync(x => x.User.Login == login);
 
         public async Task SaveAsync()
         {

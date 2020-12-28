@@ -3,24 +3,16 @@ using Farmino.Data.Extensions;
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.ValueObjects;
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Farmino.Data.Models.Entities
 {
     public class Profile
     {
-        [Key]
         public Guid Id { get; protected set; }
-        [Required]
         public string FirstName { get; protected set; }
-        [Required]
         public string LastName { get; protected set; }
-        [Required]
         public string PhoneNumber { get; protected set; }
-        [Required] 
         public Guid UserId { get; protected set; }
-        [ForeignKey("UserId")]
         public User User { get; protected set; }
         public Address Address { get; protected set; }
 

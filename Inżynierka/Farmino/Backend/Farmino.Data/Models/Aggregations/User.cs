@@ -2,23 +2,21 @@
 using Farmino.Data.Extensions;
 using Farmino.Data.Models.Entities;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Farmino.Data.Models.Aggregations
 {
     public class User
     {
-        [Key]
         public Guid Id { get; protected set; }
-        [Required]
         public string Login { get; protected set; }
-        [Required]
         public string Password { get; protected set; }
-        [Required]
         public string Email { get; protected set; }
-        [Required]
         public string Salt { get; protected set; }
         public Profile Profile { get;protected set; }
+        public Farmer Farmer { get; protected set; }
+        public Customer Customer { get; protected set; }
+        public IEnumerable<RefreshToken> RefreshTokens { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 

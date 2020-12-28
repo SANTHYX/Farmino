@@ -1,21 +1,15 @@
 ﻿using Farmino.Data.Exceptions;
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Farmino.Data.Models.Aggregations
 {
     public class RefreshToken
     {
-        [Key]
         public Guid Id { get; protected set; }
-        [Required]
         public string Token { get; protected set; }
-        [Required]
-        public Guid UserId { get; protected set; }
-        [ForeignKey("UserId")]
-        public User User { get; protected set; }
         public bool IsRevoked { get; protected set; }
+        public Guid UserId { get; protected set; }
+        public User User { get; protected set; }
         public DateTime GeneratedAt { get; protected set; }
         public DateTime ExpiresAt { get; protected set; }
 
