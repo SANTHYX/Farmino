@@ -19,7 +19,6 @@ namespace Farmino.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -31,7 +30,6 @@ namespace Farmino.API
             builder.RegisterModule<MainModule>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -49,6 +47,13 @@ namespace Farmino.API
 
             app.UseCors(x => {
                 x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/Farmino/swagger.json","Farmino API");
             });
 
             app.UseMiddleware(typeof(ExceptionMiddlewareHandler));
