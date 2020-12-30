@@ -11,6 +11,9 @@
         public static string RefreshTokenIsRevoked => "refresh_token_is_revoked";
         public static string RefreshTokenIsActive => "refresh_token_is_active";
         public static string FarmerAlreadyExist => "farmer_already_exist";
+        public static string FarmerNotExist => "farmer_not_exist";
         public static string CustomerAlreadyExist => "customer_already_exist";
+        public static string OfferNotExist => "offer_not_exist";
+        public static string ProductNoExist => "product_not_exist";
     }
 }

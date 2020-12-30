@@ -1,12 +1,12 @@
 <template>
-  <header id="navbar-wraper">
+  <div id="navbar">
     <div id="logo">
       <router-link to="/" tag="h1"><a>FARMINO</a></router-link>
     </div>
-    <nav id="navbar">
+    <div id="navbar">
       <search-bar></search-bar>
-      <div id="nav-menu" v-if="!isUserLoged">
-        <ul>
+      <div id="nav-menu">
+        <ul v-if="!isLogged">
           <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
           <router-link to="offers" tag="li" exact="exact"><a>Oferty</a></router-link>
           <router-link to="register" tag="li" exact="exact" id="registery-btn"
@@ -16,22 +16,29 @@
             ><a>Zaloguj się</a></router-link
           >
         </ul>
+        <ul v-else>
+          <router-link
+            :to="{ name: 'Profile', params: { login: userLogin } }"
+            tag="li"
+            exact="exact"
+            ><a>Mój Profil</a></router-link
+          >
+        </ul>
       </div>
-      <div id="nav-menu" v-else></div>
       <menu-button @mobile-menu-event="ShowMenu"></menu-button>
-    </nav>
+    </div>
     <moblie-menu :showMenu="showMenu"></moblie-menu>
-  </header>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import MenuButton from './mobile/MenuButton.vue';
 import MoblieMenu from './mobile/MobileMenu.vue';
 import SearchBar from './SearchBar.vue';
 
 export default {
-  name: 'navbar-wraper',
+  name: 'navbar',
   components: {
     MenuButton,
     MoblieMenu,
@@ -44,7 +51,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isUserLoged: 'user/IS_USER_LOGGED',
+      isLogged: 'user/isLogged',
+    }),
+    ...mapState('user', {
+      userLogin(state) {
+        return state.user.login;
+      },
     }),
   },
   methods: {
@@ -56,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#navbar-wraper {
+#navbar {
   position: fixed;
   width: 100vw;
   #logo {

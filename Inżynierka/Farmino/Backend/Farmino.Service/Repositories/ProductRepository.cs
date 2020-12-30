@@ -24,7 +24,7 @@ namespace Farmino.Service.Repositories
 
         public void EditAsync(Product product)
         {
-            _context.Update(product);
+            _context.Products.Update(product);
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync()

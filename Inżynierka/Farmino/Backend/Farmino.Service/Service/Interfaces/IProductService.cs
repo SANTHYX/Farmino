@@ -7,7 +7,7 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IProductService : IService
     {
-        Task AddAsync(string name, decimal price, int quantity,
+        Task AddProductAsync(string name, decimal price, int quantity,
             int unit, double value);
         Task<ProductDTO> GetAsync(Guid id);
     }

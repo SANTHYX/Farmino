@@ -6,10 +6,11 @@ namespace Farmino.Data.Models.Entities
     public class Offer
     {
         public Guid Id { get; protected set; }
-        public Guid FarmerId { get; protected set; }
-        public Farmer Farmer { get; protected set; }
         public string Title { get; protected set; }
         public string Description { get; protected set; }
+        public Guid FarmerId { get; protected set; }
+        public Farmer Farmer { get; protected set; }
+        public Guid ProductId { get; protected set; }
         public Product Product { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
@@ -28,22 +29,40 @@ namespace Farmino.Data.Models.Entities
 
         public void SetFarmer(Farmer farmer)
         {
-            throw new NotImplementedException();
+            Farmer = farmer;
         }
 
         public void SetTitle(string title)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new Exception("Title cannot be empty");
+            }
+            if (Title == title)
+            {
+                return;
+            }
+
+            Title = title;
         }
 
         public void SetDescription(string description)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                throw new Exception("Description cannot be empty");
+            }
+            if (Description == description)
+            {
+                return;
+            }
+
+            Description = description;
         }
 
         public void SetProduct(Product product)
         {
-            throw new NotImplementedException();
+            Product = product;
         }
     }
 }

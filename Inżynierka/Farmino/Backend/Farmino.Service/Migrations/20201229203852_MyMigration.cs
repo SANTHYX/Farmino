@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Farmino.Service.Migrations
 {
-    public partial class myMigration : Migration
+    public partial class MyMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Unit = table.Column<int>(type: "int", nullable: true),
+                    Value = table.Column<double>(type: "float", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -112,9 +128,10 @@ namespace Farmino.Service.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
@@ -126,27 +143,10 @@ namespace Farmino.Service.Migrations
                         principalTable: "Farmers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(2,2)", maxLength: 10, precision: 2, nullable: false),
-                    Quantity = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    Unit = table.Column<int>(type: "int", maxLength: 1, nullable: true),
-                    WeightValue = table.Column<double>(type: "float", maxLength: 5, nullable: true),
-                    OfferId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Offers_OfferId",
-                        column: x => x.OfferId,
-                        principalTable: "Offers",
+                        name: "FK_Offers_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -169,9 +169,9 @@ namespace Farmino.Service.Migrations
                 column: "FarmerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_OfferId",
-                table: "Products",
-                column: "OfferId",
+                name: "IX_Offers_ProductId",
+                table: "Offers",
+                column: "ProductId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -192,7 +192,7 @@ namespace Farmino.Service.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Offers");
 
             migrationBuilder.DropTable(
                 name: "Profiles");
@@ -201,10 +201,10 @@ namespace Farmino.Service.Migrations
                 name: "RefreshTokens");
 
             migrationBuilder.DropTable(
-                name: "Offers");
+                name: "Farmers");
 
             migrationBuilder.DropTable(
-                name: "Farmers");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Users");

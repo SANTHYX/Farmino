@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Farmino.Service.Commands.Interfaces;
 using Farmino.Service.Commands.UserCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.DTO;
 using Farmino.Service.Queries.UserQueries;
+using Farmino.Service.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,22 +17,23 @@ namespace Farmino.API.Controllers
     {
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
-        public UsersController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
+        private readonly IUserService _userService;
+        public UsersController(ICommandDispatcher commandDispatcher, IUserService userService,
+            IQueryDispatcher queryDispatcher)
         {
             _commandDispatcher = commandDispatcher;
             _queryDispatcher = queryDispatcher;
+            _userService = userService;
         }
 
-        [HttpGet]
-        [Route("/users/single")]
-        public async Task<IActionResult> Get([FromQuery] GetUser query)
-            => Ok(await _queryDispatcher.HandleAsync<GetUser, UserDTO>(query));
+        [HttpGet("{login}")]
+        public async Task<IActionResult> Get(string login)
+            => Ok(await _userService.GetUserAsync(login));
 
         [Authorize]
         [HttpGet]
-        [Route("/users/all")]
-        public async Task<IActionResult> Get([FromQuery] BrowseUsers query)
-          => Ok(await _queryDispatcher.HandleAsync<BrowseUsers, IEnumerable<UserDTO>>(query));
+        public async Task<IActionResult> Get()
+          => Ok(await _userService.GetAllUsersAsync());
 
         [HttpGet]
         [Route("/users/isLoginAvaliable")]

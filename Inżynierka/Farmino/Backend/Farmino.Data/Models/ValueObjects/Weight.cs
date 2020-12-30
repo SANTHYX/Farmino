@@ -39,7 +39,7 @@ namespace Farmino.Data.Models.ValueObjects
                 throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
                     "This unit are not existing in our system");
             }
-            if ((int)Unit == unit)
+            if (Unit == (WeightUnits)unit)
             {
                 return;
             }

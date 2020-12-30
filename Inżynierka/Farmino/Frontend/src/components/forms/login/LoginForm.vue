@@ -11,7 +11,7 @@
       <input type="password" name="password" class="form-field" v-model="$v.user.password.$model" />
     </div>
     <p>Nie pamiętam hasła</p>
-    <button @click="Login(user)" :disabled="$v.user.$invalid">
+    <button @click="LogUser" :disabled="$v.user.$invalid">
       Zaloguj się
     </button>
   </div>
@@ -39,8 +39,16 @@ export default {
   },
   methods: {
     ...mapActions({
-      Login: 'user/LOGIN',
+      Login: 'user/LogUser',
     }),
+    async LogUser() {
+      try {
+        await this.Login(this.user);
+        this.$router.push('*');
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 };
 </script>

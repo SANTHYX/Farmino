@@ -1,51 +1,33 @@
-import userService from '@/service/userService';
+import api from '../../plugins/axios';
 
 const user = {
   namespaced: true,
   state: {
     user: {},
     token: '',
+    isLogged: false,
   },
   getters: {
-    IS_USER_LOGGED: (state) => JSON.stringify(state.user) !== '{}',
+    isLogged(state) {
+      return state.isLogged;
+    },
   },
   mutations: {
-    CLEAR_STATE: (state) => {
-      state.user = {};
-    },
-    SET_USER: (state, userObj) => {
-      state.user.login = userObj.login;
-      state.user.email = userObj.email;
-    },
-    SET_ADDRESS: (state, addressObj) => {
-      state.user.profile.address = addressObj;
-    },
-    SET_PROFILE: (state, profileObj) => {
-      state.user.profile = profileObj;
-    },
-    SET_TOKEN: (state, tokenModel) => {
-      state.token = tokenModel;
+    async LoginUser(state, { login, password }) {
+      try {
+        const loginResponse = await api.post('/auth/login', { login, password });
+        const getUser = await api.get(`/users/${login}`);
+        state.token = loginResponse.data.token;
+        state.user = getUser.data;
+        state.isLogged = true;
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
   actions: {
-    REGISTER: async ({ login, password, email }) => {
-      await userService.register({ login, password, email });
-    },
-    LOGIN: async ({ commit }, { login, password }) => {
-      const { token, userObj } = await userService.login({ login, password });
-      commit('SET_TOKEN', token);
-      commit('SET_USER', userObj);
-    },
-    CREATE_PROFILE: async ({ commit }, {
-      login, firstName, lastName, phoneNumber,
-    }) => {
-      await userService.createProfile({
-        login,
-        firstName,
-        lastName,
-        phoneNumber,
-      });
-      commit('SET_PROFILE', { firstName, lastName, phoneNumber });
+    LogUser({ commit }, { login, password }) {
+      commit('LoginUser', { login, password });
     },
   },
 };

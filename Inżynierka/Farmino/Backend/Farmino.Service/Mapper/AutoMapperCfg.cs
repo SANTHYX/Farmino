@@ -15,6 +15,10 @@ namespace Farmino.Service.Mapper
             CreateMap<Data.Models.Entities.Profile, ProfileDTO>().ReverseMap();
             CreateMap<Address,AddressDTO>().ReverseMap();
             CreateMap<RefreshToken, TokenDTO>().ReverseMap();
+            CreateMap<Offer, OfferDTO>().ReverseMap();
+            CreateMap<Product, ProductDTO>().ReverseMap();
+            CreateMap<Weight, WeightDTO>().ReverseMap();
+            CreateMap<Farmer, FarmerDTO>().ReverseMap();
 
             //Extensions
             CreateMap<LoginAvalibility, LoginAvalibilityDTO>().ReverseMap();

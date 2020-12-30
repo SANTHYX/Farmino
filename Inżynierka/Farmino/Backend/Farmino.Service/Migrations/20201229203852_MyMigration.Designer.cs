@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201228171846_myMigration")]
-    partial class myMigration
+    [Migration("20201229203852_MyMigration")]
+    partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,6 +144,9 @@ namespace Farmino.Service.Migrations
                     b.Property<Guid>("FarmerId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(40)
@@ -152,6 +155,9 @@ namespace Farmino.Service.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FarmerId");
+
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("Offers");
                 });
@@ -164,25 +170,15 @@ namespace Farmino.Service.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<Guid>("OfferId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasMaxLength(10)
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
-                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OfferId")
-                        .IsUnique();
 
                     b.ToTable("Products");
                 });
@@ -260,31 +256,31 @@ namespace Farmino.Service.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Farmino.Data.Models.Entities.Product", "Product")
+                        .WithOne("Offer")
+                        .HasForeignKey("Farmino.Data.Models.Entities.Offer", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Farmer");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
                 {
-                    b.HasOne("Farmino.Data.Models.Entities.Offer", "Offer")
-                        .WithOne("Product")
-                        .HasForeignKey("Farmino.Data.Models.Entities.Product", "OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.OwnsOne("Farmino.Data.Models.ValueObjects.Weight", "Weight", b1 =>
                         {
                             b1.Property<Guid>("ProductId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("Unit")
-                                .HasMaxLength(1)
                                 .HasColumnType("int")
                                 .HasColumnName("Unit");
 
                             b1.Property<double>("Value")
-                                .HasMaxLength(5)
                                 .HasColumnType("float")
-                                .HasColumnName("WeightValue");
+                                .HasColumnName("Value");
 
                             b1.HasKey("ProductId");
 
@@ -293,8 +289,6 @@ namespace Farmino.Service.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("ProductId");
                         });
-
-                    b.Navigation("Offer");
 
                     b.Navigation("Weight");
                 });
@@ -361,9 +355,9 @@ namespace Farmino.Service.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.Offer", b =>
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
                 {
-                    b.Navigation("Product");
+                    b.Navigation("Offer");
                 });
 #pragma warning restore 612, 618
         }

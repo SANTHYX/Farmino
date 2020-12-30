@@ -3,7 +3,7 @@ import api from '@/plugins/axios';
 const userService = {
   async register({ login, password, email }) {
     try {
-      await api.post('/users', { login, password, email });
+      await api.post('/auth/register', { login, password, email });
     } catch (err) {
       console.log(err.message);
     }

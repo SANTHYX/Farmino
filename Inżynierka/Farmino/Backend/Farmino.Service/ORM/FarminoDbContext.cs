@@ -59,7 +59,11 @@ namespace Farmino.Service.ORM
                 x.Property(y => y.GeneratedAt).HasMaxLength(10).IsRequired();
             });
 
-            builder.Entity<Farmer>().HasKey(x => x.Id);
+            builder.Entity<Farmer>(x =>
+            {
+                x.HasKey(y => y.Id);
+                x.HasMany(y => y.Offers).WithOne(z => z.Farmer).HasForeignKey(q => q.FarmerId);
+            });
 
             builder.Entity<Customer>().HasKey(x => x.Id);
 
@@ -67,21 +71,20 @@ namespace Farmino.Service.ORM
                 x.HasKey(y => y.Id);
                 x.Property(y => y.Title).HasMaxLength(40).IsRequired();
                 x.Property(y => y.Description).IsRequired();
-                x.HasOne(y => y.Farmer).WithMany(z => z.Offers).HasForeignKey(q => q.FarmerId);
-                x.HasOne(y => y.Product).WithOne(z => z.Offer).HasForeignKey<Product>(q => q.OfferId);
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
             });
 
             builder.Entity<Product>(x =>
             {
                 x.HasKey(y => y.Id);
-                x.Property(y => y.Name).HasMaxLength(30).IsRequired();
-                x.Property(y => y.Price).HasMaxLength(10).IsRequired().HasPrecision(2);
-                x.Property(y => y.Quantity).HasMaxLength(4).IsRequired();
+                x.Property(y => y.Name).IsRequired();
+                x.Property(y => y.Price).IsRequired();
+                x.Property(y => y.Quantity).IsRequired();
+                x.HasOne(y => y.Offer).WithOne(z => z.Product).HasForeignKey<Offer>(q => q.ProductId);
                 x.OwnsOne(y => y.Weight, z =>
                 {
-                    z.Property(q => q.Unit).HasColumnName("Unit").HasMaxLength(1);
-                    z.Property(q => q.Value).HasColumnName("WeightValue").HasMaxLength(5);
+                    z.Property(q => q.Unit).HasColumnName("Unit");
+                    z.Property(q => q.Value).HasColumnName("Value");
                 });
             });
         }

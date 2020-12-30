@@ -13,27 +13,33 @@ const routes = [
   {
     path: '/auctions',
     name: 'Auctions',
-    component: () => import(/* webpackChunkName: "auctions" */ '../views/Auctions.vue'),
+    component: () => import('../views/Auctions.vue'),
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
+    component: () => import('../views/Register.vue'),
   },
   {
     path: '/offers',
     name: 'Offers',
-    component: () => import(/* webpackChunkName: "offers" */ '../views/Offers.vue'),
+    component: () => import('../views/Offers.vue'),
   },
   {
     path: '/signin',
     name: 'SignIn',
-    component: () => import(/* webpackChunkName: "signin" */ '../views/SignIn.vue'),
+    component: () => import('../views/SignIn.vue'),
   },
   {
     path: '/search',
     name: 'Search',
-    component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
+    component: () => import('../views/Search.vue'),
+  },
+  {
+    path: '/profile/:login',
+    name: 'Profile',
+    params: true,
+    component: () => import('../views/Profile.vue'),
   },
   {
     path: '*',
