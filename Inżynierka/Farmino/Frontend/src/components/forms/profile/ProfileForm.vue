@@ -1,6 +1,7 @@
 <template>
   <div id="profile-form">
     <h1>Profil</h1>
+    <hr />
     <div id="inputs-wraper">
       <label for="firstName" :class="[!$v.profile.firstName.$error ? 'form-label' : 'error-label']"
         >Imię</label
@@ -54,7 +55,7 @@
         </p>
       </div>
     </div>
-    <button @click="sendProfile">Wyslij</button>
+    <button @click="submitProfile">Wyslij</button>
   </div>
 </template>
 
@@ -97,7 +98,7 @@ export default {
       createProfile: 'user/CREATE_PROFILE',
       editProfile: 'user/EDIT_PROFILE',
     }),
-    async sendProfile() {
+    async submitProfile() {
       if (!this.getUser.profile) {
         await this.createProfile({
           userName: this.userName,

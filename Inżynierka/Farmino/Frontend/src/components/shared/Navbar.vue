@@ -4,7 +4,7 @@
       <router-link to="/" tag="h1"><a>FARMINO</a></router-link>
     </div>
     <div id="navbar">
-      <search-bar></search-bar>
+      <search-bar />
       <div id="nav-menu" v-if="!isAuthorized">
         <ul>
           <router-link to="/auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
@@ -25,9 +25,9 @@
           <button @click="Logout">Wyloguj</button>
         </ul>
       </div>
-      <menu-button @mobile-menu-event="ShowMenu"></menu-button>
+      <menu-button @mobile-menu-event="ShowMenu" />
     </div>
-    <moblie-menu :showMenu="showMenu"></moblie-menu>
+    <moblie-menu :showMenu="showMenu" />
   </div>
 </template>
 

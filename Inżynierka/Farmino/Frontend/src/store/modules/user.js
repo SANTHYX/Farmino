@@ -21,6 +21,10 @@ const user = {
     SET_PROFILE(state, profileObj) {
       state.user.profile = profileObj;
     },
+
+    SET_ADDRESS(state, addressObj) {
+      state.user.profile.address = addressObj;
+    },
   },
   actions: {
     async GET_USER({ commit }, userName) {
@@ -59,6 +63,48 @@ const user = {
         commit('SET_PROFILE', { firstName, lastName, phoneNumber });
       } catch (err) {
         throw new Error(err);
+      }
+    },
+    async CREATE_ADDRESS({ commit }, {
+      userName, city, street, postalCode, houseNumber,
+    }) {
+      try {
+        await api.post('/address/', {
+          userName,
+          city,
+          street,
+          postalCode,
+          houseNumber,
+        });
+        commit('SET_ADDRESS', {
+          city,
+          street,
+          postalCode,
+          houseNumber,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async UPDATE_ADDRESS({ commit }, {
+      userName, city, street, postalCode, houseNumber,
+    }) {
+      try {
+        await api.put('/address/', {
+          userName,
+          city,
+          street,
+          postalCode,
+          houseNumber,
+        });
+        commit('SET_ADDRESS', {
+          city,
+          street,
+          postalCode,
+          houseNumber,
+        });
+      } catch (err) {
+        console.log(err);
       }
     },
   },

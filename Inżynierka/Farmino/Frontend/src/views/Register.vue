@@ -2,7 +2,7 @@
   <div id="register">
     <div id="content">
       <div id="register-section">
-        <registeration-form></registeration-form>
+        <registeration-form />
       </div>
     </div>
   </div>

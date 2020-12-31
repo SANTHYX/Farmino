@@ -1,16 +1,18 @@
 <template>
   <div id="profile">
-    <profile-form></profile-form>
+    <div id="contnet">
+      <address-form />
+    </div>
   </div>
 </template>
 
 <script>
-import ProfileForm from '../components/forms/profile/ProfileForm.vue';
+import AddressForm from '../components/forms/profile/AddressForm.vue';
 
 export default {
   name: 'profile',
   components: {
-    ProfileForm,
+    AddressForm,
   },
 };
 </script>

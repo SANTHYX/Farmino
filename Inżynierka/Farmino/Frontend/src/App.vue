@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <v-navbar></v-navbar>
-    <router-view id="view"></router-view>
-    <v-footer></v-footer>
+    <v-navbar />
+    <router-view id="view" />
+    <v-footer />
   </div>
 </template>
 
 <script>
-import Navbar from './components/shared/Navbar.vue';
-import Footer from './components/shared/Footer.vue';
+import Navbar from '@/components/shared/Navbar.vue';
+import Footer from '@/components/shared/Footer.vue';
 
 export default {
   name: 'app',
