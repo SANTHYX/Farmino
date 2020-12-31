@@ -26,9 +26,9 @@ namespace Farmino.API.Controllers
             _userService = userService;
         }
 
-        [HttpGet("{login}")]
-        public async Task<IActionResult> Get(string login)
-            => Ok(await _userService.GetUserAsync(login));
+        [HttpGet("{userName}")]
+        public async Task<IActionResult> Get(string userName)
+            => Ok(await _userService.GetUserAsync(userName));
 
         [Authorize]
         [HttpGet]

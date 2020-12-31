@@ -26,15 +26,15 @@ namespace Farmino.Service.Service
             _mapper = mapper;
         }
 
-        public async Task CreateOffer(string login, string title, string description, Guid productId)
+        public async Task CreateOffer(string userName, string title, string description, Guid productId)
         {
-            if (await _farmerRepository.IsFarmerExist(login))
+            if (await _farmerRepository.IsFarmerExist(userName))
             {
                 if (await _productRepository.IsProductExist(productId))
                 {
                     try
                     {
-                        var farmer = await _farmerRepository.GetAsync(login);
+                        var farmer = await _farmerRepository.GetAsync(userName);
                         var product = await _productRepository.GetAsync(productId);
 
                         await _offerRepository.AddAsync(new Offer(farmer, title, description, product));
@@ -48,7 +48,7 @@ namespace Farmino.Service.Service
                     $"Product with id {productId} not exist");
             }
             else throw new ServiceExceptions(ServiceErrorCodes.FarmerNotExist,
-                $"Farmer with login {login} not exist");
+                $"Farmer with login {userName} not exist");
         }
 
         public async Task<OfferDTO> GetOfferAsync(Guid id)

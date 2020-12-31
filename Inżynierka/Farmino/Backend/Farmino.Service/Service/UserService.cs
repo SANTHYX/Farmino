@@ -26,9 +26,9 @@ namespace Farmino.Service.Service
             _encryption = encryption;
         }
 
-        public async Task<UserDTO> GetUserAsync(string login)
+        public async Task<UserDTO> GetUserAsync(string userName)
         {
-            var user = await _userRepository.GetAsync(login);
+            var user = await _userRepository.GetAsync(userName);
             return _mapper.Map<User, UserDTO>(user);
         }
 
@@ -38,16 +38,16 @@ namespace Farmino.Service.Service
             return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
         }
 
-        public async Task EditAsync(string login, string newLogin,
+        public async Task EditAsync(string userName, string newUserName,
             string newPassword, string newEmail)
         {
-            if (!await _userRepository.IsUserExist(login))
+            if (!await _userRepository.IsUserExist(userName))
             {
-                var user = await _userRepository.GetAsync(login);
+                var user = await _userRepository.GetAsync(userName);
                 var salt = _encryption.GenerateSalt(newPassword);
                 var newHashedPassword = _encryption.GenerateHash(newPassword, salt);
 
-                user.SetLogin(newLogin);
+                user.SetUserName(newUserName);
                 user.SetPassword(newHashedPassword);
                 user.SetEmail(newEmail);
 
@@ -58,9 +58,9 @@ namespace Farmino.Service.Service
                     "This login is already taken");
         }
 
-        public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string login)
+        public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string userName)
         {
-            if (!await _userRepository.IsUserExist(login))
+            if (!await _userRepository.IsUserExist(userName))
             {
                 return _mapper.Map<LoginAvalibility, 
                     LoginAvalibilityDTO>(LoginAvalibility.Create(true));

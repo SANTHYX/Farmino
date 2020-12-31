@@ -7,7 +7,7 @@ namespace Farmino.Service.Repositories.Interfaces
     public interface IFarmerRepository : IRepository
     {
         Task AddAsync(Farmer farmer);
-        Task<Farmer> GetAsync(string login);
+        Task<Farmer> GetAsync(string userName);
         Task SaveAsync();
     }
 }

@@ -3,8 +3,8 @@
     <h1>Logowanie</h1>
     <hr />
     <div id="inputs-wraper">
-      <label for="login" class="form-label">Login lub email</label>
-      <input type="text" name="login" class="form-field" v-model="$v.user.login.$model" />
+      <label for="userName" class="form-label">Login lub email</label>
+      <input type="text" name="userName" class="form-field" v-model="$v.user.userName.$model" />
     </div>
     <div id="inputs-wraper">
       <label for="password" class="form-label">Hasło</label>
@@ -26,25 +26,25 @@ export default {
   data() {
     return {
       user: {
-        login: '',
+        userName: '',
         password: '',
       },
     };
   },
   validations: {
     user: {
-      login: { required },
+      userName: { required },
       password: { required },
     },
   },
   methods: {
     ...mapActions({
-      Login: 'user/LogUser',
+      Login: 'auth/LOGIN',
     }),
     async LogUser() {
       try {
         await this.Login(this.user);
-        this.$router.push('*');
+        this.$router.push(`/profile/${this.user.userName}`);
       } catch (err) {
         console.log(err);
       }

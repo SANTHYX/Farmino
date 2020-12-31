@@ -19,13 +19,13 @@ namespace Farmino.Service.Service
             _farmerRepository = farmerRepository;
         }
 
-        public async Task CreateFarmer(string login)
+        public async Task CreateFarmer(string userName)
         {
-            if(await _userRepository.IsUserExist(login))
+            if(await _userRepository.IsUserExist(userName))
             {
-                var user = await _userRepository.GetAsync(login);
+                var user = await _userRepository.GetAsync(userName);
 
-                if(!await _farmerRepository.IsFarmerExist(login))
+                if(!await _farmerRepository.IsFarmerExist(userName))
                 {
                     await _farmerRepository.AddAsync(new Farmer(user));
                     await _farmerRepository.SaveAsync();
@@ -34,7 +34,7 @@ namespace Farmino.Service.Service
                     "Farmer with this login already exist");
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
-                $"User with login { login } dont exist");
+                $"User with login { userName } dont exist");
         }
     }
 }

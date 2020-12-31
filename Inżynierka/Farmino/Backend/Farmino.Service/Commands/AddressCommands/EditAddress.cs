@@ -4,7 +4,7 @@ namespace Farmino.Service.Commands.AddressCommands
 {
     public class EditAddress : ICommand
     {
-        public string Login { get; set; }
+        public string UserName { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }

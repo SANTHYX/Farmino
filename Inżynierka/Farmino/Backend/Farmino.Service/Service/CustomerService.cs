@@ -18,13 +18,13 @@ namespace Farmino.Service.Service
             _userRepository = userRepository;
             _customerRepository = customerRepository;
         }
-        public async Task CreateCustomer(string login)
+        public async Task CreateCustomer(string userName)
         {
-            if (await _userRepository.IsUserExist(login))
+            if (await _userRepository.IsUserExist(userName))
             {
-                var user = await _userRepository.GetAsync(login);
+                var user = await _userRepository.GetAsync(userName);
 
-                if (!await _customerRepository.IsCustomerExist(login))
+                if (!await _customerRepository.IsCustomerExist(userName))
                 {
                     await _customerRepository.AddAsync(new Customer(user));
                     await _customerRepository.SaveAsync();
@@ -33,7 +33,7 @@ namespace Farmino.Service.Service
                     "Customer with this login already exist");
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
-                $"User with login { login } dont exist");
+                $"User with login { userName } dont exist");
         }
     }
 }

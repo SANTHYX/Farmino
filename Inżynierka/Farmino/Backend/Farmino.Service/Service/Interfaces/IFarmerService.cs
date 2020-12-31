@@ -4,6 +4,6 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IFarmerService : IService
     {
-        Task CreateFarmer(string login);
+        Task CreateFarmer(string userName);
     }
 }

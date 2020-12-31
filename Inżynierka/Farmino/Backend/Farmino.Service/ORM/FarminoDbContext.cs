@@ -23,7 +23,7 @@ namespace Farmino.Service.ORM
             builder.Entity<User>(x =>
             {
                 x.HasKey(y => y.Id);
-                x.Property(y => y.Login).HasMaxLength(15).IsRequired();
+                x.Property(y => y.UserName).HasMaxLength(15).IsRequired();
                 x.Property(y => y.Password).HasMaxLength(70).IsRequired();
                 x.Property(y => y.Salt).HasMaxLength(70).IsRequired();
                 x.Property(y => y.Email).HasMaxLength(30).IsRequired();

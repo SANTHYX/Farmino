@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.FarmerHandler
 
         public async Task HandleAsync(CreateFarmer command)
         {
-            await _farmerService.CreateFarmer(command.Login);
+            await _farmerService.CreateFarmer(command.UserName);
         }
     }
 }

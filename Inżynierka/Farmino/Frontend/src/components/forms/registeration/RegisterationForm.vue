@@ -5,19 +5,19 @@
       <h1>Rejestracja</h1>
       <hr />
       <div id="input-wraper">
-        <label for="login" :class="[!$v.user.login.$error ? 'form-label' : 'error-label']"
+        <label for="login" :class="[!$v.user.userName.$error ? 'form-label' : 'error-label']"
           >Login</label
         >
         <input
           type="text"
           name="login"
-          :class="[!$v.user.login.$error ? 'form-field' : 'error-field']"
-          @blur="$v.user.login.$touch()"
-          v-model="user.login"
+          :class="[!$v.user.userName.$error ? 'form-field' : 'error-field']"
+          @blur="$v.user.userName.$touch()"
+          v-model="user.userName"
         />
-        <div id="error-message-wraper" v-if="$v.user.login.$error">
-          <p class="error-message" v-if="!$v.user.login.required">Pole jest wymagane</p>
-          <p class="error-message" v-else-if="!$v.user.login.LoginAvability">
+        <div id="error-message-wraper" v-if="$v.user.userName.$error">
+          <p class="error-message" v-if="!$v.user.userName.required">Pole jest wymagane</p>
+          <p class="error-message" v-else-if="!$v.user.userName.LoginAvability">
             Ten login jest już zajęty
           </p>
         </div>
@@ -53,11 +53,7 @@
           <p class="error-message" v-if="!$v.user.email.email">Email nie poprawny</p>
         </div>
       </div>
-      <div id="checkbox-wraper">
-        <input type="checkbox" name="regulations-confirmation" id="regulation-checkbox" />
-        <label for="">Akceptuje warunki regulaminu</label>
-      </div>
-      <button @click="Register(user)" :disabled="$v.user.$invalid">
+      <button @click="RegisterUser" :disabled="$v.user.$invalid">
         Zarejestruj
       </button>
     </div>
@@ -65,7 +61,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import { required, email } from 'vuelidate/lib/validators';
 import api from '@/plugins/axios';
 
@@ -74,7 +69,7 @@ export default {
   data() {
     return {
       user: {
-        login: '',
+        userName: '',
         password: '',
         email: '',
       },
@@ -82,7 +77,7 @@ export default {
   },
   validations: {
     user: {
-      login: {
+      userName: {
         required,
         async LoginAvability(value) {
           const response = await api.get(`/users/isLoginAvaliable?login=${value}`);
@@ -94,9 +89,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      Register: 'user/REGISTER',
-    }),
+    async RegisterUser() {
+      try {
+        await api.post('/auth/register', this.user);
+        this.$router.push('/signin');
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
   },
 };
 </script>
@@ -104,6 +104,9 @@ export default {
 <style lang="scss" scoped>
 #registeration-form {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   #form-wraper {
     display: flex;
     flex-direction: column;
@@ -119,9 +122,6 @@ export default {
     #input-wraper {
       display: flex;
       flex-direction: column;
-    }
-    #checkbox-wraper {
-      display: flex;
     }
   }
 }

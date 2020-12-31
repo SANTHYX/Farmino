@@ -28,7 +28,7 @@ namespace Farmino.Service.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Salt = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),

@@ -5,24 +5,24 @@
     </div>
     <div id="navbar">
       <search-bar></search-bar>
-      <div id="nav-menu">
-        <ul v-if="!isLogged">
-          <router-link to="auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
-          <router-link to="offers" tag="li" exact="exact"><a>Oferty</a></router-link>
-          <router-link to="register" tag="li" exact="exact" id="registery-btn"
+      <div id="nav-menu" v-if="!isAuthorized">
+        <ul>
+          <router-link to="/auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
+          <router-link to="/offers" tag="li" exact="exact"><a>Oferty</a></router-link>
+          <router-link to="/register" tag="li" exact="exact" id="registery-btn"
             ><a>Zarejestruj się</a></router-link
           >
-          <router-link to="signin" tag="li" exact="exact" id="login-btn"
+          <router-link to="/signin" tag="li" exact="exact" id="login-btn"
             ><a>Zaloguj się</a></router-link
           >
         </ul>
-        <ul v-else>
-          <router-link
-            :to="{ name: 'Profile', params: { login: userLogin } }"
-            tag="li"
-            exact="exact"
+      </div>
+      <div id="nav-menu" v-else>
+        <ul>
+          <router-link :to="`/profile/${userName}`" tag="li" exact="exact"
             ><a>Mój Profil</a></router-link
           >
+          <button @click="Logout">Wyloguj</button>
         </ul>
       </div>
       <menu-button @mobile-menu-event="ShowMenu"></menu-button>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import MenuButton from './mobile/MenuButton.vue';
 import MoblieMenu from './mobile/MobileMenu.vue';
 import SearchBar from './SearchBar.vue';
@@ -51,15 +51,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isLogged: 'user/isLogged',
-    }),
-    ...mapState('user', {
-      userLogin(state) {
-        return state.user.login;
-      },
+      isAuthorized: 'auth/IS_AUTHORIZED',
+      userName: 'auth/GET_USERNAME',
     }),
   },
   methods: {
+    ...mapActions({
+      Logout: 'auth/LOGOUT',
+    }),
     ShowMenu(input) {
       this.showMenu = input;
     },
@@ -69,8 +68,6 @@ export default {
 
 <style lang="scss" scoped>
 #navbar {
-  position: fixed;
-  width: 100vw;
   #logo {
     display: flex;
     justify-content: center;

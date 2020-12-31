@@ -21,7 +21,7 @@ namespace Farmino.Service.Repositories
         }
 
         public async Task<Customer> GetAsync(string login)
-            => await _context.Customers.Include(x => x.User).FirstOrDefaultAsync(x => x.User.Login == login);
+            => await _context.Customers.Include(x => x.User).FirstOrDefaultAsync(x => x.User.UserName == login);
 
         public async Task SaveAsync()
         {

@@ -25,8 +25,8 @@ namespace Farmino.Service.Repositories
             _context.Update(user);
         }
 
-        public async Task<User> GetAsync(string login)
-            => await _context.Users.Include(x => x.Profile).FirstOrDefaultAsync(x => x.Login == login);
+        public async Task<User> GetAsync(string userName)
+            => await _context.Users.Include(x => x.Profile).FirstOrDefaultAsync(x => x.UserName == userName);
 
         public async Task<User> GetAsync(Guid id)
             => await _context.Users.Include(x => x.Profile).FirstOrDefaultAsync(x => x.Id == id);

@@ -1,33 +1,65 @@
-import api from '../../plugins/axios';
+import api from '@/plugins/axios';
 
 const user = {
   namespaced: true,
+
   state: {
     user: {},
-    token: '',
-    isLogged: false,
   },
+
   getters: {
-    isLogged(state) {
-      return state.isLogged;
+    GET_USER(state) {
+      return state.user;
     },
   },
+
   mutations: {
-    async LoginUser(state, { login, password }) {
+    SET_USER(state, userObj) {
+      state.user = userObj;
+    },
+
+    SET_PROFILE(state, profileObj) {
+      state.user.profile = profileObj;
+    },
+  },
+  actions: {
+    async GET_USER({ commit }, userName) {
       try {
-        const loginResponse = await api.post('/auth/login', { login, password });
-        const getUser = await api.get(`/users/${login}`);
-        state.token = loginResponse.data.token;
-        state.user = getUser.data;
-        state.isLogged = true;
+        const response = await api.get(`/users/${userName}`);
+        commit('SET_USER', response.data);
       } catch (err) {
         console.log(err);
       }
     },
-  },
-  actions: {
-    LogUser({ commit }, { login, password }) {
-      commit('LoginUser', { login, password });
+    async CREATE_PROFILE({ commit }, {
+      userName, firstName, lastName, phoneNumber,
+    }) {
+      try {
+        await api.post('/profiles', {
+          userName,
+          firstName,
+          lastName,
+          phoneNumber,
+        });
+        commit('SET_PROFILE', { firstName, lastName, phoneNumber });
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+    async EDIT_PROFILE({ commit }, {
+      userName, firstName, lastName, phoneNumber,
+    }) {
+      try {
+        await api.put('/profiles', {
+          userName,
+          firstName,
+          lastName,
+          phoneNumber,
+        });
+        commit('SET_PROFILE', { firstName, lastName, phoneNumber });
+      } catch (err) {
+        throw new Error(err);
+      }
     },
   },
 };

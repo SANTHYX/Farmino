@@ -5,7 +5,7 @@ namespace Farmino.Service.Extensions
 {
     public static class FarmerExtensions
     {
-        public static async Task<bool> IsFarmerExist(this IFarmerRepository farmerRepository, string login) 
-            => await farmerRepository.GetAsync(login) != null;
+        public static async Task<bool> IsFarmerExist(this IFarmerRepository farmerRepository, string userName) 
+            => await farmerRepository.GetAsync(userName) != null;
     }
 }

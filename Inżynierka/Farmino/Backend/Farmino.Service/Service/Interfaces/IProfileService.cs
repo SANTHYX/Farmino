@@ -4,9 +4,9 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IProfileService : IService
     {
-        public Task CreateProfileAsync(string login, string firstName, 
+        public Task CreateProfileAsync(string userName, string firstName, 
             string lastName,string phoneNumber);
-        public Task EditProfileAsync(string login, string firstName,
+        public Task EditProfileAsync(string userName, string firstName,
             string lastName, string phoneNumber);
     }
 }

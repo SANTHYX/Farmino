@@ -101,11 +101,6 @@ namespace Farmino.Service.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(70)
@@ -119,6 +114,11 @@ namespace Farmino.Service.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasMaxLength(10)
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("Id");
 

@@ -15,7 +15,7 @@ namespace Farmino.Service.Handlers.ProfileHandler
         }
         public async Task HandleAsync(EditProfile command)
         {
-            await _service.EditProfileAsync(command.Login, command.FirstName,
+            await _service.EditProfileAsync(command.UserName, command.FirstName,
                 command.LastName, command.PhoneNumber);
         }
     }

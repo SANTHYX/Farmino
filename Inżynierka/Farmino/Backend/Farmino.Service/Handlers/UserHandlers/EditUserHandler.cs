@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.UserHandlers
 
         public async Task HandleAsync(EditUser command)
         {
-            await _service.EditAsync(command.Login, command.NewLogin, 
+            await _service.EditAsync(command.UserName, command.NewUserName, 
                 command.NewPassword, command.NewEmail);
         }
     }

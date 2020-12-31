@@ -20,9 +20,9 @@ namespace Farmino.Service.Repositories
             await _context.Farmers.AddAsync(farmer);
         }
 
-        public async Task<Farmer> GetAsync(string login)
+        public async Task<Farmer> GetAsync(string userName)
             => await _context.Farmers.Include(x => x.User).Include(x => x.Offers)
-            .FirstOrDefaultAsync(x => x.User.Login == login);
+            .FirstOrDefaultAsync(x => x.User.UserName == userName);
 
         public async Task SaveAsync()
         {

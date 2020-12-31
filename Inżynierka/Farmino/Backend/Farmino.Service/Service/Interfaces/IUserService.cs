@@ -6,10 +6,10 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IUserService : IService
     {
-        Task<UserDTO> GetUserAsync(string login);
+        Task<UserDTO> GetUserAsync(string userName);
         Task<IEnumerable<UserDTO>> GetAllUsersAsync();
-        Task EditAsync(string login, string newLogin, 
+        Task EditAsync(string userName, string newUserName, 
             string newPassword, string newEmail);
-        Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string login);
+        Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string userName);
     }
 }

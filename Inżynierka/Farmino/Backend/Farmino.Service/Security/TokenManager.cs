@@ -29,7 +29,7 @@ namespace Farmino.Service.Security
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.UniqueName,user.Login),
+                    new Claim(JwtRegisteredClaimNames.UniqueName,user.UserName),
                     new Claim(JwtRegisteredClaimNames.Email,user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti,new Guid().ToString())
                 }),

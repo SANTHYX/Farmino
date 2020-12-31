@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.AddressHandler
         
         public async Task HandleAsync(SetAddress command)
         {
-            await _service.SetAddressAsync(command.Login, command.City,
+            await _service.SetAddressAsync(command.UserName, command.City,
                 command.Street, command.PostalCode, command.HouseNumber);
         }
     }

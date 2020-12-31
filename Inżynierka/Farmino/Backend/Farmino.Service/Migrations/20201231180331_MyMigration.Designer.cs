@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201229203852_MyMigration")]
+    [Migration("20201231180331_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,11 +103,6 @@ namespace Farmino.Service.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(70)
@@ -121,6 +116,11 @@ namespace Farmino.Service.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasMaxLength(10)
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("Id");
 

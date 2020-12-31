@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.AuthHandler
 
         public async Task HandleAsync(LoginModel command)
         {
-            command.Token = await _authService.Login(command.Login, command.Password);           
+            command.Token = await _authService.Login(command.UserName, command.Password);           
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.AddressHandler
 
         public async Task HandleAsync(EditAddress command)
         {
-            await _service.EditAddressAsync(command.Login, command.City, command.Street,
+            await _service.EditAddressAsync(command.UserName, command.City, command.Street,
                 command.PostalCode, command.HouseNumber);
         }
     }

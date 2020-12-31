@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.OfferHandler
 
         public async Task HandleAsync(CreateOffer command)
         {
-            await _offerService.CreateOffer(command.Login, command.Title,
+            await _offerService.CreateOffer(command.UserName, command.Title,
                 command.Description, command.ProductId);
         }
     }

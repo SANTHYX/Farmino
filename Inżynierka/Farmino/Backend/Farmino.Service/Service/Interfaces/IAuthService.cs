@@ -5,8 +5,8 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IAuthService : IService
     {
-        Task RegisterAsync(string login, string password, string email);
-        Task<TokenDTO> Login(string login, string password);
+        Task RegisterAsync(string userName, string password, string email);
+        Task<TokenDTO> Login(string userName, string password);
         Task<TokenDTO> RefreshToken(string token, string refresh);
         Task RevokeToken(string refresh);
     }

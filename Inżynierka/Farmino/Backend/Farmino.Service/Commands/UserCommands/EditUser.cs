@@ -4,8 +4,8 @@ namespace Farmino.Service.Commands.UserCommands
 {
     public class EditUser : ICommand
     {
-        public string Login { get; set; }
-        public string NewLogin { get; set; }
+        public string UserName { get; set; }
+        public string NewUserName { get; set; }
         public string NewPassword { get; set; }
         public string NewEmail { get; set; }
     }

@@ -19,11 +19,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-#content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-</style>
+<style lang="scss" scoped></style>

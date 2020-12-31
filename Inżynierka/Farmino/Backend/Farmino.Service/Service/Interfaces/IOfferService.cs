@@ -6,7 +6,7 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IOfferService : IService
     {
-        Task CreateOffer(string login, string title,
+        Task CreateOffer(string userName, string title,
             string description, Guid productId);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);

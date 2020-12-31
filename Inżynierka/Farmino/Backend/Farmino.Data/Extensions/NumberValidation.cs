@@ -3,6 +3,6 @@
     public static class NumberValidation
     {
         public static bool IsNumber(this string value)
-            => value.Length == 11 ? true : false;
+            => value.Length == 11 || value.Length == 9;
     }
 }

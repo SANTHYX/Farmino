@@ -26,25 +26,25 @@ namespace Farmino.Service.Service
             _encryption = encryption;
         }
 
-        public async Task RegisterAsync(string login, string password, string email)
+        public async Task RegisterAsync(string userName, string password, string email)
         {
-            if (!await _userRepository.IsUserExist(login))
+            if (!await _userRepository.IsUserExist(userName))
             {
                 var salt = _encryption.GenerateSalt(password);
                 var hashedPassword = _encryption.GenerateHash(password, salt);
 
-                await _userRepository.RegisterAsync(new User(login, hashedPassword, salt, email));
+                await _userRepository.RegisterAsync(new User(userName, hashedPassword, salt, email));
                 await _userRepository.SaveChanges();
             }
             else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
-                    $"User with login {login} already exist");
+                    $"User with login {userName} already exist");
         }
 
-        public async Task<TokenDTO> Login(string login, string password)
+        public async Task<TokenDTO> Login(string userName, string password)
         {
-            if (await _userRepository.IsUserExist(login))
+            if (await _userRepository.IsUserExist(userName))
             {
-                var user = await _userRepository.GetAsync(login);
+                var user = await _userRepository.GetAsync(userName);
 
                 if (user.Password == _encryption.GenerateHash(password,user.Salt))
                 {

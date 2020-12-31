@@ -19,12 +19,12 @@ namespace Farmino.Service.Service
             _profileRepository = profileRepository;
         }
 
-        public async Task SetAddressAsync(string login, string city, string street,
+        public async Task SetAddressAsync(string userName, string city, string street,
             string postalCode, int houseNumber)
         {
-            if (await _userRepository.IsUserExist(login))
+            if (await _userRepository.IsUserExist(userName))
             {
-                var user = await _userRepository.GetAsync(login);
+                var user = await _userRepository.GetAsync(userName);
                 var profil = await _profileRepository.GetAsync(user.Profile.Id);
 
                 profil.SetAddress(Address.Create(city, street, postalCode, houseNumber));
@@ -36,12 +36,12 @@ namespace Farmino.Service.Service
                 "Cannot connect Address on User that doesnt exist ");
         }
 
-        public async Task EditAddressAsync(string login, string city, string street,
+        public async Task EditAddressAsync(string userName, string city, string street,
             string postalCode, int houseNumber)
         {
-            if (await _userRepository.IsUserExist(login))
+            if (await _userRepository.IsUserExist(userName))
             {
-                var user = await _userRepository.GetAsync(login);
+                var user = await _userRepository.GetAsync(userName);
                 var profil = await _profileRepository.GetAsync(user.Profile.Id);
 
                 profil.Address.SetCity(city);

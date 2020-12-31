@@ -9,7 +9,7 @@ namespace Farmino.Data.Models.Aggregations
     public class User
     {
         public Guid Id { get; protected set; }
-        public string Login { get; protected set; }
+        public string UserName { get; protected set; }
         public string Password { get; protected set; }
         public string Email { get; protected set; }
         public string Salt { get; protected set; }
@@ -22,29 +22,29 @@ namespace Farmino.Data.Models.Aggregations
 
         protected User() { }
 
-        public User(string login, string password, string salt, string email)
+        public User(string userName, string password, string salt, string email)
         {
             Id = Guid.NewGuid();
             SetPassword(password);
-            SetLogin(login);
+            SetUserName(userName);
             SetEmail(email);
             SetSalt(salt);
             CreatedAt = UpdatedAt = DateTime.Now;
         }
 
-        public void SetLogin(string login)
+        public void SetUserName(string userName)
         {
-            if (string.IsNullOrWhiteSpace(login))
+            if (string.IsNullOrWhiteSpace(userName))
             {
                 throw new DataExceptions(DataErrorCodes.InvalidLogin,
                     "Name is invalid");
             }
-            if (login == Login)
+            if (userName == UserName)
             {
                 return;
             }
 
-            Login = login;
+            UserName = userName;
             UpdatedAt = DateTime.Now;
         }
         public void SetPassword(string password)

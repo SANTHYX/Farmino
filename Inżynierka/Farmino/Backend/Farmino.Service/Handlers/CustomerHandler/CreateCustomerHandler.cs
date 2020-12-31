@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.CustomerHandler
 
         public async Task HandleAsync(CreateCustomer command)
         {
-            await _customerService.CreateCustomer(command.Login);
+            await _customerService.CreateCustomer(command.UserName);
         }
     }
 }

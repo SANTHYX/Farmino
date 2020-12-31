@@ -4,6 +4,6 @@ namespace Farmino.Service.Commands.FarmerCommands
 {
     public class CreateFarmer : ICommand
     {
-        public string Login { get; set; }
+        public string UserName { get; set; }
     }
 }

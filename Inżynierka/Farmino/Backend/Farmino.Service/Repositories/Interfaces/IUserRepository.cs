@@ -9,7 +9,7 @@ namespace Farmino.Service.Repositories.Interfaces
     {
         Task RegisterAsync(User user);
         void EditAsync(User user);
-        Task<User> GetAsync(string login);
+        Task<User> GetAsync(string userName);
         Task<User> GetAsync(Guid id);
         Task<IEnumerable<User>> BrowseAsync();
         Task SaveChanges();

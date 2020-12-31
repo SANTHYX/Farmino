@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.AuthHandler
 
         public async Task HandleAsync(RegisterUser command)
         {
-            await _service.RegisterAsync(command.Login, command.Password, command.Email);
+            await _service.RegisterAsync(command.UserName, command.Password, command.Email);
         }
     }
 }
