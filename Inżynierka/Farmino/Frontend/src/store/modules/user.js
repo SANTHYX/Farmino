@@ -8,8 +8,14 @@ const user = {
   },
 
   getters: {
-    GET_USER(state) {
+    GET_STATE_USER(state) {
       return state.user;
+    },
+    IS_PROFILE_EMPTY(state) {
+      return state.user.profile === null;
+    },
+    IS_ADDRESS_EMPTY(state) {
+      return state.user.profile.address === null;
     },
   },
 
@@ -69,7 +75,7 @@ const user = {
       userName, city, street, postalCode, houseNumber,
     }) {
       try {
-        await api.post('/address/', {
+        await api.post('/address', {
           userName,
           city,
           street,
@@ -90,7 +96,7 @@ const user = {
       userName, city, street, postalCode, houseNumber,
     }) {
       try {
-        await api.put('/address/', {
+        await api.put('/address', {
           userName,
           city,
           street,

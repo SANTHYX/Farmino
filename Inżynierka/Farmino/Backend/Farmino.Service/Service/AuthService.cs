@@ -57,7 +57,7 @@ namespace Farmino.Service.Service
                     {
                         Token = generatedToken.Token.Token,
                         Refresh = generatedToken.RefreshToken.Token,
-                        GeneratedAt = generatedToken.RefreshToken.GeneratedAt
+                        ExpiresAt = generatedToken.RefreshToken.ExpiresAt
                     };
                 }
                 else throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
@@ -69,13 +69,8 @@ namespace Farmino.Service.Service
 
         public async Task<TokenDTO> RefreshToken(string token, string refresh)
         {
-            var refreshToken = await _refreshTokenRepository.GetTokenAsync(refresh);
+            var refreshToken = await _refreshTokenRepository.GetIfExist(refresh);
 
-            if (refreshToken == null)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.RefreshTokenDontExist,
-                    "RefreshToken is empty or invalid");
-            }
             if (refreshToken.IsRevoked)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.RefreshTokenIsRevoked,
@@ -99,19 +94,13 @@ namespace Farmino.Service.Service
             {
                 Token = generatedToken.Token.Token,
                 Refresh = generatedToken.RefreshToken.Token,
-                GeneratedAt = generatedToken.RefreshToken.GeneratedAt
+                ExpiresAt = generatedToken.RefreshToken.GeneratedAt
             };
         }
 
         public async Task RevokeToken(string refresh)
         {
-            var refreshToken = await _refreshTokenRepository.GetTokenAsync(refresh);
-
-            if (refreshToken == null)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.RefreshTokenDontExist,
-                    "RefreshToken is empty");
-            }
+            var refreshToken = await _refreshTokenRepository.GetIfExist(refresh);
 
             refreshToken.SetRevoke(true);
             _refreshTokenRepository.EditToken(refreshToken);

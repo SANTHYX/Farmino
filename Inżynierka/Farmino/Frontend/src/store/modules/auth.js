@@ -6,6 +6,7 @@ const auth = {
 
   state: {
     userName: '',
+    expiresAt: localStorageManager.getExpirationDate(),
     isAuthorized: false,
   },
 
@@ -25,6 +26,9 @@ const auth = {
     SET_USERNAME(state, userName) {
       state.userName = userName;
     },
+    SET_EXPIRATION_TIME(state, time) {
+      state.expireAt = time;
+    },
     CLEAR_STORE(state) {
       state.userName = '';
       state.isAuthorized = false;
@@ -35,7 +39,12 @@ const auth = {
     async LOGIN({ commit }, { userName, password }) {
       try {
         const response = await api.post('/auth/login', { userName, password });
-        localStorageManager.storeTokens(response.data.token, response.data.refresh);
+        localStorageManager.storeTokens(
+          response.data.token,
+          response.data.refresh,
+          response.data.expiresAt,
+          userName,
+        );
         commit('SET_USERNAME', userName);
         commit('SET_AUTHORIZATION', true);
       } catch (err) {

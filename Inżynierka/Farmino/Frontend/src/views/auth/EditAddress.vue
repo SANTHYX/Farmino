@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ 'CreateProfile' }}</h1>
+    <h1>{{ 'EDIT_ADDRESS' }}</h1>
   </div>
 </template>
 

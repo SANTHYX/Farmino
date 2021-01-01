@@ -90,7 +90,7 @@ export default {
   computed: {
     ...mapGetters({
       userName: 'auth/GET_USERNAME',
-      getUser: 'user/GET_USER',
+      isProfileExist: 'user/IS_PROFILE_EXIST',
     }),
   },
   methods: {
@@ -99,7 +99,7 @@ export default {
       editProfile: 'user/EDIT_PROFILE',
     }),
     async submitProfile() {
-      if (!this.getUser.profile) {
+      if (!this.isProfileExist) {
         await this.createProfile({
           userName: this.userName,
           firstName: this.profile.firstName,

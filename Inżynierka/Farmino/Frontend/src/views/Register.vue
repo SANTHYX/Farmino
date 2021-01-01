@@ -9,14 +9,13 @@
 </template>
 
 <script>
-import RegisterationForm from '../components/forms/registeration/RegisterationForm.vue';
+import RegisterationForm from '@/components/forms/registeration/RegisterationForm.vue';
 
 export default {
-  name: 'register',
   components: {
     RegisterationForm,
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

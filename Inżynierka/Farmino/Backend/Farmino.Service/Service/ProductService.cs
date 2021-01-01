@@ -20,7 +20,8 @@ namespace Farmino.Service.Service
             _mapper = mapper;
         }
 
-        public async Task AddProductAsync(string name, decimal price, int quantity, int unit, double value)
+        public async Task AddProductAsync(string name, decimal price, int quantity,
+            int unit, double value)
         {
             var weight = Weight.Create(unit, value);
             await _productRepository.AddAsync(new Product(name, price, quantity, weight));

@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div id="search"></div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style></style>
+<style lang="scss">
+
+</style>

@@ -21,8 +21,8 @@ namespace Farmino.Service.Repositories
             _context.Profiles.Update(profile);
         }
 
-        public async Task<Profile> GetAsync(Guid id)
-            => await _context.Profiles.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<Profile> GetByUserIdAsync(Guid id)
+            => await _context.Profiles.FirstOrDefaultAsync(x => x.User.Id == id);
 
         public async Task CreateProfile(Profile profile)
         {

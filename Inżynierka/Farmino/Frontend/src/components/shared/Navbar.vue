@@ -1,28 +1,32 @@
 <template>
   <div id="navbar">
     <div id="logo">
-      <router-link to="/" tag="h1"><a>FARMINO</a></router-link>
+      <router-link to="home" tag="h1"><a>FARMINO</a></router-link>
     </div>
     <div id="navbar">
       <search-bar />
       <div id="nav-menu" v-if="!isAuthorized">
         <ul>
-          <router-link to="/auctions" tag="li" exact="exact"><a>Aukcje</a></router-link>
-          <router-link to="/offers" tag="li" exact="exact"><a>Oferty</a></router-link>
-          <router-link to="/register" tag="li" exact="exact" id="registery-btn"
+          <router-link tag="li" :to="{ name: 'auctions' }" exact="exact"><a>Aukcje</a></router-link>
+          <router-link tag="li" :to="{ name: 'offers' }" exact="exact"><a>Oferty</a></router-link>
+          <router-link tag="li" :to="{ name: 'register' }" exact="exact" id="registery-btn"
             ><a>Zarejestruj się</a></router-link
           >
-          <router-link to="/signin" tag="li" exact="exact" id="login-btn"
+          <router-link tag="li" :to="{ name: 'signin' }" exact="exact" id="registery-btn"
             ><a>Zaloguj się</a></router-link
           >
         </ul>
       </div>
       <div id="nav-menu" v-else>
         <ul>
-          <router-link :to="`/profile/${userName}`" tag="li" exact="exact"
-            ><a>Mój Profil</a></router-link
+          <router-link :to="{ name: 'auctions' }" exact="exact"
+            ><li><a>Aukcje</a></li></router-link
           >
-          <button @click="Logout">Wyloguj</button>
+          <router-link tag="li" :to="{ name: 'offers' }" exact="exact"><a>Oferty</a></router-link>
+          <router-link :to="{ name: 'profile', params: { id: userName } }" exact="exact"
+            ><li><a>Mój Profil</a></li></router-link
+          >
+          <li><a href="#" @click.prevent="Logout">Wyloguj</a></li>
         </ul>
       </div>
       <menu-button @mobile-menu-event="ShowMenu" />
@@ -57,10 +61,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      Logout: 'auth/LOGOUT',
+      LogoutUser: 'auth/LOGOUT',
     }),
     ShowMenu(input) {
       this.showMenu = input;
+    },
+    async Logout() {
+      await this.LogoutUser();
+      this.$router.push('/');
     },
   },
 };

@@ -1,44 +1,61 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
-import Profile from '../views/Profile.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    component: Home,
-  },
-  {
     path: '/auctions',
-    component: () => import('../views/Auctions.vue'),
+    name: 'auctions',
+    component: () => import('@/views/Auctions.vue'),
   },
   {
     path: '/register',
-    component: () => import('../views/Register.vue'),
+    name: 'register',
+    component: () => import('@/views/Register.vue'),
   },
   {
     path: '/offers',
-    component: () => import('../views/Offers.vue'),
+    name: 'offers',
+    component: () => import('@/views/Offers.vue'),
   },
   {
     path: '/signin',
-    component: () => import('../views/SignIn.vue'),
+    name: 'signin',
+    component: () => import('@/views/SignIn.vue'),
   },
   {
     path: '/search',
-    component: () => import('../views/Search.vue'),
+    name: 'search',
+    component: () => import('@/views/Search.vue'),
   },
   {
-    path: '/profile/:login',
-    params: true,
-    component: Profile,
+    path: '/profile',
+    redirect: 'home',
+    component: () => import('@/views/Profile.vue'),
+  },
+  {
+    path: '/profile/:id',
+    name: 'profile',
+    props: true,
+    component: () => import('../components/dashboards/ProfileCard.vue'),
+    children: [
+      {
+        path: 'create',
+        name: 'create',
+        component: () => import('@/components/forms/profile/CreateProfile.vue'),
+      },
+    ],
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('../views/Home.vue'),
   },
   {
     path: '*',
     redirect: {
-      name: 'Home',
+      name: 'home',
     },
   },
 ];

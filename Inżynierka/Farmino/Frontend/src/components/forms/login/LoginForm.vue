@@ -44,7 +44,7 @@ export default {
     async LogUser() {
       try {
         await this.Login(this.user);
-        this.$router.push(`/profile/${this.user.userName}`);
+        this.$router.push('/');
       } catch (err) {
         console.log(err);
       }

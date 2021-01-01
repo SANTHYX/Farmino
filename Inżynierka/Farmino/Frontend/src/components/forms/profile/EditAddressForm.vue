@@ -56,17 +56,14 @@
         >Numer Telefonu</label
       >
       <input
-        type="text"
-        name="phoneNumber"
+        type="number"
+        name="houseNumber"
         :class="[!$v.address.houseNumber.$error ? 'form-field' : 'error-field']"
         @blur="$v.address.houseNumber.$touch()"
-        v-model="address.houseNumber"
+        v-model.number="address.houseNumber"
       />
       <div id="error-message-wraper" v-if="$v.address.houseNumber.$error">
         <p class="error-message" v-if="!$v.address.houseNumber.required">Pole jest wymagane</p>
-        <p class="error-message" v-if="!$v.address.houseNumber.minValue">
-          nie prawidłowy numer
-        </p>
       </div>
     </div>
     <button @click="submitAddress">Wyslij</button>
@@ -75,7 +72,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import { required, minValue } from 'vuelidate/lib/validators';
+import { required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'profile-form',
@@ -94,16 +91,46 @@ export default {
       city: { required },
       street: { required },
       postalCode: { required },
-      houseNumber: { required, minValue: minValue(1) },
+      houseNumber: { required },
     },
   },
   computed: {
     ...mapGetters({
-      getUser: 'user/GET_USER',
+      userName: 'auth/GET_USERNAME',
+      isAddressExist: 'user/IS_ADDRESS_EXIST',
+      isUserExist: 'user/IS_USER_EXIST',
     }),
   },
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      createAddress: 'user/CREATE_ADDRESS',
+      updateAddress: 'user/UPDATE_ADDRESS',
+      getUser: 'user/GET_STATE_USER',
+    }),
+    async submitAddress() {
+      if (!this.isAddressExist) {
+        await this.createAddress({
+          userName: this.userName,
+          city: this.address.city,
+          street: this.address.street,
+          postalCode: this.address.postalCode,
+          houseNumber: this.address.houseNumber,
+        });
+      } else {
+        await this.updateAddress({
+          userName: this.userName,
+          city: this.address.city,
+          street: this.address.street,
+          postalCode: this.address.postalCode,
+          houseNumber: this.address.houseNumber,
+        });
+      }
+    },
+  },
+  async created() {
+    if (!this.isUserExist) {
+      await this.getUser(this.userName);
+    }
   },
 };
 </script>

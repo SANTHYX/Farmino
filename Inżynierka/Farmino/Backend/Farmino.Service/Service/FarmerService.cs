@@ -21,20 +21,15 @@ namespace Farmino.Service.Service
 
         public async Task CreateFarmer(string userName)
         {
-            if(await _userRepository.IsUserExist(userName))
-            {
-                var user = await _userRepository.GetAsync(userName);
+            var user = await _userRepository.GetIfExistAsync(userName);
 
-                if(!await _farmerRepository.IsFarmerExist(userName))
-                {
-                    await _farmerRepository.AddAsync(new Farmer(user));
-                    await _farmerRepository.SaveAsync();
-                }
-                else throw new ServiceExceptions(ServiceErrorCodes.FarmerAlreadyExist,
-                    "Farmer with this login already exist");
+            if (!await _farmerRepository.IsFarmerExist(userName))
+            {
+                await _farmerRepository.AddAsync(new Farmer(user));
+                await _farmerRepository.SaveAsync();
             }
-            else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
-                $"User with login { userName } dont exist");
+            else throw new ServiceExceptions(ServiceErrorCodes.FarmerAlreadyExist,
+                "Farmer is already exist");
         }
     }
 }

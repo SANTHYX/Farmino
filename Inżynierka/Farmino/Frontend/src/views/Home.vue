@@ -16,12 +16,10 @@
 </template>
 
 <script>
-export default {
-  name: 'home',
-};
+export default {};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #content {
   #showcase {
     display: flex;

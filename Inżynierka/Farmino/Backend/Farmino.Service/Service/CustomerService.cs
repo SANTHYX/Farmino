@@ -20,20 +20,15 @@ namespace Farmino.Service.Service
         }
         public async Task CreateCustomer(string userName)
         {
-            if (await _userRepository.IsUserExist(userName))
-            {
-                var user = await _userRepository.GetAsync(userName);
+            var user = await _userRepository.GetIfExistAsync(userName);
 
-                if (!await _customerRepository.IsCustomerExist(userName))
-                {
-                    await _customerRepository.AddAsync(new Customer(user));
-                    await _customerRepository.SaveAsync();
-                }
-                else throw new ServiceExceptions(ServiceErrorCodes.CustomerAlreadyExist,
-                    "Customer with this login already exist");
+            if (!await _customerRepository.IsCustomerExist(userName))
+            {
+                await _customerRepository.AddAsync(new Customer(user));
+                await _customerRepository.SaveAsync();
             }
-            else throw new ServiceExceptions(ServiceErrorCodes.UserAlreadyExist,
-                $"User with login { userName } dont exist");
+            else throw new ServiceExceptions(ServiceErrorCodes.CustomerAlreadyExist,
+                   "Customer with this login already exist");
         }
     }
 }

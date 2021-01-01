@@ -6,6 +6,6 @@ namespace Farmino.Service.DTO
     {
         public string Token { get; set; }
         public string Refresh { get; set; }
-        public DateTime GeneratedAt { get; set; }
+        public DateTime ExpiresAt { get; set; }
     }
 }

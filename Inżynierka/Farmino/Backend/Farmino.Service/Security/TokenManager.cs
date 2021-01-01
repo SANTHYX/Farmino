@@ -48,7 +48,7 @@ namespace Farmino.Service.Security
             {
                 Token = tokenHandler.WriteToken(createdToken),
                 Refresh = refreshToken.Token,
-                GeneratedAt = refreshToken.GeneratedAt
+                ExpiresAt = refreshToken.GeneratedAt
             };
 
             return new RefreshTokenModel

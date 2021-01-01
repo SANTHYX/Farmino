@@ -41,21 +41,17 @@ namespace Farmino.Service.Service
         public async Task EditAsync(string userName, string newUserName,
             string newPassword, string newEmail)
         {
-            if (!await _userRepository.IsUserExist(userName))
-            {
-                var user = await _userRepository.GetAsync(userName);
+            
+                var user = await _userRepository.GetIfExistAsync(userName);
                 var salt = _encryption.GenerateSalt(newPassword);
-                var newHashedPassword = _encryption.GenerateHash(newPassword, salt);
+                var HashedPassword = _encryption.GenerateHash(newPassword, salt);
 
                 user.SetUserName(newUserName);
-                user.SetPassword(newHashedPassword);
+                user.SetPassword(HashedPassword);
                 user.SetEmail(newEmail);
 
                 _userRepository.EditAsync(user);
                 await _userRepository.SaveChanges();
-            }
-            else throw new ServiceExceptions(ServiceErrorCodes.LoginAlreadyTaken,
-                    "This login is already taken");
         }
 
         public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string userName)

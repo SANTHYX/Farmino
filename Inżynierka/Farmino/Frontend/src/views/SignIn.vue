@@ -7,19 +7,11 @@
 </template>
 
 <script>
-import LoginForm from '../components/forms/login/LoginForm.vue';
+import LoginForm from '@/components/forms/login/LoginForm.vue';
 
 export default {
-  name: 'signin',
   components: { LoginForm },
 };
 </script>
 
-<style lang="scss" scoped>
-#signin {
-  display: flex;
-  #content {
-    display: flex;
-  }
-}
-</style>
+<style lang="scss"></style>
