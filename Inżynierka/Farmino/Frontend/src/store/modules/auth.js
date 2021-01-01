@@ -5,8 +5,8 @@ const auth = {
   namespaced: true,
 
   state: {
-    userName: '',
-    expiresAt: localStorageManager.getExpirationDate(),
+    userName: localStorageManager.getUserName(),
+    expiresAt: localStorageManager.getExpiresAt(),
     isAuthorized: false,
   },
 
@@ -26,12 +26,10 @@ const auth = {
     SET_USERNAME(state, userName) {
       state.userName = userName;
     },
-    SET_EXPIRATION_TIME(state, time) {
-      state.expireAt = time;
-    },
     CLEAR_STORE(state) {
       state.userName = '';
       state.isAuthorized = false;
+      state.userName = '';
     },
   },
 
@@ -55,7 +53,7 @@ const auth = {
       try {
         const refresh = localStorageManager.getRefresh();
         await api.post('/auth/revoke', { refresh });
-        localStorageManager.clearTokens();
+        localStorageManager.Logout();
         commit('CLEAR_STORE');
       } catch (err) {
         throw new Error(err);

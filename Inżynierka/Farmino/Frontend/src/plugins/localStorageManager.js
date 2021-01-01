@@ -1,15 +1,19 @@
 const localStorageManager = {
   storeTokens(token, refresh, expiresAt, userName) {
-    if (token && refresh) {
+    if (token && refresh && expiresAt && userName) {
       localStorage.setItem('token', token);
-      localStorage.setItem('expiresAt', expiresAt);
       localStorage.setItem('refresh', refresh);
+      localStorage.setItem('expiresAt', expiresAt);
       localStorage.setItem('userName', userName);
     }
   },
   clearTokens() {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh');
+  },
+
+  Logout() {
+    localStorage.clear();
   },
 
   getToken() {
@@ -24,8 +28,8 @@ const localStorageManager = {
     return localStorage.getItem('userName');
   },
 
-  getExpirationDate() {
-    return localStorage.getItem('expireAt');
+  getExpiresAt() {
+    return localStorage.getItem('expiresAt');
   },
 };
 
