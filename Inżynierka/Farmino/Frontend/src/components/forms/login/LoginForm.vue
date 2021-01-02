@@ -1,19 +1,26 @@
 <template>
   <div id="login-form">
-    <h1>Logowanie</h1>
-    <hr />
-    <div id="inputs-wraper">
-      <label for="userName" class="form-label">Login lub email</label>
-      <input type="text" name="userName" class="form-field" v-model="$v.user.userName.$model" />
+    <div id="form-wraper">
+      <h1>Logowanie</h1>
+      <hr />
+      <div id="inputs-wraper">
+        <label for="userName" class="form-label">Login</label>
+        <input type="text" name="userName" class="form-field" v-model="$v.user.userName.$model" />
+      </div>
+      <div id="inputs-wraper">
+        <label for="password" class="form-label">Hasło</label>
+        <input
+          type="password"
+          name="password"
+          class="form-field"
+          v-model="$v.user.password.$model"
+        />
+      </div>
+      <p>Nie pamiętam hasła</p>
+      <button @click="LogUser" :disabled="$v.user.$invalid">
+        Zaloguj się
+      </button>
     </div>
-    <div id="inputs-wraper">
-      <label for="password" class="form-label">Hasło</label>
-      <input type="password" name="password" class="form-field" v-model="$v.user.password.$model" />
-    </div>
-    <p>Nie pamiętam hasła</p>
-    <button @click="LogUser" :disabled="$v.user.$invalid">
-      Zaloguj się
-    </button>
   </div>
 </template>
 
@@ -60,17 +67,23 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  hr {
-    margin-top: 0.2rem;
-    width: 200px;
-    color: rgb(245, 245, 245);
-  }
-  h1 {
-    color: rgb(63, 63, 63);
-  }
-  #inputs-wraper {
-    display: flex;
-    flex-direction: column;
+  #form-wraper {
+    padding: 2rem;
+    border: 2px solid rgb(168, 168, 168);
+    border-radius: 10px;
+    hr {
+      margin-top: 0.2rem;
+      width: 240px;
+      color: rgb(245, 245, 245);
+    }
+    h1 {
+      text-align: center;
+      color: rgb(63, 63, 63);
+    }
+    #inputs-wraper {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 </style>

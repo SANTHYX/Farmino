@@ -12,8 +12,11 @@ const localStorageManager = {
     localStorage.removeItem('refresh');
   },
 
-  Logout() {
-    localStorage.clear();
+  clearStorage() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh');
+    localStorage.removeItem('expiresAt');
+    localStorage.removeItem('userName');
   },
 
   getToken() {
@@ -30,6 +33,12 @@ const localStorageManager = {
 
   getExpiresAt() {
     return localStorage.getItem('expiresAt');
+  },
+
+  isAuthorized() {
+    return (
+      this.getRefresh() && this.getToken() && this.getUserName() && this.getExpiresAt() != null
+    );
   },
 };
 

@@ -6,6 +6,11 @@
         <h5>{{ user.email }}</h5>
         <h1>Address</h1>
       </div>
+      <div id="user-panel" v-if="isAuthorizedUser">
+        <button v-if="user.profile === null" @click="createProfile">
+          Stwórz profil
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,8 +30,8 @@ export default {
       user: 'user/GET_STATE_USER',
       userName: 'auth/GET_USERNAME',
     }),
-    isAccountUser() {
-      return this.user.userName === this.userName;
+    isAuthorizedUser() {
+      return this.userName === this.id;
     },
   },
 
@@ -34,6 +39,9 @@ export default {
     ...mapActions({
       getUserAsync: 'user/GET_USER',
     }),
+    createProfile() {
+      this.$router.push({ name: 'create-profile' });
+    },
   },
 
   async created() {

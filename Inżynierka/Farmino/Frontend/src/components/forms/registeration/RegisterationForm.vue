@@ -1,7 +1,6 @@
 <template>
   <div id="registeration-form">
-    <div id="design-content"></div>
-    <div id="form-wraper">
+    <div id="form-wrapper">
       <h1>Rejestracja</h1>
       <hr />
       <div id="input-wraper">
@@ -92,7 +91,7 @@ export default {
     async RegisterUser() {
       try {
         await api.post('/auth/register', this.user);
-        this.$router.push('/signin');
+        this.$router.push('login');
       } catch (err) {
         throw new Error(err);
       }
@@ -107,10 +106,14 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  #form-wraper {
+  #form-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+    border: 2px solid rgb(168, 168, 168);
+    border-radius: 10px;
     hr {
       margin-top: 0.2rem;
       width: 200px;

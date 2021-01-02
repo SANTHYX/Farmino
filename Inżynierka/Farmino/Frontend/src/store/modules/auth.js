@@ -7,7 +7,7 @@ const auth = {
   state: {
     userName: localStorageManager.getUserName(),
     expiresAt: localStorageManager.getExpiresAt(),
-    isAuthorized: false,
+    isAuthorized: localStorageManager.isAuthorized(),
   },
 
   getters: {
@@ -53,7 +53,7 @@ const auth = {
       try {
         const refresh = localStorageManager.getRefresh();
         await api.post('/auth/revoke', { refresh });
-        localStorageManager.Logout();
+        localStorageManager.clearStorage();
         commit('CLEAR_STORE');
       } catch (err) {
         throw new Error(err);

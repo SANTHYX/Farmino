@@ -20,9 +20,9 @@ const routes = [
     component: () => import('@/views/Offers.vue'),
   },
   {
-    path: '/signin',
-    name: 'signin',
-    component: () => import('@/views/SignIn.vue'),
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue'),
   },
   {
     path: '/search',
@@ -33,17 +33,27 @@ const routes = [
     path: '/profile',
     redirect: 'home',
     component: () => import('@/views/Profile.vue'),
-  },
-  {
-    path: '/profile/:id',
-    name: 'profile',
-    props: true,
-    component: () => import('../components/dashboards/ProfileCard.vue'),
     children: [
       {
-        path: 'create',
-        name: 'create',
+        path: '/profile/:id',
+        name: 'profile',
+        props: true,
+        component: () => import('@/components/dashboards/ProfileCard.vue'),
+      },
+      {
+        path: 'create-profile',
+        name: 'create-profile',
         component: () => import('@/components/forms/profile/CreateProfile.vue'),
+      },
+      {
+        path: 'edit-profile',
+        name: 'edit-profile',
+        component: () => import('../components/forms/profile/EditProfileForm.vue'),
+      },
+      {
+        path: 'edit-address',
+        name: 'edit-address',
+        component: () => import('../components/forms/profile/EditAddressForm.vue'),
       },
     ],
   },

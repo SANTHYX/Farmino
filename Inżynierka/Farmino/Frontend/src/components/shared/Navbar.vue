@@ -12,7 +12,7 @@
           <router-link tag="li" :to="{ name: 'register' }" exact="exact" id="registery-btn"
             ><a>Zarejestruj się</a></router-link
           >
-          <router-link tag="li" :to="{ name: 'signin' }" exact="exact" id="registery-btn"
+          <router-link tag="li" :to="{ name: 'login' }" exact="exact" id="registery-btn"
             ><a>Zaloguj się</a></router-link
           >
         </ul>
@@ -68,7 +68,7 @@ export default {
     },
     async Logout() {
       await this.LogoutUser();
-      this.$router.push('/');
+      await this.$router.push('/').catch(() => {});
     },
   },
 };
