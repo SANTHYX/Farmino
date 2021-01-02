@@ -69,7 +69,8 @@ export default {
   flex-direction: column;
   #form-wraper {
     padding: 2rem;
-    border: 2px solid rgb(168, 168, 168);
+    border: 2px solid rgb(206, 206, 206);
+    box-shadow: 1px 1px 20px rgb(179, 179, 179);
     border-radius: 10px;
     hr {
       margin-top: 0.2rem;

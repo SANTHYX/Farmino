@@ -1,5 +1,7 @@
 <template>
-  <div id="create-offer"></div>
+  <div>
+    <div id="create-offer"></div>
+  </div>
 </template>
 
 <script>

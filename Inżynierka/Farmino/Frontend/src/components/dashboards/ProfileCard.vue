@@ -10,6 +10,8 @@
         <button v-if="user.profile === null" @click="createProfile">
           Stwórz profil
         </button>
+        <button v-if="user.profile !== null">Edytuj profil</button>
+        <button v-if="user.profile.address !== undefined">Edytuj adres</button>
       </div>
     </div>
   </div>

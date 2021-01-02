@@ -1,6 +1,8 @@
 <template>
-  <div id="offers">
-    <div id="content"></div>
+  <div>
+    <div id="offers">
+      <div id="content"></div>
+    </div>
   </div>
 </template>
 

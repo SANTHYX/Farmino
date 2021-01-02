@@ -1,7 +1,9 @@
 <template>
-  <div id="signin">
-    <div id="content">
-      <login-form />
+  <div>
+    <div id="signin">
+      <div id="content">
+        <login-form />
+      </div>
     </div>
   </div>
 </template>

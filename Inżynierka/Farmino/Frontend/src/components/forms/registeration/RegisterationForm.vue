@@ -102,17 +102,14 @@ export default {
 
 <style lang="scss" scoped>
 #registeration-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   #form-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     padding: 2rem;
-    border: 2px solid rgb(168, 168, 168);
+    border: 2px solid rgb(206, 206, 206);
+    box-shadow: 1px 1px 20px rgb(179, 179, 179);
     border-radius: 10px;
     hr {
       margin-top: 0.2rem;

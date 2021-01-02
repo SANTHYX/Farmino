@@ -1,6 +1,8 @@
 <template>
-  <div id="auctions">
-    <div id="content"></div>
+  <div>
+    <div id="auctions">
+      <div id="content"></div>
+    </div>
   </div>
 </template>
 
@@ -8,4 +10,4 @@
 export default {};
 </script>
 
-<style lang="scss" ></style>
+<style lang="scss"></style>

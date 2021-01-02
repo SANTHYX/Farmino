@@ -1,15 +1,15 @@
 <template>
   <div>
-    <profle-form />
+    <edit-profle-form />
   </div>
 </template>
 
 <script>
-import ProfleForm from '@/components/forms/profile/ProfileForm.vue';
+import EditProfleForm from '@/components/forms/profile/EditProfileForm';
 
 export default {
   components: {
-    ProfleForm,
+    EditProfleForm,
   },
 };
 </script>

@@ -1,7 +1,9 @@
 <template>
-  <footer id="the-footer">
-    <h2>Footer</h2>
-  </footer>
+  <div>
+    <footer id="the-footer">
+      <h2>Footer</h2>
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -12,6 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 #the-footer {
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
