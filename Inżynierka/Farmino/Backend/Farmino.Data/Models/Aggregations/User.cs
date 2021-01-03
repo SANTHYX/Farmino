@@ -92,9 +92,5 @@ namespace Farmino.Data.Models.Aggregations
             Email = email;
             UpdatedAt = DateTime.Now;
         }
-        public void SetProfile(Profile profile)
-        {
-            Profile = profile;
-        }
     }
 }

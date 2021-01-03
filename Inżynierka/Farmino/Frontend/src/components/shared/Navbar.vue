@@ -12,7 +12,7 @@
           <router-link tag="li" :to="{ name: 'register' }" exact="exact" id="registery-btn"
             ><a>Zarejestruj się</a></router-link
           >
-          <router-link tag="li" :to="{ name: 'login' }" exact="exact" id="registery-btn"
+          <router-link tag="li" :to="{ name: 'login' }" exact="exact" id="login-btn"
             ><a>Zaloguj się</a></router-link
           >
         </ul>
@@ -92,7 +92,6 @@ export default {
     background: rgb(253, 253, 253);
     border-bottom: 0.3px solid rgb(199, 199, 199);
     a {
-      font-weight: 400;
       color: rgb(0, 0, 0);
       text-decoration: none;
     }
@@ -100,9 +99,6 @@ export default {
       font-size: 1.8rem;
       color: rgb(0, 0, 0);
       align-self: center;
-      a {
-        font-weight: 700;
-      }
     }
     #nav-menu {
       ul {
@@ -111,7 +107,6 @@ export default {
         li {
           font-size: 1.1rem;
           padding: 1rem;
-          transition: 0.34s;
           a {
             padding: 0.3rem;
             font-weight: 400;

@@ -10,8 +10,8 @@
         <button v-if="user.profile === null" @click="createProfile">
           Stwórz profil
         </button>
-        <button v-if="user.profile !== null">Edytuj profil</button>
-        <button v-if="user.profile.address !== undefined">Edytuj adres</button>
+        <button v-if="user.profile !== null" @click="editProfile">Edytuj profil</button>
+        <button v-if="user.profile.address !== null" @click="editAddress">Edytuj adres</button>
       </div>
     </div>
   </div>
@@ -43,6 +43,12 @@ export default {
     }),
     createProfile() {
       this.$router.push({ name: 'create-profile' });
+    },
+    editProfile() {
+      this.$router.push({ name: 'edit-profile' });
+    },
+    editAddress() {
+      this.$router.push({ name: 'edit-profile' });
     },
   },
 

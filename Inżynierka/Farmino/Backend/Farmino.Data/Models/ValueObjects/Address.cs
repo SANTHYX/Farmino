@@ -9,6 +9,8 @@ namespace Farmino.Data.Models.ValueObjects
         public string PostalCode { get; protected set; }
         public int HouseNumber { get; protected set; }
 
+        protected Address() { }
+
         public Address(string city, string street, string postalCode, int houseNumber)
         {
             SetCity(city);

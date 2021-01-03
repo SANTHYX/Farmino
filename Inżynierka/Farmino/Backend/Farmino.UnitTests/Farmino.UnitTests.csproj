@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Farmino.Data\Farmino.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Entities\" />
-  </ItemGroup>
-
 </Project>
