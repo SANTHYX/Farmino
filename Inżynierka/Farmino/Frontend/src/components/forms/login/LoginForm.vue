@@ -16,10 +16,11 @@
           v-model="$v.user.password.$model"
         />
       </div>
-      <p>Nie pamiętam hasła</p>
-      <button @click="LogUser" :disabled="$v.user.$invalid">
-        Zaloguj się
-      </button>
+      <div id="btn-wraper">
+        <button @click="LogUser" :disabled="$v.user.$invalid" class="btn-form">
+          Zaloguj się
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -62,15 +63,10 @@ export default {
 
 <style lang="scss" scoped>
 #login-form {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   #form-wraper {
     padding: 2rem;
-    border: 2px solid rgb(189, 189, 189);
-    box-shadow: 1px 1px 20px rgb(179, 179, 179);
+    border: 1px solid rgb(189, 189, 189);
+    box-shadow: 1px 1px 6px rgb(179, 179, 179);
     border-radius: 10px;
     hr {
       margin-top: 0.2rem;
@@ -84,6 +80,11 @@ export default {
     #inputs-wraper {
       display: flex;
       flex-direction: column;
+    }
+    #btn-wraper {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
     }
   }
 }

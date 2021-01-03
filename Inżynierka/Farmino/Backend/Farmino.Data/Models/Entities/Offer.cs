@@ -1,5 +1,6 @@
 ﻿using Farmino.Data.Models.Aggregations;
 using System;
+using System.Collections.Generic;
 
 namespace Farmino.Data.Models.Entities
 {
@@ -13,6 +14,7 @@ namespace Farmino.Data.Models.Entities
         public Guid ProductId { get; protected set; }
         public Product Product { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
+        public IEnumerable<Order> Orders { get; protected set; }
 
         protected Offer() { }
 

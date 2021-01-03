@@ -7,32 +7,32 @@ const routes = [
   {
     path: '/auctions',
     name: 'auctions',
-    component: () => import('@/views/Auctions.vue'),
+    component: () => import('@/views/auctions/Auctions.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/Register.vue'),
+    component: () => import('@/views/register/Register.vue'),
   },
   {
     path: '/offers',
     name: 'offers',
-    component: () => import('@/views/Offers.vue'),
+    component: () => import('@/views/offers/Offers.vue'),
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/Login.vue'),
+    component: () => import('@/views/login/Login.vue'),
   },
   {
     path: '/search',
     name: 'search',
-    component: () => import('@/views/Search.vue'),
+    component: () => import('@/views/search/Search.vue'),
   },
   {
     path: '/profile',
     redirect: 'home',
-    component: () => import('@/views/Profile.vue'),
+    component: () => import('@/views/profile/Profile.vue'),
     children: [
       {
         path: '/profile/:id',
@@ -60,7 +60,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/Home.vue'),
+    component: () => import('../views/home/Home.vue'),
   },
   {
     path: '*',

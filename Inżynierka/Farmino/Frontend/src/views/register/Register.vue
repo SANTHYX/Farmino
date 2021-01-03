@@ -1,10 +1,8 @@
 <template>
   <div>
     <div id="register">
-      <div id="content">
-        <div id="register-section">
-          <registeration-form />
-        </div>
+      <div id="register-section">
+        <registeration-form />
       </div>
     </div>
   </div>
@@ -22,9 +20,10 @@ export default {
 
 <style lang="scss">
 #register {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-direction: column;
 }
 </style>

@@ -95,6 +95,11 @@ export default {
       color: rgb(0, 0, 0);
       text-decoration: none;
     }
+    a:hover {
+      color: rgb(81, 82, 81);
+      transition: 0.5s;
+      transform: translateY(2px);
+    }
     h1 {
       font-size: 1.8rem;
       color: rgb(0, 0, 0);

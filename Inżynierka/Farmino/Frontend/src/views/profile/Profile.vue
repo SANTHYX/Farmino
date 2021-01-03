@@ -16,9 +16,10 @@ export default {
 
 <style lang="scss" scoped>
 #profile {
+  height: 100vh;
   display: flex;
   justify-content: center;
-  justify-self: center;
-  height: 100vh;
+  align-items: center;
+  flex-direction: column;
 }
 </style>

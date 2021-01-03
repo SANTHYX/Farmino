@@ -41,8 +41,8 @@ export default {
   #search-bar-form {
     font-size: 1rem;
     height: 35px;
-    width: 19vw;
-    min-width: 170px;
+    width: 25vw;
+    min-width: 180px;
     border: none;
     border-radius: 7px 0px 0px 7px;
     padding: 0 0.7rem;

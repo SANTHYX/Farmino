@@ -4,18 +4,14 @@ const user = {
   namespaced: true,
 
   state: {
-    user: {},
+    user: {
+      profile: null,
+    },
   },
 
   getters: {
     GET_STATE_USER(state) {
       return state.user;
-    },
-    IS_PROFILE_EMPTY(state) {
-      return state.user.profile === null;
-    },
-    IS_ADDRESS_EMPTY(state) {
-      return state.user.profile.address === null;
     },
   },
 

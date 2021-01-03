@@ -2,16 +2,28 @@
   <div id="profile-card">
     <div id="profile-card-wraper">
       <div id="showcase">
-        <h1>{{ user.userName }}</h1>
-        <h5>{{ user.email }}</h5>
-        <h1>Address</h1>
+        <div id="user-info">
+          <h1>{{ user.userName }}</h1>
+          <h5>{{ user.email }}</h5>
+        </div>
+        <div v-if="user.profile">
+          <h1>Profil</h1>
+          <p><strong>Imie:</strong>{{ user.profile.firstName }}</p>
+          <p><strong>Nazwisko:</strong>{{ user.profile.lastName }}</p>
+          <p><strong>Telefon:</strong>{{ user.profile.lastName }}</p>
+          <h1>Adres</h1>
+          <p><strong>Miasto:</strong>{{ user.profile.address.city }}</p>
+          <p><strong>Ulica:</strong>{{ user.profile.address.street }}</p>
+          <p><strong>Kod-Pocztowy:</strong>{{ user.profile.address.postalCode }}</p>
+          <p><strong>Numer Domu:</strong>{{ user.profile.address.houseNumber }}</p>
+        </div>
       </div>
       <div id="user-panel" v-if="isAuthorizedUser">
-        <button v-if="user.profile === null" @click="createProfile">
+        <button v-if="!user.profile" @click="createProfile">
           Stwórz profil
         </button>
-        <button v-if="user.profile !== null" @click="editProfile">Edytuj profil</button>
-        <button v-if="user.profile.address !== null" @click="editAddress">Edytuj adres</button>
+        <button v-if="user.profile" @click="editProfile">Edytuj profil</button>
+        <button v-if="user.profile" @click="editAddress">Edytuj Addres</button>
       </div>
     </div>
   </div>
@@ -48,7 +60,7 @@ export default {
       this.$router.push({ name: 'edit-profile' });
     },
     editAddress() {
-      this.$router.push({ name: 'edit-profile' });
+      this.$router.push({ name: 'edit-address' });
     },
   },
 
@@ -58,4 +70,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#profile-card {
+  border: 1px solid black;
+}
+</style>

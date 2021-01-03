@@ -1,6 +1,6 @@
 <template>
   <div id="profile-form">
-    <h1>Profil</h1>
+    <h1>Edytuj Profil</h1>
     <hr />
     <div id="inputs-wraper">
       <label for="firstName" :class="[!$v.profile.firstName.$error ? 'form-label' : 'error-label']"
@@ -90,7 +90,7 @@ export default {
   computed: {
     ...mapGetters({
       userName: 'auth/GET_USERNAME',
-      isProfileExist: 'user/IS_PROFILE_EXIST',
+      isProfileEmpty: 'user/IS_PROFILE_EMPTY',
     }),
   },
   methods: {
@@ -99,7 +99,7 @@ export default {
       editProfile: 'user/EDIT_PROFILE',
     }),
     async submitProfile() {
-      if (!this.isProfileExist) {
+      if (!this.isProfileEmpty) {
         await this.createProfile({
           userName: this.userName,
           firstName: this.profile.firstName,
@@ -121,11 +121,10 @@ export default {
 
 <style lang="scss" scoped>
 #profile-form {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid rgb(189, 189, 189);
+  box-shadow: 1px 1px 6px rgb(214, 214, 214);
+  border-radius: 10px;
   hr {
     margin-top: 0.2rem;
     width: 200px;

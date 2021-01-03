@@ -1,6 +1,6 @@
 <template>
   <div id="profile-form">
-    <h1>Adres</h1>
+    <h1>Edytuj Adres</h1>
     <hr />
     <div id="inputs-wraper">
       <label for="city" :class="[!$v.address.city.$error ? 'form-label' : 'error-label']"
@@ -97,51 +97,43 @@ export default {
   computed: {
     ...mapGetters({
       userName: 'auth/GET_USERNAME',
-      isAddressExist: 'user/IS_ADDRESS_EXIST',
-      isUserExist: 'user/IS_USER_EXIST',
+      getUser: 'user/GET_STATE_USER',
     }),
   },
   methods: {
     ...mapActions({
       createAddress: 'user/CREATE_ADDRESS',
       updateAddress: 'user/UPDATE_ADDRESS',
-      getUser: 'user/GET_STATE_USER',
     }),
     async submitAddress() {
-      if (!this.isAddressExist) {
-        await this.createAddress({
-          userName: this.userName,
-          city: this.address.city,
-          street: this.address.street,
-          postalCode: this.address.postalCode,
-          houseNumber: this.address.houseNumber,
-        });
-      } else {
-        await this.updateAddress({
-          userName: this.userName,
-          city: this.address.city,
-          street: this.address.street,
-          postalCode: this.address.postalCode,
-          houseNumber: this.address.houseNumber,
-        });
-      }
+      await this.createAddress({
+        userName: this.userName,
+        city: this.address.city,
+        street: this.address.street,
+        postalCode: this.address.postalCode,
+        houseNumber: this.address.houseNumber,
+      });
+      await this.updateAddress({
+        userName: this.userName,
+        city: this.address.city,
+        street: this.address.street,
+        postalCode: this.address.postalCode,
+        houseNumber: this.address.houseNumber,
+      });
     },
   },
   async created() {
-    if (!this.isUserExist) {
-      await this.getUser(this.userName);
-    }
+    await this.getUser(this.userName);
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #profile-form {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid rgb(189, 189, 189);
+  box-shadow: 1px 1px 6px rgb(214, 214, 214);
+  border-radius: 10px;
   hr {
     margin-top: 0.2rem;
     width: 200px;

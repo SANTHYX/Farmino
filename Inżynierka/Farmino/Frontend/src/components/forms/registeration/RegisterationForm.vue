@@ -52,9 +52,11 @@
           <p class="error-message" v-if="!$v.user.email.email">Email nie poprawny</p>
         </div>
       </div>
-      <button @click="RegisterUser" :disabled="$v.user.$invalid">
-        Zarejestruj
-      </button>
+      <div id="btn-wraper">
+        <button @click="RegisterUser" :disabled="$v.user.$invalid">
+          Zarejestruj
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -103,25 +105,27 @@ export default {
 <style lang="scss" scoped>
 #registeration-form {
   #form-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
     padding: 2rem;
-    border: 2px solid rgb(206, 206, 206);
-    box-shadow: 1px 1px 20px rgb(179, 179, 179);
+    border: 1px solid rgb(189, 189, 189);
+    box-shadow: 1px 1px 6px rgb(214, 214, 214);
     border-radius: 10px;
     hr {
       margin-top: 0.2rem;
-      width: 200px;
+      width: 240px;
       color: rgb(245, 245, 245);
     }
     h1 {
+      text-align: center;
       color: rgb(63, 63, 63);
     }
     #input-wraper {
       display: flex;
       flex-direction: column;
+    }
+    #btn-wraper {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
     }
   }
 }
