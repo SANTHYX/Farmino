@@ -7,23 +7,32 @@
       <search-bar />
       <div id="nav-menu" v-if="!isAuthorized">
         <ul>
-          <router-link tag="li" :to="{ name: 'auctions' }" exact="exact"><a>Aukcje</a></router-link>
-          <router-link tag="li" :to="{ name: 'offers' }" exact="exact"><a>Oferty</a></router-link>
-          <router-link tag="li" :to="{ name: 'register' }" exact="exact" id="registery-btn"
-            ><a>Zarejestruj się</a></router-link
+          <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
+            ><li><a>Aukcje</a></li></router-link
           >
-          <router-link tag="li" :to="{ name: 'login' }" exact="exact" id="login-btn"
-            ><a>Zaloguj się</a></router-link
+          <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
+            ><li><a>Oferty</a></li></router-link
+          >
+          <router-link :to="{ name: 'register' }" exact="exact" id="registery-btn" class="pop-up"
+            ><li><a>Zarejestruj się</a></li></router-link
+          >
+          <router-link :to="{ name: 'login' }" exact="exact" id="login-btn" class="pop-up"
+            ><li><a>Zaloguj się</a></li></router-link
           >
         </ul>
       </div>
       <div id="nav-menu" v-else>
         <ul>
-          <router-link :to="{ name: 'auctions' }" exact="exact"
+          <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
             ><li><a>Aukcje</a></li></router-link
           >
-          <router-link tag="li" :to="{ name: 'offers' }" exact="exact"><a>Oferty</a></router-link>
-          <router-link :to="{ name: 'profile', params: { id: userName } }" exact="exact"
+          <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
+            ><li><a>Oferty</a></li></router-link
+          >
+          <router-link
+            :to="{ name: 'profile', params: { id: userName } }"
+            exact="exact"
+            class="pop-up"
             ><li><a>Mój Profil</a></li></router-link
           >
           <li><a href="#" @click.prevent="Logout">Wyloguj</a></li>
@@ -94,11 +103,6 @@ export default {
     a {
       color: rgb(0, 0, 0);
       text-decoration: none;
-    }
-    a:hover {
-      color: rgb(81, 82, 81);
-      transition: 0.5s;
-      transform: translateY(2px);
     }
     h1 {
       font-size: 1.8rem;

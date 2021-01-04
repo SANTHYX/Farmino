@@ -67,6 +67,8 @@ namespace Farmino.Service.ORM
 
             builder.Entity<Customer>().HasKey(x => x.Id);
 
+            builder.Entity<Order>().HasKey(x => new { x.CustomerId, x.OfferId });
+
             builder.Entity<Offer>(x => {
                 x.HasKey(y => y.Id);
                 x.Property(y => y.Title).HasMaxLength(40).IsRequired();

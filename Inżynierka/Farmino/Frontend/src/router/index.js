@@ -43,7 +43,7 @@ const routes = [
       {
         path: 'create-profile',
         name: 'create-profile',
-        component: () => import('@/components/forms/profile/CreateProfile.vue'),
+        component: () => import('@/components/forms/profile/CreateProfileForm.vue'),
       },
       {
         path: 'edit-profile',

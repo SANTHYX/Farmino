@@ -50,11 +50,11 @@ const auth = {
       }
     },
     async LOGOUT({ commit }) {
-      localStorageManager.clearStorage();
-      commit('CLEAR_STORE');
       try {
         const refresh = localStorageManager.getRefresh();
         await api.post('/auth/revoke', { refresh });
+        localStorageManager.clearStorage();
+        commit('CLEAR_STORE');
       } catch (err) {
         throw new Error(err);
       }

@@ -1,1 +1,10 @@
 //Global Animations//
+
+//Sudo-Selectors-Effects
+
+.pop-up {
+    li:hover {
+      transition: 0.8s;
+      transform: translateY(-2.5px);
+    }
+}
