@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Service.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20201231180331_MyMigration")]
+    [Migration("20210105165916_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,59 @@ namespace Farmino.Service.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AuctionerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasMaxLength(10)
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasMaxLength(10)
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("StartingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuctionerId");
+
+                    b.ToTable("Auctions");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auctioner", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Auctioners");
+                });
 
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Customer", b =>
                 {
@@ -53,6 +106,41 @@ namespace Farmino.Service.Migrations
                         .IsUnique();
 
                     b.ToTable("Farmers");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Offer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasMaxLength(10)
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FarmerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FarmerId");
+
+                    b.HasIndex("ProductId")
+                        .IsUnique();
+
+                    b.ToTable("Offers");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>
@@ -127,39 +215,54 @@ namespace Farmino.Service.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.Offer", b =>
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Order", b =>
+                {
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OfferId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CustomerId", "OfferId");
+
+                    b.HasIndex("OfferId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Participant", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasMaxLength(10)
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("FarmerId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FarmerId");
-
-                    b.HasIndex("ProductId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Offers");
+                    b.ToTable("Participants");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.ParticipantAuction", b =>
+                {
+                    b.Property<Guid>("AuctionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ParticipantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ProposedPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("AuctionId", "ParticipantId");
+
+                    b.HasIndex("ParticipantId");
+
+                    b.ToTable("ParticipantAuctions");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
@@ -215,6 +318,28 @@ namespace Farmino.Service.Migrations
                     b.ToTable("Profiles");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auction", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.Auctioner", "Auctioner")
+                        .WithMany("Auctions")
+                        .HasForeignKey("AuctionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Auctioner");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auctioner", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
+                        .WithOne("Auctioner")
+                        .HasForeignKey("Farmino.Data.Models.Aggregations.Auctioner", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Customer", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
@@ -237,6 +362,25 @@ namespace Farmino.Service.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Offer", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.Farmer", "Farmer")
+                        .WithMany("Offers")
+                        .HasForeignKey("FarmerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Farmino.Data.Models.Entities.Product", "Product")
+                        .WithOne("Offer")
+                        .HasForeignKey("Farmino.Data.Models.Aggregations.Offer", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Farmer");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.RefreshToken", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
@@ -248,23 +392,91 @@ namespace Farmino.Service.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.Offer", b =>
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Order", b =>
                 {
-                    b.HasOne("Farmino.Data.Models.Aggregations.Farmer", "Farmer")
-                        .WithMany("Offers")
-                        .HasForeignKey("FarmerId")
+                    b.HasOne("Farmino.Data.Models.Aggregations.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Farmino.Data.Models.Entities.Product", "Product")
-                        .WithOne("Offer")
-                        .HasForeignKey("Farmino.Data.Models.Entities.Offer", "ProductId")
+                    b.HasOne("Farmino.Data.Models.Aggregations.Offer", "Offer")
+                        .WithMany("Orders")
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("Farmino.Data.Models.ValueObjects.Address", "OrderAddress", b1 =>
+                        {
+                            b1.Property<Guid>("OrderCustomerId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("OrderOfferId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("City")
+                                .HasMaxLength(30)
+                                .HasColumnType("nvarchar(30)")
+                                .HasColumnName("City");
+
+                            b1.Property<int>("HouseNumber")
+                                .HasMaxLength(3)
+                                .HasColumnType("int")
+                                .HasColumnName("HouseNumber");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(7)
+                                .HasColumnType("nvarchar(7)")
+                                .HasColumnName("PostalCode");
+
+                            b1.Property<string>("Street")
+                                .HasMaxLength(30)
+                                .HasColumnType("nvarchar(30)")
+                                .HasColumnName("Street");
+
+                            b1.HasKey("OrderCustomerId", "OrderOfferId");
+
+                            b1.ToTable("Order");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderCustomerId", "OrderOfferId");
+                        });
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Offer");
+
+                    b.Navigation("OrderAddress");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Participant", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
+                        .WithOne("Participant")
+                        .HasForeignKey("Farmino.Data.Models.Entities.Participant", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Farmer");
+                    b.Navigation("User");
+                });
 
-                    b.Navigation("Product");
+            modelBuilder.Entity("Farmino.Data.Models.Entities.ParticipantAuction", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.Auction", "Auction")
+                        .WithMany("Participants")
+                        .HasForeignKey("AuctionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Farmino.Data.Models.Entities.Participant", "Participant")
+                        .WithMany("Auctions")
+                        .HasForeignKey("ParticipantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Auction");
+
+                    b.Navigation("Participant");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
@@ -339,20 +551,49 @@ namespace Farmino.Service.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auction", b =>
+                {
+                    b.Navigation("Participants");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auctioner", b =>
+                {
+                    b.Navigation("Auctions");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Farmer", b =>
                 {
                     b.Navigation("Offers");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Aggregations.Offer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.User", b =>
                 {
+                    b.Navigation("Auctioner");
+
                     b.Navigation("Customer");
 
                     b.Navigation("Farmer");
 
+                    b.Navigation("Participant");
+
                     b.Navigation("Profile");
 
                     b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Participant", b =>
+                {
+                    b.Navigation("Auctions");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>

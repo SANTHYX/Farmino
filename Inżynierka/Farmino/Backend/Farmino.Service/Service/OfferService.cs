@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Farmino.Data.Models.Entities;
+using Farmino.Data.Models.Aggregations;
 using Farmino.Service.DTO;
 using Farmino.Service.Extensions;
 using Farmino.Service.Repositories.Interfaces;
@@ -31,7 +31,7 @@ namespace Farmino.Service.Service
             var product = await _productRepository.GetIfExist(productId);
 
             await _offerRepository.AddAsync(new Offer(farmer, title, description, product));
-            await _offerRepository.SaveChanges();
+            await _offerRepository.SaveChangesAsync();
         }
 
         public async Task<OfferDTO> GetOfferAsync(Guid id)

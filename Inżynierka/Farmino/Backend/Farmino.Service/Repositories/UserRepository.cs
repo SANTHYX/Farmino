@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;

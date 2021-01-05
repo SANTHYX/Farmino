@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using Farmino.Service.DTO;
 
 namespace Farmino.Service.Security.Model

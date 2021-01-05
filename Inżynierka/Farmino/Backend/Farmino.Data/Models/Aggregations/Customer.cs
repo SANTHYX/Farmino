@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmino.Data.Models.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Farmino.Data.Models.Aggregations
@@ -15,11 +16,6 @@ namespace Farmino.Data.Models.Aggregations
         public Customer(User user)
         {
             Id = Guid.NewGuid();
-            SetUser(user);
-        }
-
-        public void SetUser(User user)
-        {     
             User = user;
         }
     }

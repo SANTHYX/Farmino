@@ -1,4 +1,4 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using Farmino.Data.Models.Aggregations;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,6 +12,6 @@ namespace Farmino.Service.Repositories.Interfaces
         Task<IEnumerable<Offer>> GetAllAsync();
         void RemoveAsync(Offer offer);
         void EditAsync(Offer offer);
-        Task SaveChanges();
+        Task SaveChangesAsync();
     }
 }

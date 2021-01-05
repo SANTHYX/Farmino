@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.ValueObjects;
 using System;
 

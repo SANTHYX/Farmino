@@ -1,4 +1,4 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using Farmino.Data.Models.Aggregations;
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -40,7 +40,7 @@ namespace Farmino.Service.Repositories
             _context.Offers.Remove(offer);
         }
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }

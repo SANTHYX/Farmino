@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace Farmino.Service.Repositories
         public async Task<Customer> GetAsync(string login)
             => await _context.Customers.Include(x => x.User).FirstOrDefaultAsync(x => x.User.UserName == login);
 
-        public async Task SaveAsync()
+        public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }

@@ -53,7 +53,7 @@
       <label
         for="houseNumber"
         :class="[!$v.address.houseNumber.$error ? 'form-label' : 'error-label']"
-        >Numer Telefonu</label
+        >Numer Domu</label
       >
       <input
         type="number"
@@ -121,9 +121,6 @@ export default {
         houseNumber: this.address.houseNumber,
       });
     },
-  },
-  async created() {
-    await this.getUser(this.userName);
   },
 };
 </script>

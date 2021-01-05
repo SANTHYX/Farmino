@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Models.Entities;
 using System;
 
 namespace Farmino.Data.Models.Aggregations
@@ -19,8 +20,8 @@ namespace Farmino.Data.Models.Aggregations
         {
             Id = id;
             SetRefreshToken(token);
-            SetUser(user);
             SetRevoke(false);
+            User = user;
             GeneratedAt = DateTime.Now;
             ExpiresAt = DateTime.Now.AddMinutes(expirationTime);
         }
@@ -33,11 +34,6 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             IsRevoked = value;
-        }
-
-        public void SetUser(User user)
-        {
-            User = user;
         }
 
         public void SetRefreshToken(string token)

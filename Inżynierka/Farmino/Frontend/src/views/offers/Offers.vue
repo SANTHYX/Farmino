@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="offers">
-      <div id="content"></div>
+      <div id="content">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>

@@ -18,6 +18,20 @@ const routes = [
     path: '/offers',
     name: 'offers',
     component: () => import('@/views/offers/Offers.vue'),
+    children: [
+      {
+        path: 'offer-creator',
+        name: 'offer-creator',
+        component: () => import('@/views/offers/OfferCreator.vue'),
+        children: [
+          {
+            path: 'product',
+            name: 'product',
+            component: () => import('@/components/forms/product/AddProductForm.vue'),
+          },
+        ],
+      },
+    ],
   },
   {
     path: '/login',
@@ -38,7 +52,7 @@ const routes = [
         path: '/profile/:id',
         name: 'profile',
         props: true,
-        component: () => import('@/components/dashboards/ProfileCard.vue'),
+        component: () => import('@/components/cards/ProfileCard.vue'),
       },
       {
         path: 'create-profile',
@@ -48,19 +62,19 @@ const routes = [
       {
         path: 'edit-profile',
         name: 'edit-profile',
-        component: () => import('../components/forms/profile/EditProfileForm.vue'),
+        component: () => import('@/components/forms/profile/EditProfileForm.vue'),
       },
       {
         path: 'edit-address',
         name: 'edit-address',
-        component: () => import('../components/forms/profile/EditAddressForm.vue'),
+        component: () => import('@/components/forms/profile/EditAddressForm.vue'),
       },
     ],
   },
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/home/Home.vue'),
+    component: () => import('@/views/home/Home.vue'),
   },
   {
     path: '*',

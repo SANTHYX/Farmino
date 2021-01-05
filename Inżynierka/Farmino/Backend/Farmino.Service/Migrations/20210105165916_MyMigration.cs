@@ -41,6 +41,24 @@ namespace Farmino.Service.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Auctioners",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Auctioners", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Auctioners_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -70,6 +88,24 @@ namespace Farmino.Service.Migrations
                     table.PrimaryKey("PK_Farmers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Farmers_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Participants",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Participants", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Participants_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -124,6 +160,29 @@ namespace Farmino.Service.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Auctions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
+                    StartingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AuctionerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Auctions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Auctions_Auctioners_AuctionerId",
+                        column: x => x.AuctionerId,
+                        principalTable: "Auctioners",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Offers",
                 columns: table => new
                 {
@@ -151,6 +210,70 @@ namespace Farmino.Service.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ParticipantAuctions",
+                columns: table => new
+                {
+                    ParticipantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AuctionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProposedPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParticipantAuctions", x => new { x.AuctionId, x.ParticipantId });
+                    table.ForeignKey(
+                        name: "FK_ParticipantAuctions_Auctions_AuctionId",
+                        column: x => x.AuctionId,
+                        principalTable: "Auctions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ParticipantAuctions_Participants_ParticipantId",
+                        column: x => x.ParticipantId,
+                        principalTable: "Participants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    OfferId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    PostalCode = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
+                    HouseNumber = table.Column<int>(type: "int", maxLength: 3, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => new { x.CustomerId, x.OfferId });
+                    table.ForeignKey(
+                        name: "FK_Order_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Order_Offers_OfferId",
+                        column: x => x.OfferId,
+                        principalTable: "Offers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Auctioners_UserId",
+                table: "Auctioners",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Auctions_AuctionerId",
+                table: "Auctions",
+                column: "AuctionerId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_UserId",
                 table: "Customers",
@@ -175,6 +298,22 @@ namespace Farmino.Service.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Order_OfferId",
+                table: "Order",
+                column: "OfferId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParticipantAuctions_ParticipantId",
+                table: "ParticipantAuctions",
+                column: "ParticipantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Participants_UserId",
+                table: "Participants",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Profiles_UserId",
                 table: "Profiles",
                 column: "UserId",
@@ -189,10 +328,10 @@ namespace Farmino.Service.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Order");
 
             migrationBuilder.DropTable(
-                name: "Offers");
+                name: "ParticipantAuctions");
 
             migrationBuilder.DropTable(
                 name: "Profiles");
@@ -201,10 +340,25 @@ namespace Farmino.Service.Migrations
                 name: "RefreshTokens");
 
             migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Offers");
+
+            migrationBuilder.DropTable(
+                name: "Auctions");
+
+            migrationBuilder.DropTable(
+                name: "Participants");
+
+            migrationBuilder.DropTable(
                 name: "Farmers");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Auctioners");
 
             migrationBuilder.DropTable(
                 name: "Users");

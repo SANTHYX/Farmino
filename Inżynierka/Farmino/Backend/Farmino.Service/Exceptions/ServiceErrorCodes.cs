@@ -16,5 +16,10 @@
         public static string CustomerAlreadyExist => "customer_already_exist";
         public static string OfferNotExist => "offer_not_exist";
         public static string ProductNoExist => "product_not_exist";
+        public static string AuctionerNotExist => "auctioner_not_exist";
+        public static string AuctionerAlreadyExist => "auctioner_already_exist";
+        public static string ParticipantNotExist => "participant_not_exist";
+        public static string ParticipantAlreadyExist => "participant_already_exist";
+        public static string AuctionDontExist => "auction_dont_exist";
     }
 }

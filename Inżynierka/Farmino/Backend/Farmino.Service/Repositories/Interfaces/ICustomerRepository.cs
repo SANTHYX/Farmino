@@ -7,6 +7,6 @@ namespace Farmino.Service.Repositories.Interfaces
     {
         Task AddAsync(Customer customer);
         Task<Customer> GetAsync(string userName);
-        Task SaveAsync();
+        Task SaveChangesAsync();
     }
 }

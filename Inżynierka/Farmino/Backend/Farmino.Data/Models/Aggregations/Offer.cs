@@ -1,8 +1,8 @@
-﻿using Farmino.Data.Models.Aggregations;
+﻿using Farmino.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace Farmino.Data.Models.Entities
+namespace Farmino.Data.Models.Aggregations 
 {
     public class Offer
     {

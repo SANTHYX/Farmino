@@ -13,6 +13,10 @@ namespace Farmino.Service.ORM
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Auctioner> Auctioners { get; set; }
+        public virtual DbSet<Participant> Participants { get; set; }
+        public virtual DbSet<Auction> Auctions { get; set; }
+        public virtual DbSet<ParticipantAuction> ParticipantAuctions { get; set; }
 
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
         { 
@@ -31,6 +35,8 @@ namespace Farmino.Service.ORM
                 x.HasMany(y => y.RefreshTokens).WithOne(z => z.User).HasForeignKey(q => q.UserId);
                 x.HasOne(y => y.Farmer).WithOne(z => z.User).HasForeignKey<Farmer>(q => q.UserId);
                 x.HasOne(y => y.Customer).WithOne(z => z.User).HasForeignKey<Customer>(q => q.UserId);
+                x.HasOne(y => y.Auctioner).WithOne(z => z.User).HasForeignKey<Auctioner>(q => q.UserId);
+                x.HasOne(y => y.Participant).WithOne(z => z.User).HasForeignKey<Participant>(q => q.UserId);
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
                 x.Property(y => y.UpdatedAt).HasMaxLength(10).IsRequired();
             });
@@ -67,7 +73,20 @@ namespace Farmino.Service.ORM
 
             builder.Entity<Customer>().HasKey(x => x.Id);
 
-            builder.Entity<Order>().HasKey(x => new { x.CustomerId, x.OfferId });
+            builder.Entity<Order>(x =>
+            {
+                x.HasKey(y => new { y.CustomerId, y.OfferId});
+                x.HasOne(y => y.Offer).WithMany(z => z.Orders).HasForeignKey(q => q.OfferId)
+                    .OnDelete(DeleteBehavior.Restrict);
+                x.HasOne(y => y.Customer).WithMany(z => z.Orders).HasForeignKey(q => q.CustomerId);
+                x.OwnsOne(y => y.OrderAddress, z =>
+                {
+                    z.Property(q => q.City).HasColumnName("City").HasMaxLength(30);
+                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").HasMaxLength(3);
+                    z.Property(q => q.PostalCode).HasColumnName("PostalCode").HasMaxLength(7); ;
+                    z.Property(q => q.Street).HasColumnName("Street").HasMaxLength(30); ;
+                });
+            });
 
             builder.Entity<Offer>(x => {
                 x.HasKey(y => y.Id);
@@ -88,6 +107,32 @@ namespace Farmino.Service.ORM
                     z.Property(q => q.Unit).HasColumnName("Unit");
                     z.Property(q => q.Value).HasColumnName("Value");
                 });
+            });
+
+            builder.Entity<Auctioner>(x =>
+            {
+                x.HasKey(y => y.Id);
+                x.HasMany(y => y.Auctions).WithOne(z => z.Auctioner).HasForeignKey(q => q.AuctionerId);
+            });
+
+            builder.Entity<Participant>().HasKey(x => x.Id);
+
+            builder.Entity<Auction>(x => {
+                x.HasKey(y => y.Id);
+                x.Property(y => y.Title).HasMaxLength(40).IsRequired();
+                x.Property(y => y.Description).IsRequired();
+                x.Property(y => y.EndDate).HasMaxLength(10).IsRequired();
+                x.Property(y => y.StartDate).HasMaxLength(10).IsRequired();
+                x.Property(y => y.StartingPrice).IsRequired();
+            });
+
+            builder.Entity<ParticipantAuction>(x =>
+            {
+                x.HasKey(y => new { y.AuctionId, y.ParticipantId });
+                x.HasOne(y => y.Participant).WithMany(z => z.Auctions).HasForeignKey(q => q.ParticipantId)
+                    .OnDelete(DeleteBehavior.Restrict);
+                x.HasOne(y => y.Auction).WithMany(z => z.Participants).HasForeignKey(q => q.AuctionId);
+                x.Property(y => y.ProposedPrice).IsRequired();
             });
         }
     }

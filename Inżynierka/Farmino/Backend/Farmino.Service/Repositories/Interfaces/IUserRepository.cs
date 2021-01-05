@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

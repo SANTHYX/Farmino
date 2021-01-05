@@ -1,8 +1,9 @@
-﻿using Farmino.Data.Models.Aggregations;
+﻿using Farmino.Data.Models.Entities;
 using Farmino.Service.ORM;
 using Microsoft.EntityFrameworkCore;
 using Farmino.Service.Repositories.Interfaces;
 using System.Threading.Tasks;
+using Farmino.Data.Models.Aggregations;
 
 namespace Farmino.Service.Repositories
 {
