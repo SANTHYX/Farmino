@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
-using Farmino.Service.DTO;
+using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.DTO.Product;
-using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System;
 using System.Threading.Tasks;

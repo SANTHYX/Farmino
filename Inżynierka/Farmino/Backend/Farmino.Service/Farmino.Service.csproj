@@ -19,22 +19,16 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Farmino.Data\Farmino.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DTO\Auctioner\" />
     <Folder Include="DTO\Customer\" />
     <Folder Include="DTO\Participant\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Farmino.Infrastructure\Farmino.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

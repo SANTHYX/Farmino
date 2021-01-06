@@ -1,6 +1,6 @@
 ﻿using Farmino.Data.Models.Entities;
+using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.Exceptions;
-using Farmino.Service.Repositories.Interfaces;
 using System;
 using System.Threading.Tasks;
 

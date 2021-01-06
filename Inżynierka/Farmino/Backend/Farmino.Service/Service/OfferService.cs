@@ -2,9 +2,9 @@
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
+using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.DTO.Offer;
 using Farmino.Service.Extensions;
-using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System;
 using System.Collections.Generic;

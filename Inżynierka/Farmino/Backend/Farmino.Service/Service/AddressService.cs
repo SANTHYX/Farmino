@@ -1,6 +1,6 @@
 ﻿using Farmino.Data.Models.ValueObjects;
+using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.Extensions;
-using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System.Threading.Tasks;
 

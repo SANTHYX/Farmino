@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Farmino.Data.Models.Aggregations;
+using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.DTO.User;
 using Farmino.Service.Extensions;
 using Farmino.Service.Extensions.Models;
-using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Security.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System.Collections.Generic;

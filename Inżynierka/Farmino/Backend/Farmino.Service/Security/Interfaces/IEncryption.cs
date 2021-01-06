@@ -1,4 +1,4 @@
-﻿namespace Farmino.Service.Security.Interfaces
+﻿namespace Farmino.Service.Security.Interfaces 
 {
     public interface IEncryption
     {

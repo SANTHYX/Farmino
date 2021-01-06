@@ -17,10 +17,12 @@ namespace Farmino.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
+        /*
         [HttpPut]
         public async Task<IActionResult> Put([FromBody]) 
         {
         }
+        */
 
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] CancelOrder command)

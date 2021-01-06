@@ -1,5 +1,5 @@
-﻿using Farmino.Service.Exceptions;
-using Farmino.Service.Repositories.Interfaces;
+﻿using Farmino.Infrastructure.Repositories.Interfaces;
+using Farmino.Service.Exceptions;
 using Farmino.Service.Service.Interfaces;
 using System;
 using System.Threading.Tasks;

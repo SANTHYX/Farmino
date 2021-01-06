@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Farmino.Infrastructure.IoC;
 
 namespace Farmino.Service.IoC.Modules
 {
@@ -9,8 +10,8 @@ namespace Farmino.Service.IoC.Modules
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule<CommandsModule>();
             builder.RegisterModule<QueryModule>();
-            builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<SecurityModule>();
+            builder.RegisterModule<InfractructureModule>();
         }
     }
 }
