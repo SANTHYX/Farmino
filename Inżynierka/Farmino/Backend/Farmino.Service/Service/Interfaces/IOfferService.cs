@@ -1,5 +1,6 @@
-﻿using Farmino.Service.DTO;
+﻿using Farmino.Service.DTO.Offer;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service.Interfaces
@@ -10,5 +11,6 @@ namespace Farmino.Service.Service.Interfaces
             string description, Guid productId);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
+        Task<IEnumerable<OffersDTO>> BrowseAllAsync();
     }
 }

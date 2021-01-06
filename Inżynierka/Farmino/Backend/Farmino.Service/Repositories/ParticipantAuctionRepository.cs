@@ -1,6 +1,9 @@
 ﻿using Farmino.Data.Models.Entities;
 using Farmino.Service.ORM;
 using Farmino.Service.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Repositories
@@ -18,6 +21,9 @@ namespace Farmino.Service.Repositories
         {
             await _context.ParticipantAuctions.AddAsync(participantAuction);
         }
+
+        public async Task<decimal> GetHighestPriceAsync(Guid auctionId)
+            => await _context.ParticipantAuctions.Where(x => x.AuctionId == auctionId).MaxAsync(z => z.ProposedPrice);
 
         public void Remove(ParticipantAuction participantAuction)
         {

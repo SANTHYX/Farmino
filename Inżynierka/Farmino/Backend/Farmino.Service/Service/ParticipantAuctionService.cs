@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Entities;
+using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
 using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Service.Interfaces;
@@ -26,8 +27,13 @@ namespace Farmino.Service.Service
             var participant = await _participantRepository.GetIfExist(userName);
             var auction = await _auctionRepository.GetIfExistAsync(auctionId);
 
-            await _participantAuctionRepository.AddAsync(new ParticipantAuction(participant, 
-                auction, proposedPrice));
+            if (await _participantAuctionRepository.GetHighestPriceAsync(auctionId) < proposedPrice)
+            {
+                await _participantAuctionRepository.AddAsync(new ParticipantAuction(participant,
+                    auction, proposedPrice));
+            }
+            throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
+                "Your proposedPrice is to low comparing to other participants");
         }
     }
 }

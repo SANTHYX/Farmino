@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Farmino.Service.DTO
+namespace Farmino.Service.DTO.Token
 {
     public class TokenDTO
     {

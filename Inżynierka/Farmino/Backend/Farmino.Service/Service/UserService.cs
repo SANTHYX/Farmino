@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Farmino.Data.Models.Aggregations;
-using Farmino.Data.Models.Entities;
-using Farmino.Service.DTO;
-using Farmino.Service.Exceptions;
+using Farmino.Service.DTO.User;
 using Farmino.Service.Extensions;
 using Farmino.Service.Extensions.Models;
 using Farmino.Service.Repositories.Interfaces;
@@ -33,10 +31,10 @@ namespace Farmino.Service.Service
             return _mapper.Map<User, UserDTO>(user);
         }
 
-        public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
+        public async Task<IEnumerable<UsersDTO>> GetAllUsersAsync()
         {
             var users = await _userRepository.BrowseAsync();
-            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
+            return _mapper.Map<IEnumerable<User>,IEnumerable<UsersDTO>>(users);
         }
 
         public async Task EditAsync(string userName, string newUserName,

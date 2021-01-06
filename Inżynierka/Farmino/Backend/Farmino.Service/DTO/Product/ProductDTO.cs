@@ -1,7 +1,6 @@
-﻿using Farmino.Data.Models.ValueObjects;
-using System;
+﻿using System;
 
-namespace Farmino.Service.DTO
+namespace Farmino.Service.DTO.Product
 {
     public class ProductDTO
     {

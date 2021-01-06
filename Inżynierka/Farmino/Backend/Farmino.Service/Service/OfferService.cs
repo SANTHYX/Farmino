@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Farmino.Data.Models.Aggregations;
-using Farmino.Service.DTO;
+using Farmino.Service.DTO.Offer;
 using Farmino.Service.Extensions;
 using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Service.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service
@@ -23,6 +24,12 @@ namespace Farmino.Service.Service
             _productRepository = productRepository;
             _offerRepository = offerRepository;
             _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<OffersDTO>> BrowseAllAsync()
+        {
+            var offers = await _offerRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<Offer>, IEnumerable<OffersDTO>>(offers);
         }
 
         public async Task CreateOffer(string userName, string title, string description, Guid productId)

@@ -1,5 +1,4 @@
-﻿using Farmino.Data.Models.Entities;
-using Farmino.Service.DTO;
+﻿using Farmino.Service.DTO.Product;
 using System;
 using System.Threading.Tasks;
 

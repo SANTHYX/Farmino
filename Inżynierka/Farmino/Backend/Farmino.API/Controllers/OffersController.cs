@@ -24,6 +24,10 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get(Guid id)
             => Ok(await _offerService.GetOfferAsync(id));
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+            => Ok(await _offerService.BrowseAllAsync());
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateOffer command)
         {

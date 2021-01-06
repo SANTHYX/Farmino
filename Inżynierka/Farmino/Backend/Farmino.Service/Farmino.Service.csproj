@@ -31,4 +31,10 @@
     <ProjectReference Include="..\Farmino.Data\Farmino.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\Auctioner\" />
+    <Folder Include="DTO\Customer\" />
+    <Folder Include="DTO\Participant\" />
+  </ItemGroup>
+
 </Project>

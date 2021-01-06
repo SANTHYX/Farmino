@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Farmino.Service.DTO.Auction;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service.Interfaces
@@ -7,5 +9,7 @@ namespace Farmino.Service.Service.Interfaces
     {
         Task CreateAuction(string userName, string title, string description, DateTime startDate,
             DateTime endDate, decimal startingPrice);
+        Task<AuctionDTO> GetAuction(Guid id);
+        Task<IEnumerable<AuctionsDTO>> BrowseAuctions();
     }
 }

@@ -1,4 +1,4 @@
-﻿using Farmino.Service.DTO;
+﻿using Farmino.Service.DTO.Token;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service.Interfaces

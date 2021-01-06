@@ -1,4 +1,6 @@
-﻿namespace Farmino.Service.DTO
+﻿using Farmino.Service.DTO.User.NestedModels;
+
+namespace Farmino.Service.DTO.User
 {
     public class UserDTO
     {

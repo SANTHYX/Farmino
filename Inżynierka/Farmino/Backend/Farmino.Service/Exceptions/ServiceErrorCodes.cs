@@ -21,5 +21,6 @@
         public static string ParticipantNotExist => "participant_not_exist";
         public static string ParticipantAlreadyExist => "participant_already_exist";
         public static string AuctionDontExist => "auction_dont_exist";
+        public static string YourPropositionIsToLow => "your_proposition_is_to_low";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Models.Entities;
+using System;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Repositories.Interfaces
@@ -7,6 +8,7 @@ namespace Farmino.Service.Repositories.Interfaces
     {
         Task AddAsync(ParticipantAuction participantAuction);
         void Remove(ParticipantAuction participantAuction);
+        Task<decimal> GetHighestPriceAsync(Guid auctionId);
         Task SaveChangesAsync();
     }
 }

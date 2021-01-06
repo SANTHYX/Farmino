@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Farmino.Service.DTO.Offer.NestedModels;
+using System;
 
-namespace Farmino.Service.DTO
+namespace Farmino.Service.DTO.Offer
 {
     public class OfferDTO
     {

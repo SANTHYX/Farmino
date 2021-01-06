@@ -1,4 +1,4 @@
-﻿namespace Farmino.Service.DTO
+﻿namespace Farmino.Service.DTO.Offer.NestedModels
 {
     public class FarmerDTO
     {

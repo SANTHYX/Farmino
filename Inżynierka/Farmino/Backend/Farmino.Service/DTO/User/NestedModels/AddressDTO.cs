@@ -1,4 +1,4 @@
-﻿namespace Farmino.Service.DTO
+﻿namespace Farmino.Service.DTO.User.NestedModels
 {
     public class AddressDTO
     {

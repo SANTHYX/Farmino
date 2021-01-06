@@ -1,4 +1,4 @@
-﻿using Farmino.Service.DTO;
+﻿using Farmino.Service.DTO.User;
 using Farmino.Service.Handlers.Interfaces;
 using Farmino.Service.Queries.UserQueries;
 using Farmino.Service.Service.Interfaces;
