@@ -17,15 +17,25 @@ namespace Farmino.Service.Mapper
         {
             //Models
             CreateMap<User, DTO.User.UserDTO>();
-            CreateMap<User, UsersDTO>();
-            CreateMap<Data.Models.Entities.Profile, ProfileDTO>();
-            CreateMap<Address, AddressDTO>();
+            CreateMap<User, DTO.User.UsersDTO>();
+            CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
+            CreateMap<User, DTO.Auction.NestedModels.UserDTO>();
+            CreateMap<Data.Models.Entities.Profile, DTO.User.NestedModels.ProfileDTO>();
+            CreateMap<Address, DTO.User.NestedModels.AddressDTO>();
+            CreateMap<Address, DTO.Offer.NestedModels.FarmerDTO>();
             CreateMap<RefreshToken, TokenDTO>();
             CreateMap<Offer, OfferDTO>();
             CreateMap<Offer, OffersDTO>();
             CreateMap<Product, ProductDTO>();
-            CreateMap<Weight, WeightDTO>();
-            CreateMap<Farmer, FarmerDTO>();
+            CreateMap<Weight, DTO.Offer.NestedModels.WeightDTO>();
+            CreateMap<Farmer, DTO.Offer.NestedModels.FarmerDTO>();
+            CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
+            CreateMap<Farmer, DTO.Farmer.FarmerDTO>();
+            CreateMap<Auction, DTO.Auction.AuctionDTO>();
+            CreateMap<Auction, DTO.Auction.AuctionsDTO>();
+            CreateMap<Auctioner, DTO.Auction.NestedModels.AuctionerDTO>();
+            CreateMap<Participant, DTO.Auction.NestedModels.ParticipantDTO>();
+            CreateMap<ParticipantAuction, DTO.Auction.NestedModels.ParticipantAuctionDTO>();
 
             //Extensions
             CreateMap<LoginAvalibility, LoginAvalibilityDTO>().ReverseMap();

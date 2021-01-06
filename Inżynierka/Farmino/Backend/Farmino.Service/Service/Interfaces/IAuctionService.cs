@@ -11,5 +11,6 @@ namespace Farmino.Service.Service.Interfaces
             DateTime endDate, decimal startingPrice);
         Task<AuctionDTO> GetAuction(Guid id);
         Task<IEnumerable<AuctionsDTO>> BrowseAuctions();
+        Task ToAuction(string userName, Guid auctionId, decimal proposedPrice);
     }
 }

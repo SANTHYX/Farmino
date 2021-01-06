@@ -28,13 +28,13 @@ namespace Farmino.Service.Service
         public async Task<UserDTO> GetUserAsync(string userName)
         {
             var user = await _userRepository.GetAsync(userName);
-            return _mapper.Map<User, UserDTO>(user);
+            return _mapper.Map<UserDTO>(user);
         }
 
         public async Task<IEnumerable<UsersDTO>> GetAllUsersAsync()
         {
             var users = await _userRepository.BrowseAsync();
-            return _mapper.Map<IEnumerable<User>,IEnumerable<UsersDTO>>(users);
+            return _mapper.Map<IEnumerable<UsersDTO>>(users);
         }
 
         public async Task EditAsync(string userName, string newUserName,

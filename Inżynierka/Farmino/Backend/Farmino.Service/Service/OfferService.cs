@@ -29,7 +29,7 @@ namespace Farmino.Service.Service
         public async Task<IEnumerable<OffersDTO>> BrowseAllAsync()
         {
             var offers = await _offerRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<Offer>, IEnumerable<OffersDTO>>(offers);
+            return _mapper.Map<IEnumerable<OffersDTO>>(offers);
         }
 
         public async Task CreateOffer(string userName, string title, string description, Guid productId)
@@ -44,7 +44,7 @@ namespace Farmino.Service.Service
         public async Task<OfferDTO> GetOfferAsync(Guid id)
         {
             var offer = await _offerRepository.GetAsync(id);
-            return _mapper.Map<Offer,OfferDTO>(offer);
+            return _mapper.Map<OfferDTO>(offer);
         }
 
         public async Task RemoveOffer(Guid id)
