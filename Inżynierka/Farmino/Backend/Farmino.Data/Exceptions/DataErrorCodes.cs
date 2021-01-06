@@ -15,16 +15,14 @@
         public static string InvalidEmail => "invalid_email";
         public static string InvalidSalt => "invalid_salt";
         public static string InvalidTitle => "invalid_title";
-        //Refresh Token
         public static string InvalidRefreshToken => "invalid_refresh_token";
         public static string InvalidToken => "invalid_refresh_token";
-        //Offer
-        //Product
         public static string InvalidProductName => "invalid_product_name";
         public static string InvalidProductQuantity => "invalid_product_quantity";
         public static string InvalidProductPrice => "invalid_product_price";
-        //Weight
         public static string InvalidProductWeightValue => "invalid_product_weight_value";
         public static string InvalidProductWeightUnit => "invalid_product_weight_unit";
+        public static string InvalidBoughtQuantity => "invalid_bought_quantity";
+        public static string InvalidPriceSummary => "invalid_price_summary";
     }
 }

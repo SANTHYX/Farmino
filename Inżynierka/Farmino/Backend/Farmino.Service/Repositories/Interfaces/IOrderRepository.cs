@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Farmino.Data.Models.Entities;
+using System;
+using System.Threading.Tasks;
 
 namespace Farmino.Service.Repositories.Interfaces
 {
-    interface IOrderRepository : IRepository
+    public interface IOrderRepository : IRepository
     {
+        Task<Order> GetAsync(Guid offerId, Guid customerId); 
+        Task AddAsync(Order order);
+        void Edit(Order order);
+        void Remove(Order order);
+        Task SaveChanges();
     }
 }

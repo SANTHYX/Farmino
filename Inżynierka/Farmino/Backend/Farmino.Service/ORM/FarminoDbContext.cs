@@ -12,6 +12,7 @@ namespace Farmino.Service.ORM
         public virtual DbSet<Farmer> Farmers { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Auctioner> Auctioners { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }

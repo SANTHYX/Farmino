@@ -14,6 +14,7 @@
         public static string FarmerAlreadyExist => "farmer_already_exist";
         public static string FarmerNotExist => "farmer_not_exist";
         public static string CustomerAlreadyExist => "customer_already_exist";
+        public static string CustomerDontExist => "customer_dont_exist";
         public static string OfferNotExist => "offer_not_exist";
         public static string ProductNoExist => "product_not_exist";
         public static string AuctionerNotExist => "auctioner_not_exist";
