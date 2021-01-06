@@ -1,28 +1,48 @@
-﻿using Farmino.Service.Repositories.Interfaces;
+﻿using Farmino.Service.Exceptions;
+using Farmino.Service.Repositories.Interfaces;
 using Farmino.Service.Service.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service
 {
     public class OrderService : IOrderService
     {
-        private readonly IAuctionRepository _auctionRepository;
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IOfferRepository _offerRepository;
 
-        public OrderService(IAuctionRepository auctionRepository, ICustomerRepository customerRepository)
+        public OrderService(IOrderRepository orderRepository, IOfferRepository offerRepository)
         {
-            _auctionRepository = auctionRepository;
-            _customerRepository = customerRepository;
+            _orderRepository = orderRepository;
+            _offerRepository = offerRepository;
         }
 
-        public Task CancelOrder()
+        public async Task CancelOrder(Guid offerId, Guid customerId)
         {
-            throw new System.NotImplementedException();
+            var order = await _orderRepository.GetAsync(offerId, customerId);
+            var offer = await _offerRepository.GetAsync(offerId);
+
+            if (!order.Released)
+            {
+                offer.Product.SetQuantity(offer.Product.Quantity + order.BoughtQuantity);
+
+                _orderRepository.Remove(order);
+                await _orderRepository.SaveChanges();
+            }
+            else throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
+                "Cannot cancel released order");
         }
 
-        public Task EditOrder()
+        public async Task EditOrder(Guid offerId, Guid customerId, int quantity)
         {
-            throw new System.NotImplementedException();
+            var order = await _orderRepository.GetAsync(offerId, customerId);
+
+            if (!order.Released)
+            {
+                var offer = await _offerRepository.GetAsync(offerId);
+                offer.Product.SetQuantity(quantity);
+                order.SetPriceSummary(offer.Product.Price * quantity);
+            }
         }
     }
 }

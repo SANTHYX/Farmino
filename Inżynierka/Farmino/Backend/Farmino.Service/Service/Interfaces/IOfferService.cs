@@ -13,7 +13,7 @@ namespace Farmino.Service.Service.Interfaces
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
         Task<IEnumerable<OffersDTO>> BrowseAllAsync();
-        Task BuyAsync(string customerName, string farmerName, Guid offerId, Address address, int boughtQuantity,
-            decimal priceSummary, bool customAddress);
+        Task BuyAsync(string customerName, Guid offerId,
+                int boughtQuantity, bool customAddress, Address address = null);
     }
 }

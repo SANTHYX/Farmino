@@ -23,5 +23,6 @@
         public static string ParticipantAlreadyExist => "participant_already_exist";
         public static string AuctionDontExist => "auction_dont_exist";
         public static string YourPropositionIsToLow => "your_proposition_is_to_low";
+        public static string CannotCancelReleasedOrder => "cannot_cancel_released_order";
     }
 }

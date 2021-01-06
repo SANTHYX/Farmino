@@ -22,7 +22,7 @@ namespace Farmino.Data.Models.Entities
             SetName(name);
             SetPrice(price);
             SetQuantity(quantity);
-            SetWeight(weight);
+            Weight = weight;
         }
 
         public void SetName(string name)
@@ -70,9 +70,14 @@ namespace Farmino.Data.Models.Entities
             Quantity = quantity;
         }
 
-        public void SetWeight(Weight weight)
+        public void DecreaseQuantity(int value)
         {
-            Weight = weight;
+            if (Quantity - value < 0)
+            {
+                throw new DataExceptions("");
+            }
+
+            Quantity -= value;
         }
     }
 }

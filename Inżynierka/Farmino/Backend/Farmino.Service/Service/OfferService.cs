@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.DTO.Offer;
 using Farmino.Service.Extensions;
@@ -37,18 +38,24 @@ namespace Farmino.Service.Service
             return _mapper.Map<IEnumerable<OffersDTO>>(offers);
         }
 
-        public async Task BuyAsync(string customerName, string farmerName, Guid offerId, Address address = null,
-            int boughtQuantity, decimal priceSummary, bool customAddress)
+        public async Task BuyAsync(string customerName, Guid offerId,
+            int boughtQuantity, bool customAddress, Address address = null)
         {
-            var customer = await _customerRepository.GetIfExistAsync(customerName);
-            var farmer = await _farmerRepository.GetIfExist(farmerName);
             var offer = await _offerRepository.GetIfExist(offerId);
-            var product = await _productRepository.GetIfExist(offer.Product.Id);
-            var order = await _orderRepository.
+            var customer = await _customerRepository.GetIfExistAsync(customerName);
 
-            product.SetQuantity(-boughtQuantity);
-            await _offerRepository.AddAsync(new Offer())
-            
+            offer.Product.DecreaseQuantity(boughtQuantity);
+            var priceSummary = offer.Product.Price * boughtQuantity;
+
+            if (!customAddress)
+            {
+                await _orderRepository.AddAsync(new Order(offer, customer,
+                    customer.User.Profile.Address, boughtQuantity, priceSummary, customAddress));
+            }
+            else await _orderRepository.AddAsync(new Order(offer, customer,
+                    address, boughtQuantity, priceSummary, customAddress));
+
+            await _orderRepository.SaveChanges();           
         }
 
         public async Task CreateOffer(string userName, string title, string description, Guid productId)
