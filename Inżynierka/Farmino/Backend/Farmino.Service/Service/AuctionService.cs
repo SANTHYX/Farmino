@@ -3,11 +3,13 @@ using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.DTO.Auction;
+using Farmino.Service.DTO.Auction.NestedModels;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
 using Farmino.Service.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service
@@ -34,7 +36,7 @@ namespace Farmino.Service.Service
         public async Task CreateAuction(string userName, string title, string description, 
             DateTime startDate, DateTime endDate, decimal startingPrice)
         {
-            var auctioner = await _auctionerRepository.GetIfExist(userName);
+            var auctioner = await _auctionerRepository.GetIfExistAsync(userName);
             await _auctionRepository.AddAsync(new Auction(title, description, startDate, endDate,
                 startingPrice, auctioner));
             await _auctionRepository.SaveChangesAsync();
@@ -54,17 +56,34 @@ namespace Farmino.Service.Service
 
         public async Task ToAuction(string userName, Guid auctionId, decimal proposedPrice) 
         {
-            var participant = await _participantRepository.GetIfExist(userName);
+            var participant = await _participantRepository.GetIfExistAsync(userName);
             var auction = await _auctionRepository.GetIfExistAsync(auctionId);
 
-            if (await _participantAuctionRepository.GetHighestPriceAsync(auctionId) < proposedPrice)
+            if (await _participantAuctionRepository.GetHighestPriceAsync(auctionId) > proposedPrice)
             {
-                await _participantAuctionRepository
-                    .AddAsync(new ParticipantAuction(participant, auction, proposedPrice));
-                await _participantAuctionRepository.SaveChangesAsync();
+                throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
+                    "Your proposed price is too low, you need to increase your budget");
             }
-            else throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
-                "Your proposed price is too low, you need to increase your budget");
+
+            await _participantAuctionRepository
+                    .AddAsync(new ParticipantAuction(participant, auction, proposedPrice));
+            await _participantAuctionRepository.SaveChangesAsync();
+        }
+
+        public async Task<ParticipantAuctionDTO> GetWinner(Guid auctionId)
+        {
+            var auction = await _auctionRepository.GetIfExistAsync(auctionId);
+
+            if (auction.EndDate > DateTime.Now)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.AuctionHasNotEndYet,
+                    "Cannot get winner if auction is still active");
+            }
+
+            var winner = auction.Participants
+                .OrderByDescending(x => x.ProposedPrice).First();
+
+            return _mapper.Map<ParticipantAuctionDTO>(winner);
         }
     }
 }

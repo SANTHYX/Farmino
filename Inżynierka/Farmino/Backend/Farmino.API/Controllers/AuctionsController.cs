@@ -28,6 +28,10 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get()
             => Ok(await _auctionService.BrowseAuctions());
 
+        [HttpGet("winner/{id}")]
+        public async Task<IActionResult> GetWinner(Guid id)
+            => Ok(await _auctionService.GetWinner(id));
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAuction command)
         {
@@ -35,7 +39,7 @@ namespace Farmino.API.Controllers
             return Ok("Auction has been created");
         }
 
-        [HttpPost("/auctions/to-auction")]
+        [HttpPost("to-auction")]
         public async Task<IActionResult> Post([FromBody] ToAuction command)
         {
             await _commandDispatcher.DispatchAsync(command);

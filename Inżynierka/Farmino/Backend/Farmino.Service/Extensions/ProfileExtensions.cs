@@ -8,9 +8,12 @@ namespace Farmino.Service.Extensions
 {
     public static class ProfileExtensions
     {
-        public static async Task<Profile> GetIfExistAsync(this IProfileRepository repository, Guid id)
+        public static async Task<bool> IsProfileExistAsync(this IProfileRepository repository, Guid userId)
+            => await repository.GetByUserIdAsync(userId) != null;
+
+        public static async Task<Profile> GetIfExistAsync(this IProfileRepository repository, Guid userId)
         {
-            var profile = await repository.GetByUserIdAsync(id);
+            var profile = await repository.GetByUserIdAsync(userId);
 
             if(profile == null)
             {

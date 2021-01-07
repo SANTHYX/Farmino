@@ -28,6 +28,13 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get()
             => Ok(await _offerService.BrowseAllAsync());
 
+        [HttpPost("buy")]
+        public async Task<IActionResult> Post([FromBody] Buy command)
+        {
+            await _commandDispatcher.DispatchAsync(command);
+            return Ok("Transaction has been completed sucesfully");
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateOffer command)
         {

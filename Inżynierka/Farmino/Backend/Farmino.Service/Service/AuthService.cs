@@ -28,7 +28,7 @@ namespace Farmino.Service.Service
 
         public async Task RegisterAsync(string userName, string password, string email)
         {
-            if (!await _userRepository.IsUserExist(userName))
+            if (!await _userRepository.IsUserExistAsync(userName))
             {
                 var salt = _encryption.GenerateSalt(password);
                 var hashedPassword = _encryption.GenerateHash(password, salt);
@@ -42,34 +42,29 @@ namespace Farmino.Service.Service
 
         public async Task<TokenDTO> Login(string userName, string password)
         {
-            if (await _userRepository.IsUserExist(userName))
+            var user = await _userRepository.GetForAuthAsync(userName);
+
+            if (user.Password != _encryption.GenerateHash(password,user.Salt))
             {
-                var user = await _userRepository.GetAsync(userName);
-
-                if (user.Password == _encryption.GenerateHash(password,user.Salt))
-                {
-                    var generatedToken = _tokenManager.GenerateToken(user);
-
-                    await _refreshTokenRepository.AddRefreshTokenAsync(generatedToken.RefreshToken);
-                    await _refreshTokenRepository.SaveChanges();
-
-                    return new TokenDTO
-                    {
-                        Token = generatedToken.Token.Token,
-                        Refresh = generatedToken.RefreshToken.Token,
-                        ExpiresAt = generatedToken.RefreshToken.ExpiresAt
-                    };
-                }
-                else throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
-                  "Invalid Credentials");
+                throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
+                    "Invalid Credentials");
             }
-            else throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
-                  "Invalid Credentials");
+            var generatedToken = _tokenManager.GenerateToken(user);
+
+            await _refreshTokenRepository.AddRefreshTokenAsync(generatedToken.RefreshToken);
+            await _refreshTokenRepository.SaveChanges();
+
+            return new TokenDTO
+            {
+                Token = generatedToken.Token.Token,
+                Refresh = generatedToken.RefreshToken.Token,
+                ExpiresAt = generatedToken.RefreshToken.ExpiresAt
+            };
         }
 
         public async Task<TokenDTO> RefreshToken(string token, string refresh)
         {
-            var refreshToken = await _refreshTokenRepository.GetIfExist(refresh);
+            var refreshToken = await _refreshTokenRepository.GetIfExistAsync(refresh);
 
             if (refreshToken.IsRevoked)
             {
@@ -100,10 +95,11 @@ namespace Farmino.Service.Service
 
         public async Task RevokeToken(string refresh)
         {
-            var refreshToken = await _refreshTokenRepository.GetIfExist(refresh);
+            var refreshToken = await _refreshTokenRepository.GetIfExistAsync(refresh);
 
             refreshToken.SetRevoke(true);
             _refreshTokenRepository.EditToken(refreshToken);
+
             await _refreshTokenRepository.SaveChanges();
         }
     }

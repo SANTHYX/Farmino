@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmino.Service.DTO.Product.NestedModels;
+using System;
 
 namespace Farmino.Service.DTO.Product
 {

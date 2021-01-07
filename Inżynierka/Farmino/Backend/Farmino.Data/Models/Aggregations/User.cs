@@ -81,10 +81,15 @@ namespace Farmino.Data.Models.Aggregations
         }
         public void SetEmail(string email)
         {
-            if (string.IsNullOrWhiteSpace(email) && !email.IsEmail())
+            if (string.IsNullOrWhiteSpace(email))
             {
                 throw new DataExceptions(DataErrorCodes.InvalidEmail,
-                    "Email is invalid");
+                    "Email cannot be empty");
+            }
+            if (!email.IsEmail())
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidEmail,
+                    "Invalid Email");
             }
             if (Email == email)
             {

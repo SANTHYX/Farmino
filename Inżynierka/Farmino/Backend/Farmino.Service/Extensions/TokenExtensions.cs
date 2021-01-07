@@ -7,7 +7,7 @@ namespace Farmino.Service.Extensions
 {
     public static class TokenExtensions 
     {
-        public static async Task<RefreshToken> GetIfExist(this IRefreshTokenRepository repository, string refresh)
+        public static async Task<RefreshToken> GetIfExistAsync(this IRefreshTokenRepository repository, string refresh)
         {
             var refreshToken = await repository.GetTokenAsync(refresh);
 

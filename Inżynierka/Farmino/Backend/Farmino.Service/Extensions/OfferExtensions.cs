@@ -9,10 +9,10 @@ namespace Farmino.Service.Extensions
 {
     public static class OfferExtensions
     {
-        public async static Task<bool> IsOfferExist(this IOfferRepository repository, Guid id)
+        public async static Task<bool> IsOfferExistAsync(this IOfferRepository repository, Guid id)
             => await repository.GetAsync(id) != null;
 
-        public async static Task<Offer> GetIfExist(this IOfferRepository repository, Guid id)
+        public async static Task<Offer> GetIfExistAsync(this IOfferRepository repository, Guid id)
         {
             var offer = await repository.GetAsync(id);
 

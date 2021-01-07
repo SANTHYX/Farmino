@@ -8,10 +8,10 @@ namespace Farmino.Service.Extensions
 {
     public static class ProductExtensions
     {
-        public async static Task<bool> IsProductExist(this IProductRepository repository, Guid id)
+        public async static Task<bool> IsProductExistAsync(this IProductRepository repository, Guid id)
             => await repository.GetAsync(id) != null;
 
-        public async static Task<Product> GetIfExist(this IProductRepository repository, Guid id)
+        public async static Task<Product> GetIfExistAsync(this IProductRepository repository, Guid id)
         {
             var product = await repository.GetAsync(id);
 

@@ -21,7 +21,20 @@ namespace Farmino.Service.Extensions
             return user;
         }
 
-        public static async Task<bool> IsUserExist(this IUserRepository repository, string userName)
+        public static async Task<User> GetForAuthAsync(this IUserRepository repository, string userName)
+        {
+            var user = await repository.GetAsync(userName);
+
+            if (user == null)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
+                    "Invalid Credentials");
+            }
+
+            return user;
+        }
+
+        public static async Task<bool> IsUserExistAsync(this IUserRepository repository, string userName)
             => await repository.GetAsync(userName) != null;
     }
 }

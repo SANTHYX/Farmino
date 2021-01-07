@@ -23,7 +23,7 @@ namespace Farmino.Service.Service
         {
             var user = await _userRepository.GetIfExistAsync(userName);
 
-            if (!await _auctionerRepository.IsAuctionerExist(userName))
+            if (!await _auctionerRepository.IsAuctionerExistAsync(userName))
             {
                 await _auctionerRepository.AddAsync(new Auctioner(user));
                 await _auctionerRepository.SaveChangesAsync();

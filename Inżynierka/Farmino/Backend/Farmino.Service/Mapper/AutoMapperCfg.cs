@@ -1,12 +1,6 @@
 ﻿using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
-using Farmino.Service.DTO;
-using Farmino.Service.DTO.Offer;
-using Farmino.Service.DTO.Offer.NestedModels;
-using Farmino.Service.DTO.Token;
-using Farmino.Service.DTO.User;
-using Farmino.Service.DTO.User.NestedModels;
 using Farmino.Service.Extensions.Models;
 
 namespace Farmino.Service.Mapper
@@ -23,10 +17,12 @@ namespace Farmino.Service.Mapper
             CreateMap<Data.Models.Entities.Profile, DTO.User.NestedModels.ProfileDTO>();
             CreateMap<Address, DTO.User.NestedModels.AddressDTO>();
             CreateMap<Address, DTO.Offer.NestedModels.FarmerDTO>();
-            CreateMap<RefreshToken, TokenDTO>();
-            CreateMap<Offer, OfferDTO>();
-            CreateMap<Offer, OffersDTO>();
-            CreateMap<Product, ProductDTO>();
+            CreateMap<RefreshToken, DTO.Token.TokenDTO>();
+            CreateMap<Offer, DTO.Offer.OfferDTO>();
+            CreateMap<Offer, DTO.Offer.OffersDTO>();
+            CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
+            CreateMap<Product, DTO.Product.ProductDTO>();
+            CreateMap<Weight, DTO.Product.NestedModels.WeightDTO>();
             CreateMap<Weight, DTO.Offer.NestedModels.WeightDTO>();
             CreateMap<Farmer, DTO.Offer.NestedModels.FarmerDTO>();
             CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
@@ -38,7 +34,7 @@ namespace Farmino.Service.Mapper
             CreateMap<ParticipantAuction, DTO.Auction.NestedModels.ParticipantAuctionDTO>();
 
             //Extensions
-            CreateMap<LoginAvalibility, LoginAvalibilityDTO>().ReverseMap();
+            CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>().ReverseMap();
         }
     }
 }

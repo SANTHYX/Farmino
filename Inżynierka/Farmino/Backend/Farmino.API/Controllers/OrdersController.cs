@@ -1,7 +1,6 @@
 ﻿using Farmino.Service.Commands.OrderCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Farmino.API.Controllers

@@ -7,10 +7,10 @@ namespace Farmino.Service.Extensions
 {
     public static class AuctionerExtensions
     {
-        public static async Task<bool> IsAuctionerExist(this IAuctionerRepository repository, string userName)
+        public static async Task<bool> IsAuctionerExistAsync(this IAuctionerRepository repository, string userName)
             => await repository.GetAsync(userName) != null;
 
-        public static async Task<Auctioner> GetIfExist(this IAuctionerRepository repository, string userName)
+        public static async Task<Auctioner> GetIfExistAsync(this IAuctionerRepository repository, string userName)
         {
             var auctioner = await repository.GetAsync(userName);
 

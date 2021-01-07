@@ -22,7 +22,7 @@ namespace Farmino.Service.Service
         {
             var user = await _userRepository.GetIfExistAsync(userName);
 
-            if (!await _customerRepository.IsCustomerExist(userName))
+            if (!await _customerRepository.IsCustomerExistAsync(userName))
             {
                 await _customerRepository.AddAsync(new Customer(user));
                 await _customerRepository.SaveChangesAsync();

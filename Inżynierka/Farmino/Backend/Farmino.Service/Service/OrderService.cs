@@ -22,27 +22,31 @@ namespace Farmino.Service.Service
             var order = await _orderRepository.GetAsync(offerId, customerId);
             var offer = await _offerRepository.GetAsync(offerId);
 
-            if (!order.Released)
+            if (order.Released)
             {
-                offer.Product.SetQuantity(offer.Product.Quantity + order.BoughtQuantity);
-
-                _orderRepository.Remove(order);
-                await _orderRepository.SaveChanges();
+                throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
+                    "Cannot cancel released order");
             }
-            else throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
-                "Cannot cancel released order");
+
+            offer.Product.SetQuantity(offer.Product.Quantity + order.BoughtQuantity);
+
+            _orderRepository.Remove(order);
+            await _orderRepository.SaveChanges();
         }
 
         public async Task EditOrder(Guid offerId, Guid customerId, int quantity)
         {
             var order = await _orderRepository.GetAsync(offerId, customerId);
 
-            if (!order.Released)
+            if (order.Released)
             {
-                var offer = await _offerRepository.GetAsync(offerId);
-                offer.Product.SetQuantity(quantity);
-                order.SetPriceSummary(offer.Product.Price * quantity);
+                throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
+                    "Cannot edit released order");
             }
+
+            var offer = await _offerRepository.GetAsync(offerId);
+            offer.Product.SetQuantity(quantity);
+            order.SetPriceSummary(offer.Product.Price * quantity);
         }
     }
 }

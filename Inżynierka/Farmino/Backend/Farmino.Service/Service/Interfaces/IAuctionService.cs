@@ -1,4 +1,5 @@
 ﻿using Farmino.Service.DTO.Auction;
+using Farmino.Service.DTO.Auction.NestedModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,5 +13,6 @@ namespace Farmino.Service.Service.Interfaces
         Task<AuctionDTO> GetAuction(Guid id);
         Task<IEnumerable<AuctionsDTO>> BrowseAuctions();
         Task ToAuction(string userName, Guid auctionId, decimal proposedPrice);
+        Task<ParticipantAuctionDTO> GetWinner(Guid auctionId);
     }
 }

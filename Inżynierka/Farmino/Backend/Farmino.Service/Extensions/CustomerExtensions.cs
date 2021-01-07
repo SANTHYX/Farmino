@@ -7,7 +7,7 @@ namespace Farmino.Service.Extensions
 {
     public static class CustomerExtensions
     {
-        public static async Task<bool> IsCustomerExist(this ICustomerRepository repository, string userName)
+        public static async Task<bool> IsCustomerExistAsync(this ICustomerRepository repository, string userName)
             => await repository.GetAsync(userName) != null;
 
         public static async Task<Customer> GetIfExistAsync(this ICustomerRepository repository, string userName)

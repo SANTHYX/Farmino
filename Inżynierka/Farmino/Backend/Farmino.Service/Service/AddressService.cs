@@ -1,5 +1,6 @@
 ﻿using Farmino.Data.Models.ValueObjects;
 using Farmino.Infrastructure.Repositories.Interfaces;
+using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
 using Farmino.Service.Service.Interfaces;
 using System.Threading.Tasks;
@@ -22,27 +23,37 @@ namespace Farmino.Service.Service
             string postalCode, int houseNumber)
         {
             var user = await _userRepository.GetIfExistAsync(userName);
-            var profil = await _profileRepository.GetIfExistAsync(user.Id);
+            var profile = await _profileRepository.GetIfExistAsync(user.Id);
 
-            profil.SetAddress(Address.Create(city, street, postalCode, houseNumber));
+            if (profile.Address == null)
+            {
+                profile.SetAddress(Address.Create(city, street, postalCode, houseNumber));
 
-            _profileRepository.EditProfile(profil);
-            await _profileRepository.SaveChanges();
+                _profileRepository.EditProfile(profile);
+                await _profileRepository.SaveChanges();
+            }
+            else throw new ServiceExceptions(ServiceErrorCodes.AddressAlreadyExist,
+                "Address for that profile already exist");
         }
 
         public async Task EditAddressAsync(string userName, string city, string street,
             string postalCode, int houseNumber)
         {
             var user = await _userRepository.GetIfExistAsync(userName);
-            var profil = await _profileRepository.GetIfExistAsync(user.Profile.Id);
+            var profile = await _profileRepository.GetIfExistAsync(user.Id);
 
-            profil.Address.SetCity(city);
-            profil.Address.SetStreet(street);
-            profil.Address.SetPostalCode(postalCode);
-            profil.Address.SetHouseNumber(houseNumber);
+            if (profile.Address != null)
+            {
+                profile.Address.SetCity(city);
+                profile.Address.SetStreet(street);
+                profile.Address.SetPostalCode(postalCode);
+                profile.Address.SetHouseNumber(houseNumber);
 
-            _profileRepository.EditProfile(profil);
-            await _profileRepository.SaveChanges();
+                _profileRepository.EditProfile(profile);
+                await _profileRepository.SaveChanges();
+            }
+            else throw new ServiceExceptions(ServiceErrorCodes.AddressNotExist,
+                "Address for that profile not exist");
         }
     }
 }
