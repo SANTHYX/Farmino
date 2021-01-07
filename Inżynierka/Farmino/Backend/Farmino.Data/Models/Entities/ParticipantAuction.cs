@@ -26,7 +26,8 @@ namespace Farmino.Data.Models.Entities
         {
             if (proposedPrice <= decimal.Zero)
             {
-                throw new DataExceptions("Error");
+                throw new DataExceptions(DataErrorCodes.InvalidProposedPrice, 
+                    "ProposedPrice should be greather than zero");
             }
 
             ProposedPrice = proposedPrice;

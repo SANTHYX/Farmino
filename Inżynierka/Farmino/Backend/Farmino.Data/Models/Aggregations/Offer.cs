@@ -1,4 +1,5 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace Farmino.Data.Models.Aggregations
         public Guid ProductId { get; protected set; }
         public Product Product { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
+        public DateTime UpdatedAt { get; protected set; } 
         public IEnumerable<Order> Orders { get; protected set; }
 
         protected Offer() { }
@@ -26,19 +28,15 @@ namespace Farmino.Data.Models.Aggregations
             SetTitle(title);
             SetDescription(description);
             SetProduct(product);
-            CreatedAt = DateTime.Now;
-        }
-
-        public void SetFarmer(Farmer farmer)
-        {
-            Farmer = farmer;
+            CreatedAt = UpdatedAt = DateTime.Now;
         }
 
         public void SetTitle(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                throw new Exception("Title cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidTitle,
+                    "Title cannot be empty");
             }
             if (Title == title)
             {
@@ -46,13 +44,15 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             Title = title;
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetDescription(string description)
         {
             if (string.IsNullOrWhiteSpace(description))
             {
-                throw new Exception("Description cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidDescription, 
+                    "Description cannot be empty");
             }
             if (Description == description)
             {
@@ -60,11 +60,19 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             Description = description;
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetProduct(Product product)
         {
             Product = product;
+            UpdatedAt = DateTime.Now;
+        }
+
+        public void SetFarmer(Farmer farmer)
+        {
+            Farmer = farmer;
+            UpdatedAt = DateTime.Now;
         }
     }
 }

@@ -15,6 +15,7 @@
         public static string InvalidEmail => "invalid_email";
         public static string InvalidSalt => "invalid_salt";
         public static string InvalidTitle => "invalid_title";
+        public static string InvalidDescription => "invalid_description";
         public static string InvalidRefreshToken => "invalid_refresh_token";
         public static string InvalidToken => "invalid_refresh_token";
         public static string InvalidProductName => "invalid_product_name";
@@ -24,5 +25,6 @@
         public static string InvalidProductWeightUnit => "invalid_product_weight_unit";
         public static string InvalidBoughtQuantity => "invalid_bought_quantity";
         public static string InvalidPriceSummary => "invalid_price_summary";
+        public static string InvalidProposedPrice => "invalid_proposed_price";
     }
 }
