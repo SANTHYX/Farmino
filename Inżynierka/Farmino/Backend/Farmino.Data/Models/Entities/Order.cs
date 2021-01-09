@@ -77,7 +77,7 @@ namespace Farmino.Data.Models.Entities
             UpdatedAt = DateTime.Now;
         }
 
-        private void IsCustomAddress(bool customAddress)
+        public void IsCustomAddress(bool customAddress)
         {
             if (CustomAddress == customAddress)
             {

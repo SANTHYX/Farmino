@@ -1,5 +1,4 @@
 ﻿using Farmino.Data.Exceptions;
-using Farmino.Data.Models.Entities;
 using System;
 
 namespace Farmino.Data.Models.Aggregations
@@ -28,11 +27,6 @@ namespace Farmino.Data.Models.Aggregations
 
         public void SetRevoke(bool value)
         {
-            if (IsRevoked == value)
-            {
-                return;
-            }
-
             IsRevoked = value;
         }
 
@@ -42,10 +36,6 @@ namespace Farmino.Data.Models.Aggregations
             {
                 throw new DataExceptions(DataErrorCodes.InvalidToken, 
                     "Token cannot be empty");
-            }
-            if(Token == token)
-            {
-                return;
             }
 
             Token = token;

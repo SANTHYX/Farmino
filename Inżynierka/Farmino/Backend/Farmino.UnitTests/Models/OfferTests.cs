@@ -8,7 +8,7 @@ namespace Farmino.UnitTests.Models
     public class OfferTests
     {
         private readonly Mock<Offer> offer;
-
+      
         public OfferTests()
         {
             offer = new Mock<Offer>();

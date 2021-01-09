@@ -16,6 +16,8 @@ namespace Farmino.Data.Models.Aggregations
         public Guid AuctionerId { get; protected set; }
         public Auctioner Auctioner { get; protected set; }
         public IEnumerable<ParticipantAuction> Participants { get; protected set; }
+        public DateTime CreatedAt { get; protected set; }
+        public DateTime UpdatedAt { get; protected set; } 
 
         protected Auction() { }
 
@@ -29,13 +31,15 @@ namespace Farmino.Data.Models.Aggregations
             SetStartDate(startDate);
             SetStartingPrice(startingPrice);
             Auctioner = auctioner;
+            CreatedAt = UpdatedAt = DateTime.Now;
         }
 
         public void SetTitle(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                throw new Exception("Title cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidTitle, 
+                    "Title cannot be empty");
             }
             if (Title == title)
             {
@@ -43,13 +47,15 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             Title = title;
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetDescription(string description)
         {
             if (string.IsNullOrWhiteSpace(description))
             {
-                throw new Exception("Description cannot be empty");
+                throw new DataExceptions(DataErrorCodes.InvalidDescription,
+                    "Description cannot be empty");
             }
             if (Description == description)
             {
@@ -57,36 +63,55 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             Description = description;
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetStartDate(DateTime startDate)
         {
-            if (startDate >= EndDate)
+            if (startDate < DateTime.Now)
             {
-                throw new DataExceptions("");
+                throw new DataExceptions(DataErrorCodes.InvalidDate,
+                    "StartDate is invalid, should be actual date or future date");
+            }
+            if (StartDate == startDate)
+            {
+                return;
             }
 
             StartDate = startDate;
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetEndDate(DateTime endDate)
         {
             if(endDate <= StartDate)
             {
-                throw new DataExceptions("");
+                throw new DataExceptions(DataErrorCodes.InvalidDate,
+                    "EndDate cannot be lesser than StartDate");
+            }
+            if (EndDate == endDate)
+            {
+                return;
             }
 
             EndDate = endDate;
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetStartingPrice(decimal startingPrice)
         {
-            if(startingPrice <= decimal.Zero)
+            if (startingPrice <= decimal.Zero)
             {
-                throw new DataExceptions("");
+                throw new DataExceptions(DataErrorCodes.InvalidStartingPrice,
+                    "StartingPrice cannot be less or equal zero");
+            }
+            if (StartingPrice == startingPrice)
+            {
+                return;
             }
 
             StartingPrice = startingPrice;
+            UpdatedAt = DateTime.Now;
         }
     }
 }

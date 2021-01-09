@@ -26,5 +26,7 @@
         public static string InvalidBoughtQuantity => "invalid_bought_quantity";
         public static string InvalidPriceSummary => "invalid_price_summary";
         public static string InvalidProposedPrice => "invalid_proposed_price";
+        public static string InvalidDate => "invalid_date";
+        public static string InvalidStartingPrice => "invalid_starting_price";
     }
 }
