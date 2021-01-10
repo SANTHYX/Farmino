@@ -1,14 +1,11 @@
 ﻿using Farmino.Data.Exceptions;
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.ValueObjects;
-using System;
 
 namespace Farmino.Data.Models.Entities
 {
     public class Product
     {
-        public Guid Id { get; protected set; }
-        public string Name { get; protected set; }
         public decimal Price { get; protected set; }
         public int Quantity { get; protected set; }
         public Weight Weight { get; protected set; }
@@ -16,28 +13,11 @@ namespace Farmino.Data.Models.Entities
 
         protected Product() { }
 
-        public Product(string name, decimal price, int quantity, Weight weight)
+        public Product(decimal price, int quantity, Weight weight)
         {
-            Id = Guid.NewGuid();
-            SetName(name);
             SetPrice(price);
             SetQuantity(quantity);
             Weight = weight;
-        }
-
-        public void SetName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new DataExceptions(DataErrorCodes.InvalidProductName, 
-                    "Name of product cannot be empty");
-            }
-            if (Name == name)
-            {
-                return;
-            }
-
-            Name = name;
         }
 
         public void SetPrice(decimal price)
@@ -79,5 +59,8 @@ namespace Farmino.Data.Models.Entities
 
             Quantity -= value;
         }
+
+        public static Product Create(decimal price, int quantity, Weight weight)
+            => new Product(price, quantity, weight);
     }
 }

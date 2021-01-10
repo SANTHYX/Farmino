@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210110132303_MyMigration")]
+    [Migration("20210110161216_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,9 +131,6 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<Guid>("FarmerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(40)
@@ -145,9 +142,6 @@ namespace Farmino.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FarmerId");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
 
                     b.ToTable("Offers");
                 });
@@ -292,27 +286,6 @@ namespace Farmino.Infrastructure.Migrations
                     b.ToTable("ParticipantAuctions");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
                 {
                     b.Property<Guid>("Id")
@@ -397,11 +370,49 @@ namespace Farmino.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Farmino.Data.Models.Entities.Product", "Product")
-                        .WithOne("Offer")
-                        .HasForeignKey("Farmino.Data.Models.Aggregations.Offer", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.OwnsOne("Farmino.Data.Models.Entities.Product", "Product", b1 =>
+                        {
+                            b1.Property<Guid>("OfferId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<decimal>("Price")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<int>("Quantity")
+                                .HasColumnType("int");
+
+                            b1.HasKey("OfferId");
+
+                            b1.ToTable("Offers");
+
+                            b1.WithOwner("Offer")
+                                .HasForeignKey("OfferId");
+
+                            b1.OwnsOne("Farmino.Data.Models.ValueObjects.Weight", "Weight", b2 =>
+                                {
+                                    b2.Property<Guid>("ProductOfferId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<int>("Unit")
+                                        .HasColumnType("int")
+                                        .HasColumnName("Unit");
+
+                                    b2.Property<double>("Value")
+                                        .HasColumnType("float")
+                                        .HasColumnName("Value");
+
+                                    b2.HasKey("ProductOfferId");
+
+                                    b2.ToTable("Offers");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("ProductOfferId");
+                                });
+
+                            b1.Navigation("Offer");
+
+                            b1.Navigation("Weight");
+                        });
 
                     b.Navigation("Farmer");
 
@@ -506,32 +517,6 @@ namespace Farmino.Infrastructure.Migrations
                     b.Navigation("Participant");
                 });
 
-            modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
-                {
-                    b.OwnsOne("Farmino.Data.Models.ValueObjects.Weight", "Weight", b1 =>
-                        {
-                            b1.Property<Guid>("ProductId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<int>("Unit")
-                                .HasColumnType("int")
-                                .HasColumnName("Unit");
-
-                            b1.Property<double>("Value")
-                                .HasColumnType("float")
-                                .HasColumnName("Value");
-
-                            b1.HasKey("ProductId");
-
-                            b1.ToTable("Products");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ProductId");
-                        });
-
-                    b.Navigation("Weight");
-                });
-
             modelBuilder.Entity("Farmino.Data.Models.Entities.Profile", b =>
                 {
                     b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
@@ -621,11 +606,6 @@ namespace Farmino.Infrastructure.Migrations
             modelBuilder.Entity("Farmino.Data.Models.Entities.Participant", b =>
                 {
                     b.Navigation("Auctions");
-                });
-
-            modelBuilder.Entity("Farmino.Data.Models.Entities.Product", b =>
-                {
-                    b.Navigation("Offer");
                 });
 #pragma warning restore 612, 618
         }

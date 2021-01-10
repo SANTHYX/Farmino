@@ -16,17 +16,15 @@ namespace Farmino.Service.Service
     public class OfferService : IOfferService
     {
         private readonly IFarmerRepository _farmerRepository;
-        private readonly IProductRepository _productRepository;
         private readonly IOfferRepository _offerRepository;
         private readonly ICustomerRepository _customerRepository;
         private readonly IOrderRepository _orderRepository; 
         private readonly IMapper _mapper;
 
-        public OfferService(IFarmerRepository farmerRepository, IProductRepository productRepository,
-            IOfferRepository offerRepository, ICustomerRepository customerRepository, IMapper mapper, IOrderRepository orderRepository)
+        public OfferService(IFarmerRepository farmerRepository, IOfferRepository offerRepository,
+            ICustomerRepository customerRepository, IMapper mapper, IOrderRepository orderRepository)
         {
             _farmerRepository = farmerRepository;
-            _productRepository = productRepository;
             _offerRepository = offerRepository;
             _customerRepository = customerRepository;
             _orderRepository = orderRepository;
@@ -55,10 +53,15 @@ namespace Farmino.Service.Service
                 throw new ServiceExceptions(ServiceErrorCodes.ProductStorageIsEmpty,
                     "Storage is empty or you try buy with quantity being out of avalivable range");
             }
+            if (customer.User.Profile == null)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.ProfileDontExist, 
+                    "Your profile is required to make order");
+            }
             if (customer.User.Profile.Address == null && !customAddress)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.AddressNotExist,
-                    "Your profile address is empty");
+                    "Your profile address is empty and your customAddress is empty");
             }
 
             var priceSummary = offer.Product.Price * boughtQuantity;
@@ -75,10 +78,9 @@ namespace Farmino.Service.Service
             await _orderRepository.SaveChanges();
         }
 
-        public async Task CreateOffer(string userName, string title, string description, Guid productId)
+        public async Task CreateOffer(string userName, string title, string description, Product product)
         {
             var farmer = await _farmerRepository.GetIfExistAsync(userName);
-            var product = await _productRepository.GetIfExistAsync(productId);
 
             await _offerRepository.AddAsync(new Offer(farmer, title, description, product));
             await _offerRepository.SaveChangesAsync();

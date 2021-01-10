@@ -12,7 +12,6 @@ namespace Farmino.Data.Models.Aggregations
         public string Description { get; protected set; }
         public Guid FarmerId { get; protected set; }
         public Farmer Farmer { get; protected set; }
-        public Guid ProductId { get; protected set; }
         public Product Product { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; } 

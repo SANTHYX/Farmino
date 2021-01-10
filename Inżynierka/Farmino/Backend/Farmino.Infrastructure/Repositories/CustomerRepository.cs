@@ -21,7 +21,8 @@ namespace Farmino.Infrastructure.Repositories
         }
 
         public async Task<Customer> GetAsync(string login)
-            => await _context.Customers.Include(x => x.User).FirstOrDefaultAsync(x => x.User.UserName == login);
+            => await _context.Customers.Include(x => x.User)
+                .ThenInclude(y => y.Profile).FirstOrDefaultAsync(q => q.User.UserName == login);
 
         public async Task SaveChangesAsync()
         {

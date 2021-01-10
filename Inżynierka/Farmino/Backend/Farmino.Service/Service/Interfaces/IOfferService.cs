@@ -1,4 +1,5 @@
-﻿using Farmino.Data.Models.ValueObjects;
+﻿using Farmino.Data.Models.Entities;
+using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.DTO.Offer;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Farmino.Service.Service.Interfaces
     public interface IOfferService : IService
     {
         Task CreateOffer(string userName, string title,
-            string description, Guid productId);
+            string description, Product product);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
         Task<IEnumerable<OffersDTO>> BrowseAllAsync();

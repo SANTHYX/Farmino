@@ -13,7 +13,6 @@ namespace Farmino.Infrastructure.ORM
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Auctioner> Auctioners { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<Auction> Auctions { get; set; }
@@ -94,19 +93,15 @@ namespace Farmino.Infrastructure.ORM
                 x.Property(y => y.Title).HasMaxLength(40).IsRequired();
                 x.Property(y => y.Description).IsRequired();
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
-            });
-
-            builder.Entity<Product>(x =>
-            {
-                x.HasKey(y => y.Id);
-                x.Property(y => y.Name).IsRequired();
-                x.Property(y => y.Price).IsRequired();
-                x.Property(y => y.Quantity).IsRequired();
-                x.HasOne(y => y.Offer).WithOne(z => z.Product).HasForeignKey<Offer>(q => q.ProductId);
-                x.OwnsOne(y => y.Weight, z =>
+                x.OwnsOne(y => y.Product, z =>
                 {
-                    z.Property(q => q.Unit).HasColumnName("Unit");
-                    z.Property(q => q.Value).HasColumnName("Value");
+                    z.Property(q => q.Price).IsRequired();
+                    z.Property(q => q.Quantity).IsRequired();
+                    z.OwnsOne(q => q.Weight, z =>
+                    {
+                        z.Property(q => q.Unit).HasColumnName("Unit");
+                        z.Property(q => q.Value).HasColumnName("Value");
+                    });
                 });
             });
 

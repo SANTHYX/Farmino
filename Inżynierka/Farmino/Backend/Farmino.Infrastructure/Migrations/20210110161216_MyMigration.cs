@@ -8,22 +8,6 @@ namespace Farmino.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Unit = table.Column<int>(type: "int", nullable: true),
-                    Value = table.Column<double>(type: "float", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -192,7 +176,10 @@ namespace Farmino.Infrastructure.Migrations
                     Title = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Product_Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Product_Quantity = table.Column<int>(type: "int", nullable: true),
+                    Unit = table.Column<int>(type: "int", nullable: true),
+                    Value = table.Column<double>(type: "float", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -203,12 +190,6 @@ namespace Farmino.Infrastructure.Migrations
                         name: "FK_Offers_Farmers_FarmerId",
                         column: x => x.FarmerId,
                         principalTable: "Farmers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Offers_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -301,12 +282,6 @@ namespace Farmino.Infrastructure.Migrations
                 column: "FarmerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Offers_ProductId",
-                table: "Offers",
-                column: "ProductId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Orders_OfferId",
                 table: "Orders",
                 column: "OfferId");
@@ -362,9 +337,6 @@ namespace Farmino.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Farmers");
-
-            migrationBuilder.DropTable(
-                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Auctioners");

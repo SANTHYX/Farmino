@@ -23,7 +23,7 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Post([FromBody] CreateCustomer command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Farmer has been created");
+            return Ok("Customer has been created");
         }
     }
 }
