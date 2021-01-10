@@ -141,7 +141,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
         public void HouseNumber_filed_should_throw_exception_if_value_will_equal_zero()
         {
             string expected = "HouseNumber is invalid";
-            int testValue = 0;
+            var testValue = "0";
 
             var result = Assert.Throws<DataExceptions>(()=>_address.Object.SetHouseNumber(testValue));
             Assert.Equal(expected, result.Message);
@@ -151,7 +151,7 @@ namespace Farmino.UnitTests.Models.Value_Objects
         public void HouseNumber_filed_should_throw_exception_if_value_will_be_less_than_zero()
         {
             string expected = "HouseNumber is invalid";
-            int testValue = -1;
+            var testValue = "-1A";
 
             var result = Assert.Throws<DataExceptions>(() => _address.Object.SetHouseNumber(testValue));
             Assert.Equal(expected, result.Message);
@@ -160,11 +160,10 @@ namespace Farmino.UnitTests.Models.Value_Objects
         [Fact]
         public void HouseNumber_field_hasnt_change_if_passing_value_will_be_actual_value_of_field()
         {
-            int expected = 2;
-            int testValue = 2;
+            var testValue = "2";
 
-            _address.Object.SetHouseNumber(2);
-            var before = _address.Object.HouseNumber;
+            _address.Object.SetHouseNumber(testValue);
+            var expected = _address.Object.HouseNumber;
             _address.Object.SetHouseNumber(testValue);
             var result = _address.Object.HouseNumber;
 

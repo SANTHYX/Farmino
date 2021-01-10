@@ -51,7 +51,7 @@ namespace Farmino.Infrastructure.ORM
                 x.OwnsOne(y => y.Address, z =>
                 {
                     z.Property(q => q.City).HasColumnName("City").HasMaxLength(30);
-                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").HasMaxLength(3);
+                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").HasMaxLength(5);
                     z.Property(q => q.PostalCode).HasColumnName("PostalCode").HasMaxLength(7); ;
                     z.Property(q => q.Street).HasColumnName("Street").HasMaxLength(30); ;
                 });
@@ -83,7 +83,7 @@ namespace Farmino.Infrastructure.ORM
                 x.OwnsOne(y => y.OrderAddress, z =>
                 {
                     z.Property(q => q.City).HasColumnName("City").HasMaxLength(30);
-                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").HasMaxLength(3);
+                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").HasMaxLength(5);
                     z.Property(q => q.PostalCode).HasColumnName("PostalCode").HasMaxLength(7); ;
                     z.Property(q => q.Street).HasColumnName("Street").HasMaxLength(30); ;
                 });

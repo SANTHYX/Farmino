@@ -1,5 +1,4 @@
-﻿using Farmino.Service.Commands.AuctionCommands;
-using Farmino.Service.Commands.AuctionerCommands;
+﻿using Farmino.Service.Commands.AuctionerCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

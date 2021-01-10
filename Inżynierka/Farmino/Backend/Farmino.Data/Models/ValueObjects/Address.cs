@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Exceptions;
+using Farmino.Data.Extensions;
 
 namespace Farmino.Data.Models.ValueObjects
 {
@@ -7,11 +8,11 @@ namespace Farmino.Data.Models.ValueObjects
         public string City { get; protected set; }
         public string Street { get; protected set; }
         public string PostalCode { get; protected set; }
-        public int HouseNumber { get; protected set; }
+        public string HouseNumber { get; protected set; }
 
         protected Address() { }
 
-        public Address(string city, string street, string postalCode, int houseNumber)
+        public Address(string city, string street, string postalCode, string houseNumber)
         {
             SetCity(city);
             SetStreet(street);
@@ -64,9 +65,9 @@ namespace Farmino.Data.Models.ValueObjects
             PostalCode = postalCode;
         }
 
-        public void SetHouseNumber(int houseNumber)
+        public void SetHouseNumber(string houseNumber)
         {
-            if (houseNumber <= 0)
+            if (string.IsNullOrWhiteSpace(houseNumber) || houseNumber.IsHouseNumber())
             {
                 throw new DataExceptions(DataErrorCodes.InvalidHouseNumber,
                     "HouseNumber is invalid");
@@ -76,11 +77,11 @@ namespace Farmino.Data.Models.ValueObjects
                 return;
             }
 
-            HouseNumber = houseNumber;
+            HouseNumber = houseNumber.ToUpper();
         }
 
         public static Address Create(string city, string street, 
-            string postalCode, int houseNumber)
+            string postalCode, string houseNumber)
             => new Address(city, street, postalCode, houseNumber);
     }
 }

@@ -20,7 +20,7 @@ namespace Farmino.Service.Service
         }
 
         public async Task SetAddressAsync(string userName, string city, string street,
-            string postalCode, int houseNumber)
+            string postalCode, string houseNumber)
         {
             var user = await _userRepository.GetIfExistAsync(userName);
             var profile = await _profileRepository.GetIfExistAsync(user.Id);
@@ -37,7 +37,7 @@ namespace Farmino.Service.Service
         }
 
         public async Task EditAddressAsync(string userName, string city, string street,
-            string postalCode, int houseNumber)
+            string postalCode, string houseNumber)
         {
             var user = await _userRepository.GetIfExistAsync(userName);
             var profile = await _profileRepository.GetIfExistAsync(user.Id);

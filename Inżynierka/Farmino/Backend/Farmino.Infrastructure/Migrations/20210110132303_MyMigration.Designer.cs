@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210106231945_MyMigration")]
+    [Migration("20210110132303_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,9 @@ namespace Farmino.Infrastructure.Migrations
 
                     b.Property<Guid>("AuctionerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -49,6 +52,9 @@ namespace Farmino.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -132,6 +138,9 @@ namespace Farmino.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -437,9 +446,9 @@ namespace Farmino.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(30)")
                                 .HasColumnName("City");
 
-                            b1.Property<int>("HouseNumber")
-                                .HasMaxLength(3)
-                                .HasColumnType("int")
+                            b1.Property<string>("HouseNumber")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("HouseNumber");
 
                             b1.Property<string>("PostalCode")
@@ -541,9 +550,9 @@ namespace Farmino.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(30)")
                                 .HasColumnName("City");
 
-                            b1.Property<int>("HouseNumber")
-                                .HasMaxLength(3)
-                                .HasColumnType("int")
+                            b1.Property<string>("HouseNumber")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("HouseNumber");
 
                             b1.Property<string>("PostalCode")

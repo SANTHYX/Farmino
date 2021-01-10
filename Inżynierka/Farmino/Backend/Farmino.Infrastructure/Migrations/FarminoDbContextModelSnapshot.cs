@@ -28,6 +28,9 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<Guid>("AuctionerId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -47,6 +50,9 @@ namespace Farmino.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -130,6 +136,9 @@ namespace Farmino.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -435,9 +444,9 @@ namespace Farmino.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(30)")
                                 .HasColumnName("City");
 
-                            b1.Property<int>("HouseNumber")
-                                .HasMaxLength(3)
-                                .HasColumnType("int")
+                            b1.Property<string>("HouseNumber")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("HouseNumber");
 
                             b1.Property<string>("PostalCode")
@@ -539,9 +548,9 @@ namespace Farmino.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(30)")
                                 .HasColumnName("City");
 
-                            b1.Property<int>("HouseNumber")
-                                .HasMaxLength(3)
-                                .HasColumnType("int")
+                            b1.Property<string>("HouseNumber")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("HouseNumber");
 
                             b1.Property<string>("PostalCode")

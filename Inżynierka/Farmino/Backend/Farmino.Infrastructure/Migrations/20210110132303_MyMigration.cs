@@ -124,7 +124,7 @@ namespace Farmino.Infrastructure.Migrations
                     City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Street = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
-                    HouseNumber = table.Column<int>(type: "int", maxLength: 3, nullable: true)
+                    HouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -169,7 +169,9 @@ namespace Farmino.Infrastructure.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
                     StartingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AuctionerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AuctionerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,7 +193,8 @@ namespace Farmino.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -244,7 +247,7 @@ namespace Farmino.Infrastructure.Migrations
                     City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Street = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
-                    HouseNumber = table.Column<int>(type: "int", maxLength: 3, nullable: true),
+                    HouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
                     BoughtQuantity = table.Column<int>(type: "int", nullable: false),
                     PriceSummary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Released = table.Column<bool>(type: "bit", nullable: false),

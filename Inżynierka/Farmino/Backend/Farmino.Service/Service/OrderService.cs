@@ -45,6 +45,7 @@ namespace Farmino.Service.Service
             }
 
             var offer = await _offerRepository.GetAsync(offerId);
+
             offer.Product.SetQuantity(quantity);
             order.SetPriceSummary(offer.Product.Price * quantity);
         }

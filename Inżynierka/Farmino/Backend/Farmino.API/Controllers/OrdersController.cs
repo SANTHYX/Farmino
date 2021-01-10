@@ -16,12 +16,12 @@ namespace Farmino.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
-        /*
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody]) 
+        public async Task<IActionResult> Put([FromBody] EditOrder command) 
         {
+            await _commandDispatcher.DispatchAsync(command);
+            return Ok("Order has been edited");
         }
-        */
 
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] CancelOrder command)
