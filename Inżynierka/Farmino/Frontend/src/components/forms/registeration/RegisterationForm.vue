@@ -53,7 +53,7 @@
         </div>
       </div>
       <div id="btn-wraper">
-        <button @click="RegisterUser" :disabled="$v.user.$invalid">
+        <button id="btn" @click="RegisterUser" :disabled="$v.user.$invalid">
           Zarejestruj
         </button>
       </div>
@@ -125,7 +125,15 @@ export default {
     #btn-wraper {
       display: flex;
       justify-content: center;
-      margin-top: 2rem;
+      margin-top: 1rem;
+      #btn {
+        padding: 0.2rem;
+        background: rgb(235, 209, 63);
+        border: 2px solid rgba(179, 179, 179, 0.733);
+        border-radius: 7px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.658);
+      }
     }
   }
 }

@@ -1,38 +1,44 @@
 <template>
-  <div>
-    <div id="profile-form">
-      <h1>Stwórz Profil</h1>
-      <hr />
-      <div id="inputs-wraper">
-        <label
-          for="firstName"
-          :class="[!$v.profile.firstName.$error ? 'form-label' : 'error-label']"
-          >Imię</label
-        >
-        <input
-          type="text"
-          name="firstName"
-          :class="[!$v.profile.firstName.$error ? 'form-field' : 'error-field']"
-          @blur="$v.profile.firstName.$touch()"
-          v-model="profile.firstName"
-        />
-        <div id="error-message-wraper" v-if="$v.profile.firstName.$error">
-          <p class="error-message" v-if="!$v.profile.firstName.required">Pole jest wymagane</p>
-        </div>
+  <div id="profile-form">
+    <div id="profile-wraper">
+      <div id="title-fix-box">
+        <h1>Stwórz Profil</h1>
+        <hr />
       </div>
-      <div id="inputs-wraper">
-        <label for="lastName" :class="[!$v.profile.lastName.$error ? 'form-label' : 'error-label']"
-          >Nazwisko</label
-        >
-        <input
-          type="text"
-          name="lastName"
-          :class="[!$v.profile.lastName.$error ? 'form-field' : 'error-field']"
-          @blur="$v.profile.lastName.$touch()"
-          v-model="profile.lastName"
-        />
-        <div id="error-message-wraper" v-if="$v.profile.lastName.$error">
-          <p class="error-message" v-if="!$v.profile.lastName.required">Pole jest wymagane</p>
+      <div id="row-input-wraper">
+        <div id="small-inputs-wraper">
+          <label
+            for="firstName"
+            :class="[!$v.profile.firstName.$error ? 'form-label' : 'error-label']"
+            >Imię</label
+          >
+          <input
+            type="text"
+            name="firstName"
+            :class="[!$v.profile.firstName.$error ? 'small-form-field' : 'small-error-field']"
+            @blur="$v.profile.firstName.$touch()"
+            v-model="profile.firstName"
+          />
+          <div id="error-message-wraper" v-if="$v.profile.firstName.$error">
+            <p class="error-message" v-if="!$v.profile.firstName.required">Pole jest wymagane</p>
+          </div>
+        </div>
+        <div id="small-inputs-wraper">
+          <label
+            for="lastName"
+            :class="[!$v.profile.lastName.$error ? 'form-label' : 'error-label']"
+            >Nazwisko</label
+          >
+          <input
+            type="text"
+            name="lastName"
+            :class="[!$v.profile.lastName.$error ? 'small-form-field' : 'small-error-field']"
+            @blur="$v.profile.lastName.$touch()"
+            v-model="profile.lastName"
+          />
+          <div id="error-message-wraper" v-if="$v.profile.lastName.$error">
+            <p class="error-message" v-if="!$v.profile.lastName.required">Pole jest wymagane</p>
+          </div>
         </div>
       </div>
       <div id="inputs-wraper">
@@ -57,7 +63,13 @@
             Nie prawidłowa długość numeru
           </p>
         </div>
-        <div id="inputs-wraper">
+      </div>
+      <div id="title-fix-box">
+        <h1>Adres</h1>
+        <hr />
+      </div>
+      <div id="row-input-wraper">
+        <div id="small-inputs-wraper">
           <label
             for="city"
             :class="[!$v.profile.address.city.$error ? 'form-label' : 'error-label']"
@@ -66,7 +78,7 @@
           <input
             type="text"
             name="city"
-            :class="[!$v.profile.address.city.$error ? 'form-field' : 'error-field']"
+            :class="[!$v.profile.address.city.$error ? 'small-form-field' : 'small-error-field']"
             @blur="$v.profile.address.city.$touch()"
             v-model="profile.address.city"
           />
@@ -74,7 +86,7 @@
             <p class="error-message" v-if="!$v.profile.address.city.required">Pole jest wymagane</p>
           </div>
         </div>
-        <div id="inputs-wraper">
+        <div id="small-inputs-wraper">
           <label
             for="street"
             :class="[!$v.profile.address.street.$error ? 'form-label' : 'error-label']"
@@ -82,8 +94,8 @@
           >
           <input
             type="text"
-            name="street"
-            :class="[!$v.profile.address.street.$error ? 'form-field' : 'error-field']"
+            name="city"
+            :class="[!$v.profile.address.street.$error ? 'small-form-field' : 'small-error-field']"
             @blur="$v.profile.address.street.$touch()"
             v-model="profile.address.street"
           />
@@ -93,7 +105,9 @@
             </p>
           </div>
         </div>
-        <div id="inputs-wraper">
+      </div>
+      <div id="row-input-wraper">
+        <div id="small-inputs-wraper">
           <label
             for="postalCode"
             :class="[!$v.profile.address.postalCode.$error ? 'form-label' : 'error-label']"
@@ -102,7 +116,9 @@
           <input
             type="text"
             name="postalCode"
-            :class="[!$v.profile.address.postalCode.$error ? 'form-field' : 'error-field']"
+            :class="[
+              !$v.profile.address.postalCode.$error ? 'small-form-field' : 'small-error-field',
+            ]"
             @blur="$v.profile.address.postalCode.$touch()"
             v-model="profile.address.postalCode"
           />
@@ -112,18 +128,20 @@
             </p>
           </div>
         </div>
-        <div id="inputs-wraper">
+        <div id="small-inputs-wraper">
           <label
             for="houseNumber"
             :class="[!$v.profile.address.houseNumber.$error ? 'form-label' : 'error-label']"
-            >Numer Telefonu</label
+            >Nr. Domu</label
           >
           <input
-            type="number"
-            name="houseNumber"
-            :class="[!$v.profile.address.houseNumber.$error ? 'form-field' : 'error-field']"
+            type="text"
+            name="city"
+            :class="[
+              !$v.profile.address.houseNumber.$error ? 'small-form-field' : 'small-error-field',
+            ]"
             @blur="$v.profile.address.houseNumber.$touch()"
-            v-model.number="profile.address.houseNumber"
+            v-model="profile.address.houseNumber"
           />
           <div id="error-message-wraper" v-if="$v.profile.address.houseNumber.$error">
             <p class="error-message" v-if="!$v.profile.address.houseNumber.required">
@@ -131,8 +149,8 @@
             </p>
           </div>
         </div>
-        <button @click="send">Stwórz</button>
       </div>
+      <button @click="sendProfile">Stwórz</button>
     </div>
   </div>
 </template>
@@ -148,12 +166,12 @@ export default {
       profile: {
         firstName: '',
         lastName: '',
-        phoneNumber: 0,
+        phoneNumber: '',
         address: {
           city: '',
           street: '',
           postalCode: '',
-          houseNumber: 0,
+          houseNumber: '',
         },
       },
     };
@@ -187,7 +205,7 @@ export default {
       createProfile: 'user/CREATE_PROFILE',
       setAddress: 'user/CREATE_ADDRESS',
     }),
-    async send() {
+    async sendProfile() {
       await this.createProfile({
         userName: this.userName,
         firstName: this.profile.firstName,
@@ -208,21 +226,38 @@ export default {
 
 <style lang="scss" scoped>
 #profile-form {
-  padding: 2rem;
-  border: 1px solid rgb(189, 189, 189);
-  box-shadow: 1px 1px 6px rgb(214, 214, 214);
-  border-radius: 10px;
-  hr {
-    margin-top: 0.2rem;
-    width: 200px;
-    color: rgb(245, 245, 245);
-  }
-  h1 {
-    color: rgb(63, 63, 63);
-  }
-  #inputs-wraper {
+  #profile-wraper {
+    padding: 2rem;
+    border: 1px solid rgb(189, 189, 189);
+    box-shadow: 1px 1px 6px rgb(214, 214, 214);
+    border-radius: 10px;
     display: flex;
+    align-items: center;
     flex-direction: column;
+    #title-fix-box {
+      hr {
+        width: 200px;
+        color: rgb(245, 245, 245);
+      }
+      h1 {
+        justify-self: center;
+        color: rgb(63, 63, 63);
+        text-align: center;
+      }
+    }
+    #row-input-wraper {
+      display: flex;
+      justify-content: center;
+      #small-inputs-wraper {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0.2rem;
+      }
+    }
+    #inputs-wraper {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 </style>

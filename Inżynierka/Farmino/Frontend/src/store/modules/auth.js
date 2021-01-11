@@ -1,5 +1,5 @@
-import api from '../../plugins/axios';
-import localStorageManager from '../../plugins/localStorageManager';
+import api from '@/plugins/axios';
+import localStorageManager from '@/plugins/localStorageManager';
 
 const auth = {
   namespaced: true,
@@ -50,11 +50,11 @@ const auth = {
       }
     },
     async LOGOUT({ commit }) {
+      commit('CLEAR_STORE');
       try {
         const refresh = localStorageManager.getRefresh();
         await api.post('/auth/revoke', { refresh });
         localStorageManager.clearStorage();
-        commit('CLEAR_STORE');
       } catch (err) {
         throw new Error(err);
       }

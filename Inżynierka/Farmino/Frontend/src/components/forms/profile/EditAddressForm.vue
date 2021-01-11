@@ -56,11 +56,11 @@
         >Numer Domu</label
       >
       <input
-        type="number"
+        type="text"
         name="houseNumber"
         :class="[!$v.address.houseNumber.$error ? 'form-field' : 'error-field']"
         @blur="$v.address.houseNumber.$touch()"
-        v-model.number="address.houseNumber"
+        v-model="address.houseNumber"
       />
       <div id="error-message-wraper" v-if="$v.address.houseNumber.$error">
         <p class="error-message" v-if="!$v.address.houseNumber.required">Pole jest wymagane</p>
@@ -82,7 +82,7 @@ export default {
         city: '',
         street: '',
         postalCode: '',
-        houseNumber: 0,
+        houseNumber: '',
       },
     };
   },
@@ -102,17 +102,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      createAddress: 'user/CREATE_ADDRESS',
       updateAddress: 'user/UPDATE_ADDRESS',
     }),
     async submitAddress() {
-      await this.createAddress({
-        userName: this.userName,
-        city: this.address.city,
-        street: this.address.street,
-        postalCode: this.address.postalCode,
-        houseNumber: this.address.houseNumber,
-      });
       await this.updateAddress({
         userName: this.userName,
         city: this.address.city,

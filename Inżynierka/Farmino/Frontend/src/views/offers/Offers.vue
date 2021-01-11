@@ -2,14 +2,20 @@
   <div>
     <div id="offers">
       <div id="content">
-        <router-view></router-view>
+        <offers-list></offers-list>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import OffersList from '../../components/lists/OffersList.vue';
+
+export default {
+  components: {
+    OffersList,
+  },
+};
 </script>
 
 <style lang="scss"></style>

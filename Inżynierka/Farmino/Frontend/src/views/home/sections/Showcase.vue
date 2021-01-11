@@ -6,7 +6,6 @@
           <h1><span>Wymieniaj I Nabywaj</span> Nie Ruszajac Się Z Domu</h1>
           <p>Licytuj oraz kupuj przedmioty szybko, wygodnie i bezpiecznie</p>
         </div>
-        <a href="#about-us" id="btn">Dowiedz się więcej</a>
       </div>
     </div>
   </div>
@@ -39,17 +38,6 @@
         margin-top: 0.5rem;
         font-size: 1.3rem;
       }
-    }
-    #btn {
-      margin: 1rem 3rem;
-      padding: 0.5rem;
-      border: 2px solid rgb(255, 255, 255);
-      background: rgba(91, 92, 33, 0.774);
-      border-radius: 7px;
-      text-align: center;
-      width: 150px;
-      text-decoration: none;
-      color: white;
     }
   }
 }

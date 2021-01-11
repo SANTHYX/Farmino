@@ -1,10 +1,14 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
+import Unicons from 'vue-unicons';
+import { uniInfoCircle, uniEnvelope, uniAngleDown } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
 import store from './store/store';
 
+Unicons.add([uniInfoCircle, uniEnvelope, uniAngleDown]);
 Vue.use(Vuelidate);
+Vue.use(Unicons);
 Vue.config.productionTip = false;
 
 new Vue({

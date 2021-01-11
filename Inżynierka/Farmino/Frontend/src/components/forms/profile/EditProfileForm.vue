@@ -70,7 +70,7 @@ export default {
       profile: {
         firstName: '',
         lastName: '',
-        phoneNumber: 0,
+        phoneNumber: '',
       },
     };
   },
@@ -95,25 +95,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      createProfile: 'user/CREATE_PROFILE',
       editProfile: 'user/EDIT_PROFILE',
     }),
     async submitProfile() {
-      if (!this.isProfileEmpty) {
-        await this.createProfile({
-          userName: this.userName,
-          firstName: this.profile.firstName,
-          lastName: this.profile.lastName,
-          phoneNumber: this.profile.phoneNumber,
-        });
-      } else {
-        await this.editProfile({
-          userName: this.userName,
-          firstName: this.profile.firstName,
-          lastName: this.profile.lastName,
-          phoneNumber: this.profile.phoneNumber,
-        });
-      }
+      await this.editProfile({
+        userName: this.userName,
+        firstName: this.profile.firstName,
+        lastName: this.profile.lastName,
+        phoneNumber: this.profile.phoneNumber,
+      });
     },
   },
 };

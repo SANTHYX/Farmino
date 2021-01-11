@@ -18,18 +18,16 @@ const routes = [
     path: '/offers',
     name: 'offers',
     component: () => import('@/views/offers/Offers.vue'),
+  },
+  {
+    path: '/offers/offer-creator',
+    name: 'offer-creator',
+    component: () => import('@/views/offers/OfferCreator.vue'),
     children: [
       {
-        path: 'offer-creator',
-        name: 'offer-creator',
-        component: () => import('@/views/offers/OfferCreator.vue'),
-        children: [
-          {
-            path: 'product',
-            name: 'product',
-            component: () => import('@/components/forms/product/AddProductForm.vue'),
-          },
-        ],
+        path: 'product',
+        name: 'product',
+        component: () => import('@/components/forms/product/AddProductForm.vue'),
       },
     ],
   },

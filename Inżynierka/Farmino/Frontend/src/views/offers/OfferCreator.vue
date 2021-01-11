@@ -2,6 +2,7 @@
   <div>
     <div id="offer-creator">
       <div id="content">
+        <h1>Witaj w kreatorze ofert</h1>
         <router-view></router-view>
       </div>
     </div>

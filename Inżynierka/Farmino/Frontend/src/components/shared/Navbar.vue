@@ -29,6 +29,9 @@
           <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
             ><li><a>Oferty</a></li></router-link
           >
+          <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
+            ><li><a>StwórzOferte</a></li></router-link
+          >
           <router-link
             :to="{ name: 'profile', params: { id: userName } }"
             exact="exact"
@@ -85,6 +88,7 @@ export default {
 
 <style lang="scss" scoped>
 #navbar {
+  box-shadow: 0 2px 1px rgba(204, 204, 204, 0.39);
   #logo {
     display: flex;
     justify-content: center;
@@ -126,8 +130,11 @@ export default {
   }
 }
 @media screen and(max-width: $tablet) {
-  #nav-menu {
-    display: none;
+  #navbar {
+    position: relative;
+    #nav-menu {
+      display: none;
+    }
   }
 }
 </style>

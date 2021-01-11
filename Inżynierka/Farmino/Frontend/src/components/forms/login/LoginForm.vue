@@ -17,7 +17,7 @@
         />
       </div>
       <div id="btn-wraper">
-        <button @click="LogUser" :disabled="$v.user.$invalid" class="btn-form">
+        <button id="btn" @click="LogUser" :disabled="$v.user.$invalid" class="btn-form">
           Zaloguj się
         </button>
       </div>
@@ -82,9 +82,17 @@ export default {
       flex-direction: column;
     }
     #btn-wraper {
-      margin-top: 2rem;
+      margin-top: 1rem;
       display: flex;
       justify-content: center;
+      #btn {
+        padding: 0.2rem;
+        background: rgb(235, 209, 63);
+        border: 2px solid rgba(179, 179, 179, 0.733);
+        border-radius: 7px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.658);
+      }
     }
   }
 }

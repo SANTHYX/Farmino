@@ -27,6 +27,9 @@ const user = {
     SET_ADDRESS(state, addressObj) {
       state.user.profile.address = addressObj;
     },
+    CLEAR_STATE(state) {
+      state.user = {};
+    },
   },
   actions: {
     async GET_USER({ commit }, userName) {

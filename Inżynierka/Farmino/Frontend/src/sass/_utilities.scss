@@ -3,6 +3,12 @@
 .form-field{
     @include input-field(6px, 15rem, 2.1rem);
 }
+.small-form-field{
+    @include input-field(6px, 8.4rem, 2.1rem)
+}
+.smaller-form-field{
+    @include input-field(6px, 6rem, 2.1rem)
+}
 
 .form-label{
     margin-top: 20px;
@@ -23,5 +29,13 @@
 
 .error-field{
     @extend .form-field;
+    border: 2px solid rgb(246, 122, 122);
+}
+.small-error-field{
+    @extend .small-form-field;
+    border: 2px solid rgb(246, 122, 122);
+}
+.smaller-error-field{
+    @extend .smaller-form-field;
     border: 2px solid rgb(246, 122, 122);
 }
