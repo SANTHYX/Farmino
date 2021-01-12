@@ -129,6 +129,7 @@ export default {
     }
   }
 }
+
 @media screen and(max-width: $tablet) {
   #navbar {
     position: relative;

@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <v-navbar></v-navbar>
-    <transition name="fade">
-      <router-view id="view" />
-    </transition>
-    <v-footer></v-footer>
+    <div>
+      <v-navbar></v-navbar>
+      <transition name="fade">
+        <router-view id="view" />
+      </transition>
+      <v-footer></v-footer>
+    </div>
   </div>
 </template>
 
@@ -26,7 +28,9 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-#view {
-  min-height: 100vh;
+#app {
+  #view {
+    min-height: 100vh;
+  }
 }
 </style>

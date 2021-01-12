@@ -81,7 +81,7 @@ export default {
     border: 1px solid rgba(189, 189, 189, 0.932);
     box-shadow: 1px 1px 6px rgb(179, 179, 179);
     border-radius: 10px;
-    width: 40vw;
+    width: 30vw;
     min-width: 340px;
     flex-wrap: wrap;
     #user-info {

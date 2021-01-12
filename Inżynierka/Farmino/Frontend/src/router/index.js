@@ -22,14 +22,7 @@ const routes = [
   {
     path: '/offers/offer-creator',
     name: 'offer-creator',
-    component: () => import('@/views/offers/OfferCreator.vue'),
-    children: [
-      {
-        path: 'product',
-        name: 'product',
-        component: () => import('@/components/forms/product/AddProductForm.vue'),
-      },
-    ],
+    component: () => import('@/views/offers/OfferCreate.vue'),
   },
   {
     path: '/login',
