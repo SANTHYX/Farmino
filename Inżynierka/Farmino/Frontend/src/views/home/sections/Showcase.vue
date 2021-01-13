@@ -20,8 +20,8 @@
     flex-direction: column;
     justify-content: center;
     background: linear-gradient(0deg, rgba(226, 221, 137, 0.66) 0%, rgba(184, 144, 15, 0.64) 100%),
-      url('../../../assets/images/noah-buscher-tractor-unsplash.jpg') no-repeat center center/cover;
-    height: 100vh;
+      url('../../../assets/images/Farmino_background.png') no-repeat center center/cover;
+    height: 80vh;
     width: 100%;
     #text-wraper {
       display: flex;
@@ -45,11 +45,12 @@
   #content {
     #showcase {
       #hero-image {
+        height: 100vh;
         #text-wraper {
           width: 70vw;
           text-align: center;
           align-self: center;
-          margin: 0;
+          margin: 3rem 0 0 0;
           font-size: 1.6rem;
         }
         #btn {

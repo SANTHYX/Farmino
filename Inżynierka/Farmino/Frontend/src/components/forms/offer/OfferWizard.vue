@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 #offer-wizard {
-  padding: 1rem;
+  padding: 1.2rem;
   border: 1px solid rgb(209, 209, 209);
   display: flex;
   flex-wrap: wrap;
@@ -41,17 +41,18 @@ export default {
 
   #flex-column {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
   }
 
   #flex-row {
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
   }
 }
 @media screen and(max-width: $tablet) {
   #offer-wizard {
+    margin: 5rem 0;
     #flex-row {
       flex-direction: column;
     }

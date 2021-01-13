@@ -1,49 +1,51 @@
 <template>
-  <div id="navbar">
-    <div id="logo">
-      <router-link to="home" tag="h1"><a>FARMINO</a></router-link>
-    </div>
+  <div>
     <div id="navbar">
-      <search-bar />
-      <div id="nav-menu" v-if="!isAuthorized">
-        <ul>
-          <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
-            ><li><a>Aukcje</a></li></router-link
-          >
-          <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
-            ><li><a>Oferty</a></li></router-link
-          >
-          <router-link :to="{ name: 'register' }" exact="exact" id="registery-btn" class="pop-up"
-            ><li><a>Zarejestruj się</a></li></router-link
-          >
-          <router-link :to="{ name: 'login' }" exact="exact" id="login-btn" class="pop-up"
-            ><li><a>Zaloguj się</a></li></router-link
-          >
-        </ul>
+      <div id="logo">
+        <router-link to="home" tag="h1"><a>FARMINO</a></router-link>
       </div>
-      <div id="nav-menu" v-else>
-        <ul>
-          <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
-            ><li><a>Aukcje</a></li></router-link
-          >
-          <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
-            ><li><a>Oferty</a></li></router-link
-          >
-          <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
-            ><li><a>StwórzOferte</a></li></router-link
-          >
-          <router-link
-            :to="{ name: 'profile', params: { id: userName } }"
-            exact="exact"
-            class="pop-up"
-            ><li><a>Mój Profil</a></li></router-link
-          >
-          <li><a href="#" @click.prevent="Logout">Wyloguj</a></li>
-        </ul>
+      <div id="navbar">
+        <search-bar />
+        <div id="nav-menu" v-if="!isAuthorized">
+          <ul>
+            <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
+              ><li><a>Aukcje</a></li></router-link
+            >
+            <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
+              ><li><a>Oferty</a></li></router-link
+            >
+            <router-link :to="{ name: 'register' }" exact="exact" id="registery-btn" class="pop-up"
+              ><li><a>Zarejestruj się</a></li></router-link
+            >
+            <router-link :to="{ name: 'login' }" exact="exact" id="login-btn" class="pop-up"
+              ><li><a>Zaloguj się</a></li></router-link
+            >
+          </ul>
+        </div>
+        <div id="nav-menu" v-else>
+          <ul>
+            <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
+              ><li><a>Aukcje</a></li></router-link
+            >
+            <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
+              ><li><a>Oferty</a></li></router-link
+            >
+            <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
+              ><li><a>StwórzOferte</a></li></router-link
+            >
+            <router-link
+              :to="{ name: 'profile', params: { id: userName } }"
+              exact="exact"
+              class="pop-up"
+              ><li><a>Mój Profil</a></li></router-link
+            >
+            <li><a href="#" @click.prevent="Logout">Wyloguj</a></li>
+          </ul>
+        </div>
+        <menu-button @mobile-menu-event="ShowMenu" />
       </div>
-      <menu-button @mobile-menu-event="ShowMenu" />
+      <moblie-menu :showMenu="showMenu" />
     </div>
-    <moblie-menu :showMenu="showMenu" />
   </div>
 </template>
 
@@ -88,6 +90,9 @@ export default {
 
 <style lang="scss" scoped>
 #navbar {
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
   box-shadow: 0 2px 1px rgba(204, 204, 204, 0.39);
   #logo {
     display: flex;
@@ -132,7 +137,6 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #navbar {
-    position: relative;
     #nav-menu {
       display: none;
     }
