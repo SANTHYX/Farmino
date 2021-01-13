@@ -2,25 +2,25 @@
   <div>
     <div id="offer-creator">
       <div id="content">
-        <h1>Kreator Offert</h1>
-        <offer-creator></offer-creator>
+        <offer-wizard></offer-wizard>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import OfferCreator from '@/components/forms/offer/OfferCreator.vue';
+import OfferWizard from '@/components/forms/offer/OfferWizard.vue';
 
 export default {
   components: {
-    OfferCreator,
+    OfferWizard,
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #offer-creator {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

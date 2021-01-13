@@ -49,15 +49,9 @@ const auth = {
         throw new Error(err);
       }
     },
-    async LOGOUT({ commit }) {
+    LOGOUT({ commit }) {
+      localStorageManager.clearStorage();
       commit('CLEAR_STORE');
-      try {
-        const refresh = localStorageManager.getRefresh();
-        await api.post('/auth/revoke', { refresh });
-        localStorageManager.clearStorage();
-      } catch (err) {
-        throw new Error(err);
-      }
     },
   },
 };

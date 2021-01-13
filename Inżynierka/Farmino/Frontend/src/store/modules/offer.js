@@ -1,7 +1,15 @@
 const offer = {
-  state: {},
+  state: {
+    offer: {},
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    SET_OFFER_STATE(state, offerObj) {
+      state.offer = {
+        ...offerObj,
+      };
+    },
+  },
   actions: {},
 };
 
