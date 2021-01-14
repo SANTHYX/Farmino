@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Farmino.Data\Farmino.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ImageConversion\" />
+  </ItemGroup>
+
 </Project>

@@ -81,7 +81,7 @@ namespace Farmino.Service.Service
             }
 
             var winner = auction.Participants
-                .OrderByDescending(x => x.ProposedPrice).First();
+                .OrderByDescending(x => x.ProposedPrice).FirstOrDefault();
 
             return _mapper.Map<ParticipantAuctionDTO>(winner);
         }

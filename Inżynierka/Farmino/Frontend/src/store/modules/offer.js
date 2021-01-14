@@ -26,9 +26,36 @@ const offer = {
   },
 
   actions: {
+    async GET_OFFER({ commit }, offerId) {
+      try {
+        const response = await api.get(`/offers/${offerId}`);
+        commit('SET_OFFER', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async BROWSE_OFFERS({ commit }) {
+      try {
+        const response = await api.get('/offers');
+        commit('SET_OFFERS', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
     async CREATE_FARMER({ commit }, { userName }) {
       try {
         await api.post('/farmers', { userName });
+        commit();
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async CREATE_CUSTOMER({ commit }, { userName }) {
+      try {
+        await api.post('/customers', { userName });
         commit();
       } catch (err) {
         throw new Error(err.message);
@@ -54,19 +81,21 @@ const offer = {
         throw new Error(err.message);
       }
     },
-    async GET_OFFER({ commit }, offerId) {
+    async CREATE_ORDER(
+      { commit },
+      {
+        customerName, offerId, boughtQuantity, customAddress, Address,
+      },
+    ) {
       try {
-        const response = await api.get(`/offers/${offerId}`);
-        commit('SET_OFFER', response.data);
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    },
-
-    async BROWSE_OFFERS({ commit }) {
-      try {
-        const response = await api.get('/offers');
-        commit('SET_OFFERS', response.data);
+        await api.post('/offers/buy', {
+          customerName,
+          offerId,
+          boughtQuantity,
+          customAddress,
+          Address,
+        });
+        commit();
       } catch (err) {
         throw new Error(err.message);
       }
