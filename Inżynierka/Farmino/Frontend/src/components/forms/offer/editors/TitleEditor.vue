@@ -2,14 +2,9 @@
   <div>
     <div id="title-editor">
       <div id="title-wraper">
-        <h1 v-if="!titleEditor">{{ offer.title }}</h1>
-        <div id="inputs-wraper" v-if="titleEditor">
-          <input type="text" name="userName" class="form-field" v-model="offer.title" />
+        <div id="inputs-wraper">
+          <input type="text" name="userName" class="form-field" v-model="setTitle" />
         </div>
-        <button @click="titleEditor = !titleEditor">
-          Edytuj
-          <unicon name="edit" width="20" height="20"></unicon>
-        </button>
       </div>
     </div>
   </div>
@@ -18,13 +13,15 @@
 <script>
 export default {
   name: 'offer-creator',
-  data() {
-    return {
-      titleEditor: false,
-      offer: {
-        title: 'Ustaw Tytuł Oferty',
+  computed: {
+    setTitle: {
+      get() {
+        return this.$store.state.offer.title;
       },
-    };
+      set(value) {
+        this.$store.commit('offer/SET_TITLE', value);
+      },
+    },
   },
 };
 </script>

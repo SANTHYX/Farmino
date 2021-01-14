@@ -3,7 +3,16 @@
     <div id="description-editor">
       <div id="title-wraper">
         <h1>Dodaj Opis</h1>
-        <unicon name="edit" @click="descriptionEditor = !descriptionEditor"></unicon>
+        <div id="inputs-wraper">
+          <label for="userName" class="form-label">Login</label>
+          <textarea
+            name=""
+            class="form-field"
+            cols="30"
+            rows="10"
+            v-model="setDescription"
+          ></textarea>
+        </div>
       </div>
     </div>
   </div>
@@ -11,8 +20,15 @@
 
 <script>
 export default {
-  offer: {
-    description: '',
+  computed: {
+    setDescription: {
+      get() {
+        return this.$store.state.offer.description;
+      },
+      set(value) {
+        this.$store.commit('offer/SET_DESCRIPTION', value);
+      },
+    },
   },
 };
 </script>
@@ -28,12 +44,26 @@ export default {
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
 
     h1 {
       margin: 0 0.5rem 0 0;
       text-align: center;
       font-weight: lighter;
       font-size: 1.8rem;
+    }
+
+    #inputs-wraper {
+      display: flex;
+      flex-direction: column;
+
+      textarea {
+        padding: 0.3rem;
+        width: 30vw;
+        height: 200px;
+        font-weight: normal;
+        resize: none;
+      }
     }
   }
 }

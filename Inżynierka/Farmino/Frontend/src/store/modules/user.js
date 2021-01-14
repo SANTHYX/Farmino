@@ -40,6 +40,7 @@ const user = {
         console.log(err);
       }
     },
+
     async CREATE_PROFILE({ commit }, {
       userName, firstName, lastName, phoneNumber,
     }) {
@@ -55,6 +56,7 @@ const user = {
         throw new Error(err);
       }
     },
+
     async EDIT_PROFILE({ commit }, {
       userName, firstName, lastName, phoneNumber,
     }) {
@@ -70,6 +72,7 @@ const user = {
         throw new Error(err);
       }
     },
+
     async CREATE_ADDRESS({ commit }, {
       userName, city, street, postalCode, houseNumber,
     }) {
@@ -91,6 +94,7 @@ const user = {
         console.log(err);
       }
     },
+
     async UPDATE_ADDRESS({ commit }, {
       userName, city, street, postalCode, houseNumber,
     }) {

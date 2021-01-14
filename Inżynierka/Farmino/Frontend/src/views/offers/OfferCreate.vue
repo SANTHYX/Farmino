@@ -25,5 +25,17 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  #content {
+    margin: 12rem 0;
+  }
+}
+
+@media screen and(max-width: $tablet) {
+  #offer-creator {
+    #content {
+      margin-top: 5rem;
+    }
+  }
 }
 </style>

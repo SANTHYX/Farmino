@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: linear-gradient(0deg, rgba(226, 221, 137, 0.66) 0%, rgba(184, 144, 15, 0.64) 100%),
+    background: linear-gradient(0deg, rgba(236, 215, 147, 0.66) 0%, rgba(235, 206, 42, 0.64) 100%),
       url('../../../assets/images/Farmino_background.png') no-repeat center center/cover;
     height: 80vh;
     width: 100%;
