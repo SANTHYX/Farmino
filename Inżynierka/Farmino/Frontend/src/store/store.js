@@ -3,8 +3,8 @@ import Vuex from 'vuex';
 import search from './modules/search';
 import auth from './modules/auth';
 import user from './modules/user';
-import offer from './modules/offer';
 import order from './modules/order';
+import offer from './modules/offer';
 import auction from './modules/auction';
 
 Vue.use(Vuex);

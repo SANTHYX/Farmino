@@ -2,6 +2,7 @@ import api from '@/plugins/axios';
 
 const auction = {
   namespaced: true,
+
   state: {
     auction: {},
     auctionsAll: [],
@@ -27,7 +28,7 @@ const auction = {
     },
     async GET_AUCTIONS({ commit }) {
       try {
-        const response = await api.get('/offers');
+        const response = await api.get('/auctions');
         commit('SET_AUCTIONS', response.data);
       } catch (err) {
         throw new Error(err.message);

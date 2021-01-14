@@ -30,11 +30,6 @@ const routes = [
     component: () => import('@/views/login/Login.vue'),
   },
   {
-    path: '/search',
-    name: 'search',
-    component: () => import('@/views/search/Search.vue'),
-  },
-  {
     path: '/profile',
     redirect: 'home',
     component: () => import('@/views/profile/Profile.vue'),

@@ -54,22 +54,23 @@ const offer = {
         throw new Error(err.message);
       }
     },
-  },
-  async GET_OFFER({ commit }, offerId) {
-    try {
-      const response = await api.get(`/offers/${offerId}`);
-      commit('SET_OFFER', response.data);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  },
-  async GET_OFFERS({ commit }) {
-    try {
-      const response = await api.get('/offers');
-      commit('SET_OFFERS', response.data);
-    } catch (err) {
-      throw new Error(err.message);
-    }
+    async GET_OFFER({ commit }, offerId) {
+      try {
+        const response = await api.get(`/offers/${offerId}`);
+        commit('SET_OFFER', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async BROWSE_OFFERS({ commit }) {
+      try {
+        const response = await api.get('/offers');
+        commit('SET_OFFERS', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
   },
 };
 

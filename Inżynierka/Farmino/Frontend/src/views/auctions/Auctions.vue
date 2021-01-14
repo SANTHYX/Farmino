@@ -1,13 +1,19 @@
 <template>
   <div>
     <div id="auctions">
-      <div id="content"></div>
+      <auctions-list />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import AuctionsList from '@/components/lists/AuctionsList.vue';
+
+export default {
+  components: {
+    AuctionsList,
+  },
+};
 </script>
 
 <style lang="scss"></style>

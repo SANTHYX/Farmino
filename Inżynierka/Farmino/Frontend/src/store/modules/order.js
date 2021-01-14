@@ -2,6 +2,7 @@ import api from '@/plugins/axios';
 
 const order = {
   namespaced: true,
+
   state: {
     order: {},
     ordersAll: [],

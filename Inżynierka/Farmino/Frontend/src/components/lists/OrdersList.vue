@@ -1,13 +1,13 @@
 <template>
-  <div id="searching-results-list">
+  <div>
     <div></div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
+  async beforeCreate() {
+    await this.$store.dispatch('order/GET_ORDERS');
   },
 };
 </script>

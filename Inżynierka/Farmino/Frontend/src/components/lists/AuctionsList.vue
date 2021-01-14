@@ -3,9 +3,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  async beforeCreate() {
+    await this.$store.dispatch('auction/GET_AUCTIONS');
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
