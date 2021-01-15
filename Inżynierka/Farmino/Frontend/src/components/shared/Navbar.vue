@@ -90,9 +90,6 @@ export default {
 
 <style lang="scss" scoped>
 #navbar {
-  position: fixed;
-  width: 100vw;
-  z-index: 1;
   box-shadow: 0 2px 1px rgba(204, 204, 204, 0.39);
   #logo {
     display: flex;

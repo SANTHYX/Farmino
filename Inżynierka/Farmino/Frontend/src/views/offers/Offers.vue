@@ -18,4 +18,11 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#offers {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

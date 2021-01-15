@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div></div>
+    <div id="list-wraper">
+      <div></div>
+    </div>
   </div>
 </template>
 

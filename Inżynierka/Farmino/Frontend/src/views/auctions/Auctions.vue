@@ -16,4 +16,11 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#auctions {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
