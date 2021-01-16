@@ -79,12 +79,24 @@ namespace Farmino.Infrastructure.ORM
                 x.HasOne(y => y.Offer).WithMany(z => z.Orders).HasForeignKey(q => q.OfferId)
                     .OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(y => y.Customer).WithMany(z => z.Orders).HasForeignKey(q => q.CustomerId);
-                x.OwnsOne(y => y.OrderAddress, z =>
+                x.Property(y => y.Released);
+                x.Property(y => y.OrderQuantity).IsRequired();
+                x.Property(y => y.OrderUnit).IsRequired();
+                x.Property(y => y.PriceSummary).IsRequired();
+                x.Property(y => y.ReleaseDate);
+                x.Property(y => y.CustomAddress).IsRequired();
+                x.OwnsOne(y => y.OrderDetails, z =>
                 {
-                    z.Property(q => q.City).HasColumnName("City").HasMaxLength(30);
-                    z.Property(q => q.HouseNumber).HasColumnName("HouseNumber").HasMaxLength(5);
-                    z.Property(q => q.PostalCode).HasColumnName("PostalCode").HasMaxLength(7); ;
-                    z.Property(q => q.Street).HasColumnName("Street").HasMaxLength(30); ;
+                    z.Property(q => q.FirstName).HasMaxLength(25).HasColumnName("OrderFirstName").IsRequired();
+                    z.Property(q => q.LastName).HasMaxLength(25).HasColumnName("OrderLastName").IsRequired();
+                    z.Property(q => q.PhoneNumber).HasMaxLength(12).HasColumnName("OrderPhoneNumber").IsRequired();
+                    z.OwnsOne(q => q.Address, z =>
+                    {
+                        z.Property(w => w.City).HasColumnName("OrderCity").HasMaxLength(30);
+                        z.Property(w => w.HouseNumber).HasColumnName("OrderHouseNumber").HasMaxLength(5);
+                        z.Property(w => w.PostalCode).HasColumnName("OrderPostalCode").HasMaxLength(7); ;
+                        z.Property(w => w.Street).HasColumnName("OrderStreet").HasMaxLength(30); ;
+                    });
                 });
             });
 
@@ -95,13 +107,8 @@ namespace Farmino.Infrastructure.ORM
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
                 x.OwnsOne(y => y.Product, z =>
                 {
-                    z.Property(q => q.Price).IsRequired();
-                    z.Property(q => q.Quantity).IsRequired();
-                    z.OwnsOne(q => q.Weight, z =>
-                    {
-                        z.Property(q => q.Unit).HasColumnName("Unit");
-                        z.Property(q => q.Value).HasColumnName("Value");
-                    });
+                    z.Property(q => q.BasePrice).IsRequired();
+                    z.Property(q => q.BaseWeightUnit).IsRequired();
                 });
             });
 

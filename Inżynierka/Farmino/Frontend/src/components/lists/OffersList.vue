@@ -1,13 +1,24 @@
 <template>
   <div>
     <div id="list-wraper">
-      <div></div>
+      <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import OfferListItem from '../items/OfferListItem.vue';
+
 export default {
+  components: {
+    OfferListItem,
+  },
+  computed: {
+    ...mapGetters({
+      offers: 'offer/GET_OFFERS_ALL',
+    }),
+  },
   async created() {
     await this.$store.dispatch('offer/BROWSE_OFFERS');
   },

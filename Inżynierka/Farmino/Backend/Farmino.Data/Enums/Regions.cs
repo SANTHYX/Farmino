@@ -6,5 +6,6 @@ namespace Farmino.Data.Enums
 {
     public enum Regions
     {
+        
     }
 }

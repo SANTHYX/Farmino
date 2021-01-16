@@ -1,9 +1,24 @@
 <template>
-  <div id="list-wraper"></div>
+  <div>
+    <div id="list-wraper">
+      <auction-list-item v-for="auction in auctions" :key="auction.id" :auctionItem="auction" />
+    </div>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import AuctionListItem from '../items/AuctionListItem.vue';
+
 export default {
+  components: {
+    AuctionListItem,
+  },
+  computed: {
+    ...mapGetters({
+      auctions: 'auction/GET_AUCTIONS_ALL',
+    }),
+  },
   async beforeCreate() {
     await this.$store.dispatch('auction/GET_AUCTIONS');
   },

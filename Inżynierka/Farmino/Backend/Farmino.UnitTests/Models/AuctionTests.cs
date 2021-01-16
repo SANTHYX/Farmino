@@ -134,19 +134,6 @@ namespace Farmino.UnitTests.Models
         }
 
         [Fact]
-        public void SetEndDate_should_throw_error_if_enddate_value_will_be_equal_start_date()
-        {
-            var time = DateTime.Now;
-            var startValue = time.AddMilliseconds(3);
-            var endValue = time.AddMilliseconds(1);
-            var expected = "EndDate cannot be lesser than StartDate";
-
-            auction.Object.SetStartDate(startValue);
-            var ex = Assert.Throws<DataExceptions>(() => auction.Object.SetEndDate(endValue));
-            Assert.Equal(expected, ex.Message);
-        }
-
-        [Fact]
         public void SetEndDate_should_pass_if_enddate_value_will_be_greater_than_start_date()
         {
             var time = DateTime.Now;

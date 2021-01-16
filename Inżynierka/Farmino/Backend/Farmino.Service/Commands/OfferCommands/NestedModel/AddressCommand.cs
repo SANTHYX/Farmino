@@ -2,7 +2,7 @@
 
 namespace Farmino.Service.Commands.OfferCommands.NestedModel
 {
-    public class AddressModel : ICommand
+    public class AddressCommand : ICommand
     {
         public string City { get; set; }
         public string Street { get; set; }

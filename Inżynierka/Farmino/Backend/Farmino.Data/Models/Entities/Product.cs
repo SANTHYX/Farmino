@@ -1,66 +1,53 @@
-﻿using Farmino.Data.Exceptions;
+﻿using Farmino.Data.Enums;
+using Farmino.Data.Exceptions;
 using Farmino.Data.Models.Aggregations;
-using Farmino.Data.Models.ValueObjects;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Farmino.Data.Models.Entities
 {
     public class Product
     {
-        public decimal Price { get; protected set; }
-        public int Quantity { get; protected set; }
-        public Weight Weight { get; protected set; }
+        public decimal BasePrice { get; protected set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public WeightUnits BaseWeightUnit { get; protected set; }
         public Offer Offer { get; protected set; }
 
         protected Product() { }
 
-        public Product(decimal price, int quantity, Weight weight)
+        public Product(decimal price, WeightUnits weight)
         {
-            SetPrice(price);
-            SetQuantity(quantity);
-            Weight = weight;
+            SetBasePrice(price);
+            SetUnit(weight);
         }
 
-        public void SetPrice(decimal price)
+        public void SetUnit(WeightUnits weightUnit)
+        {
+            if (!Enum.IsDefined(typeof(WeightUnits), weightUnit))
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
+                    "Invalid product weight unit");
+            }
+
+            BaseWeightUnit = weightUnit;
+        }
+
+        public void SetBasePrice(decimal price)
         {
             if (price <= 0)
             {
                 throw new DataExceptions(DataErrorCodes.InvalidProductPrice,
-                    "Price cannot be less or equal zero");
+                    "BasePrice cannot be less or equal zero");
             }
-            if (Price == price)
+            if (BasePrice == price)
             {
                 return;
             }
 
-            Price = price;
+            BasePrice = price;
         }
 
-        public void SetQuantity(int quantity)
-        {
-            if (quantity < 0)
-            {
-                throw new DataExceptions(DataErrorCodes.InvalidProductQuantity,
-                    "Product quantity cannot be less than zero");
-            }
-            if (Quantity == quantity)
-            {
-                return;
-            }
-
-            Quantity = quantity;
-        }
-
-        public void DecreaseQuantity(int value)
-        {
-            if (Quantity - value < 0)
-            {
-                throw new DataExceptions("");
-            }
-
-            Quantity -= value;
-        }
-
-        public static Product Create(decimal price, int quantity, Weight weight)
-            => new Product(price, quantity, weight);
+        public static Product Create(decimal price, WeightUnits weight)
+            => new Product(price, weight);
     }
 }

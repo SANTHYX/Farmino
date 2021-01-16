@@ -10,6 +10,6 @@ namespace Farmino.Service.Service.Interfaces
         Task<OrderDTO> GetOrderDetailsAsync(Guid offerId, Guid customerId);
         Task<IEnumerable<OrdersDTO>> BrowseOrdersAsync(Guid offerId);
         Task CancelOrder(Guid offerId, Guid customerId);
-        Task EditOrder(Guid offerId, Guid customerId, int quantity);
+        Task SetupRealisationDate(Guid offerId, Guid customerId, DateTime realisationDate);
     }
 }

@@ -28,7 +28,7 @@ namespace Farmino.API.Controllers
             => Ok(await _orderService.BrowseOrdersAsync(offerId));
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] EditOrder command) 
+        public async Task<IActionResult> Put([FromBody] SetRealisationDate command) 
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Order has been edited");

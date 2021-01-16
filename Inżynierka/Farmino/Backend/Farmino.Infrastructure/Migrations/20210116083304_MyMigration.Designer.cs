@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210110161216_MyMigration")]
+    [Migration("20210116083304_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,6 +131,12 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<Guid>("FarmerId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<double>("MinQuantity")
+                        .HasColumnType("float");
+
+                    b.Property<int>("MinWeightUnit")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(40)
@@ -226,17 +232,23 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<Guid>("OfferId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BoughtQuantity")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("CustomAddress")
                         .HasColumnType("bit");
 
+                    b.Property<double>("OrderQuantity")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OrderUnit")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PriceSummary")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Released")
                         .HasColumnType("bit");
@@ -375,10 +387,10 @@ namespace Farmino.Infrastructure.Migrations
                             b1.Property<Guid>("OfferId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<decimal>("Price")
+                            b1.Property<decimal>("BasePrice")
                                 .HasColumnType("decimal(18,2)");
 
-                            b1.Property<int>("Quantity")
+                            b1.Property<int>("BaseWeightUnit")
                                 .HasColumnType("int");
 
                             b1.HasKey("OfferId");
@@ -388,30 +400,7 @@ namespace Farmino.Infrastructure.Migrations
                             b1.WithOwner("Offer")
                                 .HasForeignKey("OfferId");
 
-                            b1.OwnsOne("Farmino.Data.Models.ValueObjects.Weight", "Weight", b2 =>
-                                {
-                                    b2.Property<Guid>("ProductOfferId")
-                                        .HasColumnType("uniqueidentifier");
-
-                                    b2.Property<int>("Unit")
-                                        .HasColumnType("int")
-                                        .HasColumnName("Unit");
-
-                                    b2.Property<double>("Value")
-                                        .HasColumnType("float")
-                                        .HasColumnName("Value");
-
-                                    b2.HasKey("ProductOfferId");
-
-                                    b2.ToTable("Offers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("ProductOfferId");
-                                });
-
                             b1.Navigation("Offer");
-
-                            b1.Navigation("Weight");
                         });
 
                     b.Navigation("Farmer");
@@ -444,7 +433,7 @@ namespace Farmino.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.OwnsOne("Farmino.Data.Models.ValueObjects.Address", "OrderAddress", b1 =>
+                    b.OwnsOne("Farmino.Data.Models.ValueObjects.OrderDetails", "OrderDetails", b1 =>
                         {
                             b1.Property<Guid>("OrderCustomerId")
                                 .HasColumnType("uniqueidentifier");
@@ -452,25 +441,23 @@ namespace Farmino.Infrastructure.Migrations
                             b1.Property<Guid>("OrderOfferId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<string>("City")
-                                .HasMaxLength(30)
-                                .HasColumnType("nvarchar(30)")
-                                .HasColumnName("City");
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasMaxLength(25)
+                                .HasColumnType("nvarchar(25)")
+                                .HasColumnName("OrderFirstName");
 
-                            b1.Property<string>("HouseNumber")
-                                .HasMaxLength(5)
-                                .HasColumnType("nvarchar(5)")
-                                .HasColumnName("HouseNumber");
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasMaxLength(25)
+                                .HasColumnType("nvarchar(25)")
+                                .HasColumnName("OrderLastName");
 
-                            b1.Property<string>("PostalCode")
-                                .HasMaxLength(7)
-                                .HasColumnType("nvarchar(7)")
-                                .HasColumnName("PostalCode");
-
-                            b1.Property<string>("Street")
-                                .HasMaxLength(30)
-                                .HasColumnType("nvarchar(30)")
-                                .HasColumnName("Street");
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(12)
+                                .HasColumnType("nvarchar(12)")
+                                .HasColumnName("OrderPhoneNumber");
 
                             b1.HasKey("OrderCustomerId", "OrderOfferId");
 
@@ -478,13 +465,51 @@ namespace Farmino.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("OrderCustomerId", "OrderOfferId");
+
+                            b1.OwnsOne("Farmino.Data.Models.ValueObjects.Address", "Address", b2 =>
+                                {
+                                    b2.Property<Guid>("OrderDetailsOrderCustomerId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<Guid>("OrderDetailsOrderOfferId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<string>("City")
+                                        .HasMaxLength(30)
+                                        .HasColumnType("nvarchar(30)")
+                                        .HasColumnName("OrderCity");
+
+                                    b2.Property<string>("HouseNumber")
+                                        .HasMaxLength(5)
+                                        .HasColumnType("nvarchar(5)")
+                                        .HasColumnName("OrderHouseNumber");
+
+                                    b2.Property<string>("PostalCode")
+                                        .HasMaxLength(7)
+                                        .HasColumnType("nvarchar(7)")
+                                        .HasColumnName("OrderPostalCode");
+
+                                    b2.Property<string>("Street")
+                                        .HasMaxLength(30)
+                                        .HasColumnType("nvarchar(30)")
+                                        .HasColumnName("OrderStreet");
+
+                                    b2.HasKey("OrderDetailsOrderCustomerId", "OrderDetailsOrderOfferId");
+
+                                    b2.ToTable("Orders");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("OrderDetailsOrderCustomerId", "OrderDetailsOrderOfferId");
+                                });
+
+                            b1.Navigation("Address");
                         });
 
                     b.Navigation("Customer");
 
                     b.Navigation("Offer");
 
-                    b.Navigation("OrderAddress");
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.Participant", b =>

@@ -2,43 +2,36 @@
   <div>
     <div id="product-editor">
       <div id="product-wraper">
-        <div id="title-wraper">
-          <div id="inputs-wraper">
-            <label for="userName" class="form-label">Cena</label>
-            <input
-              type="text"
-              name="price"
-              class="form-field"
-              v-model.number="offer.product.price"
-            />
-          </div>
-          <div id="inputs-wraper">
-            <label for="userName" class="form-label">Ilosc</label>
-            <input
-              type="text"
-              name="quantity"
-              class="form-field"
-              v-model.number="offer.product.quantity"
-            />
-          </div>
-          <div id="inputs-wraper">
-            <select class="form-field" v-model.number="offer.product.weight.unit">
-              <option value="0">g</option>
-              <option value="1">dkg</option>
-              <option value="2">g</option>
-              <option value="3">kg</option>
-              <option value="4">T</option>
-            </select>
-          </div>
-          <div id="inputs-wraper">
-            <label for="userName" class="form-label">Ilosc</label>
-            <input
-              type="text"
-              name="userName"
-              class="form-field"
-              v-model.number="offer.product.weight.value"
-            />
-          </div>
+        <div id="inputs-wraper">
+          <label for="userName" class="form-label">Cena</label>
+          <input type="text" name="price" class="form-field" v-model.number="offer.product.price" />
+        </div>
+        <div id="inputs-wraper">
+          <label for="userName" class="form-label">Ilosc</label>
+          <input
+            type="text"
+            name="quantity"
+            class="form-field"
+            v-model.number="offer.product.quantity"
+          />
+        </div>
+        <div id="inputs-wraper">
+          <select class="form-field" v-model.number="offer.product.weight.unit">
+            <option value="0">g</option>
+            <option value="1">dkg</option>
+            <option value="2">g</option>
+            <option value="3">kg</option>
+            <option value="4">T</option>
+          </select>
+        </div>
+        <div id="inputs-wraper">
+          <label for="userName" class="form-label">Ilosc</label>
+          <input
+            type="text"
+            name="userName"
+            class="form-field"
+            v-model.number="offer.product.weight.value"
+          />
         </div>
       </div>
     </div>

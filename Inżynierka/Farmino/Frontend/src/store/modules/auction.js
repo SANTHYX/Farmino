@@ -9,6 +9,12 @@ const auction = {
     winner: {},
   },
 
+  getters: {
+    GET_AUCTIONS_ALL(state) {
+      return state.auctionsAll;
+    },
+  },
+
   mutations: {
     SET_AUCTION(state, auctionObj) {
       state.action = auctionObj;

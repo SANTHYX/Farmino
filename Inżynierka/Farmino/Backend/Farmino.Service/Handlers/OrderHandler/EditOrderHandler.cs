@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Farmino.Service.Handlers.OrderHandler
 {
-    public class EditOrderHandler : ICommandHandler<EditOrder>
+    public class EditOrderHandler : ICommandHandler<SetRealisationDate>
     {
         private readonly IOrderService _orderService;
 
@@ -14,9 +14,9 @@ namespace Farmino.Service.Handlers.OrderHandler
             _orderService = orderService;
         }
 
-        public async Task HandleAsync(EditOrder command)
+        public async Task HandleAsync(SetRealisationDate command)
         {
-            await _orderService.EditOrder(command.OfferId, command.CustomerId, command.Quantity);
+            await _orderService.SetupRealisationDate(command.OfferId, command.CustomerId, command.RealisationDate);
         }
     }
 }

@@ -20,19 +20,19 @@ namespace Farmino.API.Controllers
             _offerService = offerService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
-            => Ok(await _offerService.GetOfferAsync(id));
+        [HttpGet("{offerId}")]
+        public async Task<IActionResult> Get(Guid offerId)
+            => Ok(await _offerService.GetOfferAsync(offerId));
 
         [HttpGet]
         public async Task<IActionResult> Get()
             => Ok(await _offerService.BrowseAllAsync());
 
-        [HttpPost("buy")]
-        public async Task<IActionResult> Post([FromBody] Buy command)
+        [HttpPost("make-order")]
+        public async Task<IActionResult> Post([FromBody] MakeOrder command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Transaction has been completed sucesfully");
+            return Ok("Order has been created");
         }
 
         [HttpPost]

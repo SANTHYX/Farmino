@@ -23,10 +23,11 @@
         public static string InvalidProductPrice => "invalid_product_price";
         public static string InvalidProductWeightValue => "invalid_product_weight_value";
         public static string InvalidProductWeightUnit => "invalid_product_weight_unit";
-        public static string InvalidBoughtQuantity => "invalid_bought_quantity";
+        public static string InvalidMinQuantity => "invalid_min_quantity";
         public static string InvalidPriceSummary => "invalid_price_summary";
         public static string InvalidProposedPrice => "invalid_proposed_price";
         public static string InvalidDate => "invalid_date";
         public static string InvalidStartingPrice => "invalid_starting_price";
+        public static string InvalidOrderQuantity => "invalid_order_quantity";
     }
 }

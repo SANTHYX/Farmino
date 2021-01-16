@@ -39,16 +39,19 @@ export default {
       },
     };
   },
+
   validations: {
     user: {
       userName: { required },
       password: { required },
     },
   },
+
   methods: {
     ...mapActions({
       Login: 'auth/LOGIN',
     }),
+
     async LogUser() {
       try {
         await this.Login(this.user);
@@ -68,23 +71,28 @@ export default {
     border: 1px solid rgb(189, 189, 189);
     box-shadow: 1px 1px 6px rgb(179, 179, 179);
     border-radius: 10px;
+
     hr {
       margin-top: 0.2rem;
       width: 240px;
       color: rgb(245, 245, 245);
     }
+
     h1 {
       text-align: center;
       color: rgb(63, 63, 63);
     }
+
     #inputs-wraper {
       display: flex;
       flex-direction: column;
     }
+
     #btn-wraper {
       margin-top: 1rem;
       display: flex;
       justify-content: center;
+
       #btn {
         padding: 0.2rem;
         background: rgb(235, 209, 63);

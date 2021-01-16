@@ -21,6 +21,7 @@
         public static string OfferNotExist => "offer_not_exist";
         public static string ProductNoExist => "product_not_exist";
         public static string AuctionerNotExist => "auctioner_not_exist";
+        public static string OrderNotExist => "order_not_exist";
         public static string AuctionerAlreadyExist => "auctioner_already_exist";
         public static string ParticipantNotExist => "participant_not_exist";
         public static string ParticipantAlreadyExist => "participant_already_exist";
@@ -30,5 +31,6 @@
         public static string CannotBuyFromOwnOffer => "cannot_buy_from_own_offer";
         public static string ProductStorageIsEmpty => "product_storage_is_empty";
         public static string AuctionHasNotEndYet => "auction_has_not_end_yet";
+        public static string InvalidOrder => "invalid_order";
     }
 }

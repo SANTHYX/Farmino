@@ -1,4 +1,5 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using Farmino.Data.Enums;
+using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.DTO.Offer;
 using System;
@@ -10,11 +11,11 @@ namespace Farmino.Service.Service.Interfaces
     public interface IOfferService : IService
     {
         Task CreateOffer(string userName, string title,
-            string description, Product product);
+            string description, WeightUnits minWeight, double minQuantity, Product product);
+        Task MakeOrder(Guid offerId, string customerName, double orderQuantity, WeightUnits orderUnit,
+            bool customAddress, OrderDetails orderDetails = null);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
         Task<IEnumerable<OffersDTO>> BrowseAllAsync();
-        Task BuyAsync(string customerName, Guid offerId,
-                int boughtQuantity, bool customAddress, Address address = null);
     }
 }

@@ -6,5 +6,7 @@
         Owoce,
         Przetwory,
         Wędliny,
+        Nabiał,
+        Pieczywo,
     }
 }

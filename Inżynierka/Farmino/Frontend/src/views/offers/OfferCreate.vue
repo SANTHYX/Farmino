@@ -2,18 +2,18 @@
   <div>
     <div id="offer-creator">
       <div id="content">
-        <offer-wizard></offer-wizard>
+        <offer-creator />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import OfferWizard from '@/components/forms/offer/OfferWizard.vue';
+import OfferCreator from '@/components/forms/offer/OfferCreator.vue';
 
 export default {
   components: {
-    OfferWizard,
+    OfferCreator,
   },
 };
 </script>

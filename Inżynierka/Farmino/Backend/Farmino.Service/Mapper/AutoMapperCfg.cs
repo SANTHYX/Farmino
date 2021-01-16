@@ -14,9 +14,7 @@ namespace Farmino.Service.Mapper
             CreateMap<User, DTO.User.UsersDTO>();
             CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
             CreateMap<User, DTO.Auction.NestedModels.UserDTO>();
-            CreateMap<User, DTO.Order.NestedModels.UserDTO>();
             CreateMap<Profile, DTO.User.NestedModels.ProfileDTO>();
-            CreateMap<Profile, DTO.Order.NestedModels.ProfileDTO>();
             CreateMap<Address, DTO.User.NestedModels.AddressDTO>();
             CreateMap<Address, DTO.Offer.NestedModels.FarmerDTO>();
             CreateMap<Address, DTO.Order.NestedModels.AddressDTO>();
@@ -25,11 +23,8 @@ namespace Farmino.Service.Mapper
             CreateMap<Offer, DTO.Offer.OffersDTO>();
             CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
             CreateMap<Product, DTO.Product.ProductDTO>();
-            CreateMap<Weight, DTO.Product.NestedModels.WeightDTO>();
-            CreateMap<Weight, DTO.Offer.NestedModels.WeightDTO>();
             CreateMap<Farmer, DTO.Offer.NestedModels.FarmerDTO>();
             CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
-            CreateMap<Customer, DTO.Order.NestedModels.CustomerDTO>();
             CreateMap<Farmer, DTO.Farmer.FarmerDTO>();
             CreateMap<Auction, DTO.Auction.AuctionDTO>();
             CreateMap<Auction, DTO.Auction.AuctionsDTO>();
@@ -38,6 +33,7 @@ namespace Farmino.Service.Mapper
             CreateMap<ParticipantAuction, DTO.Auction.NestedModels.ParticipantAuctionDTO>();
             CreateMap<Order, DTO.Order.OrderDTO>();
             CreateMap<Order, DTO.Order.OrdersDTO>();
+            CreateMap<OrderDetails, DTO.Order.NestedModels.OrderDetailsDTO>();
 
             //Extensions
             CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>().ReverseMap();

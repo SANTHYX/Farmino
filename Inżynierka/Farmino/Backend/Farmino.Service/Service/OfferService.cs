@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Farmino.Data.Enums;
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
@@ -37,52 +38,13 @@ namespace Farmino.Service.Service
             return _mapper.Map<IEnumerable<OffersDTO>>(offers);
         }
 
-        public async Task BuyAsync(string customerName, Guid offerId,
-            int boughtQuantity, bool customAddress, Address address = null)
-        {
-            var offer = await _offerRepository.GetIfExistAsync(offerId);
-            var customer = await _customerRepository.GetIfExistAsync(customerName);
-
-            if (offer.Farmer.UserId == customer.UserId)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.CannotBuyFromOwnOffer,
-                    "Customer cannot make order of own offer");
-            }
-            if (offer.Product.Quantity - boughtQuantity <= 0)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.ProductStorageIsEmpty,
-                    "Storage is empty or you try buy with quantity being out of avalivable range");
-            }
-            if (customer.User.Profile == null)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.ProfileDontExist, 
-                    "Your profile is required to make order");
-            }
-            if (customer.User.Profile.Address == null && !customAddress)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.AddressNotExist,
-                    "Your profile address is empty and your customAddress is empty");
-            }
-
-            var priceSummary = offer.Product.Price * boughtQuantity;
-
-            if (!customAddress)
-            {
-                await _orderRepository.AddAsync(new Order(offer, customer,
-                    customer.User.Profile.Address, boughtQuantity, priceSummary, customAddress));
-            }
-            else await _orderRepository.AddAsync(new Order(offer, customer,
-                    address, boughtQuantity, priceSummary, customAddress));
-
-            offer.Product.DecreaseQuantity(boughtQuantity);
-            await _orderRepository.SaveChanges();
-        }
-
-        public async Task CreateOffer(string userName, string title, string description, Product product)
+        public async Task CreateOffer(string userName, string title, string description, WeightUnits minUnit,
+            double minQuantity, Product product)
         {
             var farmer = await _farmerRepository.GetIfExistAsync(userName);
 
-            await _offerRepository.AddAsync(new Offer(farmer, title, description, product));
+            await _offerRepository.AddAsync(new Offer(farmer, title, description, minUnit,
+                minQuantity ,product));
             await _offerRepository.SaveChangesAsync();
         }
 
@@ -91,6 +53,46 @@ namespace Farmino.Service.Service
             var offer = await _offerRepository.GetAsync(id);
 
             return _mapper.Map<OfferDTO>(offer);
+        }
+
+        public async Task MakeOrder(Guid offerId, string customerName, double orderQuantity, WeightUnits orderUnit,
+            bool customAddress, OrderDetails orderDetails = null)
+        {
+            var offer = await _offerRepository.GetIfExistAsync(offerId);
+            var customer = await _customerRepository.GetIfExistAsync(customerName);
+            
+            if (customer.User.Id == offer.Farmer.UserId)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.CannotBuyFromOwnOffer,
+                    "Cannot make order of your own offer");
+            }
+            if (orderUnit < offer.MinWeightUnit)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.InvalidOrder,
+                    "Cannot buy lower than min");
+            }
+            if (orderQuantity < offer.MinQuantity)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.InvalidOrder,
+                    "Cannot buy lower than min quantity");
+            }
+            if (customer.User.Profile == null && customAddress == false)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.ProfileDontExist,
+                    "Profile dont exist");
+            }
+
+            var summaryPrice = offer.Product.BasePrice * (decimal)orderQuantity;
+
+            if (customAddress)
+            {
+                await _orderRepository.AddAsync(new Order(offer, customer, orderDetails, orderQuantity, orderUnit, summaryPrice, customAddress));
+            }
+            else await _orderRepository.AddAsync(new Order(offer, customer, OrderDetails.Create(customer.User.Profile.FirstName,
+                customer.User.Profile.LastName,customer.User.Profile.PhoneNumber,
+                customer.User.Profile.Address), orderQuantity, orderUnit, summaryPrice, customAddress));
+
+            await _orderRepository.SaveChanges();
         }
 
         public async Task RemoveOffer(Guid id)

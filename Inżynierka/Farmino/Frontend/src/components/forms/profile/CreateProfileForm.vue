@@ -161,6 +161,7 @@ import { required, numeric } from 'vuelidate/lib/validators';
 
 export default {
   name: 'profile-form',
+
   data() {
     return {
       profile: {
@@ -176,6 +177,7 @@ export default {
       },
     };
   },
+
   validations: {
     profile: {
       firstName: { required },
@@ -187,6 +189,7 @@ export default {
           return value.length === 9 || value.length === 11;
         },
       },
+
       address: {
         city: { required },
         street: { required },
@@ -195,11 +198,13 @@ export default {
       },
     },
   },
+
   computed: {
     ...mapGetters({
       userName: 'auth/GET_USERNAME',
     }),
   },
+
   methods: {
     ...mapActions({
       createProfile: 'user/CREATE_PROFILE',
@@ -234,6 +239,7 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
+
     #title-fix-box {
       hr {
         width: 200px;
@@ -245,15 +251,18 @@ export default {
         text-align: center;
       }
     }
+
     #row-input-wraper {
       display: flex;
       justify-content: center;
+
       #small-inputs-wraper {
         display: flex;
         flex-direction: column;
         margin: 0 0.2rem;
       }
     }
+
     #inputs-wraper {
       display: flex;
       flex-direction: column;

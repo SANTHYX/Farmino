@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import OffersList from '../../components/lists/OffersList.vue';
+import OffersList from '@/components/lists/OffersList.vue';
 
 export default {
   components: {
@@ -20,9 +20,6 @@ export default {
 
 <style lang="scss">
 #offers {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-centred-site;
 }
 </style>
