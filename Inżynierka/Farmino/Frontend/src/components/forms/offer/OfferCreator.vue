@@ -18,13 +18,13 @@
               type="text"
               name="price"
               class="form-field"
-              v-mode.number="$v.offer.product.basePrice.$model"
+              v-model.number="$v.offer.product.basePrice.$model"
             />
           </div>
           <div id="inputs-wraper">
             <label for="userName" class="form-label">Bazowa jednostka</label>
             <select class="form-field" v-model.number="$v.offer.product.baseWeightUnit.$model">
-              <option value="0">g</option>
+              <option value="0">mg</option>
               <option value="1">dkg</option>
               <option value="2">g</option>
               <option value="3">kg</option>
@@ -44,7 +44,7 @@
           <div id="inputs-wraper">
             <label for="userName" class="form-label">Jednostka</label>
             <select class="form-field" v-model.number="$v.offer.minWeightUnit.$model">
-              <option value="0">g</option>
+              <option value="0">mg</option>
               <option value="1">dkg</option>
               <option value="2">g</option>
               <option value="3">kg</option>
@@ -75,10 +75,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { required, minValue, maxValue } from 'vuelidate/lib/validators';
+import { mapActions, mapGetters } from 'vuex';
+import {
+  required, minValue, maxValue, decimal,
+} from 'vuelidate/lib/validators';
 
 export default {
+  name: 'offer-creator',
   components: {
     PhotoEditor: () => import('./editors/PhotoEditor.vue'),
   },
@@ -105,10 +108,16 @@ export default {
       minWeightUnit: { required, minValue: minValue(0), maxValue: maxValue(4) },
       minQuantity: { required, minValue: minValue(1) },
       product: {
-        basePrice: { required, minValue: minValue(1) },
+        basePrice: { required, decimal, minValue: minValue(1) },
         baseWeightUnit: { required, minValue: minValue(0), maxValue: maxValue(4) },
       },
     },
+  },
+
+  computed: {
+    ...mapGetters({
+      userName: 'auth/GET_USERNAME',
+    }),
   },
 
   methods: {
@@ -116,8 +125,18 @@ export default {
       createOffer: 'offer/CREATE_OFFER',
     }),
     create() {
-      this.createOffer();
+      this.createOffer({
+        userName: this.userName,
+        title: this.offer.title,
+        description: this.offer.description,
+        minWeightUnit: this.offer.minWeightUnit,
+        minQuantity: this.offer.minQuantity,
+        product: this.offer.product,
+      });
     },
+  },
+  async beforeCreate() {
+    this.$store.dispatch('offer/CREATE_FARMER', { userName: this.$store.state.auth.userName });
   },
 };
 </script>

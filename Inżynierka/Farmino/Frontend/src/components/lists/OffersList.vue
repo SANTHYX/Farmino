@@ -28,16 +28,19 @@ export default {
 <style lang="scss" scoped>
 #list-wraper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   border: 1px solid rgb(194, 194, 194);
-  width: 50vw;
+  min-width: 50vw;
   height: 80vh;
 }
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
+    min-height: 90vh;
     width: 80vw;
+    flex-direction: column;
+    justify-content: start;
   }
 }
 </style>

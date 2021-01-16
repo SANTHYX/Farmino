@@ -18,9 +18,6 @@ export default {
 
 <style lang="scss">
 #auctions {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-centred-site;
 }
 </style>

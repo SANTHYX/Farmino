@@ -10,6 +10,17 @@ const routes = [
     component: () => import('@/views/auctions/Auctions.vue'),
   },
   {
+    path: '/auctions/:id',
+    name: 'auction',
+    props: true,
+    component: () => import('@/views/auctions/Auction.vue'),
+  },
+  {
+    path: '/auctions/auction-creator',
+    name: 'auction-creator',
+    component: () => import('@/views/auctions/AuctionCreator.vue'),
+  },
+  {
     path: '/register',
     name: 'register',
     component: () => import('@/views/register/Register.vue'),
@@ -18,6 +29,12 @@ const routes = [
     path: '/offers',
     name: 'offers',
     component: () => import('@/views/offers/Offers.vue'),
+  },
+  {
+    path: '/offers/:id',
+    name: 'offer',
+    props: true,
+    component: () => import('@/views/offers/Offer.vue'),
   },
   {
     path: '/offers/offer-creator',

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="offer"></div>
+    <div id="auction"></div>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-#offer {
+#auction {
   @include flex-centred-site;
 }
 </style>
