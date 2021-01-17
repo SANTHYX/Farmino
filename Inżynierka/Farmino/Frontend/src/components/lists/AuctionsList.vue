@@ -31,13 +31,15 @@ export default {
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(194, 194, 194);
-  width: 50vw;
-  height: 80vh;
+  min-width: 50vw;
+  min-height: 80vh;
 }
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
-    width: 80vw;
+    min-height: 100vh;
+    width: 90vw;
+    flex-direction: column;
   }
 }
 </style>

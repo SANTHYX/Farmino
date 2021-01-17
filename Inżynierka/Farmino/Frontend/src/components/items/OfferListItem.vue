@@ -61,7 +61,7 @@ export default {
 @media screen and(max-width: $tablet) {
   #offer-list-item {
     #offer-img {
-      width: 72vw;
+      width: 73vw;
     }
   }
 }

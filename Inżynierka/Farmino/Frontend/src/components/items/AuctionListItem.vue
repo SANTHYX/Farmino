@@ -59,7 +59,7 @@ export default {
 @media screen and(max-width: $tablet) {
   #auction-list-item {
     #auction-img {
-      width: 72vw;
+      width: 73vw;
     }
   }
 }

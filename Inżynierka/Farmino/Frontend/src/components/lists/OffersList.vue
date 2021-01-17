@@ -32,7 +32,7 @@ export default {
   flex-wrap: wrap;
   border: 1px solid rgb(194, 194, 194);
   min-width: 50vw;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 @media screen and(max-width: $tablet) {
@@ -40,7 +40,6 @@ export default {
     min-height: 90vh;
     width: 80vw;
     flex-direction: column;
-    justify-content: start;
   }
 }
 </style>

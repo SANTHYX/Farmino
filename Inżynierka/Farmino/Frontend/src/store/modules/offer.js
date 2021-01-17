@@ -12,6 +12,9 @@ const offer = {
     GET_OFFERS_ALL(state) {
       return state.offersAll;
     },
+    GET_OFFER(state) {
+      return state.offer;
+    },
   },
 
   mutations: {
