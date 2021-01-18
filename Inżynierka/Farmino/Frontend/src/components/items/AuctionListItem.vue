@@ -32,6 +32,7 @@ export default {
   align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
+  box-shadow: 1px 1px 6px rgb(179, 179, 179);
 
   #offer-img {
     height: 220px;

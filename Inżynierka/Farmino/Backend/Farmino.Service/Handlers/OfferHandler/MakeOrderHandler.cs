@@ -20,16 +20,17 @@ namespace Farmino.Service.Handlers.OfferHandler
             if (command.CustomAddress)
             {
                 var address = Address.Create(command.OrderDetails.Address.City,
-                    command.OrderDetails.Address.Street, command.OrderDetails.Address.PostalCode, command.OrderDetails.Address.HouseNumber);
+                    command.OrderDetails.Address.Street, command.OrderDetails.Address.PostalCode,
+                    command.OrderDetails.Address.HouseNumber);
 
-                var orderDetails = OrderDetails.Create(command.OrderDetails.FirstName, command.OrderDetails.LastName,
-                    command.OrderDetails.PhoneNumber, address);
+                var orderDetails = OrderDetails.Create(command.OrderDetails.FirstName,
+                    command.OrderDetails.LastName, command.OrderDetails.PhoneNumber, address);
 
-                await _offerService.MakeOrder(command.OfferId, command.CustomerName, command.OrderQuantity,
-                    command.OrderUnit, command.CustomAddress, orderDetails);
+                await _offerService.MakeOrder(command.OfferId, command.CustomerName,
+                    command.OrderQuantity, command.CustomAddress, orderDetails);
             }
-            else await _offerService.MakeOrder(command.OfferId, command.CustomerName, command.OrderQuantity,
-                     command.OrderUnit, command.CustomAddress);
+            else await _offerService.MakeOrder(command.OfferId, command.CustomerName,
+                command.OrderQuantity, command.CustomAddress);
         }
     }
 }

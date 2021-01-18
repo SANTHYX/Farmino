@@ -10,7 +10,6 @@ namespace Farmino.Service.Commands.OfferCommands
         public Guid OfferId { get; set; }
         public string CustomerName { get; set; }
         public double OrderQuantity { get; set; }
-        public WeightUnits OrderUnit { get; set; }
         public bool CustomAddress { get; set; }
         #nullable enable
         public OrderDetailsCommand? OrderDetails { get; set; }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210116083304_MyMigration")]
-    partial class MyMigration
+    [Migration("20210118182754_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -240,9 +240,6 @@ namespace Farmino.Infrastructure.Migrations
 
                     b.Property<double>("OrderQuantity")
                         .HasColumnType("float");
-
-                    b.Property<int>("OrderUnit")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("PriceSummary")
                         .HasColumnType("decimal(18,2)");

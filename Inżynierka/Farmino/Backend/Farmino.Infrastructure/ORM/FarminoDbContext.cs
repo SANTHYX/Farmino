@@ -81,7 +81,6 @@ namespace Farmino.Infrastructure.ORM
                 x.HasOne(y => y.Customer).WithMany(z => z.Orders).HasForeignKey(q => q.CustomerId);
                 x.Property(y => y.Released);
                 x.Property(y => y.OrderQuantity).IsRequired();
-                x.Property(y => y.OrderUnit).IsRequired();
                 x.Property(y => y.PriceSummary).IsRequired();
                 x.Property(y => y.ReleaseDate);
                 x.Property(y => y.CustomAddress).IsRequired();

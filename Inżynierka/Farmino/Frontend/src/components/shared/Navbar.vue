@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="navbar">
+    <div id="navbar-header">
       <div id="logo">
         <router-link to="home" tag="h1"><a>FARMINO</a></router-link>
       </div>
@@ -24,15 +24,32 @@
         </div>
         <div id="nav-menu" v-else>
           <ul>
-            <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
-              ><li><a>Aukcje</a></li></router-link
-            >
-            <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
-              ><li><a>Oferty</a></li></router-link
-            >
-            <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
-              ><li><a>StwórzOferte</a></li></router-link
-            >
+            <div @mouseleave="showAuctionMenu = false">
+              <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
+                ><li @mouseover="showAuctionMenu = true">
+                  <a>Aukcje</a>
+                </li></router-link
+              >
+              <transition name="fadequcik">
+                <div id="drop-menu" v-if="showAuctionMenu">
+                  <router-link :to="{ name: '' }" exact="exact" class="pop-up"
+                    ><li><a>Stwórz Aukcję</a></li></router-link
+                  >
+                </div>
+              </transition>
+            </div>
+            <div @mouseleave="showOfferMenu = false">
+              <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
+                ><li @mouseover="showOfferMenu = true"><a>Oferty</a></li></router-link
+              >
+              <transition name="fadequcik">
+                <div id="drop-menu" v-if="showOfferMenu">
+                  <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
+                    ><li><a>Stwórz Oferte</a></li></router-link
+                  >
+                </div>
+              </transition>
+            </div>
             <router-link
               :to="{ name: 'profile', params: { id: userName } }"
               exact="exact"
@@ -64,6 +81,9 @@ export default {
   },
   data() {
     return {
+      showAuctionMenu: false,
+      showOfferMenu: false,
+      showUserProfile: false,
       showMenu: false,
     };
   },
@@ -89,8 +109,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#navbar {
+#navbar-header {
+  position: fixed;
+  width: 100%;
   box-shadow: 0 2px 1px rgba(204, 204, 204, 0.39);
+
   #logo {
     display: flex;
     justify-content: center;
@@ -130,6 +153,17 @@ export default {
       }
     }
   }
+  #drop-menu {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 0;
+    top: 98.5%;
+    width: 38vw;
+    background: white;
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
+  }
 }
 
 @media screen and(max-width: $tablet) {
@@ -137,6 +171,10 @@ export default {
     #nav-menu {
       display: none;
     }
+  }
+
+  #auction-menu {
+    display: none;
   }
 }
 </style>

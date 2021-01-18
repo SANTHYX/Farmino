@@ -69,25 +69,20 @@ const offer = {
       }
     },
 
-    async CREATE_OFFER(
-      { commit },
-      {
-        userName, title, description, minWeightUnit, minQuantity, product,
-      },
-    ) {
+    async CREATE_OFFER({ commit }, {
+      userName, title, description, minQuantity, product,
+    }) {
       try {
         await api.post('/offers', {
           userName,
           title,
           description,
-          minWeightUnit,
           minQuantity,
           product,
         });
         commit('SET_OFFER', {
           title,
           description,
-          minWeightUnit,
           minQuantity,
           product,
         });

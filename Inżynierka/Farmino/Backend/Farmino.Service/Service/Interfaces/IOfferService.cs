@@ -12,7 +12,7 @@ namespace Farmino.Service.Service.Interfaces
     {
         Task CreateOffer(string userName, string title,
             string description, WeightUnits minWeight, double minQuantity, Product product);
-        Task MakeOrder(Guid offerId, string customerName, double orderQuantity, WeightUnits orderUnit,
+        Task MakeOrder(Guid offerId, string customerName, double orderQuantity,
             bool customAddress, OrderDetails orderDetails = null);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);

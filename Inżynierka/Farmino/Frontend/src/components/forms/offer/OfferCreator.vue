@@ -41,16 +41,6 @@
               v-model.number="$v.offer.minQuantity.$model"
             />
           </div>
-          <div id="inputs-wraper">
-            <label for="userName" class="form-label">Jednostka</label>
-            <select class="form-field" v-model.number="$v.offer.minWeightUnit.$model">
-              <option value="0">mg</option>
-              <option value="1">dkg</option>
-              <option value="2">g</option>
-              <option value="3">kg</option>
-              <option value="4">T</option>
-            </select>
-          </div>
         </div>
       </div>
       <div id="description-editor">
@@ -91,7 +81,6 @@ export default {
       offer: {
         title: '',
         description: '',
-        minWeightUnit: 0,
         minQuantity: 0,
         product: {
           basePrice: 0,
@@ -105,7 +94,6 @@ export default {
     offer: {
       title: { required },
       description: { required },
-      minWeightUnit: { required, minValue: minValue(0), maxValue: maxValue(4) },
       minQuantity: { required, minValue: minValue(1) },
       product: {
         basePrice: { required, decimal, minValue: minValue(1) },
@@ -129,7 +117,6 @@ export default {
         userName: this.userName,
         title: this.offer.title,
         description: this.offer.description,
-        minWeightUnit: this.offer.minWeightUnit,
         minQuantity: this.offer.minQuantity,
         product: this.offer.product,
       });

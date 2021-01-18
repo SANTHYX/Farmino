@@ -19,7 +19,7 @@ export default {
       auctions: 'auction/GET_AUCTIONS_ALL',
     }),
   },
-  async beforeCreate() {
+  async created() {
     await this.$store.dispatch('auction/GET_AUCTIONS');
   },
 };
@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 #list-wraper {
+  margin: 12rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +38,7 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
+    margin: 12rem 0;
     min-height: 100vh;
     width: 90vw;
     flex-direction: column;

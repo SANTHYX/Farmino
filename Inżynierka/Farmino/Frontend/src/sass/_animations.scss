@@ -21,3 +21,13 @@
   transition: opacity 0.5s;
   opacity: 0;
 }
+.fadequcik-enter{
+  opacity: 0;
+}
+.fadequick-enter-active{
+  transition: opacity 0.2s;
+}
+.fadequcik-leave-active{
+  transition: opacity 0.2s;
+  opacity: 0;
+}

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Farmino.Infrastructure.Migrations
 {
-    public partial class MyMigration : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -233,7 +233,6 @@ namespace Farmino.Infrastructure.Migrations
                     OrderPostalCode = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
                     OrderHouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
                     OrderQuantity = table.Column<double>(type: "float", nullable: false),
-                    OrderUnit = table.Column<int>(type: "int", nullable: false),
                     PriceSummary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Released = table.Column<bool>(type: "bit", nullable: false),

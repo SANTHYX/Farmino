@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  async beforeCreate() {
+  async created() {
     await this.$store.dispatch('order/GET_ORDERS');
   },
 };

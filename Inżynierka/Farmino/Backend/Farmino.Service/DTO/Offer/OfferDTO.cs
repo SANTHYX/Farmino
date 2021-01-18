@@ -10,7 +10,6 @@ namespace Farmino.Service.DTO.Offer
         public string Title { get; set; }
         public string Description { get; set; }
         public double MinQuantity { get; set; }
-        public WeightUnits MinWeightUnit { get; set; }
         public FarmerDTO Farmer { get; set; }
         public ProductDTO Product { get; set; }
     }

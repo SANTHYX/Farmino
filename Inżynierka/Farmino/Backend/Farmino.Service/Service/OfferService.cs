@@ -55,7 +55,7 @@ namespace Farmino.Service.Service
             return _mapper.Map<OfferDTO>(offer);
         }
 
-        public async Task MakeOrder(Guid offerId, string customerName, double orderQuantity, WeightUnits orderUnit,
+        public async Task MakeOrder(Guid offerId, string customerName, double orderQuantity,
             bool customAddress, OrderDetails orderDetails = null)
         {
             var offer = await _offerRepository.GetIfExistAsync(offerId);
@@ -65,11 +65,6 @@ namespace Farmino.Service.Service
             {
                 throw new ServiceExceptions(ServiceErrorCodes.CannotBuyFromOwnOffer,
                     "Cannot make order of your own offer");
-            }
-            if (orderUnit < offer.MinWeightUnit)
-            {
-                throw new ServiceExceptions(ServiceErrorCodes.InvalidOrder,
-                    "Cannot buy lower than min");
             }
             if (orderQuantity < offer.MinQuantity)
             {
@@ -86,11 +81,12 @@ namespace Farmino.Service.Service
 
             if (customAddress)
             {
-                await _orderRepository.AddAsync(new Order(offer, customer, orderDetails, orderQuantity, orderUnit, summaryPrice, customAddress));
+                await _orderRepository.AddAsync(new Order(offer, customer, orderDetails,
+                    orderQuantity, summaryPrice, customAddress));
             }
             else await _orderRepository.AddAsync(new Order(offer, customer, OrderDetails.Create(customer.User.Profile.FirstName,
                 customer.User.Profile.LastName,customer.User.Profile.PhoneNumber,
-                customer.User.Profile.Address), orderQuantity, orderUnit, summaryPrice, customAddress));
+                customer.User.Profile.Address), orderQuantity, summaryPrice, customAddress));
 
             await _orderRepository.SaveChanges();
         }

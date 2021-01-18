@@ -76,6 +76,7 @@ import { required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'profile-form',
+
   data() {
     return {
       address: {
@@ -86,6 +87,7 @@ export default {
       },
     };
   },
+
   validations: {
     address: {
       city: { required },
@@ -94,12 +96,14 @@ export default {
       houseNumber: { required },
     },
   },
+
   computed: {
     ...mapGetters({
       userName: 'auth/GET_USERNAME',
       getUser: 'user/GET_STATE_USER',
     }),
   },
+
   methods: {
     ...mapActions({
       updateAddress: 'user/UPDATE_ADDRESS',
@@ -123,14 +127,17 @@ export default {
   border: 1px solid rgb(189, 189, 189);
   box-shadow: 1px 1px 6px rgb(214, 214, 214);
   border-radius: 10px;
+
   hr {
     margin-top: 0.2rem;
     width: 200px;
     color: rgb(245, 245, 245);
   }
+
   h1 {
     color: rgb(63, 63, 63);
   }
+
   #inputs-wraper {
     display: flex;
     flex-direction: column;
