@@ -8,6 +8,7 @@ namespace Farmino.Data.Models.Entities
 {
     public class Order
     {
+        public Guid Id { get; protected set; }
         public Guid OfferId { get; protected set; }
         public Offer Offer { get; protected set; }
         public Guid CustomerId { get; protected set; }
@@ -26,6 +27,7 @@ namespace Farmino.Data.Models.Entities
         public Order(Offer offer, Customer customer,OrderDetails orderDetails, double orderQuantity,
             decimal priceSummary, bool customAddress)
         {
+            Id = Guid.NewGuid();
             Offer = offer;
             Customer = customer;
             OrderDetails = orderDetails;

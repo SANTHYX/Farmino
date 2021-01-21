@@ -28,9 +28,8 @@ namespace Farmino.Infrastructure.Repositories
             _context.Orders.Update(order);
         }
 
-        public async Task<IEnumerable<Order>> GetAllAsync(Guid offerId)
-            => await _context.Orders.Include(x => x.Offer)
-                .Include(y => y.Customer).Where(q => q.OfferId == offerId).ToListAsync();
+        public IQueryable<Order> GetAllAsync()
+            =>_context.Orders.AsQueryable();
 
         public async Task<Order> GetAsync(Guid offerId, Guid customerId)
             => await _context.Orders.Include(x => x.Offer)

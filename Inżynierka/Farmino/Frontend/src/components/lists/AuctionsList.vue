@@ -14,11 +14,13 @@ export default {
   components: {
     AuctionListItem,
   },
+
   computed: {
     ...mapGetters({
       auctions: 'auction/GET_AUCTIONS_ALL',
     }),
   },
+
   async created() {
     await this.$store.dispatch('auction/GET_AUCTIONS');
   },

@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'auction-item',
+  name: 'auction-list-item',
 
   props: {
     auctionItem: {

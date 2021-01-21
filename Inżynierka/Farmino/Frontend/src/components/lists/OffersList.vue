@@ -14,11 +14,13 @@ export default {
   components: {
     OfferListItem,
   },
+
   computed: {
     ...mapGetters({
       offers: 'offer/GET_OFFERS_ALL',
     }),
   },
+
   async created() {
     await this.$store.dispatch('offer/BROWSE_OFFERS');
   },
@@ -31,11 +33,11 @@ export default {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  border: 1px solid rgb(194, 194, 194);
+  border: 1px solid rgb(216, 216, 216);
   width: 70vw;
   min-width: 50vw;
   min-height: 80vh;
-  box-shadow: 1px 1px 6px rgb(179, 179, 179);
+  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
 }
 
 @media screen and(max-width: $tablet) {

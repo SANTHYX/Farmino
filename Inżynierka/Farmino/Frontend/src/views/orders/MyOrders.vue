@@ -1,11 +1,21 @@
 <template>
   <div>
-    <div></div>
+    <div id="my-orders">
+      <orders-list />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import OrdersList from '@/components/lists/OrdersList.vue';
+
+export default {
+  name: 'my-orders',
+
+  components: {
+    OrdersList,
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -223,6 +223,7 @@ namespace Farmino.Infrastructure.Migrations
                 name: "Orders",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OfferId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderFirstName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
@@ -242,7 +243,7 @@ namespace Farmino.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => new { x.CustomerId, x.OfferId });
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
@@ -284,6 +285,11 @@ namespace Farmino.Infrastructure.Migrations
                 name: "IX_Offers_FarmerId",
                 table: "Offers",
                 column: "FarmerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_OfferId",

@@ -32,6 +32,7 @@ namespace Farmino.Service.Mapper
             CreateMap<Auctioner, DTO.Auction.NestedModels.AuctionerDTO>();
             CreateMap<Participant, DTO.Auction.NestedModels.ParticipantDTO>();
             CreateMap<ParticipantAuction, DTO.Auction.NestedModels.ParticipantAuctionDTO>();
+            CreateMap<Customer, DTO.Customer.CustomerDTO>();
             CreateMap<Order, DTO.Order.OrderDTO>();
             CreateMap<Order, DTO.Order.OrdersDTO>();
             CreateMap<OrderDetails, DTO.Order.NestedModels.OrderDetailsDTO>();

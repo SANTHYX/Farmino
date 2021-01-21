@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'offer-item',
+  name: 'offer-list-item',
 
   props: {
     offerItem: {

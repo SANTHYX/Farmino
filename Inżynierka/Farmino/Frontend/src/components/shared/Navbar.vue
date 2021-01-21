@@ -65,7 +65,7 @@
                   <router-link :to="{ name: 'my-orders' }" exact="exact" class="pop-up"
                     ><li><a>Moje Zamówienia</a></li></router-link
                   >
-                  <router-link :to="{ name: 'my-offers' }" exact="exact" class="pop-up"
+                  <router-link :to="{ name: 'my-delivers' }" exact="exact" class="pop-up"
                     ><li><a>Moje Dostawy</a></li></router-link
                   >
                 </div>
@@ -194,7 +194,7 @@ export default {
     position: absolute;
     right: 0;
     top: 98.5%;
-    width: 45vw;
+    width: 43vw;
     background: white;
     border: 1px solid rgb(204, 204, 204);
     box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);

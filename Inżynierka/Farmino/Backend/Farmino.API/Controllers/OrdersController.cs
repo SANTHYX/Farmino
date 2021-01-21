@@ -1,5 +1,6 @@
 ﻿using Farmino.Service.Commands.OrderCommands;
 using Farmino.Service.Dispatchers.Interfaces;
+using Farmino.Service.Queries.Order;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,9 +24,9 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get(Guid offerId, Guid customerId)
             => Ok(await _orderService.GetOrderDetailsAsync(offerId, customerId));
 
-        [HttpGet("{offerId}")]
-        public async Task<IActionResult> Get(Guid offerId)
-            => Ok(await _orderService.BrowseOrdersAsync(offerId));
+        [HttpGet()]
+        public async Task<IActionResult> Get([FromQuery]OrderQuery query)
+            => Ok(await _orderService.BrowseOrdersAsync(query));
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] SetRealisationDate command) 

@@ -75,7 +75,7 @@ namespace Farmino.Infrastructure.ORM
 
             builder.Entity<Order>(x =>
             {
-                x.HasKey(y => new { y.CustomerId, y.OfferId});
+                x.HasKey(y => y.Id);
                 x.HasOne(y => y.Offer).WithMany(z => z.Orders).HasForeignKey(q => q.OfferId)
                     .OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(y => y.Customer).WithMany(z => z.Orders).HasForeignKey(q => q.CustomerId);
