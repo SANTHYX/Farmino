@@ -65,6 +65,7 @@ import { required, numeric } from 'vuelidate/lib/validators';
 
 export default {
   name: 'profile-form',
+
   data() {
     return {
       profile: {
@@ -74,6 +75,7 @@ export default {
       },
     };
   },
+
   validations: {
     profile: {
       firstName: { required },
@@ -87,16 +89,19 @@ export default {
       },
     },
   },
+
   computed: {
     ...mapGetters({
       userName: 'auth/GET_USERNAME',
       isProfileEmpty: 'user/IS_PROFILE_EMPTY',
     }),
   },
+
   methods: {
     ...mapActions({
       editProfile: 'user/EDIT_PROFILE',
     }),
+
     async submitProfile() {
       await this.editProfile({
         userName: this.userName,

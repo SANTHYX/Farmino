@@ -12,7 +12,8 @@ namespace Farmino.Data.Models.ValueObjects
 
         protected Address() { }
 
-        public Address(string city, string street, string postalCode, string houseNumber)
+        public Address(string city, string street, string postalCode,
+            string houseNumber)
         {
             SetCity(city);
             SetStreet(street);

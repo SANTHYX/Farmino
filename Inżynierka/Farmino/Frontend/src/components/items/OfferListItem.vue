@@ -4,6 +4,7 @@
       <div id="offer-img"></div>
       <div id="info-wraper">
         <h2>{{ offerItem.title }}</h2>
+        <h3>{{ offerItem.product.basePrice + 'zł/' + offerItem.product.baseWeightUnit }}</h3>
         <button @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
           Sprawdź
         </button>
@@ -32,17 +33,16 @@ export default {
   align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
-  border-radius: 10px;
   background: rgb(243, 243, 243);
-  width: 27vw;
+  width: 25vw;
+  min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
 
   #offer-img {
     height: 220px;
-    width: 27vw;
+    width: 25vw;
+    min-width: 240px;
     align-self: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     background: rgb(122, 122, 122);
   }
 
@@ -55,11 +55,15 @@ export default {
     h2 {
       display: flex;
       text-align: center;
-      margin: 0.4rem 0;
+      margin: 0.3rem 0;
+    }
+
+    h3 {
+      color: rgb(199, 161, 36);
     }
 
     button {
-      margin: 1rem 0;
+      margin: 0.5rem 0;
     }
   }
 }

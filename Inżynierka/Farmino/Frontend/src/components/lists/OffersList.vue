@@ -29,11 +29,10 @@ export default {
 #list-wraper {
   margin: 12rem 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-wrap: wrap;
   border: 1px solid rgb(194, 194, 194);
   width: 70vw;
-  border-radius: 10px;
   min-width: 50vw;
   min-height: 80vh;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);

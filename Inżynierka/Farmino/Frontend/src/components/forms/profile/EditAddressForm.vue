@@ -108,6 +108,7 @@ export default {
     ...mapActions({
       updateAddress: 'user/UPDATE_ADDRESS',
     }),
+
     async submitAddress() {
       await this.updateAddress({
         userName: this.userName,

@@ -16,8 +16,9 @@ namespace Farmino.Service.Mapper
             CreateMap<User, DTO.Auction.NestedModels.UserDTO>();
             CreateMap<Profile, DTO.User.NestedModels.ProfileDTO>();
             CreateMap<Address, DTO.User.NestedModels.AddressDTO>();
-            CreateMap<Address, DTO.Offer.NestedModels.FarmerDTO>();
             CreateMap<Address, DTO.Order.NestedModels.AddressDTO>();
+            CreateMap<Node, DTO.User.NestedModels.NodeDTO>();
+            CreateMap<Node, DTO.Order.NestedModels.NodeDTO>();
             CreateMap<RefreshToken, DTO.Token.TokenDTO>();
             CreateMap<Offer, DTO.Offer.OfferDTO>();
             CreateMap<Offer, DTO.Offer.OffersDTO>();

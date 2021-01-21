@@ -32,7 +32,10 @@
               >
               <transition name="fadequcik">
                 <div id="drop-menu" v-if="showAuctionMenu">
-                  <router-link :to="{ name: '' }" exact="exact" class="pop-up"
+                  <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
+                    ><li><a>Stwórz Aukcję</a></li></router-link
+                  >
+                  <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Aukcję</a></li></router-link
                   >
                 </div>
@@ -46,6 +49,24 @@
                 <div id="drop-menu" v-if="showOfferMenu">
                   <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Oferte</a></li></router-link
+                  >
+                  <router-link :to="{ name: 'my-offers' }" exact="exact" class="pop-up"
+                    ><li><a>Moje Oferty</a></li></router-link
+                  >
+                </div>
+              </transition>
+            </div>
+            <div @mouseleave="showOrdersMenu = false">
+              <router-link :to="{ name: 'orders' }" exact="exact" class="pop-up"
+                ><li @mouseover="showOrdersMenu = true"><a>Zamówienia</a></li></router-link
+              >
+              <transition name="fadequcik">
+                <div id="drop-menu" v-if="showOrdersMenu">
+                  <router-link :to="{ name: 'my-orders' }" exact="exact" class="pop-up"
+                    ><li><a>Moje Zamówienia</a></li></router-link
+                  >
+                  <router-link :to="{ name: 'my-offers' }" exact="exact" class="pop-up"
+                    ><li><a>Moje Dostawy</a></li></router-link
                   >
                 </div>
               </transition>
@@ -74,32 +95,38 @@ import SearchBar from './SearchBar.vue';
 
 export default {
   name: 'navbar',
+
   components: {
     MenuButton,
     MoblieMenu,
     SearchBar,
   },
+
   data() {
     return {
       showAuctionMenu: false,
       showOfferMenu: false,
-      showUserProfile: false,
+      showOrdersMenu: false,
       showMenu: false,
     };
   },
+
   computed: {
     ...mapGetters({
       isAuthorized: 'auth/IS_AUTHORIZED',
       userName: 'auth/GET_USERNAME',
     }),
   },
+
   methods: {
     ...mapActions({
       LogoutUser: 'auth/LOGOUT',
     }),
+
     ShowMenu(input) {
       this.showMenu = input;
     },
+
     async Logout() {
       await this.LogoutUser();
       await this.$router.push('/').catch(() => {});
@@ -119,32 +146,39 @@ export default {
     justify-content: center;
     background: rgb(253, 253, 253);
     border-bottom: 0.3px solid rgb(199, 199, 199);
+
     a {
       text-decoration: none;
       color: black;
     }
   }
+
   #navbar {
     display: flex;
     justify-content: space-around;
     background: rgb(253, 253, 253);
     border-bottom: 0.3px solid rgb(199, 199, 199);
+
     a {
       color: rgb(0, 0, 0);
       text-decoration: none;
     }
+
     h1 {
       font-size: 1.8rem;
       color: rgb(0, 0, 0);
       align-self: center;
     }
+
     #nav-menu {
       ul {
         display: flex;
         list-style: none;
+
         li {
           font-size: 1.1rem;
           padding: 1rem;
+
           a {
             padding: 0.3rem;
             font-weight: 400;
@@ -153,13 +187,14 @@ export default {
       }
     }
   }
+
   #drop-menu {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: absolute;
     right: 0;
     top: 98.5%;
-    width: 38vw;
+    width: 45vw;
     background: white;
     border: 1px solid rgb(204, 204, 204);
     box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);

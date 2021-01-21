@@ -1,4 +1,4 @@
-import api from '@/plugins/axios';
+import { api } from '@/plugins/axios';
 
 const offer = {
   namespaced: true,
@@ -6,14 +6,24 @@ const offer = {
   state: {
     offer: {},
     offersAll: [],
+    order: {},
   },
 
   getters: {
     GET_OFFERS_ALL(state) {
       return state.offersAll;
     },
+
     GET_OFFER(state) {
       return state.offer;
+    },
+
+    GET_MIN_QUANTITY(state) {
+      return state.offer.minQuantity;
+    },
+
+    GET_ORDER(state) {
+      return state.order;
     },
   },
 
@@ -21,14 +31,29 @@ const offer = {
     SET_DESCRIPTION(state, description) {
       state.offer.description = description;
     },
+
     SET_TITLE(state, title) {
       state.offer.title = title;
     },
+
     SET_OFFER(state, offerObj) {
       state.offer = offerObj;
     },
+
     SET_OFFERS(state, offersList) {
       state.offersAll = offersList;
+    },
+
+    SET_ORDER_QUANTITY(state, orderQuantity) {
+      state.order.orderQuantity = orderQuantity;
+    },
+
+    SET_CUSTOM_ADDRESS(state, customAddress) {
+      state.order.customAddress = customAddress;
+    },
+
+    SET_CUSTOM_ORDER_DETAILS(state, orderDetails) {
+      state.order.orderDetails = orderDetails;
     },
   },
 
@@ -90,19 +115,20 @@ const offer = {
         throw new Error(err.message);
       }
     },
-    async CREATE_ORDER(
+
+    async MAKE_ORDER(
       { commit },
       {
-        customerName, offerId, boughtQuantity, customAddress, Address,
+        offerId, customerName, orderQuantity, customAddress, orderDetails = null,
       },
     ) {
       try {
-        await api.post('/offers/buy', {
-          customerName,
+        await api.post('/offers/make-order', {
           offerId,
-          boughtQuantity,
+          customerName,
+          orderQuantity,
           customAddress,
-          Address,
+          orderDetails,
         });
         commit();
       } catch (err) {

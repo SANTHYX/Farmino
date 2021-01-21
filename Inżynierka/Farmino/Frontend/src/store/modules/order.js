@@ -1,4 +1,4 @@
-import api from '@/plugins/axios';
+import { api } from '@/plugins/axios';
 
 const order = {
   namespaced: true,
@@ -7,14 +7,17 @@ const order = {
     order: {},
     ordersAll: [],
   },
+
   mutations: {
     SET_ORDER(state, orderObj) {
       state.order = orderObj;
     },
+
     SET_ORDERS(state, ordersList) {
       state.ordersAll = ordersList;
     },
   },
+
   actions: {
     async GET_ORDER({ commit }, offerId, customerId) {
       try {
@@ -24,6 +27,7 @@ const order = {
         throw new Error(err.message);
       }
     },
+
     async GET_ORDERS({ commit }, offerId) {
       try {
         const response = await api.get(`/offers/${offerId}`);

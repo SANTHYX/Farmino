@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import OfferCreator from '../../components/forms/offer/OfferCreator.vue';
+import OfferCreator from '@/components/forms/offer/OfferCreator.vue';
 
 export default {
   components: {

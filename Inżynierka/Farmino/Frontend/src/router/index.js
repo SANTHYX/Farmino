@@ -31,15 +31,47 @@ const routes = [
     component: () => import('@/views/offers/Offers.vue'),
   },
   {
+    path: '/offers/my-offers',
+    name: 'my-offers',
+    component: () => import('@/views/offers/MyOffers.vue'),
+  },
+  {
     path: '/offers/:id',
     name: 'offer',
     props: true,
     component: () => import('@/views/offers/Offer.vue'),
   },
   {
+    path: '/offers/:id/make-order',
+    name: 'make-order',
+    props: true,
+    component: () => import('@/views/offers/MakeOrder.vue'),
+  },
+  {
+    path: '/offers/:id/summary',
+    name: 'summary',
+    props: true,
+    component: () => import('@/views/orders/Summary.vue'),
+  },
+  {
     path: '/offers/offer-creator',
     name: 'offer-creator',
     component: () => import('@/views/offers/OfferCreate.vue'),
+  },
+  {
+    path: '/orders',
+    name: 'orders',
+    component: () => import('@/views/orders/Orders.vue'),
+  },
+  {
+    path: '/orders/my-orders',
+    name: 'my-orders',
+    component: () => import('@/views/orders/MyOrders.vue'),
+  },
+  {
+    path: '/orders/my-delivers',
+    name: 'my-delivers',
+    component: () => import('@/views/orders/MyDelivers.vue'),
   },
   {
     path: '/login',

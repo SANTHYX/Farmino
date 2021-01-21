@@ -8,6 +8,7 @@ namespace Farmino.Infrastructure.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<GeolocationModule>();
         }
     }
 }

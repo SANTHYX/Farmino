@@ -63,10 +63,11 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators';
-import api from '@/plugins/axios';
+import { api } from '@/plugins/axios';
 
 export default {
   name: 'registeration-form',
+
   data() {
     return {
       user: {
@@ -76,6 +77,7 @@ export default {
       },
     };
   },
+
   validations: {
     user: {
       userName: {
@@ -89,6 +91,7 @@ export default {
       email: { required, email },
     },
   },
+
   methods: {
     async RegisterUser() {
       try {
@@ -109,23 +112,28 @@ export default {
     border: 1px solid rgb(189, 189, 189);
     box-shadow: 1px 1px 6px rgb(214, 214, 214);
     border-radius: 10px;
+
     hr {
       margin-top: 0.2rem;
       width: 240px;
       color: rgb(245, 245, 245);
     }
+
     h1 {
       text-align: center;
       color: rgb(63, 63, 63);
     }
+
     #input-wraper {
       display: flex;
       flex-direction: column;
     }
+
     #btn-wraper {
       display: flex;
       justify-content: center;
       margin-top: 1rem;
+
       #btn {
         padding: 0.2rem;
         background: rgb(235, 209, 63);

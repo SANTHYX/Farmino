@@ -7,17 +7,46 @@
         id="order-maker"
         step=".01"
         class="small-form-field"
+        v-model.number="$v.orderQuantity.$model"
       />
-      <button @click="moveToOrderCreate">Zamów</button>
+      <button @click="moveToMakeOrder" :disabled="$v.orderQuantity.$invalid">Zamów</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { decimal, required } from 'vuelidate/lib/validators';
+
 export default {
+  name: 'order-maker',
+
+  data() {
+    return {
+      orderQuantity: 0,
+    };
+  },
+
+  computed: {
+    ...mapGetters({
+      minQuantity: 'offer/GET_MIN_QUANTITY',
+    }),
+  },
+
+  validations: {
+    orderQuantity: {
+      required,
+      decimal,
+      greatherEqualMin(value) {
+        return value >= this.minQuantity;
+      },
+    },
+  },
+
   methods: {
-    moveToOrderCreate() {
-      this.$router.push('create-order');
+    moveToMakeOrder() {
+      this.$router.push({ name: 'make-order' });
+      this.$store.commit('offer/SET_ORDER_QUANTITY', this.orderQuantity);
     },
   },
 };

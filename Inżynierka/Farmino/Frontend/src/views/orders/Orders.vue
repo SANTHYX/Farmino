@@ -1,17 +1,15 @@
 <template>
   <div>
-    <div id="order-create"></div>
+    <div id="orders"></div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'order-create',
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
-#order-create {
+#orders {
   @include flex-centred-site;
 }
 </style>

@@ -210,6 +210,7 @@ export default {
       createProfile: 'user/CREATE_PROFILE',
       setAddress: 'user/CREATE_ADDRESS',
     }),
+
     async sendProfile() {
       await this.createProfile({
         userName: this.userName,
@@ -217,6 +218,7 @@ export default {
         lastName: this.profile.lastName,
         phoneNumber: this.profile.phoneNumber,
       });
+
       await this.setAddress({
         userName: this.userName,
         city: this.profile.address.city,

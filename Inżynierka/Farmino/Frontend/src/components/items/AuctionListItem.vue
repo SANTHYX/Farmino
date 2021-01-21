@@ -36,7 +36,7 @@ export default {
 
   #offer-img {
     height: 220px;
-    width: 20vw;
+    width: 15vw;
     align-self: center;
     background: rgb(122, 122, 122);
   }

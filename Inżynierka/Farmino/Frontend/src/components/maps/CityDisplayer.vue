@@ -42,7 +42,7 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #city-widget {
-    width: 70vw;
+    width: 75vw;
   }
 }
 </style>
