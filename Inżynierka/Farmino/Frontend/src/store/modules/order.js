@@ -29,9 +29,9 @@ const order = {
   },
 
   actions: {
-    async GET_ORDER({ commit }, offerId, customerId) {
+    async GET_ORDER({ commit }, orderId) {
       try {
-        const response = await api.get(`/orders/${offerId}, ${customerId}`);
+        const response = await api.get(`/orders/${orderId}`);
         commit('SET_ORDER', response.data);
       } catch (err) {
         throw new Error(err.message);

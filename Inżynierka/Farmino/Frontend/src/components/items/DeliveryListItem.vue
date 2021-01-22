@@ -28,7 +28,7 @@
       <div id="contact" class="order-details">
         <h4>Data Realizacji</h4>
         <h4>
-          <span>{{ deliveryItem.releaseDate | dateFormat('YYYY.MM.DD') }}</span>
+          <span>{{ deliveryItem.releaseDate}}</span>
         </h4>
       </div>
       <div id="contact" class="order-details">
@@ -38,7 +38,7 @@
         </h4>
       </div>
       <div id="contact" class="order-details">
-        <button @click="$router.push({ name: 'order', params: { id: deliveryItem.id } })">
+        <button @click="moveToOrder">
           Sprawdz
         </button>
       </div>
@@ -52,6 +52,12 @@ export default {
     deliveryItem: {
       type: Object,
       required: true,
+    },
+  },
+
+  methods: {
+    moveToOrder() {
+      this.$router.push({ name: 'order', params: { id: this.deliveryItem.id } });
     },
   },
 };

@@ -76,6 +76,7 @@ const routes = [
   {
     path: '/orders/:id',
     name: 'order',
+    props: true,
     component: () => import('@/views/orders/Order.vue'),
   },
   {
