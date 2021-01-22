@@ -17,7 +17,10 @@
             </div>
             <div id="farmer-widget">
               <h3>{{ offer.farmer.user.userName }}</h3>
-              <city-displayer />
+              <city-displayer
+                :lon="offer.farmer.user.profile.address.node.lon"
+                :lat="offer.farmer.user.profile.address.node.lat"
+              />
             </div>
           </div>
         </div>

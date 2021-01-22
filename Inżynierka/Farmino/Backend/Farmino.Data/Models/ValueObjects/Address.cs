@@ -9,16 +9,23 @@ namespace Farmino.Data.Models.ValueObjects
         public string Street { get; protected set; }
         public string PostalCode { get; protected set; }
         public string HouseNumber { get; protected set; }
+        public Node Node { get; protected set; }
 
         protected Address() { }
 
         public Address(string city, string street, string postalCode,
-            string houseNumber)
+            string houseNumber, Node node)
         {
             SetCity(city);
             SetStreet(street);
             SetPostalCode(postalCode);
             SetHouseNumber(houseNumber);
+            SetNode(node);
+        }
+
+        public void SetNode(Node node)
+        {
+            Node = node;
         }
 
         public void SetCity(string city)
@@ -82,7 +89,7 @@ namespace Farmino.Data.Models.ValueObjects
         }
 
         public static Address Create(string city, string street, 
-            string postalCode, string houseNumber)
-            => new Address(city, street, postalCode, houseNumber);
+            string postalCode, string houseNumber, Node node)
+            => new Address(city, street, postalCode, houseNumber, node);
     }
 }

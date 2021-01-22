@@ -1,52 +1,40 @@
 <template>
   <div>
     <div id="offer-creator">
-      <div id="title-editor">
-        <div id="title-wraper">
-          <label for="userName" class="form-label">Tytuł</label>
-          <div id="inputs-wraper">
-            <input type="text" name="userName" class="form-field" v-model="$v.offer.title.$model" />
-          </div>
+      <div id="left">
+        <label for="userName" class="form-label">Tytuł</label>
+        <div id="inputs-wraper">
+          <input type="text" name="userName" class="form-field" v-model="$v.offer.title.$model" />
         </div>
-      </div>
-      <div id="product-editor">
-        <div id="product-wraper">
-          <div id="inputs-wraper">
-            <h2>Cena za sztukę</h2>
-            <label for="userName" class="form-label">Cena</label>
-            <input
-              type="text"
-              name="price"
-              class="form-field"
-              v-model.number="$v.offer.product.basePrice.$model"
-            />
-          </div>
-          <div id="inputs-wraper">
-            <label for="userName" class="form-label">Bazowa jednostka</label>
-            <select class="form-field" v-model.number="$v.offer.product.baseWeightUnit.$model">
-              <option value="0">mg</option>
-              <option value="1">dkg</option>
-              <option value="2">g</option>
-              <option value="3">kg</option>
-              <option value="4">T</option>
-            </select>
-          </div>
-          <div id="inputs-wraper">
-            <h2>Minimalny półap zamówienia</h2>
-            <label for="userName" class="form-label">Ilość</label>
-            <input
-              type="text"
-              name="userName"
-              class="form-field"
-              v-model.number="$v.offer.minQuantity.$model"
-            />
-          </div>
+        <label for="userName" class="form-label">Cena jednostkowa</label>
+        <div id="inputs-wraper">
+          <input
+            type="number"
+            name="userName"
+            class="form-field"
+            v-model="$v.offer.product.basePrice.$model"
+          />
         </div>
-      </div>
-      <div id="description-editor">
-        <div id="title-wraper">
-          <h1>Dodaj Opis</h1>
-          <div id="inputs-wraper">
+        <label for="userName" class="form-label">Cena jednostkowa</label>
+        <div id="inputs-wraper">
+          <select class="form-field" v-model.number="$v.offer.product.baseWeightUnit.$model">
+            <option value="0">mg</option>
+            <option value="1">dkg</option>
+            <option value="2">g</option>
+            <option value="3">kg</option>
+            <option value="4">T</option>
+          </select>
+        </div>
+        <div id="inputs-wraper">
+          <label for="userName" class="form-label">Ilość</label>
+          <input
+            type="text"
+            name="userName"
+            class="form-field"
+            v-model.number="$v.offer.minQuantity.$model"
+          />
+        </div>
+        <div id="inputs-wraper">
             <label for="userName" class="form-label">Opis oferty</label>
             <textarea
               name=""
@@ -56,10 +44,7 @@
               v-model="$v.offer.description.$model"
             ></textarea>
           </div>
-        </div>
       </div>
-      <photo-editor />
-      <button @click="create" :disabled="$v.offer.$invalid">Stwórz</button>
     </div>
   </div>
 </template>
@@ -72,9 +57,6 @@ import {
 
 export default {
   name: 'offer-creator',
-  components: {
-    PhotoEditor: () => import('./editors/PhotoEditor.vue'),
-  },
 
   data() {
     return {
@@ -129,8 +111,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#inputs-wraper {
+#offer-creator {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  #inputs-wraper {
+    display: flex;
+    flex-direction: column;
+    button {
+      background: none;
+    }
+  }
 }
 </style>

@@ -29,7 +29,7 @@ namespace Farmino.Service.Handlers.AddressHandler
                 Double.Parse(geolocation.lat, CultureInfo.InvariantCulture));
 
             await _service.SetAddressAsync(command.UserName, command.City,
-                command.Street, command.PostalCode, command.HouseNumber);
+                command.Street, command.PostalCode, command.HouseNumber, node);
         }
     }
 }

@@ -108,7 +108,9 @@ namespace Farmino.Infrastructure.Migrations
                     City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Street = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
-                    HouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true)
+                    HouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
+                    Lon = table.Column<double>(type: "float", maxLength: 20, nullable: true),
+                    Lat = table.Column<double>(type: "float", maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -233,6 +235,8 @@ namespace Farmino.Infrastructure.Migrations
                     OrderStreet = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     OrderPostalCode = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
                     OrderHouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
+                    OrderLon = table.Column<double>(type: "float", maxLength: 20, nullable: true),
+                    OrderLat = table.Column<double>(type: "float", maxLength: 20, nullable: true),
                     OrderQuantity = table.Column<double>(type: "float", nullable: false),
                     PriceSummary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),

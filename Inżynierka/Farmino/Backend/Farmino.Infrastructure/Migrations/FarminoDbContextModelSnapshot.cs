@@ -498,6 +498,31 @@ namespace Farmino.Infrastructure.Migrations
 
                                     b2.WithOwner()
                                         .HasForeignKey("OrderDetailsOrderId");
+
+                                    b2.OwnsOne("Farmino.Data.Models.ValueObjects.Node", "Node", b3 =>
+                                        {
+                                            b3.Property<Guid>("AddressOrderDetailsOrderId")
+                                                .HasColumnType("uniqueidentifier");
+
+                                            b3.Property<double>("Lat")
+                                                .HasMaxLength(20)
+                                                .HasColumnType("float")
+                                                .HasColumnName("OrderLat");
+
+                                            b3.Property<double>("Lon")
+                                                .HasMaxLength(20)
+                                                .HasColumnType("float")
+                                                .HasColumnName("OrderLon");
+
+                                            b3.HasKey("AddressOrderDetailsOrderId");
+
+                                            b3.ToTable("Orders");
+
+                                            b3.WithOwner()
+                                                .HasForeignKey("AddressOrderDetailsOrderId");
+                                        });
+
+                                    b2.Navigation("Node");
                                 });
 
                             b1.Navigation("Address");
@@ -579,6 +604,31 @@ namespace Farmino.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("ProfileId");
+
+                            b1.OwnsOne("Farmino.Data.Models.ValueObjects.Node", "Node", b2 =>
+                                {
+                                    b2.Property<Guid>("AddressProfileId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<double>("Lat")
+                                        .HasMaxLength(20)
+                                        .HasColumnType("float")
+                                        .HasColumnName("Lat");
+
+                                    b2.Property<double>("Lon")
+                                        .HasMaxLength(20)
+                                        .HasColumnType("float")
+                                        .HasColumnName("Lon");
+
+                                    b2.HasKey("AddressProfileId");
+
+                                    b2.ToTable("Profiles");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("AddressProfileId");
+                                });
+
+                            b1.Navigation("Node");
                         });
 
                     b.Navigation("Address");

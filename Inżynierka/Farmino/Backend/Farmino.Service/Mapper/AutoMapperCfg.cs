@@ -14,11 +14,15 @@ namespace Farmino.Service.Mapper
             CreateMap<User, DTO.User.UsersDTO>();
             CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
             CreateMap<User, DTO.Auction.NestedModels.UserDTO>();
+            CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
             CreateMap<Profile, DTO.User.NestedModels.ProfileDTO>();
+            CreateMap<Profile, DTO.Offer.NestedModels.ProfileDTO>();
+            CreateMap<Address, DTO.Offer.NestedModels.AddressDTO>();
             CreateMap<Address, DTO.User.NestedModels.AddressDTO>();
             CreateMap<Address, DTO.Order.NestedModels.AddressDTO>();
             CreateMap<Node, DTO.User.NestedModels.NodeDTO>();
             CreateMap<Node, DTO.Order.NestedModels.NodeDTO>();
+            CreateMap<Node, DTO.Offer.NestedModels.NodeDTO>();
             CreateMap<RefreshToken, DTO.Token.TokenDTO>();
             CreateMap<Offer, DTO.Offer.OfferDTO>();
             CreateMap<Offer, DTO.Offer.OffersDTO>();

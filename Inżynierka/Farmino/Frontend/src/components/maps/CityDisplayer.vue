@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div id="city-widget">
+    <div id="city-widget" :lon="lon" :lat="lat">
       <MglMap
         :accessToken="accessToken"
         :mapStyle.sync="mapStyle"
-        :center="coordinates"
+        :center="[lon, lat]"
         :zoom="zoom"
       >
-        <MglMarker :coordinates="coordinates" color="green" />
+        <MglMarker :coordinates="[lon, lat]" color="red" />
       </MglMap>
     </div>
   </div>
@@ -18,16 +18,28 @@ import { MglMap, MglMarker } from 'vue-mapbox';
 
 export default {
   name: 'BaseMap',
+
   components: {
     MglMap,
     MglMarker,
   },
+
+  props: {
+    lon: {
+      type: Number,
+      required: true,
+    },
+    lat: {
+      type: Number,
+      required: true,
+    },
+  },
+
   data() {
     return {
       accessToken:
         'pk.eyJ1Ijoic2FudGh5eCIsImEiOiJja2sxaXU5ejAwcng4Mm5wY2xhOXlicDZsIn0.1Ur47k0QWf9nIulyzO6zOQ',
       mapStyle: 'mapbox://styles/mapbox/streets-v11',
-      coordinates: [22.4702336, 50.371997],
       zoom: 11,
     };
   },

@@ -20,14 +20,14 @@ namespace Farmino.Service.Service
         }
 
         public async Task SetAddressAsync(string userName, string city, string street,
-            string postalCode, string houseNumber)
+            string postalCode, string houseNumber, Node node)
         {
             var user = await _userRepository.GetIfExistAsync(userName);
             var profile = await _profileRepository.GetIfExistAsync(user.Id);
 
             if (profile.Address == null)
             {
-                profile.SetAddress(Address.Create(city, street, postalCode, houseNumber));
+                profile.SetAddress(Address.Create(city, street, postalCode, houseNumber, node));
 
                 _profileRepository.EditProfile(profile);
                 await _profileRepository.SaveChanges();
@@ -37,7 +37,7 @@ namespace Farmino.Service.Service
         }
 
         public async Task EditAddressAsync(string userName, string city, string street,
-            string postalCode, string houseNumber)
+            string postalCode, string houseNumber, Node node)
         {
             var user = await _userRepository.GetIfExistAsync(userName);
             var profile = await _profileRepository.GetIfExistAsync(user.Id);
@@ -48,6 +48,7 @@ namespace Farmino.Service.Service
                 profile.Address.SetStreet(street);
                 profile.Address.SetPostalCode(postalCode);
                 profile.Address.SetHouseNumber(houseNumber);
+                profile.Address.SetNode(node);
 
                 _profileRepository.EditProfile(profile);
                 await _profileRepository.SaveChanges();

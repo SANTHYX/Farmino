@@ -27,13 +27,13 @@ namespace Farmino.Infrastructure.Geolocation
                 HttpClient client = new HttpClient();
                 client.BaseAddress= new Uri("https://us1.locationiq.com/v1/search.php");
 
-                HttpResponseMessage response = await client.GetAsync($"?key={key}&q={postalCode}&" +
-                    $"&{city}&{street}&{houseNumber}&accept-language=pl&format=json");
+                HttpResponseMessage response = await client.GetAsync($"?key={key}&q={postalCode}" +
+                    $"%20{city}%20{street}%20{houseNumber}&countrycode=pl&accept-language=pl&format=json");
 
                 var geolocation  = JsonConvert
                     .DeserializeObject<IEnumerable<GeolocationModel>>(await response.Content.ReadAsStringAsync());
 
-                return geolocation.FirstOrDefault();
+                return geolocation.First();
             }
             catch (Exception e)
             {
