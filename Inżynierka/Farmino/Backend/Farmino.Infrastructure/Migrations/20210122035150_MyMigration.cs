@@ -235,6 +235,7 @@ namespace Farmino.Infrastructure.Migrations
                     OrderHouseNumber = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
                     OrderQuantity = table.Column<double>(type: "float", nullable: false),
                     PriceSummary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OrderStatus = table.Column<int>(type: "int", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Released = table.Column<bool>(type: "bit", nullable: false),
                     CustomAddress = table.Column<bool>(type: "bit", nullable: false),

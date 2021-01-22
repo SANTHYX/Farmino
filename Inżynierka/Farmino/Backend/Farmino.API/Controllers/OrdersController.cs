@@ -20,9 +20,10 @@ namespace Farmino.API.Controllers
             _commandDispatcher = commandDispatcher;
             _orderService = orderService;
         }
-        [HttpGet("{offerId}, {customerId}")]
-        public async Task<IActionResult> Get(Guid offerId, Guid customerId)
-            => Ok(await _orderService.GetOrderDetailsAsync(offerId, customerId));
+
+        [HttpGet("{orderId}")]
+        public async Task<IActionResult> Get(Guid orderId)
+            => Ok(await _orderService.GetOrderDetailsAsync(orderId));
 
         [HttpGet()]
         public async Task<IActionResult> Get([FromQuery]OrderQuery query)

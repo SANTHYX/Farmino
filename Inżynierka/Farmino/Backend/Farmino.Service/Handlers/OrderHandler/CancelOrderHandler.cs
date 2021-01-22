@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.OrderHandler
 
         public async Task HandleAsync(CancelOrder command)
         {
-            await _orderService.CancelOrder(command.OfferId, command.CustomerId);
+            await _orderService.CancelOrder(command.OrderId);
         }
     }
 }

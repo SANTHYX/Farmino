@@ -21,13 +21,13 @@
   transition: opacity 0.5s;
   opacity: 0;
 }
-.fadequcik-enter{
+.movedropdown-enter{
   opacity: 0;
 }
-.fadequick-enter-active{
-  transition: opacity 0.2s;
+.movedropdown-enter-active{
+  transition: opacity 0.5s;
 }
-.fadequcik-leave-active{
-  transition: opacity 0.2s;
+.movedropdown-leave-active{
+  transition: opacity 0.5s;
   opacity: 0;
 }

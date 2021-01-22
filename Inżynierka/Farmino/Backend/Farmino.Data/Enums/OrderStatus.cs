@@ -3,13 +3,11 @@
 namespace Farmino.Data.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Categories
+    public enum OrderStatus
     {
-        Warzywa,
-        Owoce,
-        Przetwory,
-        Wędliny,
-        Nabiał,
-        Pieczywo,
+        Oczekujący,
+        Przyjęty,
+        Odrzucony,
+        Dostarczony
     }
 }

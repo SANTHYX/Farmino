@@ -1,10 +1,9 @@
 ﻿using Farmino.Data.Enums;
 
-namespace Farmino.Service.DTO.Offer.NestedModels
+namespace Farmino.Service.DTO.Order.NestedModels
 {
     public class ProductDTO
     {
-        public decimal BasePrice { get; set; }
         public WeightUnits BaseWeightUnit { get; set; }
     }
 }

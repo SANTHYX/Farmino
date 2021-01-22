@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.OrderHandler
 
         public async Task HandleAsync(SetRealisationDate command)
         {
-            await _orderService.SetupRealisationDate(command.OfferId, command.CustomerId, command.RealisationDate);
+            await _orderService.SetupRealisationDate(command.OrderId, command.RealisationDate);
         }
     }
 }

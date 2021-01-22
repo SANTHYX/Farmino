@@ -32,7 +32,7 @@ namespace Farmino.Service.Service
             {
                 orders = orders.Where(x => x.OfferId == orderQuery.OfferId);
             }
-            if (orderQuery.CustomerName == null)
+            if (orderQuery.CustomerName != null)
             {
                 orders = orders.Where(x => x.Customer.User.UserName == orderQuery.CustomerName);
             }
@@ -49,15 +49,15 @@ namespace Farmino.Service.Service
                 orders = orders.Where(x => x.ReleaseDate == orderQuery.ByDate);
             }
 
-            var result = await orders.Include(x => x.Offer).Include(y => y.Customer)
+            var result = await orders.Include(x => x.Offer).ThenInclude(x=> x.Farmer).ThenInclude(z => z.User).Include(y => y.Customer)
                 .ThenInclude(z => z.User).ThenInclude(q => q.Profile).ToListAsync();
                 
             return _mapper.Map<IEnumerable<OrdersDTO>>(result);
         }
 
-        public async Task CancelOrder(Guid offerId, Guid customerId)
+        public async Task CancelOrder(Guid orderId)
         {
-            var order = await _orderRepository.GetIfExistAsync(offerId, customerId);
+            var order = await _orderRepository.GetIfExistAsync(orderId);
 
             if (order.Released)
             {
@@ -69,16 +69,17 @@ namespace Farmino.Service.Service
             await _orderRepository.SaveChanges();
         }
 
-        public async Task<OrderDTO> GetOrderDetailsAsync(Guid offerId, Guid customerId)
+        public async Task<OrderDTO> GetOrderDetailsAsync(Guid orderId)
         {
-            var order = await _orderRepository.GetAsync(offerId, customerId);
+            var order = await _orderRepository.GetAsync(orderId);
             return _mapper.Map<OrderDTO>(order);
         }
 
-        public async Task SetupRealisationDate(Guid offerId, Guid customerId, DateTime realisationDate)
+        public async Task SetupRealisationDate(Guid orderId, DateTime realisationDate)
         {
-            var order = await _orderRepository.GetIfExistAsync(offerId, customerId);
+            var order = await _orderRepository.GetIfExistAsync(orderId);
 
+            order.SetOrderStatus(Data.Enums.OrderStatus.Przyjęty);
             order.SetReleaseDate(realisationDate);
             _orderRepository.Edit(order);
 

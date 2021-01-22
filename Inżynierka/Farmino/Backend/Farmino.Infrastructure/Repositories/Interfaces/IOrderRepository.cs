@@ -7,7 +7,7 @@ namespace Farmino.Infrastructure.Repositories.Interfaces
 {
     public interface IOrderRepository : IRepository
     {
-        Task<Order> GetAsync(Guid offerId, Guid customerId);
+        Task<Order> GetAsync(Guid orderId);
         IQueryable<Order> GetAllAsync();
         Task AddAsync(Order order);
         void Edit(Order order);

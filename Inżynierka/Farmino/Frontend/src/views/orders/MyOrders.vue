@@ -18,4 +18,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#my-orders {
+  @include flex-centred-site;
+}
+</style>

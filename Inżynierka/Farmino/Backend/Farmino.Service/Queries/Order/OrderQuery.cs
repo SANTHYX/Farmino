@@ -8,6 +8,7 @@ namespace Farmino.Service.Queries.Order
         #nullable enable
         [FromQuery(Name = "OfferId")]
         public Guid? OfferId { get; set; }
+        [FromQuery(Name = "FarmerName")]
         public string? FarmerName { get; set; }
         [FromQuery(Name = "CustomerName")]
         public string? CustomerName { get; set; }

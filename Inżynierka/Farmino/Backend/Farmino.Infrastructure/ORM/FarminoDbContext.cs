@@ -83,6 +83,7 @@ namespace Farmino.Infrastructure.ORM
                 x.Property(y => y.OrderQuantity).IsRequired();
                 x.Property(y => y.PriceSummary).IsRequired();
                 x.Property(y => y.ReleaseDate);
+                x.Property(y => y.OrderStatus);
                 x.Property(y => y.CustomAddress).IsRequired();
                 x.OwnsOne(y => y.OrderDetails, z =>
                 {

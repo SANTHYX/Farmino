@@ -243,6 +243,9 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<double>("OrderQuantity")
                         .HasColumnType("float");
 
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PriceSummary")
                         .HasColumnType("decimal(18,2)");
 

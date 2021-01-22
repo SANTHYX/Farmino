@@ -8,9 +8,9 @@ namespace Farmino.Service.Extensions
 {
     public static class OrderExtensions
     {
-        public static async Task<Order> GetIfExistAsync(this IOrderRepository repository, Guid offerId, Guid customerId)
+        public static async Task<Order> GetIfExistAsync(this IOrderRepository repository, Guid orderId)
         {
-            var order = await repository.GetAsync(offerId, customerId);
+            var order = await repository.GetAsync(orderId);
 
             if (order == null)
             {

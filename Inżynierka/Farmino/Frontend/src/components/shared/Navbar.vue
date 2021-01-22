@@ -30,7 +30,7 @@
                   <a>Aukcje</a>
                 </li></router-link
               >
-              <transition name="fadequcik">
+              <transition name="movedropdown">
                 <div id="drop-menu" v-if="showAuctionMenu">
                   <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Aukcję</a></li></router-link
@@ -45,7 +45,7 @@
               <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
                 ><li @mouseover="showOfferMenu = true"><a>Oferty</a></li></router-link
               >
-              <transition name="fadequcik">
+              <transition name="movedropdown">
                 <div id="drop-menu" v-if="showOfferMenu">
                   <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Oferte</a></li></router-link
@@ -60,7 +60,7 @@
               <router-link :to="{ name: 'orders' }" exact="exact" class="pop-up"
                 ><li @mouseover="showOrdersMenu = true"><a>Zamówienia</a></li></router-link
               >
-              <transition name="fadequcik">
+              <transition name="movedropdown">
                 <div id="drop-menu" v-if="showOrdersMenu">
                   <router-link :to="{ name: 'my-orders' }" exact="exact" class="pop-up"
                     ><li><a>Moje Zamówienia</a></li></router-link

@@ -31,7 +31,7 @@ export default {
 #list-wraper {
   margin: 12rem 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: baseline;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
   width: 70vw;

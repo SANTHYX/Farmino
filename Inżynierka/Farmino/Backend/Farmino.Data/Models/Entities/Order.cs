@@ -3,6 +3,7 @@ using Farmino.Data.Exceptions;
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.ValueObjects;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Farmino.Data.Models.Entities
 {
@@ -16,6 +17,8 @@ namespace Farmino.Data.Models.Entities
         public OrderDetails OrderDetails { get; protected set; }
         public double OrderQuantity { get; protected set; }
         public decimal PriceSummary { get; protected set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public OrderStatus OrderStatus { get; protected set; }
         public DateTime ReleaseDate { get; protected set; }
         public bool Released { get; protected set; }
         public bool CustomAddress { get; protected set; }
@@ -31,11 +34,23 @@ namespace Farmino.Data.Models.Entities
             Offer = offer;
             Customer = customer;
             OrderDetails = orderDetails;
+            SetOrderStatus(OrderStatus.Oczekujący);
             SetOrderQuantity(orderQuantity);
             SetPriceSummary(priceSummary);
             IsReleased(false);
             IsCustomAddress(customAddress);
             CreatedAt = UpdatedAt = DateTime.Now;
+        }
+
+        public void SetOrderStatus(OrderStatus status)
+        {
+            if (!Enum.IsDefined(typeof(OrderStatus), status))
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
+                    "Invalid order status");
+            }
+
+            OrderStatus = status;
         }
 
         public void SetOrderQuantity(double orderQuantity)
