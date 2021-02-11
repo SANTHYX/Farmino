@@ -12,10 +12,10 @@
             type="number"
             name="userName"
             class="form-field"
-            v-model="$v.offer.product.basePrice.$model"
+            v-model.number="$v.offer.product.basePrice.$model"
           />
         </div>
-        <label for="userName" class="form-label">Cena jednostkowa</label>
+        <label for="userName" class="form-label">Jednostka Wagi</label>
         <div id="inputs-wraper">
           <select class="form-field" v-model.number="$v.offer.product.baseWeightUnit.$model">
             <option value="0">mg</option>
@@ -35,15 +35,16 @@
           />
         </div>
         <div id="inputs-wraper">
-            <label for="userName" class="form-label">Opis oferty</label>
-            <textarea
-              name=""
-              class="form-field"
-              cols="30"
-              rows="10"
-              v-model="$v.offer.description.$model"
-            ></textarea>
-          </div>
+          <label for="userName" class="form-label">Opis oferty</label>
+          <textarea
+            name=""
+            class="form-field"
+            cols="30"
+            rows="10"
+            v-model="$v.offer.description.$model"
+          ></textarea>
+        </div>
+        <button @click="create" :disabled="$v.offer.$invalid">Stwórz</button>
       </div>
     </div>
   </div>
@@ -94,6 +95,7 @@ export default {
     ...mapActions({
       createOffer: 'offer/CREATE_OFFER',
     }),
+
     create() {
       this.createOffer({
         userName: this.userName,
@@ -104,6 +106,7 @@ export default {
       });
     },
   },
+
   async beforeCreate() {
     this.$store.dispatch('offer/CREATE_FARMER', { userName: this.$store.state.auth.userName });
   },

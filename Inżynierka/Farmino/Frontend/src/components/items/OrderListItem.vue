@@ -37,6 +37,9 @@
           <span>{{ orderItem.orderStatus }}</span>
         </h4>
       </div>
+      <div id="order-details">
+        <button @click="buttonContent = '541-342-111'">{{ buttonContent }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +54,12 @@ export default {
       required: true,
     },
   },
+
+  data() {
+    return {
+      buttonContent: 'Zadzwoń',
+    };
+  },
 };
 </script>
 
@@ -61,7 +70,7 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid rgb(189, 189, 189);
+  border: 1px solid rgb(214, 214, 214);
 }
 
 .order-details {

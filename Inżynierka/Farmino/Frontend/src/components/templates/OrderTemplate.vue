@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="order-template">
+    <div id="order-template" :orderId="orderId">
       <div id="route-displayer">
         <MglMap
           :accessToken="accessToken"
@@ -12,17 +12,30 @@
           <MglMarker :coordinates="[]" color="blue" />
         </MglMap>
       </div>
-      <div id=""></div>
+      <div id="client-details">x</div>
+      <div id="order-details">x</div>
+      <div id="decision-panel">
+        <button>Zadzwoń</button>
+        <button @click="releaseOrder">Realizuj</button>
+        <button @click="cancelOrderAsync">Odrzuć</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { MglMap, MglMarker } from 'vue-mapbox';
 
 export default {
   name: 'order-template',
+
+  props: {
+    orderId: {
+      type: String,
+      required: true,
+    },
+  },
 
   components: {
     MglMap,
@@ -31,10 +44,7 @@ export default {
 
   data() {
     return {
-      accessToken:
-        'pk.eyJ1Ijoic2FudGh5eCIsImEiOiJja2sxaXU5ejAwcng4Mm5wY2xhOXlicDZsIn0.1Ur47k0QWf9nIulyzO6zOQ',
-      mapStyle: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 11,
+      showRealisationFrom: false,
     };
   },
 
@@ -43,6 +53,22 @@ export default {
       order: 'order/GET_ORDER',
       user: 'user/GET_STATE_USER',
     }),
+  },
+
+  methods: {
+    ...mapActions({
+      cancelOrder: 'order/CANCEL_ORDER',
+    }),
+
+    cancelOrderAsync() {
+      this.cancelOrder({ orderId: this.orderId });
+      this.$router.push({ name: 'my-delivers' });
+    },
+
+    releaseOrder() {
+      this.showRealisationFrom = !this.showRealisationFrom;
+      this.$emit('releaseOrderEvent', this.showRealisationFrom);
+    },
   },
 
   async created() {
@@ -55,8 +81,14 @@ export default {
 #order-template {
   margin: 12rem 0;
   border: 1px solid rgb(212, 212, 212);
-  width: 60vw;
-  height: 80vh;
+  width: 40vw;
+  height: 60vh;
   display: flex;
+
+  #decision-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

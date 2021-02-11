@@ -1,4 +1,4 @@
-import { api } from '@/plugins/axios';
+import { api } from '../../plugins/axios';
 
 const order = {
   namespaced: true,
@@ -52,6 +52,24 @@ const order = {
           },
         });
         commit('SET_ORDERS', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async CANCEL_ORDER({ commit }, { orderId }) {
+      try {
+        await api.put('/orders/cancel', { orderId });
+        commit();
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async RELEASE_ORDER({ commit }, { orderId, realisationDate }) {
+      try {
+        await api.put('/orders', { orderId, realisationDate });
+        commit();
       } catch (err) {
         throw new Error(err.message);
       }

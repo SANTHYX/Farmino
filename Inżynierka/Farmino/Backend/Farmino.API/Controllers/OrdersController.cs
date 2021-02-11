@@ -25,7 +25,7 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get(Guid orderId)
             => Ok(await _orderService.GetOrderDetailsAsync(orderId));
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<IActionResult> Get([FromQuery]OrderQuery query)
             => Ok(await _orderService.BrowseOrdersAsync(query));
 
@@ -36,8 +36,8 @@ namespace Farmino.API.Controllers
             return Ok("Order has been edited");
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] CancelOrder command)
+        [HttpPut("cancel")]
+        public async Task<IActionResult> Put([FromBody] CancelOrder command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Order has been canceled");

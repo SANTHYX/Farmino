@@ -70,7 +70,7 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid rgb(189, 189, 189);
+  border: 1px solid rgb(211, 211, 211);
 }
 
 .order-details {
