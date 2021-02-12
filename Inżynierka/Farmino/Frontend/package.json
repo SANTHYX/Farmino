@@ -8,9 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@innologica/vue-dropdown-menu": "^0.1.4",
     "@mapbox/mapbox-gl-geocoder": "^4.7.0",
-    "@vuejs-community/vue-filter-date-format": "^1.6.3",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
@@ -19,7 +17,6 @@
     "vue": "^2.6.11",
     "vue-mapbox": "^0.4.1",
     "vue-mapbox-geocoder": "^0.2.0",
-    "vue-moment": "^4.1.0",
     "vue-router": "^3.4.9",
     "vue-unicons": "^2.3.0",
     "vuelidate": "^0.7.5",

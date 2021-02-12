@@ -1,8 +1,15 @@
 <template>
   <div>
-    <div id="realisation-form" :orderId="orderId">
-      <label for="date">Data Realizacji</label>
-      <input type="date" name="date" id="date" v-model="realsationDate" />
+    <div id="realisation-form">
+      <div id="form-wraper">
+        <h1>Ustaw Detale Realizacji</h1>
+        <hr />
+        <div id="inputs-wraper">
+          <label for="date" class="form-label">Data Realizacji</label>
+          <input type="date" name="date" id="date" class="form-field" v-model="realsationDate" />
+        </div>
+        <button @click="releaseOrderAsync">Realizuj</button>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +21,7 @@ export default {
   name: 'realisation-form',
 
   props: {
-    orderId: {
+    id: {
       type: String,
       required: true,
     },
@@ -31,11 +38,12 @@ export default {
       releaseOrder: 'order/RELEASE_ORDER',
     }),
 
-    async releaseOrderAsync() {
-      await this.releaseOrder({
-        orderId: this.orderId,
-        realsationDate: this.realsationDate,
+    releaseOrderAsync() {
+      this.releaseOrder({
+        orderId: this.id,
+        realisationDate: this.realsationDate,
       });
+      this.$router.push({ name: 'my-delivers' });
     },
   },
 };
@@ -43,10 +51,31 @@ export default {
 
 <style lang="scss" scoped>
 #realisation-form {
-  margin: 12rem 0;
-  border: 1px solid rgb(212, 212, 212);
-  width: 40vw;
-  height: 60vh;
-  display: flex;
+  #form-wraper {
+    padding: 2rem;
+    border: 1px solid rgb(189, 189, 189);
+    box-shadow: 1px 1px 6px rgb(179, 179, 179);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    hr {
+      margin-top: 0.2rem;
+      width: 240px;
+      color: rgb(245, 245, 245);
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(63, 63, 63);
+    }
+
+    #inputs-wraper {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 </style>

@@ -5,9 +5,9 @@ namespace Farmino.Data.Enums
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum OrderStatus
     {
-        Oczekujący,
-        Przyjęty,
-        Odrzucony,
-        Dostarczony
+        Oczekująca,
+        Przyjęta,
+        Odrzucona,
+        Dostarczona
     }
 }

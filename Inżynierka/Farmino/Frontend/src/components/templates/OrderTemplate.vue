@@ -1,23 +1,12 @@
 <template>
   <div>
-    <div id="order-template" :orderId="orderId">
-      <div id="route-displayer">
-        <MglMap
-          :accessToken="accessToken"
-          :mapStyle.sync="mapStyle"
-          :center="coordinates"
-          :zoom="zoom"
-        >
-          <MglMarker :coordinates="[]" color="green" />
-          <MglMarker :coordinates="[]" color="blue" />
-        </MglMap>
-      </div>
+    <div id="order-template">
       <div id="client-details">x</div>
       <div id="order-details">x</div>
       <div id="decision-panel">
         <button>Zadzwoń</button>
         <button @click="releaseOrder">Realizuj</button>
-        <button @click="cancelOrderAsync">Odrzuć</button>
+        <button @click="revokeOrder">Odrzuc</button>
       </div>
     </div>
   </div>
@@ -25,21 +14,15 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import { MglMap, MglMarker } from 'vue-mapbox';
 
 export default {
   name: 'order-template',
 
   props: {
-    orderId: {
+    id: {
       type: String,
       required: true,
     },
-  },
-
-  components: {
-    MglMap,
-    MglMarker,
   },
 
   data() {
@@ -60,19 +43,19 @@ export default {
       cancelOrder: 'order/CANCEL_ORDER',
     }),
 
-    cancelOrderAsync() {
-      this.cancelOrder({ orderId: this.orderId });
+    revokeOrder() {
+      this.cancelOrder({ orderId: this.id });
       this.$router.push({ name: 'my-delivers' });
     },
 
     releaseOrder() {
-      this.showRealisationFrom = !this.showRealisationFrom;
-      this.$emit('releaseOrderEvent', this.showRealisationFrom);
+      this.$router.push({ name: 'order-release', params: { id: this.id } });
     },
   },
 
   async created() {
     await this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
+    await this.$store.dispatch('order/GET_ORDER', this.id);
   },
 };
 </script>
@@ -84,6 +67,7 @@ export default {
   width: 40vw;
   height: 60vh;
   display: flex;
+  justify-content: center;
 
   #decision-panel {
     display: flex;

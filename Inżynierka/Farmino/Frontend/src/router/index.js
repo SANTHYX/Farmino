@@ -60,6 +60,7 @@ const routes = [
   },
   {
     path: '/orders',
+    redirect: 'home',
     name: 'orders',
     component: () => import('@/views/orders/Orders.vue'),
   },
@@ -74,10 +75,23 @@ const routes = [
     component: () => import('@/views/orders/MyDelivers.vue'),
   },
   {
-    path: '/orders/:id',
-    name: 'order',
-    props: true,
+    path: '/orders',
+    redirect: 'home',
     component: () => import('@/views/orders/Order.vue'),
+    children: [
+      {
+        path: '/orders/:id',
+        name: 'order',
+        props: true,
+        component: () => import('../components/templates/OrderTemplate.vue'),
+      },
+      {
+        path: '/orders/:id/release',
+        name: 'order-release',
+        props: true,
+        component: () => import('../components/forms/order/RealisationForm.vue'),
+      },
+    ],
   },
   {
     path: '/login',

@@ -28,7 +28,7 @@
       <div id="contact" class="order-details">
         <h4>Data Realizacji</h4>
         <h4>
-          <span>{{ deliveryItem.releaseDate}}</span>
+          <span>{{ deliveryItem.releaseDate | date }}</span>
         </h4>
       </div>
       <div id="contact" class="order-details">
@@ -55,6 +55,12 @@ export default {
     },
   },
 
+  filters: {
+    date(value) {
+      return new Date(value).toLocaleDateString();
+    },
+  },
+
   methods: {
     moveToOrder() {
       this.$router.push({ name: 'order', params: { id: this.deliveryItem.id } });
@@ -77,6 +83,7 @@ export default {
   text-align: center;
   h4 {
     margin: 0.5rem 0;
+    color:rgb(53, 53, 53);
     span {
       color: rgb(124, 124, 124);
     }

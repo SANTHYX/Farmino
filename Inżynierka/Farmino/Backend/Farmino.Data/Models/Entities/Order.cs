@@ -34,7 +34,7 @@ namespace Farmino.Data.Models.Entities
             Offer = offer;
             Customer = customer;
             OrderDetails = orderDetails;
-            SetOrderStatus(OrderStatus.Oczekujący);
+            SetOrderStatus(OrderStatus.Oczekująca);
             SetOrderQuantity(orderQuantity);
             SetPriceSummary(priceSummary);
             IsReleased(false);

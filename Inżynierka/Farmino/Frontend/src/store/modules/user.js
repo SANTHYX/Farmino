@@ -31,6 +31,7 @@ const user = {
       state.user = {};
     },
   },
+
   actions: {
     async GET_USER({ commit }, userName) {
       try {

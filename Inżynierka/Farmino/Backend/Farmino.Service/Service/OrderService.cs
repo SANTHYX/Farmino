@@ -65,7 +65,7 @@ namespace Farmino.Service.Service
                     "Cannot cancel released order");
             }
 
-            order.SetOrderStatus(Data.Enums.OrderStatus.Odrzucony);
+            order.SetOrderStatus(Data.Enums.OrderStatus.Odrzucona);
             _orderRepository.Edit(order);
             await _orderRepository.SaveChanges();
         }
@@ -80,7 +80,7 @@ namespace Farmino.Service.Service
         {
             var order = await _orderRepository.GetIfExistAsync(orderId);
 
-            order.SetOrderStatus(Data.Enums.OrderStatus.Przyjęty);
+            order.SetOrderStatus(Data.Enums.OrderStatus.Przyjęta);
             order.SetReleaseDate(realisationDate);
             _orderRepository.Edit(order);
 
