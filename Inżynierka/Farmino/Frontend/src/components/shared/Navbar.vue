@@ -148,7 +148,7 @@ export default {
     display: flex;
     justify-content: center;
     background: rgb(253, 253, 253);
-    border-bottom: 0.3px solid rgb(199, 199, 199);
+    border-bottom: 0.3px solid rgb(221, 221, 221);
 
     a {
       text-decoration: none;
@@ -160,7 +160,7 @@ export default {
     display: flex;
     justify-content: space-around;
     background: rgb(253, 253, 253);
-    border-bottom: 0.3px solid rgb(199, 199, 199);
+    border-bottom: 0.3px solid rgb(221, 221, 221);
 
     a {
       color: rgb(0, 0, 0);

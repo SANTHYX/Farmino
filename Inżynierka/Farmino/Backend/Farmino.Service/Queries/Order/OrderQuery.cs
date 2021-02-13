@@ -15,7 +15,7 @@ namespace Farmino.Service.Queries.Order
         [FromQuery(Name = "Released")]
         public bool? Released { get; set; }
         [FromQuery(Name = "ByDate")]
-        public DateTime? ByDate { get; set; }
+        public DateTime? Date { get; set; }
         #nullable disable
     }
 }

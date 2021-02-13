@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Farmino.Service.DTO.Order.NestedModels
+﻿ namespace Farmino.Service.DTO.Order.NestedModels
 {
     public class OrderDetailsDTO
     {

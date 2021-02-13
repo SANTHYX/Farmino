@@ -1,8 +1,6 @@
 ﻿using Farmino.Data.Enums;
 using Farmino.Service.DTO.Order.NestedModels;
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
 
 namespace Farmino.Service.DTO.Order
 {

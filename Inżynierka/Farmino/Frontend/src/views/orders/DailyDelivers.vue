@@ -2,20 +2,20 @@
   <div>
     <div id="daily-delivers">
       <delivers-map />
-      <clients-list />
+      <clients-orders-list />
     </div>
   </div>
 </template>
 
 <script>
-import ClientsList from '../../components/lists/ClientsList.vue';
-import DeliversMap from '../../components/maps/DeliversMap.vue';
+import ClientsOrdersList from '@/components/lists/ClientsOrdersList.vue';
+import DeliversMap from '@/components/maps/DeliversMap.vue';
 
 export default {
   name: 'daily-delivers',
 
   components: {
-    ClientsList,
+    ClientsOrdersList,
     DeliversMap,
   },
 };

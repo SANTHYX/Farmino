@@ -48,6 +48,8 @@
 
 <script>
 export default {
+  name: 'delivery-list-item',
+
   props: {
     deliveryItem: {
       type: Object,
@@ -76,14 +78,16 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(211, 211, 211);
 }
 
 .order-details {
   text-align: center;
+
   h4 {
     margin: 0.5rem 0;
-    color:rgb(53, 53, 53);
+    color: rgb(53, 53, 53);
+
     span {
       color: rgb(124, 124, 124);
     }
@@ -97,8 +101,10 @@ export default {
 
   .order-details {
     text-align: center;
+
     h4 {
       margin: 0.5rem 0;
+
       span {
         color: rgb(124, 124, 124);
       }

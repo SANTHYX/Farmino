@@ -44,13 +44,13 @@ namespace Farmino.Service.Service
             {
                 orders = orders.Where(x => x.Released == orderQuery.Released);
             }
-            if (orderQuery.ByDate != null)
+            if (orderQuery.Date != null)
             {
-                orders = orders.Where(x => x.ReleaseDate == orderQuery.ByDate);
+                orders = orders.Where(x => x.ReleaseDate.Date == orderQuery.Date);
             }
 
-            var result = await orders.Include(x => x.Offer).ThenInclude(x=> x.Farmer).ThenInclude(z => z.User).Include(y => y.Customer)
-                .ThenInclude(z => z.User).ThenInclude(q => q.Profile).ToListAsync();
+            var result = await orders.Include(x => x.Offer).ThenInclude(x=> x.Farmer).ThenInclude(z => z.User)
+                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile).ToListAsync();
                 
             return _mapper.Map<IEnumerable<OrdersDTO>>(result);
         }

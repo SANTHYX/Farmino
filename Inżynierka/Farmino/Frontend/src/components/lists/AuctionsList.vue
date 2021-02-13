@@ -11,6 +11,8 @@ import { mapGetters } from 'vuex';
 import AuctionListItem from '../items/AuctionListItem.vue';
 
 export default {
+  name: 'auctions-list',
+
   components: {
     AuctionListItem,
   },
@@ -21,8 +23,8 @@ export default {
     }),
   },
 
-  async created() {
-    await this.$store.dispatch('auction/GET_AUCTIONS');
+  created() {
+    this.$store.dispatch('auction/GET_AUCTIONS');
   },
 };
 </script>

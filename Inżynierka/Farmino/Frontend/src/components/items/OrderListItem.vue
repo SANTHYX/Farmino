@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: 'order-item',
+  name: 'order-list-item',
 
   props: {
     orderItem: {
@@ -76,14 +76,16 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid rgb(214, 214, 214);
+  border-bottom: 1px solid rgb(214, 214, 214);
 }
 
 .order-details {
   text-align: center;
+
   h4 {
     margin: 0.5rem 0;
     color: rgb(49, 49, 49);
+
     span {
       color: rgb(124, 124, 124);
     }
@@ -97,8 +99,10 @@ export default {
 
   .order-details {
     text-align: center;
+
     h4 {
       margin: 0.5rem 0;
+
       span {
         color: rgb(124, 124, 124);
       }

@@ -11,6 +11,8 @@ import { mapGetters } from 'vuex';
 import DeliveryListItem from '../items/DeliveryListItem.vue';
 
 export default {
+  name: 'delivers-list',
+
   components: {
     DeliveryListItem,
   },
