@@ -75,6 +75,11 @@ const routes = [
     component: () => import('@/views/orders/MyDelivers.vue'),
   },
   {
+    path: '/orders/daily-delivers',
+    name: 'daily-delivers',
+    component: () => import('@/views/orders/DailyDelivers.vue'),
+  },
+  {
     path: '/orders',
     redirect: 'home',
     component: () => import('@/views/orders/Order.vue'),

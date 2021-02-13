@@ -21,9 +21,9 @@ export default {
     }),
   },
 
-  async created() {
+  created() {
     const farmerName = this.$store.state.auth.userName;
-    await this.$store.dispatch('order/GET_ORDERS', { farmerName });
+    this.$store.dispatch('order/GET_ORDERS', { farmerName });
   },
 };
 </script>

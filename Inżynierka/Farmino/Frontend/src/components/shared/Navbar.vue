@@ -68,6 +68,9 @@
                   <router-link :to="{ name: 'my-delivers' }" exact="exact" class="pop-up"
                     ><li><a>Moje Dostawy</a></li></router-link
                   >
+                  <router-link :to="{ name: 'daily-delivers' }" exact="exact" class="pop-up"
+                    ><li><a>Realizuj Dostawy</a></li></router-link
+                  >
                 </div>
               </transition>
             </div>
