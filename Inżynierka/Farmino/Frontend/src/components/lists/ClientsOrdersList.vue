@@ -21,12 +21,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      orders: 'order/GET_ORDERS',
+      orders: 'order/GET_DELIVERY_ORDERS',
     }),
-  },
-
-  created() {
-    this.$store.dispatch('order/GET_ORDERS', { byDate: new Date().toDateString() });
   },
 };
 </script>
@@ -36,6 +32,7 @@ export default {
   margin: 12rem 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
   min-width: 20vw;

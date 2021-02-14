@@ -6,6 +6,7 @@ const order = {
   state: {
     order: {},
     ordersAll: [],
+    deliveryOrders: [],
   },
 
   getters: {
@@ -16,6 +17,10 @@ const order = {
     GET_ORDERS(state) {
       return state.ordersAll;
     },
+
+    GET_DELIVERY_ORDERS(state) {
+      return state.deliveryOrders;
+    },
   },
 
   mutations: {
@@ -25,6 +30,10 @@ const order = {
 
     SET_ORDERS(state, ordersList) {
       state.ordersAll = ordersList;
+    },
+
+    SET_DELIVERY_ORDERS(state, deliveryOrdersList) {
+      state.deliveryOrders = deliveryOrdersList;
     },
   },
 
@@ -39,7 +48,7 @@ const order = {
     },
 
     async GET_ORDERS({ commit }, {
-      offerId, farmerName, customerName, released, byDate,
+      offerId, farmerName, customerName, released, date,
     }) {
       try {
         const response = await api.get('/orders', {
@@ -48,10 +57,19 @@ const order = {
             farmerName,
             customerName,
             released,
-            byDate,
+            date,
           },
         });
         commit('SET_ORDERS', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async GET_DELIVERY_ORDERS({ commit }, { date, userName }) {
+      try {
+        const response = await api.get(`/orders/delivery-orders/${date},${userName}`);
+        commit('SET_DELIVERY_ORDERS', response.data);
       } catch (err) {
         throw new Error(err.message);
       }

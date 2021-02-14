@@ -20,13 +20,16 @@ namespace Farmino.Service.Mapper
             CreateMap<Address, DTO.Offer.NestedModels.AddressDTO>();
             CreateMap<Address, DTO.User.NestedModels.AddressDTO>();
             CreateMap<Address, DTO.Order.NestedModels.AddressDTO>();
+            CreateMap<Address, DTO.DeliverOrder.NestedModels.AddressDTO>();
             CreateMap<Node, DTO.User.NestedModels.NodeDTO>();
             CreateMap<Node, DTO.Order.NestedModels.NodeDTO>();
             CreateMap<Node, DTO.Offer.NestedModels.NodeDTO>();
+            CreateMap<Node, DTO.DeliverOrder.NestedModels.NodeDTO>();
             CreateMap<RefreshToken, DTO.Token.TokenDTO>();
             CreateMap<Offer, DTO.Offer.OfferDTO>();
             CreateMap<Offer, DTO.Offer.OffersDTO>();
             CreateMap<Offer, DTO.Order.NestedModels.OfferDTO>();
+            CreateMap<Offer, DTO.DeliverOrder.NestedModels.OfferDTO>();
             CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
             CreateMap<Product, DTO.Product.ProductDTO>();
             CreateMap<Product, DTO.Order.NestedModels.ProductDTO>();
@@ -41,7 +44,9 @@ namespace Farmino.Service.Mapper
             CreateMap<Customer, DTO.Customer.CustomerDTO>();
             CreateMap<Order, DTO.Order.OrderDTO>();
             CreateMap<Order, DTO.Order.OrdersDTO>();
+            CreateMap<Order, DTO.DeliverOrder.DeliverOrdersDTO>();
             CreateMap<OrderDetails, DTO.Order.NestedModels.OrderDetailsDTO>();
+            CreateMap<OrderDetails, DTO.DeliverOrder.NestedModels.OrderDetailsDTO>();
 
             //Extensions
             CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>().ReverseMap();

@@ -17,7 +17,7 @@
 import { MglMap, MglMarker } from 'vue-mapbox';
 
 export default {
-  name: 'BaseMap',
+  name: 'city-widget',
 
   components: {
     MglMap,

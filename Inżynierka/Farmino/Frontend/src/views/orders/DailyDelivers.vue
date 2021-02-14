@@ -18,6 +18,13 @@ export default {
     ClientsOrdersList,
     DeliversMap,
   },
+
+  created() {
+    this.$store.dispatch('order/GET_DELIVERY_ORDERS', {
+      date: new Date().toDateString(),
+      userName: this.$store.state.auth.userName,
+    });
+  },
 };
 </script>
 

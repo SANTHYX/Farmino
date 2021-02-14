@@ -1,4 +1,5 @@
-﻿using Farmino.Service.DTO.Order;
+﻿using Farmino.Service.DTO.DeliverOrder;
+using Farmino.Service.DTO.Order;
 using Farmino.Service.Queries.Order;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Farmino.Service.Service.Interfaces
         Task<OrderDTO> GetOrderDetailsAsync(Guid orderId);
         Task<IEnumerable<OrdersDTO>> BrowseOrdersAsync(OrderQuery orderQuery);
         Task CancelOrder(Guid orderId);
-        Task SetupRealisationDate(Guid orderId, DateTime realisationDate); 
+        Task ReleaseOrder(Guid orderId);
+        Task SetupRealisationDate(Guid orderId, DateTime realisationDate);
+        Task<IEnumerable<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(DateTime date, string userName);
     }
 }

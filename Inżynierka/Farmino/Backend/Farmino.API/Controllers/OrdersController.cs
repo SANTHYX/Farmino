@@ -29,6 +29,11 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery]OrderQuery query)
             => Ok(await _orderService.BrowseOrdersAsync(query));
 
+        [HttpGet("delivery-orders/{date},{userName}")]
+        public async Task<IActionResult> Get(DateTime date, string userName)
+            => Ok(await _orderService.BrowseDeliverOrdersAsync(date, userName));
+
+
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] SetRealisationDate command) 
         {

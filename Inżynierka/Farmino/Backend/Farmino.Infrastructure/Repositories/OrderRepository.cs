@@ -3,7 +3,6 @@ using Farmino.Infrastructure.ORM;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

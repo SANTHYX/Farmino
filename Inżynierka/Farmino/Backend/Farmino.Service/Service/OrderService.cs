@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Farmino.Service.DTO.DeliverOrder;
+using Farmino.Data.Enums;
 
 namespace Farmino.Service.Service
 {
@@ -22,6 +24,15 @@ namespace Farmino.Service.Service
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(DateTime date, string userName)
+        {
+            var deliverOrders = await _orderRepository.GetAllAsync().Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
+                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile)
+                .Where(x => x.ReleaseDate.Date == date && x.OrderStatus == OrderStatus.Przyjęta && x.Offer.Farmer.User.UserName == userName).ToListAsync();
+
+            return _mapper.Map<IEnumerable<DeliverOrdersDTO>>(deliverOrders);
         }
 
         public async Task<IEnumerable<OrdersDTO>> BrowseOrdersAsync(OrderQuery orderQuery)
@@ -74,6 +85,21 @@ namespace Farmino.Service.Service
         {
             var order = await _orderRepository.GetAsync(orderId);
             return _mapper.Map<OrderDTO>(order);
+        }
+
+        public async Task ReleaseOrder(Guid orderId)
+        {
+            var order = await _orderRepository.GetIfExistAsync(orderId);
+
+            if (order.Released)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
+                    "Already released order");
+            }
+
+            order.SetOrderStatus(Data.Enums.OrderStatus.Dostarczona);
+            _orderRepository.Edit(order); 
+            await _orderRepository.SaveChanges();
         }
 
         public async Task SetupRealisationDate(Guid orderId, DateTime realisationDate)
