@@ -9,7 +9,8 @@
         <h4>Tytuł</h4>
         <p>{{ orderItem.offer.title }}</p>
       </div>
-      <button>XD</button>
+      <button class="btn">Szczegóły</button>
+      <button class="btn">Wyznacz Trasę</button>
     </div>
   </div>
 </template>
@@ -24,6 +25,10 @@ export default {
       required: true,
     },
   },
+
+  methods: {
+    setAsReleased() {},
+  },
 };
 </script>
 
@@ -32,17 +37,27 @@ export default {
   display: flex;
   justify-content: space-evenly;
   justify-items: center;
-  flex-wrap: wrap;
+  border-top: 1px solid rgb(211, 211, 211);
   border-bottom: 1px solid rgb(211, 211, 211);
+  min-width: 20vw;
+  padding: 0.5rem;
 
   .list-positioning {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 0 0.5rem 0 0;
+    margin: 0 0.7rem 0 0;
+  }
+
+  .btn {
+    padding: 0.2rem;
+    cursor: pointer;
   }
 }
 
 @media screen and(max-width: $tablet) {
+  #client-order-item {
+    width: 88vw;
+  }
 }
 </style>

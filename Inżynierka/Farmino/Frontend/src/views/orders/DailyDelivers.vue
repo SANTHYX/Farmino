@@ -24,6 +24,7 @@ export default {
       date: new Date().toDateString(),
       userName: this.$store.state.auth.userName,
     });
+    this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
   },
 };
 </script>

@@ -7,6 +7,10 @@
       placeholder="Szukaj"
       v-model="phrase"
     />
+    <select name="types" id="type-picker">
+      <option value="offers" id="option-field">Oferta</option>
+      <option value="auctions" id="option-field">Aukcje</option>
+    </select>
     <button id="search-btn" @click="search">Szukaj</button>
   </div>
 </template>
@@ -16,15 +20,18 @@ import { mapMutations } from 'vuex';
 
 export default {
   name: 'search-bar',
+
   data() {
     return {
       phrase: '',
     };
   },
+
   methods: {
     ...mapMutations({
       SET_PHRASE: 'search/SET_PHRASE',
     }),
+
     search() {
       this.SET_PHRASE({ phrase: this.phrase });
       this.$router.push('/search');
@@ -47,6 +54,9 @@ export default {
     border-radius: 7px 0px 0px 7px;
     padding: 0 0.7rem;
     background: rgb(241, 245, 184);
+    border-top: 1px solid rgb(216, 216, 216);
+    border-bottom: 1px solid rgb(216, 216, 216);
+    border-left: 1px solid rgb(216, 216, 216);
   }
 
   #search-btn {
@@ -58,6 +68,24 @@ export default {
     cursor: pointer;
     background: rgb(241, 169, 34);
     font-family: 'Roboto Condensed', sans-serif;
+    border-top: 1px solid rgb(216, 216, 216);
+    border-bottom: 1px solid rgb(216, 216, 216);
+    border-right: 1px solid rgb(216, 216, 216);
+  }
+
+  #type-picker {
+    height: 35px;
+    width: 80px;
+    border: 1px solid rgb(216, 216, 216);
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    background: rgb(232, 240, 127);
+    font-size: 1rem;
+
+    #option-field {
+      text-align: center;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
   }
 }
 </style>

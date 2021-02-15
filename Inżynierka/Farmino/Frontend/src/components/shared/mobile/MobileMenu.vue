@@ -66,20 +66,21 @@ export default {
   align-items: center;
   background: rgb(253, 251, 251);
 
-  li {
-    list-style: none;
-    padding: 1rem 0;
-    transition: 0.34s;
-    text-decoration: none;
-
-    a {
-      text-align: center;
-      font-weight: 400;
-      font-size: 1.15rem;
-      padding: 1rem 100vw;
-      text-decoration: none;
-      color: rgb(0, 0, 0);
+  ul {
+    li {
+      list-style: none;
+      padding: 1rem 0;
+      transition: 0.34s;
       border-bottom: 0.3px solid rgb(199, 199, 199);
+
+      a {
+        text-align: center;
+        font-weight: 400;
+        font-size: 1.15rem;
+        padding: 1rem 100vw;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+      }
     }
   }
 

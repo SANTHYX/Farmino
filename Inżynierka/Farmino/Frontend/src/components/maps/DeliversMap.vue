@@ -4,9 +4,8 @@
       <MglMap
         :accessToken="accessToken"
         :mapStyle.sync="mapStyle"
-        :center="[21.017532, 52.237049]"
+        :center="[user.profile.address.node.lon, user.profile.address.node.lat]"
         :zoom="zoom"
-        id="map"
       >
         <MglMarker
           v-for="deliverOrder in deliveryOrders"
@@ -45,6 +44,7 @@ export default {
   computed: {
     ...mapGetters({
       deliveryOrders: 'order/GET_DELIVERY_ORDERS',
+      user: 'user/GET_STATE_USER',
     }),
   },
 };
@@ -57,13 +57,15 @@ export default {
   flex-direction: column;
   border: 1px solid rgb(216, 216, 216);
   width: 50vw;
-  height: 60vh;
+  height: 70vh;
   box-shadow: 1px 1px 6px rgba(187, 187, 187, 0.746);
 }
 
 @media screen and(max-width: $tablet) {
   #delivers-map {
-    margin: 12rem 0 0 0;
+    margin: 6rem 0 1rem 0;
+    width: 100vw;
+    height: 60vh;
   }
 }
 </style>
