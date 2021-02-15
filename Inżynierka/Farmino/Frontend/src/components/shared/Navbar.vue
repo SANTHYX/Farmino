@@ -143,6 +143,7 @@ export default {
   position: fixed;
   width: 100%;
   box-shadow: 0 2px 1px rgba(204, 204, 204, 0.39);
+  z-index: 1;
 
   #logo {
     display: flex;

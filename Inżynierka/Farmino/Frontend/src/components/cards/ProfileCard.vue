@@ -40,37 +40,45 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'profile-card',
+
   props: {
     id: {
       type: String,
     },
   },
+
   computed: {
     ...mapGetters({
       userState: 'user/GET_STATE_USER',
       userName: 'auth/GET_USERNAME',
       isAuthorized: 'auth/IS_AUTHORIZED',
     }),
+
     isAuthorizedUser() {
       return this.userName === this.id && this.isAuthorized;
     },
   },
+
   methods: {
     ...mapActions({
       getUserAsync: 'user/GET_USER',
     }),
+
     createProfile() {
       this.$router.push({ name: 'create-profile' });
     },
+
     editProfile() {
       this.$router.push({ name: 'edit-profile' });
     },
+
     editAddress() {
       this.$router.push({ name: 'edit-address' });
     },
   },
-  async created() {
-    await this.getUserAsync(this.id);
+
+  created() {
+    this.getUserAsync(this.id);
   },
 };
 </script>
@@ -84,6 +92,7 @@ export default {
     width: 30vw;
     min-width: 340px;
     flex-wrap: wrap;
+
     #user-info {
       padding: 1rem;
       text-align: center;
@@ -94,6 +103,7 @@ export default {
     #info-wraper {
       display: flex;
       flex-direction: column;
+
       #profile-info {
         display: flex;
         flex-direction: column;
@@ -101,6 +111,7 @@ export default {
         padding: 1rem;
         border: 1px solid rgba(189, 189, 189, 0.932);
       }
+
       #address-info {
         display: flex;
         flex-direction: column;
@@ -109,19 +120,23 @@ export default {
         border-radius: 0px 0px 10px 10px;
         border: 1px solid rgba(189, 189, 189, 0.932);
       }
+
       button {
         align-self: center;
       }
+
       p {
         margin: 0.4rem;
       }
     }
+
     #no-profile-info {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin: 1rem 0;
+
       #btn {
         margin: 1rem 0;
         padding: 0.2rem;

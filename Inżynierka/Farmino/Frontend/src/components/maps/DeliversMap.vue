@@ -6,6 +6,7 @@
         :mapStyle.sync="mapStyle"
         :center="[21.017532, 52.237049]"
         :zoom="zoom"
+        id="map"
       >
         <MglMarker
           v-for="deliverOrder in deliveryOrders"
@@ -54,10 +55,15 @@ export default {
   margin: 12rem 3rem 12rem 0;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
   width: 50vw;
   height: 60vh;
   box-shadow: 1px 1px 6px rgba(187, 187, 187, 0.746);
+}
+
+@media screen and(max-width: $tablet) {
+  #delivers-map {
+    margin: 12rem 0 0 0;
+  }
 }
 </style>

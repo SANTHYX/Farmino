@@ -4,7 +4,7 @@
       <div id="auction-img"></div>
       <div id="info-wraper">
         <h2>{{ offerItem.title }}</h2>
-        <button @click="$route.push({ name: 'auction', params: { id: auctionItem.id } })">
+        <button @click="$router.push({ name: 'auction', params: { id: auctionItem.id } })">
           Sprawdź
         </button>
       </div>

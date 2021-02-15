@@ -9,6 +9,7 @@
         <h4>Tytuł</h4>
         <p>{{ orderItem.offer.title }}</p>
       </div>
+      <button>XD</button>
     </div>
   </div>
 </template>
@@ -30,10 +31,18 @@ export default {
 #client-order-item {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  justify-items: center;
+  flex-wrap: wrap;
   border-bottom: 1px solid rgb(211, 211, 211);
+
   .list-positioning {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    margin: 0 0.5rem 0 0;
   }
+}
+
+@media screen and(max-width: $tablet) {
 }
 </style>

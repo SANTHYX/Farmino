@@ -39,4 +39,10 @@ export default {
   min-height: 60vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
 }
+
+@media screen and(max-width: $tablet) {
+  #list-wraper {
+    margin: 0;
+  }
+}
 </style>

@@ -32,4 +32,11 @@ export default {
 #daily-delivers {
   @include flex-centred-site;
 }
+
+@media screen and(max-width: $tablet) {
+  #daily-delivers {
+    flex-direction: column;
+    align-content: center;
+  }
+}
 </style>
