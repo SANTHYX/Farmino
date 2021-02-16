@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-import VueMoment from 'vue-moment';
 import Unicons from 'vue-unicons';
 import {
   uniInfoCircle,
@@ -8,15 +7,15 @@ import {
   uniAngleDown,
   uniEdit,
   uniPlusCircle,
+  uniMapMarkerInfo,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
 import store from './store/store';
 
-Unicons.add([uniInfoCircle, uniEnvelope, uniAngleDown, uniEdit, uniPlusCircle]);
+Unicons.add([uniInfoCircle, uniEnvelope, uniAngleDown, uniEdit, uniPlusCircle, uniMapMarkerInfo]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);
-Vue.use(VueMoment);
 Vue.config.productionTip = false;
 
 new Vue({

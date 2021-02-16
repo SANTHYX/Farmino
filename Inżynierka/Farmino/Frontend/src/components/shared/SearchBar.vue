@@ -81,6 +81,7 @@ export default {
     font-family: 'Roboto Condensed', sans-serif;
     background: rgb(232, 240, 127);
     font-size: 1rem;
+    appearance: none;
 
     #option-field {
       text-align: center;

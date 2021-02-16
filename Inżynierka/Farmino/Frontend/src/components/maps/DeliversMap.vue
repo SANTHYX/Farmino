@@ -8,6 +8,10 @@
         :zoom="zoom"
       >
         <MglMarker
+          :coordinates="[user.profile.address.node.lon, user.profile.address.node.lat]"
+          color="red"
+        />
+        <MglMarker
           v-for="deliverOrder in deliveryOrders"
           :key="deliverOrder.id"
           :coordinates="[
@@ -61,7 +65,7 @@ export default {
   box-shadow: 1px 1px 6px rgba(187, 187, 187, 0.746);
 }
 
-@media screen and(max-width: $tablet) {
+@media screen and(max-width: 845px) {
   #delivers-map {
     margin: 6rem 0 1rem 0;
     width: 100vw;

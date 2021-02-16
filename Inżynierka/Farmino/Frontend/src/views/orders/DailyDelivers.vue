@@ -2,20 +2,18 @@
   <div>
     <div id="daily-delivers">
       <delivers-map />
-      <clients-orders-list />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import ClientsOrdersList from '@/components/lists/ClientsOrdersList.vue';
 import DeliversMap from '@/components/maps/DeliversMap.vue';
 
 export default {
   name: 'daily-delivers',
 
   components: {
-    ClientsOrdersList,
     DeliversMap,
   },
 
@@ -34,7 +32,7 @@ export default {
   @include flex-centred-site;
 }
 
-@media screen and(max-width: $tablet) {
+@media screen and(max-width: 845px) {
   #daily-delivers {
     flex-direction: column;
     align-content: center;
