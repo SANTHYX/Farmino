@@ -24,15 +24,16 @@ export default {
   },
 
   created() {
-    const farmerName = this.$store.state.auth.userName;
-    this.$store.dispatch('order/GET_ORDERS', { farmerName });
+    this.$store.dispatch('order/GET_ORDERS', {
+      farmerName: this.$store.state.auth.userName,
+    });
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #list-wraper {
-  margin: 12rem 0;
+  margin: 0 0 5rem 0;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -45,7 +46,7 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
-    margin: 12rem 0;
+    margin: 3rem 0;
     min-height: 90vh;
     width: 80vw;
   }

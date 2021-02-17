@@ -48,7 +48,7 @@ const order = {
     },
 
     async GET_ORDERS({ commit }, {
-      offerId, farmerName, customerName, released, date,
+      offerId, farmerName, customerName, orderStatus, date,
     }) {
       try {
         const response = await api.get('/orders', {
@@ -56,7 +56,7 @@ const order = {
             offerId,
             farmerName,
             customerName,
-            released,
+            orderStatus,
             date,
           },
         });

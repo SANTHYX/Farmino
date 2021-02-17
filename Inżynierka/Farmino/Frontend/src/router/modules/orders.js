@@ -13,7 +13,7 @@ const orderRoutes = [
   {
     path: '/orders/my-delivers',
     name: 'my-delivers',
-    querry: {},
+    query: {},
     component: () => import('@/views/orders/MyDelivers.vue'),
   },
   {
@@ -23,13 +23,13 @@ const orderRoutes = [
       {
         path: '',
         name: 'daily-delivers',
-        component: () => import('../components/lists/ClientsOrdersList.vue'),
+        component: () => import('@/components/lists/ClientsOrdersList.vue'),
       },
       {
         path: ':id',
         name: 'daily-deliver-overview',
         props: true,
-        component: () => import('../components/cards/DeliverDetails.vue'),
+        component: () => import('@/components/cards/DeliverDetails.vue'),
       },
     ],
   },
@@ -42,13 +42,13 @@ const orderRoutes = [
         path: '/orders/:id',
         name: 'order',
         props: true,
-        component: () => import('../components/templates/OrderTemplate.vue'),
+        component: () => import('@/components/templates/OrderTemplate.vue'),
       },
       {
         path: '/orders/:id/release',
         name: 'order-release',
         props: true,
-        component: () => import('../components/forms/order/RealisationForm.vue'),
+        component: () => import('@/components/forms/order/RealisationForm.vue'),
       },
     ],
   },

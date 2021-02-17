@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Farmino.Data.Enums;
+using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace Farmino.Service.Queries.Order
@@ -12,10 +13,10 @@ namespace Farmino.Service.Queries.Order
         public string? FarmerName { get; set; }
         [FromQuery(Name = "CustomerName")]
         public string? CustomerName { get; set; }
-        [FromQuery(Name = "Released")]
-        public bool? Released { get; set; }
-        [FromQuery(Name = "ByDate")]
+        [FromQuery(Name = "Date")]
         public DateTime? Date { get; set; }
+        [FromQuery(Name = "OrderStatus")]
+        public OrderStatus? OrderStatus { get; set; }
         #nullable disable
     }
 }

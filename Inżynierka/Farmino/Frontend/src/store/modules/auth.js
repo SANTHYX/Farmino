@@ -23,9 +23,11 @@ const auth = {
     SET_AUTHORIZATION(state, boolean) {
       state.isAuthorized = boolean;
     },
+
     SET_USERNAME(state, userName) {
       state.userName = userName;
     },
+
     CLEAR_STORE(state) {
       state.userName = '';
       state.isAuthorized = false;
@@ -49,6 +51,7 @@ const auth = {
         throw new Error(err);
       }
     },
+
     LOGOUT({ commit }) {
       localStorageManager.clearStorage();
       commit('CLEAR_STORE');

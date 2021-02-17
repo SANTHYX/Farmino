@@ -14,3 +14,11 @@
     justify-content: center;
     align-items: center;
 }
+
+@mixin flex-centred-site-col {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

@@ -30,7 +30,7 @@ namespace Farmino.Service.Service
         {
             var deliverOrders = await _orderRepository.GetAllAsync().Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
                 .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile)
-                .Where(x => x.ReleaseDate.Date == date && x.OrderStatus == OrderStatus.Przyjęta && x.Offer.Farmer.User.UserName == userName).ToListAsync();
+                .Where(x => x.ReleaseDate.Date == date && x.OrderStatus == OrderStatus.Przyjeta && x.Offer.Farmer.User.UserName == userName).ToListAsync();
 
             return _mapper.Map<IEnumerable<DeliverOrdersDTO>>(deliverOrders);
         }
@@ -51,9 +51,9 @@ namespace Farmino.Service.Service
             {
                 orders = orders.Where(x => x.Offer.Farmer.User.UserName == orderQuery.FarmerName);
             }
-            if (orderQuery.Released != null)
+            if (orderQuery.OrderStatus != null)
             {
-                orders = orders.Where(x => x.Released == orderQuery.Released);
+                orders = orders.Where(x => x.OrderStatus == orderQuery.OrderStatus);
             }
             if (orderQuery.Date != null)
             {
@@ -106,7 +106,7 @@ namespace Farmino.Service.Service
         {
             var order = await _orderRepository.GetIfExistAsync(orderId);
 
-            order.SetOrderStatus(Data.Enums.OrderStatus.Przyjęta);
+            order.SetOrderStatus(Data.Enums.OrderStatus.Przyjeta);
             order.SetReleaseDate(realisationDate);
             _orderRepository.Edit(order);
 
