@@ -2,7 +2,9 @@
   <div>
     <div id="order-template">
       <div id="client-details">x</div>
+
       <div id="order-details">x</div>
+
       <div id="decision-panel">
         <button>Zadzwoń</button>
         <button @click="releaseOrder">Realizuj</button>

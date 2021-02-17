@@ -3,6 +3,7 @@
     <div id="order-address-from" v-if="!user.profile">
       <custom-address-form />
     </div>
+
     <div id="order-address-from" v-if="user.profile">
       <div id="button-wrapers" v-if="!showCustomAddressForm">
         <h2>Użyć danych z profilu jako danych korespondencyjnych?</h2>
@@ -11,6 +12,7 @@
           <button @click="(showCustomAddressForm = true), customAddres(true)">Nie</button>
         </div>
       </div>
+
       <custom-address-form v-if="showCustomAddressForm" />
     </div>
   </div>

@@ -17,12 +17,14 @@
             @blur="$v.orderDetails.firstName.$touch()"
             v-model="orderDetails.firstName"
           />
+
           <div id="error-message-wraper" v-if="$v.orderDetails.firstName.$error">
             <p class="error-message" v-if="!$v.orderDetails.firstName.required">
               Pole jest wymagane
             </p>
           </div>
         </div>
+
         <div id="inputs-wraper">
           <label
             for="lastName"
@@ -42,6 +44,7 @@
             </p>
           </div>
         </div>
+
         <div id="inputs-wraper">
           <label
             for="phoneNumber"
@@ -68,6 +71,7 @@
           </div>
         </div>
       </div>
+
       <div id="address-details">
         <h1>Adres Dostawy</h1>
         <hr />
@@ -90,6 +94,7 @@
             </p>
           </div>
         </div>
+
         <div id="inputs-wraper">
           <label
             for="street"
@@ -109,6 +114,7 @@
             </p>
           </div>
         </div>
+
         <div id="inputs-wraper">
           <label
             for="postalCode"
@@ -128,6 +134,7 @@
             </p>
           </div>
         </div>
+
         <div id="inputs-wraper">
           <label
             for="houseNumber"
@@ -147,6 +154,7 @@
             </p>
           </div>
         </div>
+
         <div id="button-wraper">
           <button @click="moveToSummary">Zatwierdź</button>
         </div>

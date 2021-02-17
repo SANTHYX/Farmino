@@ -4,10 +4,12 @@
       <div id="form-wraper">
         <h1>Ustaw Detale Realizacji</h1>
         <hr />
+
         <div id="inputs-wraper">
           <label for="date" class="form-label">Data Realizacji</label>
           <input type="date" name="date" id="date" class="form-field" v-model="realsationDate" />
         </div>
+
         <button @click="releaseOrderAsync">Realizuj</button>
       </div>
     </div>

@@ -3,10 +3,12 @@
     <div id="form-wraper">
       <h1>Logowanie</h1>
       <hr />
+
       <div id="inputs-wraper">
         <label for="userName" class="form-label">Login</label>
         <input type="text" name="userName" class="form-field" v-model="$v.user.userName.$model" />
       </div>
+
       <div id="inputs-wraper">
         <label for="password" class="form-label">Hasło</label>
         <input
@@ -16,6 +18,7 @@
           v-model="$v.user.password.$model"
         />
       </div>
+
       <div id="btn-wraper">
         <button id="btn" @click="LogUser" :disabled="$v.user.$invalid" class="btn-form">
           Zaloguj się

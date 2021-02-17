@@ -7,10 +7,12 @@
       placeholder="Szukaj"
       v-model="phrase"
     />
+
     <select name="types" id="type-picker">
       <option value="offers" id="option-field">Oferta</option>
       <option value="auctions" id="option-field">Aukcje</option>
     </select>
+
     <button id="search-btn" @click="search">Szukaj</button>
   </div>
 </template>

@@ -4,6 +4,7 @@
       <div id="column-setup">
         <div id="row-setup">
           <div id="img-wraper"></div>
+
           <div id="offer-wraper">
             <h1>{{ offer.title }}</h1>
             <div id="details">
@@ -14,6 +15,7 @@
               <p>Zamówiona ilość: {{ `${order.orderQuantity}${offer.product.baseWeightUnit}` }}</p>
               <p>Przewidywany koszt: {{ predictedCost + 'zł' }}</p>
             </div>
+
             <div>
               <button @click="makeOrder">Zamów</button>
             </div>

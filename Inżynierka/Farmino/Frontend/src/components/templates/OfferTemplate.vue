@@ -4,17 +4,21 @@
       <div id="column-setup">
         <div id="row-setup">
           <div id="img-wraper"></div>
+
           <div id="offer-wraper">
             <h1>{{ offer.title }}</h1>
+
             <div id="price">
               <h2>
                 {{ offer.product.basePrice + 'zł/' + offer.product.baseWeightUnit }}
               </h2>
               <order-maker v-if="offer.farmer.user.userName != userName" />
             </div>
+
             <div id="details">
               <p>Dostawa od: {{ offer.minQuantity + offer.product.baseWeightUnit }}</p>
             </div>
+
             <div id="farmer-widget">
               <h3>{{ offer.farmer.user.userName }}</h3>
               <city-displayer
@@ -24,6 +28,7 @@
             </div>
           </div>
         </div>
+
         <div id="descriptions">
           <h2>Opis Oferty</h2>
           <p>{{ offer.description }}</p>

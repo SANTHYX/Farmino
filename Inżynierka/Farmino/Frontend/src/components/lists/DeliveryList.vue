@@ -38,15 +38,15 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
+  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   width: 70vw;
   min-width: 50vw;
   min-height: 80vh;
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
 }
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
-    margin: 3rem 0;
+    margin: 1rem 0;
     min-height: 90vh;
     width: 80vw;
   }

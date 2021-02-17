@@ -6,6 +6,7 @@
         <div id="inputs-wraper">
           <input type="text" name="userName" class="form-field" v-model="$v.offer.title.$model" />
         </div>
+
         <label for="userName" class="form-label">Cena jednostkowa</label>
         <div id="inputs-wraper">
           <input
@@ -15,6 +16,7 @@
             v-model.number="$v.offer.product.basePrice.$model"
           />
         </div>
+
         <label for="userName" class="form-label">Jednostka Wagi</label>
         <div id="inputs-wraper">
           <select class="form-field" v-model.number="$v.offer.product.baseWeightUnit.$model">
@@ -25,6 +27,7 @@
             <option value="4">T</option>
           </select>
         </div>
+
         <div id="inputs-wraper">
           <label for="userName" class="form-label">Ilość</label>
           <input
@@ -34,6 +37,7 @@
             v-model.number="$v.offer.minQuantity.$model"
           />
         </div>
+
         <div id="inputs-wraper">
           <label for="userName" class="form-label">Opis oferty</label>
           <textarea
@@ -44,6 +48,7 @@
             v-model="$v.offer.description.$model"
           ></textarea>
         </div>
+
         <button @click="create" :disabled="$v.offer.$invalid">Stwórz</button>
       </div>
     </div>

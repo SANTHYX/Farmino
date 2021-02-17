@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'delivery-details',
 
@@ -19,10 +21,20 @@ export default {
     },
   },
 
+  computed: {
+    ...mapGetters({
+      order: 'order/GET_ORDER',
+    }),
+  },
+
   methods: {
     checkDeliveryOrdersList() {
       this.$router.push({ name: 'daily-delivers' });
     },
+  },
+
+  created() {
+    this.$store.dispatch('order/GET_ORDER', this.id);
   },
 };
 </script>

@@ -11,6 +11,7 @@
           :coordinates="[user.profile.address.node.lon, user.profile.address.node.lat]"
           color="red"
         />
+
         <MglMarker
           v-for="deliverOrder in deliveryOrders"
           :key="deliverOrder.id"

@@ -2,6 +2,7 @@
   <div>
     <div id="offer-list-item" :offerItem="offerItem">
       <div id="offer-img"></div>
+
       <div id="info-wraper">
         <h2>{{ offerItem.title }}</h2>
         <h3>{{ offerItem.product.basePrice + 'zł/' + offerItem.product.baseWeightUnit }}</h3>

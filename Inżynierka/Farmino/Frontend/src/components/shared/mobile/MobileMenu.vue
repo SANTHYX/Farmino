@@ -4,26 +4,33 @@
       <router-link :to="{ name: 'auctions' }" exact="exact"
         ><li><a>Aukcje</a></li></router-link
       >
+
       <router-link :to="{ name: 'offers' }" exact="exact"
         ><li><a>Oferty</a></li></router-link
       >
+
       <router-link :to="{ name: 'register' }" exact="exact"
         ><li><a>Rejestracja</a></li></router-link
       >
+
       <router-link :to="{ name: 'login' }" exact="exact"
         ><li><a>Zaloguj się</a></li></router-link
       >
     </ul>
+
     <ul v-if="showMenu && isAuthorized">
       <router-link :to="{ name: 'auctions' }" exact="exact"
         ><li><a>Aukcje</a></li></router-link
       >
+
       <router-link :to="{ name: 'offers' }" exact="exact"
         ><li><a>Oferty</a></li></router-link
       >
+
       <router-link :to="{ name: 'profile', params: { id: userName } }" exact="exact"
         ><li><a>MójProfil</a></li></router-link
       >
+
       <li><a @click.prevent="Logout">Wyloguj</a></li>
     </ul>
   </div>

@@ -6,22 +6,27 @@
       </div>
       <div id="navbar">
         <search-bar />
+
         <div id="nav-menu" v-if="!isAuthorized">
           <ul>
             <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
               ><li><a>Aukcje</a></li></router-link
             >
+
             <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
               ><li><a>Oferty</a></li></router-link
             >
+
             <router-link :to="{ name: 'register' }" exact="exact" id="registery-btn" class="pop-up"
               ><li><a>Zarejestruj się</a></li></router-link
             >
+
             <router-link :to="{ name: 'login' }" exact="exact" id="login-btn" class="pop-up"
               ><li><a>Zaloguj się</a></li></router-link
             >
           </ul>
         </div>
+
         <div id="nav-menu" v-else>
           <ul>
             <div @mouseleave="showAuctionMenu = false">
@@ -30,36 +35,43 @@
                   <a>Aukcje</a>
                 </li></router-link
               >
+
               <transition name="movedropdown">
                 <div id="drop-menu" v-if="showAuctionMenu">
                   <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Aukcję</a></li></router-link
                   >
+
                   <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Aukcję</a></li></router-link
                   >
                 </div>
               </transition>
             </div>
+
             <div @mouseleave="showOfferMenu = false">
               <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
                 ><li @mouseover="showOfferMenu = true"><a>Oferty</a></li></router-link
               >
+
               <transition name="movedropdown">
                 <div id="drop-menu" v-if="showOfferMenu">
                   <router-link :to="{ name: 'offer-creator' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Oferte</a></li></router-link
                   >
+
                   <router-link :to="{ name: 'my-offers' }" exact="exact" class="pop-up"
                     ><li><a>Moje Oferty</a></li></router-link
                   >
                 </div>
               </transition>
             </div>
+
             <div @mouseleave="showOrdersMenu = false">
               <router-link :to="{ name: 'orders' }" exact="exact" class="pop-up"
                 ><li @mouseover="showOrdersMenu = true"><a>Zamówienia</a></li></router-link
               >
+
               <transition name="movedropdown">
                 <div id="drop-menu" v-if="showOrdersMenu">
                   <router-link :to="{ name: 'my-orders' }" exact="exact" class="pop-up"
@@ -74,17 +86,21 @@
                 </div>
               </transition>
             </div>
+
             <router-link
               :to="{ name: 'profile', params: { id: userName } }"
               exact="exact"
               class="pop-up"
               ><li><a>Mój Profil</a></li></router-link
             >
+
             <li><a href="#" @click.prevent="Logout">Wyloguj</a></li>
           </ul>
         </div>
+
         <menu-button @mobile-menu-event="ShowMenu" />
       </div>
+
       <moblie-menu :showMenu="showMenu" />
     </div>
   </div>

@@ -2,6 +2,7 @@
   <div>
     <div id="auction-list-item" :auctionItem="auctionItem">
       <div id="auction-img"></div>
+
       <div id="info-wraper">
         <h2>{{ offerItem.title }}</h2>
         <button @click="$router.push({ name: 'auction', params: { id: auctionItem.id } })">
