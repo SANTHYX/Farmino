@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="delivers-filter-bar">
+      <h1>Filtry</h1>
       <div id="inputs-wraper">
         <label for="date" id="data-lable" class="form-label">Data realizacji</label>
         <input type="date" name="date" id="datepicker" class="small-form-field" v-model="date" />

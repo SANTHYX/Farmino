@@ -25,7 +25,10 @@ export default {
 
   created() {
     this.$store.dispatch('order/GET_ORDERS', {
+      date: this.$route.query.date,
       farmerName: this.$store.state.auth.userName,
+      customerName: this.$route.query.customerName,
+      orderStatus: this.$route.query.orderStatus,
     });
   },
 };

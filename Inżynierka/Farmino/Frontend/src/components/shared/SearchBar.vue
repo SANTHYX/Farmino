@@ -8,7 +8,7 @@
       v-model="phrase"
     />
 
-    <select name="types" id="type-picker">
+    <select name="types" id="type-picker" v-model="endpoint">
       <option value="offers" id="option-field">Oferta</option>
       <option value="auctions" id="option-field">Aukcje</option>
     </select>
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       phrase: '',
+      endpoint: '',
     };
   },
 
