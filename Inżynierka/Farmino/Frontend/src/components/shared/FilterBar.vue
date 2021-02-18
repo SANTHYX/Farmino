@@ -21,7 +21,7 @@
           <option value="pomorskie">Pomorskie</option>
           <option value="slaskie">Śląskie</option>
           <option value="swietokrzyskie">Świętokrzyskie</option>
-          <option value="warminskoMazurskie">Warmińsko-Mazurskie</option>
+          <option value="warminskomazurskie">Warmińsko-Mazurskie</option>
           <option value="wielkopolskie">Wielkopolskie</option>
           <option value="zachodnioPomorskie">Zachodniopomorskie</option>
         </select>
@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { decimal } from 'vuelidate/lib/validators';
+
 export default {
   name: 'filter-bar',
 
@@ -62,6 +64,14 @@ export default {
         deliverPrice: 0,
       },
     };
+  },
+
+  validations: {
+    query: {
+      priceFrom: { decimal },
+      priceTo: { decimal },
+      deliverPrice: { decimal },
+    },
   },
 
   updated() {

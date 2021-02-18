@@ -5,21 +5,21 @@ namespace Farmino.Data.Enums
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Regions
     {
-        Dolnośląskie,
-        KujawskoPomorskie,
-        Lubelskie,
-        Lubuskie,
-        Łódzkie,
-        Małopolskie,
-        Mazowieckie,
-        Opolskie,
-        Podkarpackie,
-        Podlaskie,
-        Pomorskie,
-        Śląskie,
-        Świętokrzyskie,
-        WarmińskoMazurskie,
-        Wielkopolskie,
-        ZachodnioPomorskie
+        dolnoslaskie,
+        kujawskopomorskie,
+        lubelskie,
+        lubuskie,
+        lodzkie,
+        malopolskie,
+        mazowieckie,
+        opolskie,
+        podkarpackie,
+        podlaskie,
+        pomorskie,
+        slaskie,
+        swietokrzyskie,
+        warminskomazurskie,
+        wielkopolskie,
+        zachodniopomorskie
     }
 }
