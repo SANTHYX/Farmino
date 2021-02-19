@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 #list-wraper {
-  margin: 12rem 0;
+  margin: 0 0 5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;

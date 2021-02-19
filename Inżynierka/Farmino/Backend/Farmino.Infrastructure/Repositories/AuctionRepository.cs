@@ -3,7 +3,7 @@ using Farmino.Infrastructure.ORM;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Infrastructure.Repositories
@@ -22,8 +22,8 @@ namespace Farmino.Infrastructure.Repositories
             await _context.Auctions.AddAsync(auction);
         }
 
-        public async Task<IEnumerable<Auction>> GetAllAsync()
-            => await _context.Auctions.ToListAsync();
+        public IQueryable<Auction> GetAllAsync()
+            => _context.Auctions.AsQueryable();
 
         public async Task<Auction> GetAsync(Guid id)
             => await _context.Auctions.Include(x => x.Auctioner)

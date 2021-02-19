@@ -35,7 +35,7 @@
         />
       </div>
 
-      <button @click="fetchData" id="btn">Szukaj</button>
+      <button @click="search" id="btn">Szukaj</button>
     </div>
   </div>
 </template>
@@ -65,12 +65,15 @@ export default {
       getOrders: 'order/GET_ORDERS',
     }),
 
-    fetchData() {
+    search() {
       this.getOrders({
         date: this.date,
         farmerName: this.userName,
         customerName: this.customerName,
         orderStatus: this.orderStatus,
+      });
+      this.$router.replace({
+        query: { date: this.date, customerName: this.customerName, orderStatus: this.orderStatus },
       });
     },
   },

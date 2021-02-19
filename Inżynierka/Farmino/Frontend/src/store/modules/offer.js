@@ -1,4 +1,4 @@
-import { api } from '@/plugins/axios';
+import { api } from '../../plugins/axios';
 
 const offer = {
   namespaced: true,
@@ -67,9 +67,15 @@ const offer = {
       }
     },
 
-    async BROWSE_OFFERS({ commit }) {
+    async BROWSE_OFFERS({ commit }, { phrase, priceFrom, priceTo }) {
       try {
-        const response = await api.get('/offers');
+        const response = await api.get('/offers', {
+          params: {
+            phrase,
+            priceFrom,
+            priceTo,
+          },
+        });
         commit('SET_OFFERS', response.data);
       } catch (err) {
         throw new Error(err.message);

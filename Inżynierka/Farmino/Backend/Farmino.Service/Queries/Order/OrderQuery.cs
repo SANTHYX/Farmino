@@ -15,6 +15,8 @@ namespace Farmino.Service.Queries.Order
         public string? CustomerName { get; set; }
         [FromQuery(Name = "Date")]
         public DateTime? Date { get; set; }
+        [FromQuery(Name = "Phrase")]
+        public string? Phrase { get; set; }
         [FromQuery(Name = "OrderStatus")]
         public OrderStatus? OrderStatus { get; set; }
         #nullable disable

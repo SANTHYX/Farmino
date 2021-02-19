@@ -35,29 +35,33 @@ namespace Farmino.Service.Service
             return _mapper.Map<IEnumerable<DeliverOrdersDTO>>(deliverOrders);
         }
 
-        public async Task<IEnumerable<OrdersDTO>> BrowseOrdersAsync(OrderQuery orderQuery)
+        public async Task<IEnumerable<OrdersDTO>> BrowseOrdersAsync(OrderQuery query)
         {
             var orders = _orderRepository.GetAllAsync();
 
-            if (orderQuery.OfferId != null)
+            if (query.OfferId != null)
             {
-                orders = orders.Where(x => x.OfferId == orderQuery.OfferId);
+                orders = orders.Where(x => x.OfferId == query.OfferId);
             }
-            if (orderQuery.CustomerName != null)
+            if (query.CustomerName != null)
             {
-                orders = orders.Where(x => x.Customer.User.UserName == orderQuery.CustomerName);
+                orders = orders.Where(x => x.Customer.User.UserName == query.CustomerName);
             }
-            if (orderQuery.FarmerName != null)
+            if (query.FarmerName != null)
             {
-                orders = orders.Where(x => x.Offer.Farmer.User.UserName == orderQuery.FarmerName);
+                orders = orders.Where(x => x.Offer.Farmer.User.UserName == query.FarmerName);
             }
-            if (orderQuery.OrderStatus != null)
+            if (query.Phrase != null)
             {
-                orders = orders.Where(x => x.OrderStatus == orderQuery.OrderStatus);
+                orders = orders.Where(x => x.Offer.Title.ToLower().Contains(query.Phrase.ToLower()));
             }
-            if (orderQuery.Date != null)
+            if (query.OrderStatus != null)
             {
-                orders = orders.Where(x => x.ReleaseDate.Date == orderQuery.Date);
+                orders = orders.Where(x => x.OrderStatus == query.OrderStatus);
+            }
+            if (query.Date != null)
+            {
+                orders = orders.Where(x => x.ReleaseDate.Date == query.Date);
             }
 
             var result = await orders.Include(x => x.Offer).ThenInclude(x=> x.Farmer).ThenInclude(z => z.User)

@@ -3,7 +3,7 @@ using Farmino.Infrastructure.ORM;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Infrastructure.Repositories
@@ -27,9 +27,8 @@ namespace Farmino.Infrastructure.Repositories
             _context.Offers.Update(offer);
         }
 
-        public async Task<IEnumerable<Offer>> GetAllAsync()
-            => await _context.Offers.Include(x => x.Product)
-                .Include(y => y.Farmer).ThenInclude(z => z.User).ToListAsync();
+        public IQueryable<Offer> GetAllAsync()
+            => _context.Offers.AsQueryable();
             
         public async Task<Offer> GetAsync(Guid id)
             => await _context.Offers.Include(x => x.Product).Include(y => y.Farmer)

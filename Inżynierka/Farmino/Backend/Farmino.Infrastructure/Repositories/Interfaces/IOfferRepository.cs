@@ -1,6 +1,6 @@
 ﻿using Farmino.Data.Models.Aggregations;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Infrastructure.Repositories.Interfaces
@@ -9,7 +9,7 @@ namespace Farmino.Infrastructure.Repositories.Interfaces
     {
         Task AddAsync(Offer offer);
         Task<Offer> GetAsync(Guid id);
-        Task<IEnumerable<Offer>> GetAllAsync();
+        IQueryable<Offer> GetAllAsync();
         void RemoveAsync(Offer offer);
         void EditAsync(Offer offer);
         Task SaveChangesAsync();

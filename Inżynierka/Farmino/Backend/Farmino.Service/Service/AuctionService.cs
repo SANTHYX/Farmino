@@ -6,7 +6,9 @@ using Farmino.Service.DTO.Auction;
 using Farmino.Service.DTO.Auction.NestedModels;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
+using Farmino.Service.Queries.Auctions;
 using Farmino.Service.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,7 @@ namespace Farmino.Service.Service
             DateTime startDate, DateTime endDate, decimal startingPrice)
         {
             var auctioner = await _auctionerRepository.GetIfExistAsync(userName);
+
             await _auctionRepository.AddAsync(new Auction(title, description, startDate, endDate,
                 startingPrice, auctioner));
             await _auctionRepository.SaveChangesAsync();
@@ -45,13 +48,22 @@ namespace Farmino.Service.Service
         public async Task<AuctionDTO> GetAuction(Guid id)
         {
             var auction = await _auctionRepository.GetAsync(id);
+
             return _mapper.Map<Auction, AuctionDTO>(auction);
         }
 
-        public async Task<IEnumerable<AuctionsDTO>> BrowseAuctions()
+        public async Task<IEnumerable<AuctionsDTO>> BrowseAuctions(AuctionsQuery query)
         {
-            var auctions = await _auctionRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<Auction>, IEnumerable<AuctionsDTO>>(auctions);
+            var auctions = _auctionRepository.GetAllAsync();
+
+            if (query.Phrase != null)
+            {
+                auctions = auctions.Where(x => x.Title.ToLower().Contains(query.Phrase.ToLower()));
+            }
+
+            var result = await auctions.ToListAsync();
+
+            return _mapper.Map<IEnumerable<AuctionsDTO>>(result);
         }
 
         public async Task ToAuction(string userName, Guid auctionId, decimal proposedPrice) 

@@ -7,9 +7,12 @@ using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.DTO.Offer;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
+using Farmino.Service.Queries.Offer;
 using Farmino.Service.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service
@@ -32,10 +35,27 @@ namespace Farmino.Service.Service
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<OffersDTO>> BrowseAllAsync()
+        public async Task<IEnumerable<OffersDTO>> BrowseAllAsync(OfferQuery query)
         {
-            var offers = await _offerRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<OffersDTO>>(offers);
+            var offers = _offerRepository.GetAllAsync();
+
+            if (query.Phrase != null)
+            {
+                offers = offers.Where(x => x.Title.ToLower().Contains(query.Phrase.ToLower()));
+            }
+            if (query.PriceFrom != null)
+            {
+                offers = offers.Where(x => x.Product.BasePrice >= query.PriceFrom);
+            }
+            if (query.PriceTo != null)
+            {
+                offers = offers.Where(x => x.Product.BasePrice <= query.PriceTo);
+            }
+
+            var result = await offers.Include(x => x.Product)
+                .Include(y => y.Farmer).ThenInclude(z => z.User).ToListAsync();
+
+            return _mapper.Map<IEnumerable<OffersDTO>>(result);
         }
 
         public async Task CreateOffer(string userName, string title, string description, WeightUnits minUnit,

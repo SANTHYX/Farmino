@@ -1,5 +1,4 @@
 ﻿using Farmino.Data.Models.Aggregations;
-using Farmino.Data.Models.Entities;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;

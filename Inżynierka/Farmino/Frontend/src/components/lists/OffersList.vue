@@ -24,14 +24,14 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('offer/BROWSE_OFFERS');
+    this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #list-wraper {
-  margin: 12rem 0;
+  margin: 0 0 5rem 0;
   display: flex;
   justify-content: baseline;
   flex-wrap: wrap;

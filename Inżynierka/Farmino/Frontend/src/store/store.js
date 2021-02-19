@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import search from './modules/search';
 import auth from './modules/auth';
 import user from './modules/user';
 import order from './modules/order';
@@ -13,7 +12,6 @@ const store = new Vuex.Store({
     offer,
     auction,
     order,
-    search,
     auth,
     user,
   },

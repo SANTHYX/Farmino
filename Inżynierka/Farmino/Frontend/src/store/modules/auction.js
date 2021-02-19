@@ -19,9 +19,11 @@ const auction = {
     SET_AUCTION(state, auctionObj) {
       state.action = auctionObj;
     },
+
     SET_AUCTIONS(state, auctionsList) {
       state.auctionsAll = auctionsList;
     },
+
     SET_WINNER(state, winnerObj) {
       state.winner = winnerObj;
     },
@@ -36,14 +38,16 @@ const auction = {
         throw new Error(err.message);
       }
     },
+
     async GET_AUCTIONS({ commit }) {
       try {
-        const response = await api.get('/auctions');
+        const response = await api.get('/auctions', { params: {} });
         commit('SET_AUCTIONS', response.data);
       } catch (err) {
         throw new Error(err.message);
       }
     },
+
     async CREATE_AUCTION(
       { commit },
       {
@@ -64,6 +68,7 @@ const auction = {
         throw new Error(err.message);
       }
     },
+
     async TO_AUCTION({ commit }, { userName, auctionId, proposedPrice }) {
       try {
         await api.post('/auctions/to-auction', {
@@ -76,6 +81,7 @@ const auction = {
         throw new Error(err.message);
       }
     },
+
     async GET_WINNER({ commit }, auctionId) {
       try {
         const response = await api.get(`/auctions/winner/${auctionId}`);

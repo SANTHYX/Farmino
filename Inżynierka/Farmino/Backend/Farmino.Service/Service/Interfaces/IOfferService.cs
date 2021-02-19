@@ -2,6 +2,7 @@
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.DTO.Offer;
+using Farmino.Service.Queries.Offer;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,6 +17,6 @@ namespace Farmino.Service.Service.Interfaces
             bool customAddress, OrderDetails orderDetails = null);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
-        Task<IEnumerable<OffersDTO>> BrowseAllAsync();
+        Task<IEnumerable<OffersDTO>> BrowseAllAsync(OfferQuery query);
     }
 }

@@ -52,6 +52,10 @@ export default {
       user: 'user/GET_STATE_USER',
     }),
   },
+
+  methods: {
+    fetchDirections() {},
+  },
 };
 </script>
 

@@ -5,7 +5,7 @@
       name="search-bar"
       id="search-bar-form"
       placeholder="Szukaj"
-      v-model="phrase"
+      v-model="query.phrase"
     />
 
     <select name="types" id="type-picker" v-model="endpoint">
@@ -18,26 +18,36 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'search-bar',
 
   data() {
     return {
-      phrase: '',
-      endpoint: '',
+      endpoint: 'offers',
+      query: {
+        phrase: undefined,
+      },
     };
   },
 
   methods: {
-    ...mapMutations({
-      SET_PHRASE: 'search/SET_PHRASE',
+    ...mapActions({
+      getOffers: 'offer/BROWSE_OFFERS',
+      getAuctions: 'auction/GET_AUCTIONS',
     }),
 
     search() {
-      this.SET_PHRASE({ phrase: this.phrase });
-      this.$router.push('/search');
+      if (this.$route.name === 'offers') {
+        this.getOffers(this.query);
+        this.$router.replace({ query: this.query });
+      } else {
+        this.$router.push({
+          name: this.endpoint,
+          query: this.query,
+        });
+      }
     },
   },
 };

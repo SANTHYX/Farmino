@@ -1,11 +1,16 @@
-﻿namespace Farmino.Service.Queries.Offer
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Farmino.Service.Queries.Offer
 {
     public class OfferQuery
     {
         #nullable enable
-        public string? Region { get; set; }
-        public decimal? FromPrice { get; set; }
-        public decimal? ToPrice { get; set; }
+        [FromQuery(Name = "Phrase")]
+        public string? Phrase { get; set; }
+        [FromQuery(Name = "PriceFrom")]
+        public decimal? PriceFrom { get; set; }
+        [FromQuery(Name = "PriceTo")]
+        public decimal? PriceTo { get; set; }
         #nullable disable
     }
 }
