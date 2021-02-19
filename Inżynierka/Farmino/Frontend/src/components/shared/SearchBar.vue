@@ -42,7 +42,8 @@ export default {
       if (this.$route.name === 'offers') {
         this.getOffers(this.query);
         this.$router.replace({ name: this.endpoint, query: this.query });
-      } else if (this.$route.name === 'auctions') {
+      }
+      if (this.$route.name === 'auctions') {
         this.getAuctions(this.query);
         this.$router.replace({ name: this.endpoint, query: this.query });
       } else {
