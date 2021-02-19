@@ -26,7 +26,7 @@ namespace Farmino.API.Controllers
             => Ok(await _auctionService.GetAuction(auctionId));
 
         [HttpGet]
-        public async Task<IActionResult> Get(AuctionsQuery query)
+        public async Task<IActionResult> Get([FromQuery] AuctionsQuery query)
             => Ok(await _auctionService.BrowseAuctions(query));
 
         [HttpGet("winner/{auctionId}")]

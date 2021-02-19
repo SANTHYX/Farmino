@@ -66,14 +66,25 @@ export default {
     };
   },
 
+  computed: {
+    phrase() {
+      return this.$route.query.phrase;
+    },
+  },
+
   methods: {
     ...mapActions({
       getOffers: 'auction/GET_AUCTIONS',
     }),
 
     search() {
+      this.$router.replace({
+        name: 'auctions',
+        query: {
+          phrase: this.phrase,
+        },
+      });
       this.getOffers(this.query);
-      this.$router.replace({ name: 'auctions', query: this.query });
     },
   },
 };

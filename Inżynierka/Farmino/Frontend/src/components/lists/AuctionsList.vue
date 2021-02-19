@@ -24,7 +24,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('auction/GET_AUCTIONS');
+    this.$store.dispatch('auction/GET_AUCTIONS', this.$route.query);
   },
 };
 </script>

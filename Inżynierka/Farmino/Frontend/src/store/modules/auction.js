@@ -39,9 +39,9 @@ const auction = {
       }
     },
 
-    async GET_AUCTIONS({ commit }) {
+    async GET_AUCTIONS({ commit }, { phrase }) {
       try {
-        const response = await api.get('/auctions', { params: {} });
+        const response = await api.get('/auctions', { params: { phrase } });
         commit('SET_AUCTIONS', response.data);
       } catch (err) {
         throw new Error(err.message);
