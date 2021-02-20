@@ -3,23 +3,27 @@
     <div id="list-wraper">
       <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
     </div>
+    <pagination :pagesNumber="offerPagesNumber"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import OfferListItem from '../items/OfferListItem.vue';
+import Pagination from '../pagination/Pagination.vue';
 
 export default {
   name: 'offers-list',
 
   components: {
     OfferListItem,
+    Pagination,
   },
 
   computed: {
     ...mapGetters({
       offers: 'offer/GET_OFFERS_ALL',
+      offerPagesNumber: 'offer/GET_PAGES_NUMBER',
     }),
   },
 

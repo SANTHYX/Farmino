@@ -13,7 +13,7 @@ import { mapGetters } from 'vuex';
 import ClientOrdersListItem from '../items/ClientOrdersListItem.vue';
 
 export default {
-  name: 'clients-list',
+  name: 'clients-orders-list',
 
   components: {
     ClientOrdersListItem,

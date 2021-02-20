@@ -5,13 +5,13 @@ const offer = {
 
   state: {
     offer: {},
-    offersAll: [],
+    offersAll: {},
     order: {},
   },
 
   getters: {
     GET_OFFERS_ALL(state) {
-      return state.offersAll;
+      return state.offersAll.data;
     },
 
     GET_OFFER(state) {
@@ -24,6 +24,10 @@ const offer = {
 
     GET_ORDER(state) {
       return state.order;
+    },
+
+    GET_PAGES_NUMBER(state) {
+      return state.offersAll.pagesNumber;
     },
   },
 
@@ -67,13 +71,16 @@ const offer = {
       }
     },
 
-    async BROWSE_OFFERS({ commit }, { phrase, priceFrom, priceTo }) {
+    async BROWSE_OFFERS({ commit }, {
+      phrase, priceFrom, priceTo, page,
+    }) {
       try {
         const response = await api.get('/offers', {
           params: {
             phrase,
             priceFrom,
             priceTo,
+            page,
           },
         });
         commit('SET_OFFERS', response.data);

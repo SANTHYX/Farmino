@@ -3,23 +3,27 @@
     <div id="list-wraper">
       <delivery-list-item v-for="order in orders" :key="order.id" :deliveryItem="order" />
     </div>
+    <pagination :pagesNumber="deliversPagesNumber"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import DeliveryListItem from '../items/DeliveryListItem.vue';
+import Pagination from '../pagination/Pagination.vue';
 
 export default {
   name: 'delivers-list',
 
   components: {
     DeliveryListItem,
+    Pagination,
   },
 
   computed: {
     ...mapGetters({
       orders: 'order/GET_ORDERS',
+      deliversPagesNumber: 'order/GET_PAGES_NUMBER',
     }),
   },
 

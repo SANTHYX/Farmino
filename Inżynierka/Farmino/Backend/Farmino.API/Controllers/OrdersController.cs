@@ -1,5 +1,6 @@
 ﻿using Farmino.Service.Commands.OrderCommands;
 using Farmino.Service.Dispatchers.Interfaces;
+using Farmino.Service.Queries;
 using Farmino.Service.Queries.Order;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,8 @@ namespace Farmino.API.Controllers
             => Ok(await _orderService.GetOrderDetailsAsync(orderId));
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery]OrderQuery query)
-            => Ok(await _orderService.BrowseOrdersAsync(query));
+        public async Task<IActionResult> Get([FromQuery] PagedQuery paged,[FromQuery]OrderQuery query)
+            => Ok(await _orderService.BrowseOrdersAsync(paged, query));
 
         [HttpGet("delivery-orders/{date},{userName}")]
         public async Task<IActionResult> Get(DateTime date, string userName)

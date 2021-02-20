@@ -5,7 +5,7 @@ const order = {
 
   state: {
     order: {},
-    ordersAll: [],
+    ordersAll: {},
     deliveryOrders: [],
   },
 
@@ -15,11 +15,15 @@ const order = {
     },
 
     GET_ORDERS(state) {
-      return state.ordersAll;
+      return state.ordersAll.data;
     },
 
     GET_DELIVERY_ORDERS(state) {
-      return state.deliveryOrders;
+      return state.deliveryOrders.data;
+    },
+
+    GET_PAGES_NUMBER(state) {
+      return state.ordersAll.pagesNumber;
     },
   },
 
@@ -48,7 +52,7 @@ const order = {
     },
 
     async GET_ORDERS({ commit }, {
-      offerId, farmerName, customerName, orderStatus, date,
+      offerId, farmerName, customerName, orderStatus, date, page,
     }) {
       try {
         const response = await api.get('/orders', {
@@ -58,6 +62,7 @@ const order = {
             customerName,
             orderStatus,
             date,
+            page,
           },
         });
         commit('SET_ORDERS', response.data);

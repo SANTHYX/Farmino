@@ -14,6 +14,7 @@ const auth = {
     IS_AUTHORIZED(state) {
       return state.isAuthorized;
     },
+
     GET_USERNAME(state) {
       return state.userName;
     },

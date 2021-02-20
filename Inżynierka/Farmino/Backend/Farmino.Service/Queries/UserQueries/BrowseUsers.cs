@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 namespace Farmino.Service.Queries.UserQueries
 {
-    public class BrowseUsers : Pagination, IQuery<IEnumerable<UsersDTO>>
+    public class BrowseUsers : IPagination, IQuery<IEnumerable<UsersDTO>>
     {
+        public int Page => throw new System.NotImplementedException();
+
+        public int ResultsPerPage => throw new System.NotImplementedException();
+
+        public int PagesNumber => throw new System.NotImplementedException();
     }
 }

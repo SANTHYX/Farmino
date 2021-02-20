@@ -3,29 +3,32 @@
     <div id="list-wraper">
       <order-list-item v-for="order in orders" :key="order.id" :orderItem="order" />
     </div>
+    <pagination :pagesNumber="ordersPagesNumber" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import OrderListItem from '../items/OrderListItem.vue';
+import Pagination from '../pagination/Pagination.vue';
 
 export default {
   name: 'orders-list',
 
   components: {
     OrderListItem,
+    Pagination,
   },
 
   computed: {
     ...mapGetters({
       orders: 'order/GET_ORDERS',
+      ordersPagesNumber: 'order/GET_PAGES_NUMBER',
     }),
   },
 
   created() {
-    const customerName = this.$store.state.auth.userName;
-    this.$store.dispatch('order/GET_ORDERS', { customerName });
+    this.$store.dispatch('order/GET_ORDERS', { customerName: this.$store.state.auth.userName });
   },
 };
 </script>

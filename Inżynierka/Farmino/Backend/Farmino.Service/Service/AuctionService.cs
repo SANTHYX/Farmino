@@ -2,15 +2,15 @@
 using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Infrastructure.Repositories.Interfaces;
+using Farmino.Service.DTO;
 using Farmino.Service.DTO.Auction;
 using Farmino.Service.DTO.Auction.NestedModels;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
+using Farmino.Service.Queries;
 using Farmino.Service.Queries.Auctions;
 using Farmino.Service.Service.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -52,7 +52,7 @@ namespace Farmino.Service.Service
             return _mapper.Map<Auction, AuctionDTO>(auction);
         }
 
-        public async Task<IEnumerable<AuctionsDTO>> BrowseAuctions(AuctionsQuery query)
+        public async Task<PagedResponseDTO<AuctionsDTO>> BrowseAuctions(PagedQuery paged,AuctionsQuery query)
         {
             var auctions = _auctionRepository.GetAllAsync();
 
@@ -61,9 +61,10 @@ namespace Farmino.Service.Service
                 auctions = auctions.Where(x => x.Title.ToLower().Contains(query.Phrase.ToLower()));
             }
 
-            var result = await auctions.ToListAsync();
+            var result = auctions;
+            var pagedResponse = await PagedResponse<Auction>.GetPagedResponse(result, paged);
 
-            return _mapper.Map<IEnumerable<AuctionsDTO>>(result);
+            return _mapper.Map<PagedResponseDTO<AuctionsDTO>>(pagedResponse);
         }
 
         public async Task ToAuction(string userName, Guid auctionId, decimal proposedPrice) 

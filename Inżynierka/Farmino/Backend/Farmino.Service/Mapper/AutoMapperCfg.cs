@@ -2,6 +2,7 @@
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.Extensions.Models;
+using Farmino.Service.Queries;
 
 namespace Farmino.Service.Mapper
 {
@@ -50,6 +51,7 @@ namespace Farmino.Service.Mapper
 
             //Extensions
             CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>().ReverseMap();
+            CreateMap(typeof(PagedResponse<>), typeof(DTO.PagedResponseDTO<>)) ;
         }
     }
 }

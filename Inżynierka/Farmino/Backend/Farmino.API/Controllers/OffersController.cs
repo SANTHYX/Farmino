@@ -1,5 +1,6 @@
 ﻿using Farmino.Service.Commands.OfferCommands;
 using Farmino.Service.Dispatchers.Interfaces;
+using Farmino.Service.Queries;
 using Farmino.Service.Queries.Offer;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,8 @@ namespace Farmino.API.Controllers
             => Ok(await _offerService.GetOfferAsync(offerId));
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] OfferQuery query)
-            => Ok(await _offerService.BrowseAllAsync(query));
+        public async Task<IActionResult> Get([FromQuery] PagedQuery paged, [FromQuery] OfferQuery query)
+            => Ok(await _offerService.BrowseAllAsync(paged,query));
 
         [HttpPost("make-order")]
         public async Task<IActionResult> Post([FromBody] MakeOrder command)

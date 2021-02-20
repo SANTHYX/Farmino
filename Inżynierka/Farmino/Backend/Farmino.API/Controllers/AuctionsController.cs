@@ -1,5 +1,6 @@
 ﻿using Farmino.Service.Commands.AuctionCommands;
 using Farmino.Service.Dispatchers.Interfaces;
+using Farmino.Service.Queries;
 using Farmino.Service.Queries.Auctions;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,8 @@ namespace Farmino.API.Controllers
             => Ok(await _auctionService.GetAuction(auctionId));
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] AuctionsQuery query)
-            => Ok(await _auctionService.BrowseAuctions(query));
+        public async Task<IActionResult> Get([FromQuery] PagedQuery paged, [FromQuery] AuctionsQuery query)
+            => Ok(await _auctionService.BrowseAuctions(paged, query));
 
         [HttpGet("winner/{auctionId}")]
         public async Task<IActionResult> GetWinner(Guid id)

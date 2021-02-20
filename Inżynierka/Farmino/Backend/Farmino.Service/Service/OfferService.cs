@@ -4,14 +4,15 @@ using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Infrastructure.Repositories.Interfaces;
+using Farmino.Service.DTO;
 using Farmino.Service.DTO.Offer;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
+using Farmino.Service.Queries;
 using Farmino.Service.Queries.Offer;
 using Farmino.Service.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,7 +36,7 @@ namespace Farmino.Service.Service
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<OffersDTO>> BrowseAllAsync(OfferQuery query)
+        public async Task<PagedResponseDTO<OffersDTO>> BrowseAllAsync(PagedQuery paged, OfferQuery query)
         {
             var offers = _offerRepository.GetAllAsync();
 
@@ -52,10 +53,10 @@ namespace Farmino.Service.Service
                 offers = offers.Where(x => x.Product.BasePrice <= query.PriceTo);
             }
 
-            var result = await offers.Include(x => x.Product)
-                .Include(y => y.Farmer).ThenInclude(z => z.User).ToListAsync();
+            var result = offers.Include(x => x.Product).Include(y => y.Farmer).ThenInclude(z => z.User);
+            var pagedResponse = await PagedResponse<Offer>.GetPagedResponse(result, paged);
 
-            return _mapper.Map<IEnumerable<OffersDTO>>(result);
+            return _mapper.Map<PagedResponseDTO<OffersDTO>>(pagedResponse);
         }
 
         public async Task CreateOffer(string userName, string title, string description, WeightUnits minUnit,

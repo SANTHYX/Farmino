@@ -4,7 +4,13 @@
       <h1>Filtry</h1>
       <div id="inputs-wraper">
         <label for="date" id="data-lable" class="form-label">Data realizacji</label>
-        <input type="date" name="date" id="datepicker" class="small-form-field" v-model="date" />
+        <input
+          type="date"
+          name="date"
+          id="datepicker"
+          class="small-form-field"
+          v-model="query.date"
+        />
       </div>
 
       <div id="inputs-wraper">
@@ -15,7 +21,7 @@
           name="order-status"
           id="order-status"
           class="small-form-field"
-          v-model="orderStatus"
+          v-model="query.orderStatus"
         >
           <option value="Oczekujaca">Oczekująca</option>
           <option value="Przyjeta">Przyjęta</option>
@@ -31,7 +37,7 @@
           name="customerName"
           id="customerName"
           class="small-form-field"
-          v-model="customerName"
+          v-model="query.customerName"
         />
       </div>
 
@@ -48,9 +54,11 @@ export default {
 
   data() {
     return {
-      date: '',
-      orderStatus: '',
-      customerName: '',
+      query: {
+        date: undefined,
+        orderStatus: undefined,
+        customerName: undefined,
+      },
     };
   },
 
@@ -66,15 +74,8 @@ export default {
     }),
 
     search() {
-      this.getOrders({
-        date: this.date,
-        farmerName: this.userName,
-        customerName: this.customerName,
-        orderStatus: this.orderStatus,
-      });
-      this.$router.replace({
-        query: { date: this.date, customerName: this.customerName, orderStatus: this.orderStatus },
-      });
+      this.$router.replace({ query: { ...this.query } });
+      this.getOrders({ farmerName: this.userName, ...this.query });
     },
   },
 };

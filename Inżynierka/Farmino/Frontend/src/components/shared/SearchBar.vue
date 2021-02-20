@@ -47,7 +47,7 @@ export default {
         this.getAuctions(this.query);
         this.$router.replace({ name: this.endpoint, query: this.query });
       } else {
-        this.$router.push({
+        this.$router.replace({
           name: this.endpoint,
           query: this.query,
         });

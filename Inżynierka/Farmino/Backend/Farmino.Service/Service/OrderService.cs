@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Farmino.Service.DTO.DeliverOrder;
 using Farmino.Data.Enums;
+using Farmino.Service.Queries;
+using Farmino.Data.Models.Entities;
+using Farmino.Service.DTO;
 
 namespace Farmino.Service.Service
 {
@@ -35,7 +38,7 @@ namespace Farmino.Service.Service
             return _mapper.Map<IEnumerable<DeliverOrdersDTO>>(deliverOrders);
         }
 
-        public async Task<IEnumerable<OrdersDTO>> BrowseOrdersAsync(OrderQuery query)
+        public async Task<PagedResponseDTO<OrdersDTO>> BrowseOrdersAsync(PagedQuery paged, OrderQuery query)
         {
             var orders = _orderRepository.GetAllAsync();
 
@@ -64,10 +67,11 @@ namespace Farmino.Service.Service
                 orders = orders.Where(x => x.ReleaseDate.Date == query.Date);
             }
 
-            var result = await orders.Include(x => x.Offer).ThenInclude(x=> x.Farmer).ThenInclude(z => z.User)
-                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile).ToListAsync();
+            var result = orders.Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
+                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile);
+            var pagedResponse = await PagedResponse<Order>.GetPagedResponse(result, paged);
                 
-            return _mapper.Map<IEnumerable<OrdersDTO>>(result);
+            return _mapper.Map<PagedResponseDTO<OrdersDTO>>(pagedResponse);
         }
 
         public async Task CancelOrder(Guid orderId)

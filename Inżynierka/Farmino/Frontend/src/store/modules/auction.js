@@ -5,14 +5,27 @@ const auction = {
 
   state: {
     auction: {},
-    auctionsAll: [],
+    auctionsAll: {},
     winner: {},
   },
 
   getters: {
     GET_AUCTIONS_ALL(state) {
-      return state.auctionsAll;
+      return state.auctionsAll.data;
     },
+
+    GET_AUCTION(state) {
+      return state.auction;
+    },
+
+    GET_WINNER(state) {
+      return state.winner;
+    },
+
+    GET_PAGES_NUMBER(state) {
+      return state.auctionsAll.pagesNumber;
+    },
+
   },
 
   mutations: {
@@ -39,9 +52,9 @@ const auction = {
       }
     },
 
-    async GET_AUCTIONS({ commit }, { phrase }) {
+    async GET_AUCTIONS({ commit }, { phrase, page }) {
       try {
-        const response = await api.get('/auctions', { params: { phrase } });
+        const response = await api.get('/auctions', { params: { phrase, page } });
         commit('SET_AUCTIONS', response.data);
       } catch (err) {
         throw new Error(err.message);
