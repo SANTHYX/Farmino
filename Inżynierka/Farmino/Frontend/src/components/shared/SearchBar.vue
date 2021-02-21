@@ -13,11 +13,7 @@
       <option value="auctions" id="option-field">Aukcje</option>
     </select>
 
-    <button
-      id="search-btn"
-      @click="search"
-      :disabled="query.phrase === undefined || query.phrase === ''"
-    >
+    <button id="search-btn" @click="search" :disabled="$v.query.$invalid">
       Szukaj
     </button>
   </div>
@@ -25,6 +21,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'search-bar',
@@ -36,6 +33,12 @@ export default {
         phrase: undefined,
       },
     };
+  },
+
+  validations: {
+    query: {
+      phrase: { required },
+    },
   },
 
   methods: {
@@ -52,12 +55,8 @@ export default {
       if (this.$route.name === 'auctions') {
         this.getAuctions(this.query);
         this.$router.replace({ name: this.endpoint, query: this.query });
-      } else {
-        this.$router.replace({
-          name: this.endpoint,
-          query: this.query,
-        });
       }
+      this.$router.replace({ name: this.endpoint, query: this.query });
     },
   },
 };

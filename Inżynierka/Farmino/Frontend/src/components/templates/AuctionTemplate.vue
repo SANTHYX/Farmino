@@ -21,4 +21,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#auction-template {
+  margin: 2rem 0;
+  padding: 0.2rem;
+  border: 1px solid rgb(196, 196, 196);
+  box-shadow: 1px 1px 6px rgb(179, 179, 179);
+  flex-wrap: wrap;
+}
+</style>
