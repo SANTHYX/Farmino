@@ -13,7 +13,13 @@
       <option value="auctions" id="option-field">Aukcje</option>
     </select>
 
-    <button id="search-btn" @click="search">Szukaj</button>
+    <button
+      id="search-btn"
+      @click="search"
+      :disabled="query.phrase === undefined || query.phrase === ''"
+    >
+      Szukaj
+    </button>
   </div>
 </template>
 

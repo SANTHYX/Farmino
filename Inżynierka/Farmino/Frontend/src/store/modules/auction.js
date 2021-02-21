@@ -25,12 +25,11 @@ const auction = {
     GET_PAGES_NUMBER(state) {
       return state.auctionsAll.pagesNumber;
     },
-
   },
 
   mutations: {
     SET_AUCTION(state, auctionObj) {
-      state.action = auctionObj;
+      state.auction = auctionObj;
     },
 
     SET_AUCTIONS(state, auctionsList) {
@@ -99,6 +98,15 @@ const auction = {
       try {
         const response = await api.get(`/auctions/winner/${auctionId}`);
         commit('SET_WINNER', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async CREATE_AUCTIONER({ commit }, userName) {
+      try {
+        await api.post('/auctioners', { userName });
+        commit();
       } catch (err) {
         throw new Error(err.message);
       }

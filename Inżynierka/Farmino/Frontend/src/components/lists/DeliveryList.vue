@@ -3,21 +3,21 @@
     <div id="list-wraper">
       <delivery-list-item v-for="order in orders" :key="order.id" :deliveryItem="order" />
     </div>
-    <pagination :pagesNumber="deliversPagesNumber"/>
+    <delivery-list-pagination />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import DeliveryListItem from '../items/DeliveryListItem.vue';
-import Pagination from '../pagination/Pagination.vue';
+import DeliveryListPagination from '../pagination/DeliveryListPagination.vue';
 
 export default {
   name: 'delivers-list',
 
   components: {
     DeliveryListItem,
-    Pagination,
+    DeliveryListPagination,
   },
 
   computed: {
@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 #list-wraper {
-  margin: 0 0 5rem 0;
+  margin: 0 0 1rem 0;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

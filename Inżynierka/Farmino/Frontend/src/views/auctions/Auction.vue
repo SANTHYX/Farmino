@@ -1,12 +1,30 @@
 <template>
   <div>
-    <div id="auction"></div>
+    <div id="auction">
+      <auction-template />
+    </div>
   </div>
 </template>
 
 <script>
+import AuctionTemplate from '@/components/templates/AuctionTemplate.vue';
+
 export default {
-  components: {},
+  name: 'auction',
+
+  props: {
+    id: {
+      type: String,
+    },
+  },
+
+  components: {
+    AuctionTemplate,
+  },
+
+  created() {
+    this.$store.dispatch('auction/GET_AUCTION', this.id);
+  },
 };
 </script>
 

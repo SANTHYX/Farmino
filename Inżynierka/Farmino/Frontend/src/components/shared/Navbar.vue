@@ -38,12 +38,12 @@
 
               <transition name="movedropdown">
                 <div id="drop-menu" v-if="showAuctionMenu">
-                  <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
+                  <router-link :to="{ name: 'auction-creator' }" exact="exact" class="pop-up"
                     ><li><a>Stwórz Aukcję</a></li></router-link
                   >
 
                   <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
-                    ><li><a>Stwórz Aukcję</a></li></router-link
+                    ><li><a>Moje Aukcje</a></li></router-link
                   >
                 </div>
               </transition>

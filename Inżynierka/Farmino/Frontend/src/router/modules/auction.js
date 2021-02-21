@@ -13,7 +13,7 @@ const auctionRoutes = [
   {
     path: '/auctions/auction-creator',
     name: 'auction-creator',
-    component: () => import('@/views/auctions/AuctionCreator.vue'),
+    component: () => import('@/views/auctions/AuctionCreate.vue'),
   },
 ];
 export default auctionRoutes;

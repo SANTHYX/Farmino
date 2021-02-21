@@ -3,21 +3,21 @@
     <div id="list-wraper">
       <auction-list-item v-for="auction in auctions" :key="auction.id" :auctionItem="auction" />
     </div>
-    <pagination :pagesNumber="auctionPagesNumber" />
+    <auctions-list-pagination />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import AuctionListItem from '../items/AuctionListItem.vue';
-import Pagination from '../pagination/Pagination.vue';
+import AuctionsListPagination from '../pagination/AuctionsListPagination.vue';
 
 export default {
   name: 'auctions-list',
 
   components: {
     AuctionListItem,
-    Pagination,
+    AuctionsListPagination,
   },
 
   computed: {
@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 #list-wraper {
-  margin: 0 0 5rem 0;
+  margin: 0 0 1rem 0;
   display: flex;
   justify-content: baseline;
   flex-wrap: wrap;

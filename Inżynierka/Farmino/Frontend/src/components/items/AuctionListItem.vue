@@ -4,7 +4,7 @@
       <div id="auction-img"></div>
 
       <div id="info-wraper">
-        <h2>{{ offerItem.title }}</h2>
+        <h2>{{ auctionItem.title }}</h2>
         <button @click="$router.push({ name: 'auction', params: { id: auctionItem.id } })">
           Sprawdź
         </button>
@@ -33,6 +33,9 @@ export default {
   align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
+  background: rgb(243, 243, 243);
+  width: 25vw;
+  min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
 
   #offer-img {

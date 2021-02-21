@@ -3,21 +3,21 @@
     <div id="list-wraper">
       <order-list-item v-for="order in orders" :key="order.id" :orderItem="order" />
     </div>
-    <pagination :pagesNumber="ordersPagesNumber" />
+    <orders-list-pagination />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import OrderListItem from '../items/OrderListItem.vue';
-import Pagination from '../pagination/Pagination.vue';
+import OrdersListPagination from '../pagination/OrdersListPagination.vue';
 
 export default {
   name: 'orders-list',
 
   components: {
     OrderListItem,
-    Pagination,
+    OrdersListPagination,
   },
 
   computed: {
