@@ -7,6 +7,7 @@ const auction = {
     auction: {},
     auctionsAll: {},
     winner: {},
+    participantsAll: {},
   },
 
   getters: {
@@ -22,8 +23,16 @@ const auction = {
       return state.winner;
     },
 
+    GET_PARTICIPANTS_ALL(state) {
+      return state.participantsAll.data;
+    },
+
     GET_PAGES_NUMBER(state) {
       return state.auctionsAll.pagesNumber;
+    },
+
+    GET_PARTICIPANTS_PAGE_NUMBER(state) {
+      return state.participantsAll.pagesNumber;
     },
   },
 
@@ -38,6 +47,10 @@ const auction = {
 
     SET_WINNER(state, winnerObj) {
       state.winner = winnerObj;
+    },
+
+    SET_PARTICIPANTS(state, participantsList) {
+      state.participantsAll = participantsList;
     },
   },
 
@@ -96,8 +109,17 @@ const auction = {
 
     async GET_WINNER({ commit }, auctionId) {
       try {
-        const response = await api.get(`/auctions/winner/${auctionId}`);
+        const response = await api.get(`/auctions/${auctionId}/winner`);
         commit('SET_WINNER', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async GET_AUCTION_OVERVIEW({ commit }, { auctionId, page }) {
+      try {
+        const response = await api.get(`/auctions/${auctionId}/overview`, { params: { page } });
+        commit('SET_PARTICIPANTS', response.data);
       } catch (err) {
         throw new Error(err.message);
       }

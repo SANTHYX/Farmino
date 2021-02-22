@@ -32,10 +32,17 @@ export default {
     }),
 
     fetchPage(pagesNumber) {
-      this.getOrders({ ...this.$route.query, farmerName: this.userName, page: pagesNumber });
+      this.getOrders({
+        ...this.$route.query,
+        farmerName: this.userName,
+        page: pagesNumber,
+      });
       this.$router.replace({
         name: this.$route.name,
-        query: { ...this.$route.query, page: pagesNumber },
+        query: {
+          ...this.$route.query,
+          page: pagesNumber,
+        },
       });
     },
   },

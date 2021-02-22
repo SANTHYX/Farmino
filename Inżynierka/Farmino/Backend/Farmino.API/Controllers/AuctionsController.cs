@@ -30,9 +30,13 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PagedQuery paged, [FromQuery] AuctionsQuery query)
             => Ok(await _auctionService.BrowseAuctions(paged, query));
 
-        [HttpGet("winner/{auctionId}")]
-        public async Task<IActionResult> GetWinner(Guid id)
-            => Ok(await _auctionService.GetWinner(id));
+        [HttpGet("{auctionId}/winner")]
+        public async Task<IActionResult> GetWinner(Guid auctionId)
+            => Ok(await _auctionService.GetWinner(auctionId));
+
+        [HttpGet("{auctionId}/overview")]
+        public async Task<IActionResult> Get([FromQuery] PagedQuery paged, Guid auctionId)
+            => Ok(await _auctionService.AuctionOverviewAsync(paged, auctionId));
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAuction command)

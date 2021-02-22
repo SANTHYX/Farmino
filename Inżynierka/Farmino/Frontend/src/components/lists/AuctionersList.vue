@@ -1,12 +1,37 @@
 <template>
   <div>
-    <div id="list-wraper"></div>
+    <div id="list-wraper">
+      <auctioner-list-item
+        v-for="participant in participants"
+        :key="participant.id"
+        :auctionerItem="participant"
+      />
+    </div>
+    <auctioners-list-pagination/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import AuctionerListItem from '../items/AuctionerListItem.vue';
+import AuctionersListPagination from '../pagination/AuctionersListPagination.vue';
+
 export default {
   name: 'auctioners-list',
+
+  computed: {
+    ...mapGetters({
+      participants: 'auction/GET_PARTICIPANTS_ALL',
+    }),
+  },
+
+  components: { AuctionerListItem, AuctionersListPagination },
+
+  created() {
+    this.$store.dispatch('auction/GET_AUCTION_OVERVIEW', {
+      auctionId: this.$route.params.id,
+    });
+  },
 };
 </script>
 

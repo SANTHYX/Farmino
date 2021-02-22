@@ -1,6 +1,5 @@
 ﻿using Farmino.Service.DTO.Auction.NestedModels;
 using System;
-using System.Collections.Generic;
 
 namespace Farmino.Service.DTO.Auction
 {
@@ -13,6 +12,5 @@ namespace Farmino.Service.DTO.Auction
         public DateTime EndDate { get; protected set; }
         public decimal StartingPrice { get; protected set; }
         public AuctionerDTO Auctioner { get; protected set; }
-        public IEnumerable<ParticipantAuctionDTO> Participants { get; protected set; }
     }
 }

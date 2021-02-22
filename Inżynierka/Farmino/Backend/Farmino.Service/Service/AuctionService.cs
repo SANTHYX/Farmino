@@ -78,12 +78,12 @@ namespace Farmino.Service.Service
                     "You cannot take a part in own auction");
             }
             if (auction.Participants.Any() && 
-                await _participantAuctionRepository.GetHighestPriceAsync(auctionId) > proposedPrice)
+                await _participantAuctionRepository.GetHighestPriceAsync(auctionId) >= proposedPrice)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
                     "Your proposed price is too low, you need to increase your budget");
             }
-            if (auction.StartingPrice > proposedPrice)
+            if (auction.StartingPrice >= proposedPrice)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
                     "To take a part in auction you need to add price greather than started");
@@ -109,6 +109,16 @@ namespace Farmino.Service.Service
                 .OrderByDescending(x => x.ProposedPrice).FirstOrDefault();
 
             return _mapper.Map<ParticipantAuctionDTO>(winner);
+        }
+
+        public async Task<PagedResponseDTO<ParticipantAuctionDTO>> AuctionOverviewAsync(PagedQuery paged,Guid auctionId)
+        {
+            var auction = _participantAuctionRepository.GetAll()
+                .OrderByDescending(x => x.ProposedPrice);
+
+            var pagedResponse = await PagedResponse<ParticipantAuction>.GetPagedResponse(auction, paged);
+
+            return _mapper.Map<PagedResponseDTO<ParticipantAuctionDTO>>(pagedResponse);
         }
     }
 }

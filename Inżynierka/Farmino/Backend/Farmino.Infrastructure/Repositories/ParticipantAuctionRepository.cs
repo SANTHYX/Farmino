@@ -26,6 +26,9 @@ namespace Farmino.Infrastructure.Repositories
             => await _context.ParticipantAuctions.Where(x => x.AuctionId == auctionId)
                 .MaxAsync(z => z.ProposedPrice);
 
+        public IQueryable<ParticipantAuction> GetAll()
+            => _context.ParticipantAuctions;
+
         public void Remove(ParticipantAuction participantAuction)
         {
             _context.Remove(participantAuction);

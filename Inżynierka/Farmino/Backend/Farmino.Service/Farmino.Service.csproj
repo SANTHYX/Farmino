@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\Auctioner\" />
-    <Folder Include="DTO\Participant\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Farmino.Infrastructure\Farmino.Infrastructure.csproj" />
   </ItemGroup>
 

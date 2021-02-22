@@ -10,7 +10,6 @@ namespace Farmino.Service.Mapper
     {
         public AutoMapperCfg()
         {
-            //Models
             CreateMap<User, DTO.User.UserDTO>();
             CreateMap<User, DTO.User.UsersDTO>();
             CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
@@ -41,15 +40,13 @@ namespace Farmino.Service.Mapper
             CreateMap<Auction, DTO.Auction.AuctionsDTO>();
             CreateMap<Auctioner, DTO.Auction.NestedModels.AuctionerDTO>();
             CreateMap<Participant, DTO.Auction.NestedModels.ParticipantDTO>();
-            CreateMap<ParticipantAuction, DTO.Auction.NestedModels.ParticipantAuctionDTO>();
             CreateMap<Customer, DTO.Customer.CustomerDTO>();
             CreateMap<Order, DTO.Order.OrderDTO>();
             CreateMap<Order, DTO.Order.OrdersDTO>();
             CreateMap<Order, DTO.DeliverOrder.DeliverOrdersDTO>();
             CreateMap<OrderDetails, DTO.Order.NestedModels.OrderDetailsDTO>();
             CreateMap<OrderDetails, DTO.DeliverOrder.NestedModels.OrderDetailsDTO>();
-
-            //Extensions
+            CreateMap<ParticipantAuction, DTO.Auction.ParticipantAuctionDTO>();
             CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>().ReverseMap();
             CreateMap(typeof(PagedResponse<>), typeof(DTO.PagedResponseDTO<>)) ;
         }

@@ -42,9 +42,9 @@ export default {
 
     toAuctionAsync() {
       this.toAuction({
-        proposedPrice: this.proposedPrice,
-        auctionId: this.auction.id,
         userName: this.userName,
+        auctionId: this.auction.id,
+        proposedPrice: this.proposedPrice,
       });
     },
   },
