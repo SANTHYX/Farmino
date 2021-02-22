@@ -2,21 +2,55 @@
   <div>
     <div id="auction-template">
       <h1>{{ auction.title }}</h1>
+      <label for="">Propozycja</label>
+      <h2>Cena wywoławcza</h2>
+      <p>{{ auction.startingPrice }}</p>
+      <input type="number" name="" id="" step=".01" v-model.number="$v.proposedPrice.$model" />
+      <button @click="toAuctionAsync" :disabled="$v.proposedPrice.$invalid">Dodaj</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import { decimal, required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'auction-template',
+
+  data() {
+    return {
+      proposedPrice: undefined,
+    };
+  },
+
+  validations: {
+    proposedPrice: { required, decimal },
+  },
 
   computed: {
     ...mapGetters({
       auction: 'auction/GET_AUCTION',
       userName: 'auth/GET_USERNAME',
     }),
+  },
+
+  methods: {
+    ...mapActions({
+      toAuction: 'auction/TO_AUCTION',
+    }),
+
+    toAuctionAsync() {
+      this.toAuction({
+        proposedPrice: this.proposedPrice,
+        auctionId: this.auction.id,
+        userName: this.userName,
+      });
+    },
+  },
+
+  created() {
+    this.$store.dispatch('auction/CREATE_PARTICIPANT', this.$store.state.auth.userName);
   },
 };
 </script>

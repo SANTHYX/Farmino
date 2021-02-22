@@ -23,7 +23,8 @@ namespace Farmino.Infrastructure.Repositories
         }
 
         public async Task<decimal> GetHighestPriceAsync(Guid auctionId)
-            => await _context.ParticipantAuctions.Where(x => x.AuctionId == auctionId).MaxAsync(z => z.ProposedPrice);
+            => await _context.ParticipantAuctions.Where(x => x.AuctionId == auctionId)
+                .MaxAsync(z => z.ProposedPrice);
 
         public void Remove(ParticipantAuction participantAuction)
         {

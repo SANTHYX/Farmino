@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="my-delivery">
-      <delivers-filter-bar />
+      <delivers-filter />
       <delivery-list />
     </div>
   </div>
@@ -9,14 +9,14 @@
 
 <script>
 import DeliveryList from '@/components/lists/DeliveryList.vue';
-import DeliversFilterBar from '@/components/filters/DeliversFilterBar.vue';
+import DeliversFilter from '@/components/filters/DeliversFilter.vue';
 
 export default {
   name: 'my-delivers',
 
   components: {
     DeliveryList,
-    DeliversFilterBar,
+    DeliversFilter,
   },
 };
 </script>

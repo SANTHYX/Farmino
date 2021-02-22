@@ -111,6 +111,15 @@ const auction = {
         throw new Error(err.message);
       }
     },
+
+    async CREATE_PARTICIPANT({ commit }, userName) {
+      try {
+        await api.post('/participants', { userName });
+        commit();
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
   },
 };
 

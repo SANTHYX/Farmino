@@ -286,6 +286,10 @@ namespace Farmino.Infrastructure.Migrations
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.ParticipantAuction", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("AuctionId")
                         .HasColumnType("uniqueidentifier");
 
@@ -295,7 +299,9 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<decimal>("ProposedPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("AuctionId", "ParticipantId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuctionId");
 
                     b.HasIndex("ParticipantId");
 

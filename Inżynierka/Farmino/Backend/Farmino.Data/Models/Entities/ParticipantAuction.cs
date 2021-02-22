@@ -6,6 +6,7 @@ namespace Farmino.Data.Models.Entities
 {
     public class ParticipantAuction
     {
+        public Guid Id { get; protected set; }
         public Guid ParticipantId { get; protected set; }
         public Participant Participant { get; protected set; }
         public Guid AuctionId { get; protected set; }
@@ -17,6 +18,7 @@ namespace Farmino.Data.Models.Entities
         public ParticipantAuction(Participant participant, Auction auction,
             decimal proposedPrice)
         {
+            Id = Guid.NewGuid();
             Participant = participant;
             Auction = auction;
             SetProposedPrice(proposedPrice);

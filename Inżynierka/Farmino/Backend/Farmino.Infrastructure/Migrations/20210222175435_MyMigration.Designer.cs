@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210122072313_MyMigration")]
+    [Migration("20210222175435_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -288,6 +288,10 @@ namespace Farmino.Infrastructure.Migrations
 
             modelBuilder.Entity("Farmino.Data.Models.Entities.ParticipantAuction", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("AuctionId")
                         .HasColumnType("uniqueidentifier");
 
@@ -297,7 +301,9 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<decimal>("ProposedPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("AuctionId", "ParticipantId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuctionId");
 
                     b.HasIndex("ParticipantId");
 

@@ -12,9 +12,9 @@
 import RegisterationForm from '@/components/forms/registeration/RegisterationForm.vue';
 
 export default {
-  components: {
-    RegisterationForm,
-  },
+  name: 'register',
+
+  components: { RegisterationForm },
 };
 </script>
 

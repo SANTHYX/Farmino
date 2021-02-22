@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="auction-creator-form">
-      <h1>HeyX</h1>
-
+      <h1>Stwórz Aukcje</h1>
+      <hr />
       <div id="input-wraper">
         <label for="title" :class="[!$v.auction.title.$error ? 'form-label' : 'error-label']"
           >Tytuł</label
@@ -62,7 +62,7 @@
         <label
           for="startingPrice"
           :class="[!$v.auction.startDate.$error ? 'form-label' : 'error-label']"
-          >Początek</label
+          >Cena Wywoławcza</label
         >
         <input
           type="number"
@@ -101,7 +101,7 @@ export default {
       description: { required },
       startDate: { required },
       endDate: { required },
-      startingPrice: { required, decimal, minValue: minValue(0) },
+      startingPrice: { required, decimal, minValue: minValue(0.1) },
     },
   },
 

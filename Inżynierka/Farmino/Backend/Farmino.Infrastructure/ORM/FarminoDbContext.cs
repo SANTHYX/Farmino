@@ -141,7 +141,7 @@ namespace Farmino.Infrastructure.ORM
 
             builder.Entity<ParticipantAuction>(x =>
             {
-                x.HasKey(y => new { y.AuctionId, y.ParticipantId });
+                x.HasKey(y => y.Id);
                 x.HasOne(y => y.Participant).WithMany(z => z.Auctions).HasForeignKey(q => q.ParticipantId)
                     .OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(y => y.Auction).WithMany(z => z.Participants).HasForeignKey(q => q.AuctionId);

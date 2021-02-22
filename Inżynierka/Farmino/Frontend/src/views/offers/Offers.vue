@@ -2,7 +2,7 @@
   <div>
     <div id="offers">
       <div id="content">
-        <offers-filter-bar />
+        <offers-filter />
         <offers-list />
       </div>
     </div>
@@ -11,14 +11,14 @@
 
 <script>
 import OffersList from '@/components/lists/OffersList.vue';
-import OffersFilterBar from '@/components/filters/OffersFilterBar.vue';
+import OffersFilter from '@/components/filters/OffersFilter.vue';
 
 export default {
   name: 'offers',
 
   components: {
     OffersList,
-    OffersFilterBar,
+    OffersFilter,
   },
 };
 </script>

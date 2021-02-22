@@ -200,13 +200,14 @@ namespace Farmino.Infrastructure.Migrations
                 name: "ParticipantAuctions",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ParticipantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AuctionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProposedPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ParticipantAuctions", x => new { x.AuctionId, x.ParticipantId });
+                    table.PrimaryKey("PK_ParticipantAuctions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ParticipantAuctions_Auctions_AuctionId",
                         column: x => x.AuctionId,
@@ -300,6 +301,11 @@ namespace Farmino.Infrastructure.Migrations
                 name: "IX_Orders_OfferId",
                 table: "Orders",
                 column: "OfferId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParticipantAuctions_AuctionId",
+                table: "ParticipantAuctions",
+                column: "AuctionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ParticipantAuctions_ParticipantId",

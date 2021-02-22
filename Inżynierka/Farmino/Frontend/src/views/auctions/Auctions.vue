@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="auctions">
-      <auctions-filter-bar />
+      <auctions-filter />
       <auctions-list />
     </div>
   </div>
@@ -9,12 +9,12 @@
 
 <script>
 import AuctionsList from '@/components/lists/AuctionsList.vue';
-import AuctionsFilterBar from '@/components/filters/AuctionsFilterBar.vue';
+import AuctionsFilter from '@/components/filters/AuctionsFilter.vue';
 
 export default {
   components: {
     AuctionsList,
-    AuctionsFilterBar,
+    AuctionsFilter,
   },
 };
 </script>

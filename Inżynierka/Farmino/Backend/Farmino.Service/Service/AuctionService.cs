@@ -72,14 +72,26 @@ namespace Farmino.Service.Service
             var participant = await _participantRepository.GetIfExistAsync(userName);
             var auction = await _auctionRepository.GetIfExistAsync(auctionId);
 
-            if (await _participantAuctionRepository.GetHighestPriceAsync(auctionId) > proposedPrice)
+            if (auction.Auctioner.User.UserName == userName)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.CannotTakePartInOwnAuction,
+                    "You cannot take a part in own auction");
+            }
+            if (auction.Participants.Any() && 
+                await _participantAuctionRepository.GetHighestPriceAsync(auctionId) > proposedPrice)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
                     "Your proposed price is too low, you need to increase your budget");
             }
+            if (auction.StartingPrice > proposedPrice)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.YourPropositionIsToLow,
+                    "To take a part in auction you need to add price greather than started");
+            }
 
             await _participantAuctionRepository
                     .AddAsync(new ParticipantAuction(participant, auction, proposedPrice));
+
             await _participantAuctionRepository.SaveChangesAsync();
         }
 
