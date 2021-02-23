@@ -3,7 +3,8 @@
     <div id="home">
       <div id="content">
         <showcase />
-        <tools />
+        <about />
+        <providence />
       </div>
     </div>
   </div>
@@ -11,12 +12,14 @@
 
 <script>
 import Showcase from './sections/Showcase.vue';
-import Tools from './sections/Tools.vue';
+import About from './sections/About.vue';
+import Providence from './sections/Providence.vue';
 
 export default {
   components: {
     Showcase,
-    Tools,
+    Providence,
+    About,
   },
 };
 </script>

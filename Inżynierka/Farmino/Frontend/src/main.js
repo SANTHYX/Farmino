@@ -10,6 +10,8 @@ import {
   uniMapMarkerInfo,
   uniSearch,
   uniDropbox,
+  uniBookReader,
+  uniMoneyBillSlash,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -24,6 +26,8 @@ Unicons.add([
   uniMapMarkerInfo,
   uniSearch,
   uniDropbox,
+  uniBookReader,
+  uniMoneyBillSlash,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);

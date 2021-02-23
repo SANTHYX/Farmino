@@ -10,10 +10,13 @@
             @mouseover="showFreeOffers = true"
             @mouseleave="showFreeOffers = false"
           >
-            <div class="img-wrap"></div>
+            <div class="img-wrap" id="free-offer-img">
+              <h1>Darmowy Dostęp</h1>
+              <unicon name="money-bill-slash" height="100" width="100" fill="white" />
+            </div>
             <transition name="fade">
               <div class="text-wraper" v-if="showFreeOffers">
-                <h2>Darmowe Ogłoszenia</h2>
+                <h2>Darmowy Dostęp</h2>
                 <hr />
                 <p>
                   Wszelkie funkcje i możliwości serwisu są darmowe, wystarczy tylko założyć konto by
@@ -24,7 +27,10 @@
           </div>
 
           <div class="logic-card" @mouseover="showComfort = true" @mouseleave="showComfort = false">
-            <div class="img-wrap" id="comfort-img"></div>
+            <div class="img-wrap" id="comfort-img">
+              <h1>Wygodę</h1>
+              <unicon name="book-reader" height="100" width="100" fill="white" />
+            </div>
             <transition name="fade">
               <div class="text-wraper" v-if="showComfort">
                 <h2>Wygoda</h2>
@@ -45,7 +51,8 @@
             @mouseleave="showLogistics = false"
           >
             <div class="img-wrap" id="logistic-img">
-              <h1>Logistyka</h1>
+              <h1>Logistykę</h1>
+              <unicon name="dropbox" height="100" width="100" fill="white" />
             </div>
             <transition name="fade">
               <div class="text-wraper" v-if="showLogistics">
@@ -98,7 +105,7 @@ export default {
 
     hr {
       margin: 0.6rem 0;
-      width: 30vw;
+      width: 70vw;
       color: whitesmoke;
     }
 
@@ -123,9 +130,10 @@ export default {
         .img-wrap {
           height: 49.8vh;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          justify-content: flex-start;
           text-align: center;
-          align-items: flex-start;
+          align-items: center;
 
           h1 {
             color: rgb(230, 230, 230);
@@ -158,11 +166,19 @@ export default {
             url('../../../assets/images/coen-staal-unsplash.jpg') no-repeat center center/cover;
           width: 50vw;
         }
+
+        #free-offer-img {
+          background: linear-gradient(0deg, rgba(83, 83, 83, 0.63) 0%, rgba(0, 0, 0, 0.678) 100%),
+            url('../../../assets/images/jose-antonio-gallego-vazquez-unsplash.jpg') no-repeat center
+              center/cover;
+          width: 50vw;
+        }
       }
     }
 
     .logic-card:hover {
       transform: translateY(-6px);
+      box-shadow: 1px 1px 10px rgb(138, 138, 138);
     }
   }
 }
@@ -186,7 +202,8 @@ export default {
             }
           }
           #logistic-img,
-          #comfort-img {
+          #comfort-img,
+          #free-offer-img {
             width: 80vw;
           }
         }
