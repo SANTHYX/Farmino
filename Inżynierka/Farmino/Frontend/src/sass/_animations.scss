@@ -21,13 +21,10 @@
   transition: opacity 0.5s;
   opacity: 0;
 }
-.movedropdown-enter{
+.movedropdown-enter-to, .movedropdown-leave-to{
   opacity: 0;
 }
-.movedropdown-enter-active{
-  transition: opacity 0.5s;
-}
-.movedropdown-leave-active{
+.movedropdown-leave-active, .movedropdown-enter-active{
   transition: opacity 0.5s;
   opacity: 0;
 }

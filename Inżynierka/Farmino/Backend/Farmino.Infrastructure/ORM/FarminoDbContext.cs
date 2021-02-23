@@ -17,6 +17,7 @@ namespace Farmino.Infrastructure.ORM
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<Auction> Auctions { get; set; }
         public virtual DbSet<ParticipantAuction> ParticipantAuctions { get; set; }
+        public virtual DbSet<Observed> Observeds { get; set; }
 
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
         { 
@@ -146,6 +147,11 @@ namespace Farmino.Infrastructure.ORM
                     .OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(y => y.Auction).WithMany(z => z.Participants).HasForeignKey(q => q.AuctionId);
                 x.Property(y => y.ProposedPrice).IsRequired();
+            });
+
+            builder.Entity<Observed>(x =>
+            {
+                x.HasKey(y => new { y.OfferId, y.UserId });
             });
         }
     }

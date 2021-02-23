@@ -9,11 +9,13 @@
 <script>
 export default {
   name: 'menu-button',
+
   data() {
     return {
       clicked: false,
     };
   },
+
   methods: {
     sendState() {
       this.clicked = !this.clicked;

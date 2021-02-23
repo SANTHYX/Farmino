@@ -5,6 +5,16 @@ const auctionRoutes = [
     component: () => import('@/views/auctions/Auctions.vue'),
   },
   {
+    path: '/auctions/my-auctions',
+    name: 'my-auctions',
+    component: () => import('@/views/auctions/MyAuctions.vue'),
+  },
+  {
+    path: '/auctions/followed',
+    name: 'followed',
+    component: () => import('@/views/auctions/FollowedAuctions.vue'),
+  },
+  {
     path: '/auctions/:id',
     name: 'auction',
     props: true,

@@ -32,6 +32,11 @@ const offerRoutes = [
     name: 'offer-creator',
     component: () => import('@/views/offers/OfferCreate.vue'),
   },
+  {
+    path: '/offers/observed',
+    name: 'observed',
+    component: () => import('@/views/offers/Observed.vue'),
+  },
 ];
 
 export default offerRoutes;

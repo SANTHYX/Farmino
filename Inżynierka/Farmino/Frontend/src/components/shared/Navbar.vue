@@ -42,8 +42,12 @@
                     ><li><a>Stwórz Aukcję</a></li></router-link
                   >
 
-                  <router-link :to="{ name: 'home' }" exact="exact" class="pop-up"
+                  <router-link :to="{ name: 'my-auctions' }" exact="exact" class="pop-up"
                     ><li><a>Moje Aukcje</a></li></router-link
+                  >
+
+                  <router-link :to="{ name: 'followed' }" exact="exact" class="pop-up"
+                    ><li><a>Śledź Aukcje</a></li></router-link
                   >
                 </div>
               </transition>
@@ -62,6 +66,10 @@
 
                   <router-link :to="{ name: 'my-offers' }" exact="exact" class="pop-up"
                     ><li><a>Moje Oferty</a></li></router-link
+                  >
+
+                  <router-link :to="{ name: 'observed' }" exact="exact" class="pop-up"
+                    ><li><a>Obserwowane</a></li></router-link
                   >
                 </div>
               </transition>

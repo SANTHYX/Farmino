@@ -1,7 +1,6 @@
 ﻿using Farmino.Data.Enums;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
-using Farmino.Service.DTO;
 using Farmino.Service.DTO.Offer;
 using Farmino.Service.Queries;
 using Farmino.Service.Queries.Offer;

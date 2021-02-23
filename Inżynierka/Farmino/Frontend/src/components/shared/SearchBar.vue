@@ -4,7 +4,7 @@
       type="search"
       name="search-bar"
       id="search-bar-form"
-      placeholder="Szukaj"
+      placeholder="Szukaj..."
       v-model="query.phrase"
     />
 
@@ -14,7 +14,7 @@
     </select>
 
     <button id="search-btn" @click="search" :disabled="$v.query.$invalid">
-      Szukaj
+      <unicon name="search" height="20" />
     </button>
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
   #search-bar-form {
     font-size: 1rem;
     height: 35px;
-    width: 25vw;
+    width: 24vw;
     min-width: 180px;
     border: none;
     border-radius: 7px 0px 0px 7px;
@@ -82,16 +82,25 @@ export default {
   }
 
   #search-btn {
+    display: flex;
     font-size: 1rem;
     height: 35px;
+    width: 50px;
     border: none;
     padding: 0 0.4rem;
     border-radius: 0px 7px 7px 0px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
     background: rgb(241, 169, 34);
     border-top: 1px solid rgb(216, 216, 216);
     border-bottom: 1px solid rgb(216, 216, 216);
     border-right: 1px solid rgb(216, 216, 216);
+    transition: 0.5s;
+  }
+
+  #search-btn:hover {
+    background: rgb(221, 152, 23);
   }
 
   #type-picker {

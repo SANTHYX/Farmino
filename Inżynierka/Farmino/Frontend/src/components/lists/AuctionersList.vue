@@ -7,7 +7,7 @@
         :auctionerItem="participant"
       />
     </div>
-    <auctioners-list-pagination/>
+    <auctioners-list-pagination />
   </div>
 </template>
 
@@ -41,10 +41,10 @@ export default {
   display: flex;
   justify-content: baseline;
   flex-wrap: wrap;
+  flex-direction: column;
   border: 1px solid rgb(216, 216, 216);
   width: 50vw;
   min-width: 40vw;
-  min-height: 30vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
 }
 </style>

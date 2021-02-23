@@ -10,6 +10,7 @@ using Farmino.Service.Extensions;
 using Farmino.Service.Queries;
 using Farmino.Service.Queries.Auctions;
 using Farmino.Service.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,6 +60,10 @@ namespace Farmino.Service.Service
             if (query.Phrase != null)
             {
                 auctions = auctions.Where(x => x.Title.ToLower().Contains(query.Phrase.ToLower()));
+            }
+            if (query.AuctionerName != null)
+            {
+                auctions = auctions.Where(x => x.Auctioner.User.UserName == query.AuctionerName);
             }
 
             var result = auctions;
@@ -111,10 +116,14 @@ namespace Farmino.Service.Service
             return _mapper.Map<ParticipantAuctionDTO>(winner);
         }
 
-        public async Task<PagedResponseDTO<ParticipantAuctionDTO>> AuctionOverviewAsync(PagedQuery paged,Guid auctionId)
+        public async Task<PagedResponseDTO<ParticipantAuctionDTO>> AuctionOverviewAsync(PagedQuery paged,
+            Guid auctionId)
         {
             var auction = _participantAuctionRepository.GetAll()
-                .OrderByDescending(x => x.ProposedPrice);
+                .Include(x => x.Participant)
+                .ThenInclude(y => y.User)
+                .Include(z => z.Auction)
+                .OrderByDescending(q => q.ProposedPrice);
 
             var pagedResponse = await PagedResponse<ParticipantAuction>.GetPagedResponse(auction, paged);
 

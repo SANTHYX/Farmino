@@ -11,6 +11,8 @@ namespace Farmino.Service.Queries.Offer
         public decimal? PriceFrom { get; set; }
         [FromQuery(Name = "PriceTo")]
         public decimal? PriceTo { get; set; }
+        [FromQuery(Name = "FarmerName")]
+        public string? FarmerName { get; set; }
         #nullable disable
     }
 }

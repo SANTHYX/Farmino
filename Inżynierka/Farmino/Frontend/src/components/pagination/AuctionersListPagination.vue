@@ -1,7 +1,12 @@
 <template>
   <div>
     <div id="auctioners-list-pagination">
-      <button v-for="index in participantPagesNumber" :key="index" @click="fetchPage(index)">
+      <button
+        v-for="index in participantPagesNumber"
+        :key="index"
+        id="page-btn"
+        @click="fetchPage(index)"
+      >
         {{ index }}
       </button>
     </div>
@@ -35,4 +40,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#auctioners-list-pagination {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 3rem 0;
+  padding: 0.5rem;
+
+  #page-btn {
+    width: 30px;
+    height: 35px;
+  }
+}
+</style>

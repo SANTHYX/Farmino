@@ -8,12 +8,21 @@ import {
   uniEdit,
   uniPlusCircle,
   uniMapMarkerInfo,
+  uniSearch,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
 import store from './store/store';
 
-Unicons.add([uniInfoCircle, uniEnvelope, uniAngleDown, uniEdit, uniPlusCircle, uniMapMarkerInfo]);
+Unicons.add([
+  uniInfoCircle,
+  uniEnvelope,
+  uniAngleDown,
+  uniEdit,
+  uniPlusCircle,
+  uniMapMarkerInfo,
+  uniSearch,
+]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);
 Vue.config.productionTip = false;

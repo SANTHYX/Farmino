@@ -1,23 +1,25 @@
 <template>
   <div>
-    <div id="observed">
-      <observed-list />
+    <div id="my-auctions">
+      <my-auctions-list />
     </div>
   </div>
 </template>
 
 <script>
-import ObservedList from '@/components/lists/ObservedList.vue';
+import MyAuctionsList from '@/components/lists/MyAuctionsList.vue';
 
 export default {
+  name: 'my-auctions',
+
   components: {
-    ObservedList,
+    MyAuctionsList,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#observed {
+#my-auctions {
   @include flex-centred-site-col;
 }
 </style>

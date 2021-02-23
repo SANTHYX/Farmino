@@ -72,7 +72,7 @@ const offer = {
     },
 
     async BROWSE_OFFERS({ commit }, {
-      phrase, priceFrom, priceTo, page,
+      phrase, priceFrom, priceTo, farmerName, page,
     }) {
       try {
         const response = await api.get('/offers', {
@@ -80,6 +80,7 @@ const offer = {
             phrase,
             priceFrom,
             priceTo,
+            farmerName,
             page,
           },
         });

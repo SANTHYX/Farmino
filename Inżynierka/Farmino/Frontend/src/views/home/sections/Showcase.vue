@@ -15,6 +15,7 @@
 #showcase {
   display: flex;
   justify-content: center;
+
   #hero-image {
     display: flex;
     flex-direction: column;
@@ -23,6 +24,7 @@
       url('../../../assets/images/noah-buscher-tractor-unsplash.jpg') no-repeat center center/cover;
     height: 80vh;
     width: 100%;
+
     #text-wraper {
       display: flex;
       flex-direction: column;
@@ -30,13 +32,20 @@
       align-self: flex-start;
       font-weight: 700;
       font-size: 1.7rem;
-      margin: 0 3rem;
+      margin: 0 4rem;
+
       span {
         color: rgb(255, 255, 255);
       }
+
       p {
         margin-top: 0.5rem;
         font-size: 1.3rem;
+        color: rgb(61, 61, 61);
+      }
+
+      h1 {
+        color: rgb(61, 61, 61);
       }
     }
   }
@@ -46,6 +55,7 @@
     #showcase {
       #hero-image {
         height: 100vh;
+
         #text-wraper {
           width: 70vw;
           text-align: center;
@@ -53,6 +63,7 @@
           margin: 3rem 0 0 0;
           font-size: 1.6rem;
         }
+
         #btn {
           margin: 1rem 0;
           align-self: center;

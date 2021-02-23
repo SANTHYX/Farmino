@@ -1,22 +1,14 @@
 <template>
   <div>
-    <div id="offer-list-item" :offerItem="offerItem">
-      <div id="offer-img"></div>
-
-      <div id="info-wraper">
-        <h2>{{ offerItem.title }}</h2>
-        <h3>{{ offerItem.product.basePrice + 'zł/' + offerItem.product.baseWeightUnit }}</h3>
-        <button @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
-          Sprawdź
-        </button>
-      </div>
+    <div id="my-offer-list-item">
+        <h1>{{offerItem.title}}</h1>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'offer-list-item',
+  name: 'my-offer-list-item',
 
   props: {
     offerItem: {
@@ -28,25 +20,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#offer-list-item {
+#my-offer-list-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
   background: rgb(243, 243, 243);
-  width: 20vw;
+  width: 25vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
-  transition: 0.1s all;
 
   #offer-img {
     height: 220px;
-    width: 20vw;
+    width: 25vw;
     min-width: 240px;
     align-self: center;
     background: rgb(122, 122, 122);
-    transition: 0.1s all;
   }
 
   #info-wraper {
@@ -69,14 +59,6 @@ export default {
       margin: 0.5rem 0;
     }
   }
-}
-
-#offer-list-item:hover {
-  box-shadow: 1px 1px 12px rgb(156, 156, 156);
-  transform: translateY(-5px);
-  transition: all 0.1s ease;
-  -moz-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
 }
 
 @media screen and(max-width: $tablet) {

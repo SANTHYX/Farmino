@@ -40,14 +40,21 @@ namespace Farmino.Service.Service
         {
             var offers = _offerRepository.GetAllAsync();
 
+            if (query.FarmerName != null)
+            {
+                offers = offers.Where(x => x.Farmer.User.UserName == query.FarmerName);
+            }
+
             if (query.Phrase != null)
             {
                 offers = offers.Where(x => x.Title.ToLower().Contains(query.Phrase.ToLower()));
             }
+
             if (query.PriceFrom != null)
             {
                 offers = offers.Where(x => x.Product.BasePrice >= query.PriceFrom);
             }
+
             if (query.PriceTo != null)
             {
                 offers = offers.Where(x => x.Product.BasePrice <= query.PriceTo);

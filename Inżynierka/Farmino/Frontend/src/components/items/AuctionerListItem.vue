@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="auction-list-item">
-      <h1>{{ auctionerItem.proposedPrice }}</h1>
+      <div id="content">
+        <h2>{{ auctionerItem.proposedPrice }}</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +24,7 @@ export default {
 <style lang="scss" scoped>
 #auction-list-item {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   justify-items: center;
   border-top: 1px solid rgb(211, 211, 211);
   border-bottom: 1px solid rgb(211, 211, 211);
