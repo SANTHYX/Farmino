@@ -9,6 +9,7 @@ import {
   uniPlusCircle,
   uniMapMarkerInfo,
   uniSearch,
+  uniDropbox,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -22,6 +23,7 @@ Unicons.add([
   uniPlusCircle,
   uniMapMarkerInfo,
   uniSearch,
+  uniDropbox,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);
