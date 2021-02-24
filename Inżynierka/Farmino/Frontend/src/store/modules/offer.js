@@ -26,8 +26,11 @@ const offer = {
       return state.order;
     },
 
-    GET_PAGES_NUMBER(state) {
-      return state.offersAll.pagesNumber;
+    GET_PAGE_DETAILS(state) {
+      return {
+        pagesNumber: state.offersAll.pagesNumber,
+        foundResults: state.offersAll.foundResults,
+      };
     },
   },
 

@@ -8,5 +8,6 @@ namespace Farmino.Service.DTO
         public int Page { get; set; }
         public int ResultsPerPage { get; set; }
         public int PagesNumber { get; set; }
+        public long FoundResults { get; set; }
     }
 }

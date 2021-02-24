@@ -2,13 +2,11 @@
   <div>
     <div id="offer-list-item" :offerItem="offerItem">
       <div id="offer-img"></div>
-
-      <div id="info-wraper">
+      <div id="offer-detail">
         <h2>{{ offerItem.title }}</h2>
-        <h3>{{ offerItem.product.basePrice + 'zł/' + offerItem.product.baseWeightUnit }}</h3>
-        <button @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
-          Sprawdź
-        </button>
+        <div>
+          <unicon name="globe" fill="red" />
+        </div>
       </div>
     </div>
   </div>
@@ -31,42 +29,30 @@ export default {
 #offer-list-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
-  background: rgb(243, 243, 243);
-  width: 20vw;
+  background: rgb(255, 255, 255);
+  width: 17vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
   transition: 0.1s all;
 
   #offer-img {
-    height: 220px;
-    width: 20vw;
+    height: 250px;
+    width: 17vw;
     min-width: 240px;
     align-self: center;
     background: rgb(122, 122, 122);
     transition: 0.1s all;
   }
 
-  #info-wraper {
+  #offer-detail {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
 
     h2 {
-      display: flex;
-      text-align: center;
-      margin: 0.3rem 0;
-    }
-
-    h3 {
-      color: rgb(199, 161, 36);
-    }
-
-    button {
-      margin: 0.5rem 0;
+      color: rgb(73, 73, 73);
     }
   }
 }

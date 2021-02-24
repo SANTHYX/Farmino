@@ -12,6 +12,7 @@ import {
   uniDropbox,
   uniBookReader,
   uniMoneyBillSlash,
+  uniGlobe,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -28,6 +29,7 @@ Unicons.add([
   uniDropbox,
   uniBookReader,
   uniMoneyBillSlash,
+  uniGlobe,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);

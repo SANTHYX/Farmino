@@ -2,7 +2,7 @@
   <div>
     <div id="pagination-list">
       <button
-        v-for="index in offersPageNumbers"
+        v-for="index in pageDetails.pagesNumber"
         :key="index"
         id="page-btn"
         @click="fetchPage(index)"
@@ -21,7 +21,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      offersPageNumbers: 'offer/GET_PAGES_NUMBER',
+      pageDetails: 'offer/GET_PAGE_DETAILS',
     }),
   },
 

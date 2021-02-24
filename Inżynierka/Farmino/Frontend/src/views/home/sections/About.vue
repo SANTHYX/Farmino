@@ -3,7 +3,7 @@
     <div id="content">
       <div id="about-section">
         <div class="content-wraper">
-          <div class="img-wrap"></div>
+          <div class="img-wrap" id="hands"></div>
           <div class="text-wraper">
             <div class="text-fix">
               <h1>Oferty Z Całego Regionu</h1>
@@ -20,23 +20,20 @@
           </div>
         </div>
       </div>
-      <div id="auction-section">
+      <div id="about-section">
         <div class="content-wraper">
-          <div class="img-wrap"></div>
           <div class="text-wraper">
             <div class="text-fix">
-              <h1>Oferty Z Całego Regionu</h1>
+              <h1>Szukaj Okazji W Aukcjach</h1>
               <hr />
               <p>
-                Z naszym serwisem będziesz mógł zamawiać produkty od małych gospodarstw zajmujących
-                się przetwórstwem lub uprawami warzyw i czy owoców. Płatności są realizowane
-                bezposrednio podczas dostaw. Model biznesowy aplikacji opiera się o złożenie
-                zamówienia. Rolnik decyduje czy przyjmuje od ciebie ofertę czy nie. Pamiętaj, że
-                możecie się ze sobą kontaktować i tak naprawdę serwis tylko informuje dwie strony o
-                checi zawarcia transakcji.
+                Ceny są nieprzychylne? Chcesz kupić coś w wiekszej ilości oszczędzając? Szukaj
+                okazji w aukcjach.Moduł pozwala na wystawianie towarów gdzie to użytkownicy podają
+                swoje propozycje.Dzięki niemu możesz nabyć hurtowo dużą ilość surowca bądź produktu.
               </p>
             </div>
           </div>
+          <div class="img-wrap" id="hands"></div>
         </div>
       </div>
     </div>
@@ -49,7 +46,7 @@ export default {};
 
 <style lang="scss" scoped>
 #content {
-  min-height: 60vh;
+  min-height: 100vh;
   background: linear-gradient(0deg, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 100%);
 
   #about-section {
@@ -68,12 +65,19 @@ export default {};
       .img-wrap {
         width: 30vw;
         min-height: 50vh;
+      }
+
+      #hands {
         background: linear-gradient(
             0deg,
-            rgba(245, 200, 118, 0.712) 0%,
-            rgba(253, 221, 205, 0.596) 100%
+            rgba(245, 200, 118, 0.71) 0%,
+            rgba(253, 221, 205, 0.59) 100%
           ),
           url('../../../assets/images/gabriel-jimenez-unsplash.jpg') no-repeat center center/cover;
+      }
+
+      #id {
+        background: grey;
       }
 
       .text-wraper {
@@ -105,6 +109,8 @@ export default {};
           }
         }
       }
+    }
+    #auction-section {
     }
   }
 }

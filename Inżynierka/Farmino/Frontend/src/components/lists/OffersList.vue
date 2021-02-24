@@ -1,7 +1,16 @@
 <template>
   <div>
     <div id="list-wraper">
-      <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
+      <div id="info-wraper">
+        <h1>Oferty</h1>
+        <p>
+          <strong>Wyniki: {{ pageDetails.foundResults }}</strong>
+        </p>
+      </div>
+
+      <div id="items-list">
+        <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
+      </div>
     </div>
     <offers-list-pagination />
   </div>
@@ -23,7 +32,7 @@ export default {
   computed: {
     ...mapGetters({
       offers: 'offer/GET_OFFERS_ALL',
-      offerPagesNumber: 'offer/GET_PAGES_NUMBER',
+      pageDetails: 'offer/GET_PAGE_DETAILS',
     }),
   },
 
@@ -37,13 +46,22 @@ export default {
 #list-wraper {
   margin: 0 0 1rem 0;
   display: flex;
-  justify-content: baseline;
+  flex-direction: column;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
   width: 70vw;
   min-width: 50vw;
-  min-height: 80vh;
+  min-height: 100vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+}
+
+#info-wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgb(216, 216, 216);
+  box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
 }
 
 @media screen and(max-width: $tablet) {

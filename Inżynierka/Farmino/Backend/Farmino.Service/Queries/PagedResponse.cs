@@ -12,16 +12,18 @@ namespace Farmino.Service.Queries
         public int Page { get; protected set; }
         public int ResultsPerPage { get; protected set; }
         public int PagesNumber { get; protected set; }
+        public long FoundResults { get; protected set; }
 
         protected PagedResponse() { }
 
         public PagedResponse(IEnumerable<T> data, int page, 
-            int resultsPerPage, int pagesNumber)
+            int resultsPerPage, int pagesNumber, long foundResults)
         {
             Data = data;
             Page = page > pagesNumber ? pagesNumber : page;
             ResultsPerPage = resultsPerPage;
             PagesNumber = pagesNumber;
+            FoundResults = foundResults;
         }
 
         public async static Task<PagedResponse<T>> GetPagedResponse(IQueryable<T> context, PagedQuery paged)
@@ -41,9 +43,10 @@ namespace Farmino.Service.Queries
             var _data = await context.Skip((_page - 1) * _resultPerPage)
                 .Take(paged.Results).ToListAsync();
 
-            var _pagesNumber = (int)Math.Ceiling((decimal)await context.CountAsync()/_resultPerPage);
+            var _foundResults = await context.CountAsync();
+            var _pagesNumber = (int)Math.Ceiling((decimal)_foundResults/_resultPerPage);
 
-            return new PagedResponse<T>(_data, _page, _resultPerPage, _pagesNumber);
+            return new PagedResponse<T>(_data, _page, _resultPerPage, _pagesNumber, _foundResults);
         }
     }
 }
