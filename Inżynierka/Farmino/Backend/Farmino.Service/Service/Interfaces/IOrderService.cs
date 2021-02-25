@@ -16,6 +16,6 @@ namespace Farmino.Service.Service.Interfaces
         Task CancelOrder(Guid orderId);
         Task ReleaseOrder(Guid orderId);
         Task SetupRealisationDate(Guid orderId, DateTime realisationDate);
-        Task<IEnumerable<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(DateTime date, string userName);
+        Task<PagedResponseDTO<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(PagedQuery query, DateTime date, string userName);
     }
 }

@@ -15,12 +15,24 @@
         <p>{{ orderItem.offer.title }}</p>
       </div>
       <button class="btn" @click="checkDetails"><unicon name="map-marker-info" /></button>
-      <button class="btn">Trasa</button>
+      <button
+        class="btn"
+        @click="
+          getRouteNode({
+            farmerNodes: user.profile.address.node,
+            clientNodes: orderItem.orderDetails.address.node,
+          })
+        "
+      >
+        Trasa
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'client-order-list-item',
 
@@ -37,7 +49,17 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters({
+      user: 'user/GET_STATE_USER',
+    }),
+  },
+
   methods: {
+    ...mapActions({
+      getRouteNode: 'direction/GET_ROUTE_NODES',
+    }),
+
     checkDetails() {
       this.$router.push({
         name: 'daily-deliver-overview',

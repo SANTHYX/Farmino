@@ -51,6 +51,16 @@ export default {
   #page-btn {
     width: 30px;
     height: 35px;
+    border: 1px solid rgb(224, 224, 224);
+    font-size: 0.9rem;
+    transition: 0.1s ease-in;
+  }
+
+  #page-btn:hover {
+    width: 30px;
+    height: 35px;
+    background: rgb(235, 235, 235);
+    border: 1px solid rgba(255, 166, 0, 0.534);
   }
 }
 </style>

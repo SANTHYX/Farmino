@@ -8,14 +8,12 @@
 </template>
 
 <script>
-import DeliversMap from '@/components/maps/DeliversMap.vue';
+import DeliversMap from '../../components/maps/DeliversMap.vue';
 
 export default {
   name: 'daily-delivers',
 
-  components: {
-    DeliversMap,
-  },
+  components: { DeliversMap },
 
   created() {
     this.$store.dispatch('order/GET_DELIVERY_ORDERS', {

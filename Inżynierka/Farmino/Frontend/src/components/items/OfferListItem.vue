@@ -5,8 +5,14 @@
       <div id="offer-detail">
         <h2>{{ offerItem.title }}</h2>
         <div>
-          <unicon name="globe" fill="red" />
+          <unicon name="globe" fill="gray" />
         </div>
+      </div>
+      <div id="price-details">
+        <h2>{{ `${offerItem.product.basePrice}zł/${offerItem.product.baseWeightUnit}` }}</h2>
+        <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
+          Sprawdz
+        </button>
       </div>
     </div>
   </div>
@@ -31,7 +37,7 @@ export default {
   flex-direction: column;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
-  background: rgb(255, 255, 255);
+  background: rgb(245, 245, 245);
   width: 17vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
@@ -55,6 +61,27 @@ export default {
       color: rgb(73, 73, 73);
     }
   }
+
+  #price-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    h2 {
+      color: rgb(73, 73, 73);
+      font-size: 1.2rem;
+    }
+
+    #btn {
+      background: none;
+      padding: 0.4rem;
+      cursor: pointer;
+      border: 1px solid rgb(185, 185, 185);
+      width: 40%;
+      font-size: 0.9rem;
+    }
+  }
 }
 
 #offer-list-item:hover {
@@ -63,6 +90,16 @@ export default {
   transition: all 0.1s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
+  border-bottom: orange 5px solid;
+
+  #price-details {
+    #btn:hover {
+      transition: 0.5s ease-in;
+      background: none;
+      border: 1px solid orange;
+      color: rgb(233, 153, 4);
+    }
+  }
 }
 
 @media screen and(max-width: $tablet) {

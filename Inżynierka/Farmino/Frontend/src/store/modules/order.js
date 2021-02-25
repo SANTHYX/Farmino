@@ -6,7 +6,7 @@ const order = {
   state: {
     order: {},
     ordersAll: {},
-    deliveryOrders: [],
+    deliveryOrders: {},
   },
 
   getters: {

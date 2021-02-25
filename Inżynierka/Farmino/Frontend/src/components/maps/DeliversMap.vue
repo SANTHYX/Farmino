@@ -20,6 +20,12 @@
             deliverOrder.orderDetails.address.node.lat,
           ]"
         />
+        <MglGeojsonLayer
+          :sourceId="geoJsonSource.data.id"
+          :source="geoJsonSource"
+          layerId="myLayer"
+          :layer="geoJsonLayer"
+        />
       </MglMap>
     </div>
   </div>
@@ -27,7 +33,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { MglMap, MglMarker } from 'vue-mapbox';
+import { MglMap, MglMarker, MglGeojsonLayer } from 'vue-mapbox';
 
 export default {
   name: 'delivers-map',
@@ -35,6 +41,7 @@ export default {
   components: {
     MglMap,
     MglMarker,
+    MglGeojsonLayer,
   },
 
   data() {
@@ -43,6 +50,19 @@ export default {
         'pk.eyJ1Ijoic2FudGh5eCIsImEiOiJja2sxaXU5ejAwcng4Mm5wY2xhOXlicDZsIn0.1Ur47k0QWf9nIulyzO6zOQ',
       mapStyle: 'mapbox://styles/mapbox/streets-v11',
       zoom: 7,
+
+      geoJsonLayer: {
+        id: 'route',
+        type: 'line',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round',
+        },
+        paint: {
+          'line-color': '#888',
+          'line-width': 4,
+        },
+      },
     };
   },
 
@@ -50,11 +70,8 @@ export default {
     ...mapGetters({
       deliveryOrders: 'order/GET_DELIVERY_ORDERS',
       user: 'user/GET_STATE_USER',
+      geoJsonSource: 'direction/GET_CLIENT_GEONODE',
     }),
-  },
-
-  methods: {
-    fetchDirections() {},
   },
 };
 </script>

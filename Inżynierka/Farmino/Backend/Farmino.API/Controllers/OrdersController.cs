@@ -31,8 +31,8 @@ namespace Farmino.API.Controllers
             => Ok(await _orderService.BrowseOrdersAsync(paged, query));
 
         [HttpGet("delivery-orders/{date},{userName}")]
-        public async Task<IActionResult> Get(DateTime date, string userName)
-            => Ok(await _orderService.BrowseDeliverOrdersAsync(date, userName));
+        public async Task<IActionResult> Get([FromQuery] PagedQuery paged, DateTime date, string userName)
+            => Ok(await _orderService.BrowseDeliverOrdersAsync(paged, date, userName));
 
 
         [HttpPut]

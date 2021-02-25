@@ -8,7 +8,11 @@
         </p>
       </div>
 
-      <div id="items-list">
+      <div id="spinner" v-if="loaderVisable">
+        <loading-spinner />
+      </div>
+
+      <div id="items-list" v-else>
         <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
       </div>
     </div>
@@ -20,13 +24,21 @@
 import { mapGetters } from 'vuex';
 import OfferListItem from '../items/OfferListItem.vue';
 import OffersListPagination from '../pagination/OffersListPagination.vue';
+import LoadingSpinner from '../utils/LoadingSpinner.vue';
 
 export default {
   name: 'offers-list',
 
+  data() {
+    return {
+      loaderVisable: true,
+    };
+  },
+
   components: {
     OfferListItem,
     OffersListPagination,
+    LoadingSpinner,
   },
 
   computed: {
@@ -36,8 +48,9 @@ export default {
     }),
   },
 
-  created() {
-    this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
+  async created() {
+    await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
+    this.loaderVisable = false;
   },
 };
 </script>
@@ -62,6 +75,13 @@ export default {
   padding: 1rem;
   border-bottom: 1px solid rgb(216, 216, 216);
   box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
+}
+
+#spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 @media screen and(max-width: $tablet) {

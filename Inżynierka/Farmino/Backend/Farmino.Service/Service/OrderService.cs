@@ -29,13 +29,15 @@ namespace Farmino.Service.Service
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(DateTime date, string userName)
+        public async Task<PagedResponseDTO<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(PagedQuery paged,DateTime date, string userName)
         {
-            var deliverOrders = await _orderRepository.GetAllAsync().Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
+            var deliverOrders = _orderRepository.GetAllAsync().Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
                 .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile)
-                .Where(x => x.ReleaseDate.Date == date && x.OrderStatus == OrderStatus.Przyjeta && x.Offer.Farmer.User.UserName == userName).ToListAsync();
+                .Where(x => x.ReleaseDate.Date == date && x.OrderStatus == OrderStatus.Przyjeta && x.Offer.Farmer.User.UserName == userName);
 
-            return _mapper.Map<IEnumerable<DeliverOrdersDTO>>(deliverOrders);
+            var pagedResponse = await PagedResponse<Order>.GetPagedResponse(deliverOrders, paged);
+
+            return _mapper.Map<PagedResponseDTO<DeliverOrdersDTO>>(pagedResponse);
         }
 
         public async Task<PagedResponseDTO<OrdersDTO>> BrowseOrdersAsync(PagedQuery paged, OrderQuery query)
