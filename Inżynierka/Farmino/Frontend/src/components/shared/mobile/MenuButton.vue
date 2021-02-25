@@ -61,9 +61,11 @@ export default {
       border-radius: 10px;
       transition: 0.34s;
     }
+
     #lines::before {
       transform: translateY(7px);
     }
+
     #lines::after {
       transform: translateY(-7px);
     }

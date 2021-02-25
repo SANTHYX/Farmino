@@ -4,7 +4,7 @@
       <div id="offer-img"></div>
       <div id="offer-detail">
         <h2>{{ offerItem.title }}</h2>
-        <div>
+        <div id="region">
           <unicon name="globe" fill="gray" />
         </div>
       </div>
@@ -48,7 +48,7 @@ export default {
     width: 17vw;
     min-width: 240px;
     align-self: center;
-    background: rgb(122, 122, 122);
+    background: rgb(192, 192, 192);
     transition: 0.1s all;
   }
 
@@ -94,7 +94,7 @@ export default {
 
   #price-details {
     #btn:hover {
-      transition: 0.5s ease-in;
+      transition: 0.3s ease-in;
       background: none;
       border: 1px solid orange;
       color: rgb(233, 153, 4);

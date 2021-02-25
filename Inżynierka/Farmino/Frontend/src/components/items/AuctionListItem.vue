@@ -30,34 +30,21 @@ export default {
 #auction-list-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
-  background: rgb(243, 243, 243);
-  width: 25vw;
+  background: rgb(245, 245, 245);
+  width: 17vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
+  transition: 0.1s all;
 
-  #offer-img {
-    height: 220px;
-    width: 15vw;
+  #auction-img {
+    height: 250px;
+    width: 17vw;
+    min-width: 240px;
     align-self: center;
-    background: rgb(122, 122, 122);
-  }
-
-  #info-wraper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h2 {
-      margin: 0.4rem 0;
-    }
-
-    button {
-      margin: 1rem 0;
-    }
+    background: rgb(192, 192, 192);
+    transition: 0.1s all;
   }
 }
 

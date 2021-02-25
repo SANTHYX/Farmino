@@ -65,7 +65,13 @@ export default {
 
   filters: {
     date(value) {
-      return new Date(value).toLocaleDateString();
+      let date = new Date(value).toLocaleDateString();
+
+      if (date === '1.01.1') {
+        date = 'Brak';
+      }
+
+      return date;
     },
   },
 

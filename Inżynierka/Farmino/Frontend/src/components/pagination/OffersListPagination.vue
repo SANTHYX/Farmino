@@ -59,7 +59,7 @@ export default {
   #page-btn:hover {
     width: 30px;
     height: 35px;
-    background: rgb(235, 235, 235);
+    background: rgb(248, 237, 218);
     border: 1px solid rgba(255, 166, 0, 0.534);
   }
 }
