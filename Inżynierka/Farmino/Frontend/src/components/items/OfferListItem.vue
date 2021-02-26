@@ -4,14 +4,17 @@
       <div id="offer-img"></div>
       <div id="offer-detail">
         <h2>{{ offerItem.title }}</h2>
+
         <div id="region">
-          <unicon name="globe" fill="gray" />
+          <unicon name="globe" fill="gray" width="23" />
+          <p id="region-value">Lubelskie-Pomorskie</p>
         </div>
       </div>
+
       <div id="price-details">
         <h2>{{ `${offerItem.product.basePrice}zł/${offerItem.product.baseWeightUnit}` }}</h2>
         <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
-          Sprawdz
+          Sprawdź
         </button>
       </div>
     </div>
@@ -45,7 +48,7 @@ export default {
 
   #offer-img {
     height: 250px;
-    width: 17vw;
+    width: 16.9vw;
     min-width: 240px;
     align-self: center;
     background: rgb(192, 192, 192);
@@ -54,8 +57,17 @@ export default {
 
   #offer-detail {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 1rem;
+
+    #region {
+      display: flex;
+      align-items: center;
+
+      p {
+        color: rgb(73, 73, 73);
+      }
+    }
 
     h2 {
       color: rgb(73, 73, 73);
@@ -70,7 +82,7 @@ export default {
 
     h2 {
       color: rgb(73, 73, 73);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     #btn {
@@ -87,9 +99,7 @@ export default {
 #offer-list-item:hover {
   box-shadow: 1px 1px 12px rgb(156, 156, 156);
   transform: translateY(-5px);
-  transition: all 0.1s ease;
-  -moz-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
+  transition: all 0.3s ease;
   border-bottom: orange 5px solid;
 
   #price-details {

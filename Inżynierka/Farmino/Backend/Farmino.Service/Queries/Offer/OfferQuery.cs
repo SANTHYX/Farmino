@@ -13,6 +13,8 @@ namespace Farmino.Service.Queries.Offer
         public decimal? PriceTo { get; set; }
         [FromQuery(Name = "FarmerName")]
         public string? FarmerName { get; set; }
+        [FromQuery(Name = "City")]
+        public string? City { get; set; }
         #nullable disable
     }
 }

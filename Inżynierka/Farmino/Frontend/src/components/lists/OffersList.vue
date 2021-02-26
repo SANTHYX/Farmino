@@ -8,12 +8,16 @@
         </p>
       </div>
 
-      <div id="spinner" v-if="loaderVisable">
-        <loading-spinner />
+      <div id="items-list">
+        <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
       </div>
 
-      <div id="items-list" v-else>
-        <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
+      <div id="not-found" v-if="JSON.stringify(offers) === '[]'">
+        <not-found />
+      </div>
+
+      <div id="spinner" v-if="fetchStatus">
+        <loading-spinner />
       </div>
     </div>
     <offers-list-pagination />
@@ -25,13 +29,14 @@ import { mapGetters } from 'vuex';
 import OfferListItem from '../items/OfferListItem.vue';
 import OffersListPagination from '../pagination/OffersListPagination.vue';
 import LoadingSpinner from '../utils/LoadingSpinner.vue';
+import NotFound from '../utils/NotFound.vue';
 
 export default {
   name: 'offers-list',
 
   data() {
     return {
-      loaderVisable: true,
+      fetchData: true,
     };
   },
 
@@ -39,18 +44,19 @@ export default {
     OfferListItem,
     OffersListPagination,
     LoadingSpinner,
+    NotFound,
   },
 
   computed: {
     ...mapGetters({
       offers: 'offer/GET_OFFERS_ALL',
       pageDetails: 'offer/GET_PAGE_DETAILS',
+      fetchStatus: 'offer/GET_FETCH_STATUS',
     }),
   },
 
   async created() {
     await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
-    this.loaderVisable = false;
   },
 };
 </script>
@@ -77,7 +83,8 @@ export default {
   box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
 }
 
-#spinner {
+#spinner,
+#not-found {
   display: flex;
   align-items: center;
   justify-content: center;

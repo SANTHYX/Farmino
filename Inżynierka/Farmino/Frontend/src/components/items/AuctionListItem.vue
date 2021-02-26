@@ -1,11 +1,22 @@
 <template>
   <div>
     <div id="auction-list-item" :auctionItem="auctionItem">
-      <div id="auction-img"></div>
+      <div id="auction-img">
+        <h2>{{ '01:00:01' }}</h2>
+      </div>
 
-      <div id="info-wraper">
+      <div id="auction-details">
         <h2>{{ auctionItem.title }}</h2>
-        <button @click="$router.push({ name: 'auction', params: { id: auctionItem.id } })">
+
+        <div id="region">
+          <unicon name="globe" fill="gray" width="22" />
+          <p>Lubelskie-Pomorskie</p>
+        </div>
+      </div>
+
+      <div id="interface">
+        <h2>{{ 'XDD' }}</h2>
+        <button id="btn" @click="$router.push({ name: 'auction', params: { id: auctionItem.id } })">
           Sprawdź
         </button>
       </div>
@@ -36,7 +47,7 @@ export default {
   width: 17vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
-  transition: 0.1s all;
+  transition: 0.3s all;
 
   #auction-img {
     height: 250px;
@@ -45,6 +56,50 @@ export default {
     align-self: center;
     background: rgb(192, 192, 192);
     transition: 0.1s all;
+  }
+
+  #auction-details {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: rgb(73, 73, 73);
+
+    #region {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  #interface {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    color: rgb(73, 73, 73);
+
+    #btn {
+      background: none;
+      padding: 0.4rem;
+      cursor: pointer;
+      border: 1px solid rgb(185, 185, 185);
+      width: 40%;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+#auction-list-item:hover {
+  box-shadow: 1px 1px 12px rgb(156, 156, 156);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  border-bottom: orange 5px solid;
+
+  #interface {
+    #btn:hover {
+      transition: 0.3s ease-in;
+      background: none;
+      border: 1px solid orange;
+      color: rgb(233, 153, 4);
+    }
   }
 }
 

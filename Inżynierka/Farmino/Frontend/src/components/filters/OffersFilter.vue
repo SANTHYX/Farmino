@@ -67,7 +67,7 @@
           />
         </div>
 
-        <button @click="search">Szukaj</button>
+        <button id="btn" @click="search">Szukaj</button>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@ export default {
       getOffers: 'offer/BROWSE_OFFERS',
     }),
 
-    search() {
+    async search() {
       this.$router.replace({
         name: 'offers',
         query: {
@@ -105,7 +105,7 @@ export default {
           ...this.query,
         },
       });
-      this.getOffers({
+      await this.getOffers({
         ...this.$route.query,
         ...this.query,
       });

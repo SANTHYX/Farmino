@@ -5,7 +5,7 @@
         <router-link to="home" tag="h1"><a>FARMINO</a></router-link>
       </div>
       <div id="navbar">
-        <search-bar />
+        <the-search-bar />
 
         <div id="nav-menu" v-if="!isAuthorized">
           <ul>
@@ -106,27 +106,27 @@
           </ul>
         </div>
 
-        <menu-button @mobile-menu-event="ShowMenu" />
+        <the-menu-button @mobile-menu-event="ShowMenu" />
       </div>
 
-      <moblie-menu :showMenu="showMenu" />
+      <the-moblie-menu :showMenu="showMenu" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import MenuButton from './mobile/MenuButton.vue';
-import MoblieMenu from './mobile/MobileMenu.vue';
-import SearchBar from './SearchBar.vue';
+import TheMenuButton from './mobile/TheMenuButton.vue';
+import TheMoblieMenu from './mobile/TheMobileMenu.vue';
+import TheSearchBar from './TheSearchBar.vue';
 
 export default {
   name: 'navbar',
 
   components: {
-    MenuButton,
-    MoblieMenu,
-    SearchBar,
+    TheMenuButton,
+    TheMoblieMenu,
+    TheSearchBar,
   },
 
   data() {

@@ -2,6 +2,14 @@
   <div>
     <div id="list-wraper">
       <order-list-item v-for="order in orders" :key="order.id" :orderItem="order" />
+
+      <div id="not-found" v-if="JSON.stringify(orders) === '[]'">
+        <not-found />
+      </div>
+
+      <div id="spinner" v-if="fetchingData">
+        <loading-spinner />
+      </div>
     </div>
     <orders-list-pagination />
   </div>
@@ -11,6 +19,8 @@
 import { mapGetters } from 'vuex';
 import OrderListItem from '../items/OrderListItem.vue';
 import OrdersListPagination from '../pagination/OrdersListPagination.vue';
+import NotFound from '../utils/NotFound.vue';
+import LoadingSpinner from '../utils/LoadingSpinner.vue';
 
 export default {
   name: 'orders-list',
@@ -18,6 +28,14 @@ export default {
   components: {
     OrderListItem,
     OrdersListPagination,
+    NotFound,
+    LoadingSpinner,
+  },
+
+  data() {
+    return {
+      fetchingData: true,
+    };
   },
 
   computed: {
@@ -27,8 +45,11 @@ export default {
     }),
   },
 
-  created() {
-    this.$store.dispatch('order/GET_ORDERS', { customerName: this.$store.state.auth.userName });
+  async created() {
+    await this.$store.dispatch('order/GET_ORDERS', {
+      customerName: this.$store.state.auth.userName,
+    });
+    this.fetchingData = false;
   },
 };
 </script>
@@ -44,6 +65,14 @@ export default {
   min-width: 50vw;
   min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+
+  #not-found,
+  #spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 }
 
 @media screen and(max-width: $tablet) {

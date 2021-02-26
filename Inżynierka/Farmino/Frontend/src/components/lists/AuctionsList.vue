@@ -2,6 +2,14 @@
   <div>
     <div id="list-wraper">
       <auction-list-item v-for="auction in auctions" :key="auction.id" :auctionItem="auction" />
+
+      <div id="not-found" v-if="JSON.stringify(auctions) === '[]'">
+        <not-found />
+      </div>
+
+      <div id="spinner">
+        <loading-spinner />
+      </div>
     </div>
     <auctions-list-pagination />
   </div>
@@ -11,6 +19,8 @@
 import { mapGetters } from 'vuex';
 import AuctionListItem from '../items/AuctionListItem.vue';
 import AuctionsListPagination from '../pagination/AuctionsListPagination.vue';
+import NotFound from '../utils/NotFound.vue';
+import LoadingSpinner from '../utils/LoadingSpinner.vue';
 
 export default {
   name: 'auctions-list',
@@ -18,6 +28,8 @@ export default {
   components: {
     AuctionListItem,
     AuctionsListPagination,
+    NotFound,
+    LoadingSpinner,
   },
 
   computed: {
@@ -37,13 +49,19 @@ export default {
 #list-wraper {
   margin: 0 0 1rem 0;
   display: flex;
-  justify-content: baseline;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
-  width: 70vw;
-  min-width: 50vw;
+  min-width: 70vw;
   min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+
+  #not-found,
+  #spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+  }
 }
 
 @media screen and(max-width: $tablet) {

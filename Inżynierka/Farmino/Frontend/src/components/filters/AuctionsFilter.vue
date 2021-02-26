@@ -66,7 +66,7 @@
         />
       </div>
 
-      <button @click="search">Szukaj</button>
+      <button id="btn" @click="search">Szukaj</button>
     </div>
   </div>
 </template>
