@@ -7,7 +7,7 @@
         <not-found />
       </div>
 
-      <div id="spinner">
+      <div id="spinner" v-if="fetchingData">
         <loading-spinner />
       </div>
     </div>
@@ -25,11 +25,10 @@ import LoadingSpinner from '../utils/LoadingSpinner.vue';
 export default {
   name: 'auctions-list',
 
-  components: {
-    AuctionListItem,
-    AuctionsListPagination,
-    NotFound,
-    LoadingSpinner,
+  data() {
+    return {
+      fetchingData: true,
+    };
   },
 
   computed: {
@@ -39,8 +38,16 @@ export default {
     }),
   },
 
+  components: {
+    AuctionListItem,
+    AuctionsListPagination,
+    NotFound,
+    LoadingSpinner,
+  },
+
   created() {
     this.$store.dispatch('auction/GET_AUCTIONS', this.$route.query);
+    this.fetchingData = false;
   },
 };
 </script>
@@ -68,8 +75,9 @@ export default {
   #list-wraper {
     margin: 12rem 0;
     min-height: 100vh;
-    width: 90vw;
+    width: 80vw;
     flex-direction: column;
+    align-items: center;
   }
 }
 </style>

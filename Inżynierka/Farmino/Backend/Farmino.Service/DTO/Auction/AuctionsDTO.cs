@@ -8,5 +8,6 @@ namespace Farmino.Service.DTO.Auction
         public Guid Id { get; set; }
         public string Title { get; set; }
         public AuctionerDTO Auctioner { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

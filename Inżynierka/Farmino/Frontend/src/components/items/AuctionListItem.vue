@@ -1,16 +1,23 @@
 <template>
   <div>
     <div id="auction-list-item" :auctionItem="auctionItem">
-      <div id="auction-img">
-        <h2>{{ '01:00:01' }}</h2>
-      </div>
+      <div id="auction-img"></div>
 
       <div id="auction-details">
-        <h2>{{ auctionItem.title }}</h2>
+        <div id="title-wraper">
+          <h2>{{ auctionItem.title }}</h2>
+          <div id="end">
+            <unicon name="clock-two" fill="#494949" width="20" />
+            <h3>Koniec</h3>
+          </div>
+        </div>
 
         <div id="region">
-          <unicon name="globe" fill="gray" width="22" />
-          <p>Lubelskie-Pomorskie</p>
+          <div id="location">
+            <unicon name="globe" fill="gray" width="22" />
+            <p>Pomorskie</p>
+          </div>
+          <p>{{ auctionItem.endDate | date }}</p>
         </div>
       </div>
 
@@ -27,6 +34,18 @@
 <script>
 export default {
   name: 'auction-list-item',
+
+  filters: {
+    date(value) {
+      let date = new Date(value).toLocaleDateString();
+
+      if (date === '1.01.1') {
+        date = 'Brak';
+      }
+
+      return date;
+    },
+  },
 
   props: {
     auctionItem: {
@@ -48,12 +67,15 @@ export default {
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
   transition: 0.3s all;
+  color: rgb(73, 73, 73);
 
   #auction-img {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     height: 250px;
     width: 17vw;
     min-width: 240px;
-    align-self: center;
     background: rgb(192, 192, 192);
     transition: 0.1s all;
   }
@@ -62,11 +84,26 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    color: rgb(73, 73, 73);
+
+    #title-wraper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      #end {
+        display: flex;
+      }
+    }
 
     #region {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+
+      #location {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 
@@ -74,7 +111,6 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    color: rgb(73, 73, 73);
 
     #btn {
       background: none;
@@ -105,6 +141,8 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #auction-list-item {
+    width: 73vw;
+
     #auction-img {
       width: 73vw;
     }

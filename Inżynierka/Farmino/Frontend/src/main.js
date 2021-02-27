@@ -13,6 +13,8 @@ import {
   uniBookReader,
   uniMoneyBillSlash,
   uniGlobe,
+  uniClockTwo,
+  uniTruck,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -30,6 +32,8 @@ Unicons.add([
   uniBookReader,
   uniMoneyBillSlash,
   uniGlobe,
+  uniClockTwo,
+  uniTruck,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);

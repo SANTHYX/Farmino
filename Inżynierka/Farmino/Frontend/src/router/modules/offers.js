@@ -1,3 +1,5 @@
+import localStorageManager from '../../plugins/localStorageManager';
+
 const offerRoutes = [
   {
     path: '/offers',
@@ -20,6 +22,11 @@ const offerRoutes = [
     name: 'make-order',
     props: true,
     component: () => import('@/views/offers/MakeOrder.vue'),
+    beforeEnter(to, from, next) {
+      if (localStorageManager.isAuthorized) {
+        next();
+      }
+    },
   },
   {
     path: '/offers/:id/summary',

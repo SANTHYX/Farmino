@@ -7,7 +7,7 @@
         <not-found />
       </div>
 
-      <div id="spinner">
+      <div id="spinner" v-if="fetchingData">
         <loading-spinner />
       </div>
     </div>
@@ -27,6 +27,12 @@ export default {
     LoadingSpinner,
   },
 
+  data() {
+    return {
+      fetchingData: true,
+    };
+  },
+
   computed: {
     ...mapGetters({
       offers: 'offer/GET_OFFERS_ALL',
@@ -35,6 +41,7 @@ export default {
 
   created() {
     this.$store.dispatch('offer/BROWSE_OFFERS', { farmerName: this.$store.state.auth.userName });
+    this.fetchingData = false;
   },
 };
 </script>

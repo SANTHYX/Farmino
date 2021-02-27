@@ -7,36 +7,42 @@
           <span>{{ orderItem.customerId }}</span>
         </h4>
       </div>
+
       <div id="offer-title" class="order-details">
         <h4>Tytuł</h4>
         <h4>
           <span>{{ orderItem.offer.title }}</span>
         </h4>
       </div>
+
       <div id="summary-price" class="order-details">
         <h4>Łączny koszt</h4>
         <h4>
           <span>{{ orderItem.priceSummary + 'zł' }}</span>
         </h4>
       </div>
+
       <div id="bought-quantity" class="order-details">
         <h4>Zamówiono</h4>
         <h4>
           <span>{{ orderItem.orderQuantity + orderItem.offer.product.baseWeightUnit }}</span>
         </h4>
       </div>
+
       <div id="contact" class="order-details">
         <h4>Data Realizacji</h4>
         <h4>
           <span>{{ orderItem.releaseDate | date }}</span>
         </h4>
       </div>
+
       <div id="contact" class="order-details">
         <h4>Status</h4>
         <h4>
           <span>{{ orderItem.orderStatus }}</span>
         </h4>
       </div>
+
       <div id="order-details">
         <button @click="buttonContent = '541-342-111'">{{ buttonContent }}</button>
       </div>
