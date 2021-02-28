@@ -1,0 +1,59 @@
+<template>
+  <div>
+    <div id="picture-picker">
+      <div id="photo-overview" v-if="containImage"></div>
+      <div id="picker" v-else>
+        <div id="content">
+          <unicon name="camera" width="120" height="100" fill="#494949" />
+          <h1>Przeciągnij</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'offer-picture-picker',
+
+  data() {
+    return {
+      containImage: false,
+    };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+#picture-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #photo-overview {
+    background: grey;
+    width: 25vw;
+    height: 40vh;
+  }
+
+  #picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(238, 238, 238);
+    border: 3px dotted rgb(129, 129, 129);
+    width: 25vw;
+    height: 40vh;
+
+    #content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      h1 {
+        color: rgb(165, 165, 165);
+      }
+    }
+  }
+}
+</style>

@@ -2,6 +2,14 @@
   <div>
     <div id="list-wraper">
       <delivery-list-item v-for="order in orders" :key="order.id" :deliveryItem="order" />
+
+      <div id="not-found" v-if="JSON.stringify(orders) === '[]'">
+        <not-found />
+      </div>
+
+      <div id="spinner" v-if="fetchingData">
+        <loading-spinner />
+      </div>
     </div>
     <delivery-list-pagination />
   </div>
@@ -11,6 +19,8 @@
 import { mapGetters } from 'vuex';
 import DeliveryListItem from '../items/DeliveryListItem.vue';
 import DeliveryListPagination from '../pagination/DeliveryListPagination.vue';
+import NotFound from '../utils/NotFound.vue';
+import LoadingSpinner from '../utils/LoadingSpinner.vue';
 
 export default {
   name: 'delivers-list',
@@ -18,6 +28,14 @@ export default {
   components: {
     DeliveryListItem,
     DeliveryListPagination,
+    NotFound,
+    LoadingSpinner,
+  },
+
+  data() {
+    return {
+      fetchingData: false,
+    };
   },
 
   computed: {
@@ -49,6 +67,14 @@ export default {
   width: 70vw;
   min-width: 50vw;
   min-height: 80vh;
+}
+
+#not-found,
+#spinner {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and(max-width: $tablet) {

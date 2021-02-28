@@ -1,11 +1,33 @@
 <template>
   <div>
-    <div id="list-wraper"></div>
+    <div id="list-wraper">
+      <div id="not-found">
+        <not-found />
+      </div>
+
+      <div id="spinner">
+        <loading-spinner />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import NotFound from '../utils/NotFound.vue';
+import LoadingSpinner from '../utils/LoadingSpinner.vue';
+
+export default {
+  name: 'observed-list',
+
+  data() {
+    return {};
+  },
+
+  components: {
+    NotFound,
+    LoadingSpinner,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

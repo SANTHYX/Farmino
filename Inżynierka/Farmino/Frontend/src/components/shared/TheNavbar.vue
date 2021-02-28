@@ -21,7 +21,11 @@
               ><li><a>Zarejestruj się</a></li></router-link
             >
 
-            <router-link :to="{ name: 'login' }" exact="exact" id="login-btn" class="pop-up"
+            <router-link
+              :to="{ name: 'login', query: { redirect: 'home' } }"
+              exact="exact"
+              id="login-btn"
+              class="pop-up"
               ><li><a>Zaloguj się</a></li></router-link
             >
           </ul>

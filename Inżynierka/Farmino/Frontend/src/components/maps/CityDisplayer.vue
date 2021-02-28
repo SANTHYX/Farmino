@@ -48,14 +48,15 @@ export default {
 
 <style lang="scss" scoped>
 #city-widget {
-  width: 25vw;
-  height: 20vh;
+  width: 23vw;
+  height: 15vh;
   opacity: 0.8;
+  border: 1px solid orange;
 }
 
 @media screen and(max-width: $tablet) {
   #city-widget {
-    width: 90vw;
+    width: 83vw;
   }
 }
 </style>

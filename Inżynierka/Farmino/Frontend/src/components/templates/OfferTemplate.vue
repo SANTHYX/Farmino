@@ -1,12 +1,22 @@
 <template>
   <div>
     <div id="offer-template">
-      <div id="images-place"></div>
+      <div id="images-place">
+        <button id="observe-btn">
+          <unicon name="eye" id="eye" fill="#494949" width="40" height="40" />
+        </button>
+      </div>
       <div id="offer-place">
         <div id="title">
           <h1>{{ offer.title }}</h1>
           <hr />
           <p>Od: {{ offer.farmer.user.userName }}</p>
+          <div id="city-displayer">
+            <city-displayer
+              :lon="offer.farmer.user.profile.address.node.lon"
+              :lat="offer.farmer.user.profile.address.node.lat"
+            />
+          </div>
         </div>
 
         <div id="params-description">
@@ -38,18 +48,9 @@
             </p>
             <input type="number" name="" id="" class="small-form-field" />
           </div>
-          <button class="btn" id="order">Zamów</button>
-        </div>
-
-        <div id="city-displayer">
-          <div id="location">
-            <h2>Lokalizacja</h2>
-            <unicon name="map-marker-info" />
-          </div>
-          <city-displayer
-            :lon="offer.farmer.user.profile.address.node.lon"
-            :lat="offer.farmer.user.profile.address.node.lat"
-          />
+          <button class="btn" id="order" @click="$router.push({ name: 'make-order' })">
+            Zamów
+          </button>
         </div>
       </div>
     </div>
@@ -115,6 +116,12 @@ export default {
         margin: 0.5rem 0;
         color: rgb(117, 117, 117);
       }
+
+      #city-displayer {
+        h2 {
+          padding: 1rem 0 1rem 1rem;
+        }
+      }
     }
 
     #params-description {
@@ -169,29 +176,29 @@ export default {
         width: 25vw;
       }
     }
-
-    #city-displayer {
-      h2 {
-        padding: 1rem 0 1rem 1rem;
-      }
-
-      #location {
-        display: flex;
-        align-items: center;
-      }
-    }
   }
 
   #images-place {
     background-color: rgb(230, 230, 230);
     width: 50vw;
     border-top: 4px solid rgb(233, 153, 4);
+
+    #observe-btn {
+      display: flex;
+      align-items: center;
+      background: none;
+      margin: 1rem;
+      font-size: 1rem;
+      color: rgb(97, 97, 97);
+      padding: 0.2rem;
+      border: none;
+    }
   }
 
   .btn {
     padding: 0.5rem;
     background: none;
-    border: 1px solid rgb(216, 216, 216);
+    border: 1px solid rgb(187, 187, 187);
     font-size: 1rem;
     width: 8vw;
     transition: 0.2s ease-in;
@@ -235,7 +242,7 @@ export default {
     }
 
     #images-place {
-      height: 40vh;
+      height: 50vh;
       width: 90vw;
     }
   }

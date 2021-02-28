@@ -15,6 +15,8 @@ import {
   uniGlobe,
   uniClockTwo,
   uniTruck,
+  uniCamera,
+  uniEye,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -34,6 +36,8 @@ Unicons.add([
   uniGlobe,
   uniClockTwo,
   uniTruck,
+  uniCamera,
+  uniEye,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);

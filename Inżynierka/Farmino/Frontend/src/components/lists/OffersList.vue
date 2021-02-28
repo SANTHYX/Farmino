@@ -56,7 +56,11 @@ export default {
   },
 
   async created() {
-    await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
+    try {
+      await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
+    } catch (err) {
+      throw new Error(err.message);
+    }
   },
 };
 </script>

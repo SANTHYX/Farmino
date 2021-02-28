@@ -104,16 +104,15 @@ export default {
     create() {
       this.createOffer({
         userName: this.userName,
-        title: this.offer.title,
-        description: this.offer.description,
-        minQuantity: this.offer.minQuantity,
-        product: this.offer.product,
+        ...this.offer,
       });
     },
   },
 
-  async beforeCreate() {
-    this.$store.dispatch('offer/CREATE_FARMER', { userName: this.$store.state.auth.userName });
+  async created() {
+    await this.$store.dispatch('offer/CREATE_FARMER', {
+      userName: this.$store.state.auth.userName,
+    });
   },
 };
 </script>
@@ -124,10 +123,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid grey;
 
   #inputs-wraper {
     display: flex;
     flex-direction: column;
+
     button {
       background: none;
     }
