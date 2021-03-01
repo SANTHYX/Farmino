@@ -99,7 +99,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     background-color: rgb(243, 243, 243);
-    border-bottom: 4px solid rgb(233, 153, 4);
+    border-bottom: 4px solid orange;
 
     #title {
       padding: 1rem;
@@ -181,7 +181,7 @@ export default {
   #images-place {
     background-color: rgb(230, 230, 230);
     width: 50vw;
-    border-top: 4px solid rgb(233, 153, 4);
+    border-top: 4px solid orange;
 
     #observe-btn {
       display: flex;

@@ -3,6 +3,7 @@
     <div id="form-wrapper">
       <h1>Rejestracja</h1>
       <hr />
+
       <div id="input-wraper">
         <label for="login" :class="[!$v.user.userName.$error ? 'form-label' : 'error-label']"
           >Login</label
@@ -21,6 +22,7 @@
           </p>
         </div>
       </div>
+
       <div id="input-wraper">
         <label for="password" :class="[!$v.user.password.$error ? 'form-label' : 'error-label']"
           >Hasło</label
@@ -36,6 +38,7 @@
           <p class="error-message" v-if="!$v.user.password.required">Pole jest wymagane</p>
         </div>
       </div>
+
       <div id="input-wraper">
         <label for="email" :class="[!$v.user.email.$error ? 'form-label' : 'error-label']"
           >E-mail</label
@@ -52,6 +55,7 @@
           <p class="error-message" v-if="!$v.user.email.email">Email nie poprawny</p>
         </div>
       </div>
+
       <div id="btn-wraper">
         <button id="btn" @click="RegisterUser" :disabled="$v.user.$invalid">
           Zarejestruj

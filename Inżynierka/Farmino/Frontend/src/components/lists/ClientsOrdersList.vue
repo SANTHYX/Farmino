@@ -5,12 +5,8 @@
       <hr />
       <client-orders-list-item v-for="order in orders" :key="order.id" :orderItem="order" />
 
-      <div id="not-found" v-if="JSON.stringify(orders) !== '[]'">
+      <div id="not-found" v-if="JSON.stringify(orders) === '[]'">
         <not-found />
-      </div>
-
-      <div id="spinner">
-        <loading-spinner />
       </div>
     </div>
   </div>
@@ -20,7 +16,6 @@
 import { mapGetters } from 'vuex';
 import ClientOrdersListItem from '../items/ClientOrdersListItem.vue';
 import NotFound from '../utils/NotFound.vue';
-import LoadingSpinner from '../utils/LoadingSpinner.vue';
 
 export default {
   name: 'clients-orders-list',
@@ -28,7 +23,6 @@ export default {
   components: {
     ClientOrdersListItem,
     NotFound,
-    LoadingSpinner,
   },
 
   computed: {

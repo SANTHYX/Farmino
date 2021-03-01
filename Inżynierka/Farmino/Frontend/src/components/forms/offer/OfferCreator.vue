@@ -1,14 +1,30 @@
 <template>
   <div>
     <div id="offer-creator">
-      <div id="left">
-        <label for="userName" class="form-label">Tytuł</label>
+      <div id="picture-add">
+        <picture-picker />
+      </div>
+      <div id="creator-form">
+        <h1>Kretor Ofert</h1>
+        <hr />
         <div id="inputs-wraper">
+          <label for="userName" class="form-label">Tytuł</label>
           <input type="text" name="userName" class="form-field" v-model="$v.offer.title.$model" />
         </div>
 
-        <label for="userName" class="form-label">Cena jednostkowa</label>
         <div id="inputs-wraper">
+          <label for="userName" class="form-label">Opis oferty</label>
+          <textarea
+            name=""
+            class="form-field"
+            cols="30"
+            rows="10"
+            v-model="$v.offer.description.$model"
+          ></textarea>
+        </div>
+
+        <div id="inputs-wraper">
+          <label for="userName" class="form-label">Cena jednostkowa</label>
           <input
             type="number"
             name="userName"
@@ -17,8 +33,8 @@
           />
         </div>
 
-        <label for="userName" class="form-label">Jednostka Wagi</label>
         <div id="inputs-wraper">
+          <label for="userName" class="form-label">Jednostka Wagi</label>
           <select class="form-field" v-model.number="$v.offer.product.baseWeightUnit.$model">
             <option value="0">mg</option>
             <option value="1">dkg</option>
@@ -38,18 +54,9 @@
           />
         </div>
 
-        <div id="inputs-wraper">
-          <label for="userName" class="form-label">Opis oferty</label>
-          <textarea
-            name=""
-            class="form-field"
-            cols="30"
-            rows="10"
-            v-model="$v.offer.description.$model"
-          ></textarea>
+        <div>
+          <button @click="create" :disabled="$v.offer.$invalid" class="btn">Stwórz</button>
         </div>
-
-        <button @click="create" :disabled="$v.offer.$invalid">Stwórz</button>
       </div>
     </div>
   </div>
@@ -60,6 +67,7 @@ import { mapActions, mapGetters } from 'vuex';
 import {
   required, minValue, maxValue, decimal,
 } from 'vuelidate/lib/validators';
+import PicturePicker from '../../utils/PicturePicker.vue';
 
 export default {
   name: 'offer-creator',
@@ -88,6 +96,10 @@ export default {
         baseWeightUnit: { required, minValue: minValue(0), maxValue: maxValue(4) },
       },
     },
+  },
+
+  components: {
+    PicturePicker,
   },
 
   computed: {
@@ -119,18 +131,78 @@ export default {
 
 <style lang="scss" scoped>
 #offer-creator {
-  padding: 1rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border: 1px solid grey;
+  border: 1px solid rgb(216, 216, 216);
 
-  #inputs-wraper {
+  #creator-form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background: rgb(243, 243, 243);
+    border-bottom: 4px solid orange;
 
-    button {
-      background: none;
+    h1 {
+      color: rgb(117, 117, 117);
+    }
+
+    hr {
+      display: flex;
+      border: 2px solid orange;
+      width: 10vw;
+    }
+
+    #inputs-wraper {
+      display: flex;
+      flex-direction: column;
+
+      .form-field {
+        min-width: 20vw;
+      }
+    }
+  }
+
+  .btn {
+    margin: 1rem 0;
+    height: 40px;
+    background: none;
+    border: 1px solid rgb(182, 182, 182);
+    width: 20vw;
+    background: none;
+  }
+
+  .btn:hover {
+    transition: 0.2s ease-in;
+    border: 1px solid orange;
+  }
+
+  #picture-add {
+    width: 30vw;
+    height: auto;
+  }
+}
+
+@media screen and(max-width: $tablet) {
+  #offer-creator {
+    margin: 12rem 0;
+    flex-direction: column;
+
+    #picture-add,
+    #creator-form {
+      width: 80vw;
+    }
+
+    #inputs-wraper {
+      width: 80vw;
+
+      .form-field {
+        width: 74vw;
+      }
+    }
+
+    .btn {
+      width: 74vw;
     }
   }
 }

@@ -7,7 +7,6 @@ const offer = {
     offer: {},
     offersAll: {},
     order: {},
-    fetchDataStatus: false,
   },
 
   getters: {
@@ -67,31 +66,21 @@ const offer = {
     SET_CUSTOM_ORDER_DETAILS(state, orderDetails) {
       state.order.orderDetails = orderDetails;
     },
-
-    SET_FETCH_STATUS(state, value) {
-      state.fetchDataStatus = value;
-    },
   },
 
   actions: {
     async GET_OFFER({ commit }, offerId) {
-      commit('SET_FETCH_STATUS', true);
-
       try {
         const response = await api.get(`/offers/${offerId}`);
         commit('SET_OFFER', response.data);
       } catch (err) {
         throw new Error(err.message);
       }
-
-      commit('SET_FETCH_STATUS', false);
     },
 
     async BROWSE_OFFERS({ commit }, {
       phrase, priceFrom, priceTo, farmerName, page,
     }) {
-      commit('SET_FETCH_STATUS', true);
-
       try {
         const response = await api.get('/offers', {
           params: {
@@ -106,8 +95,6 @@ const offer = {
       } catch (err) {
         throw new Error(err.message);
       }
-
-      commit('SET_FETCH_STATUS', false);
     },
 
     async CREATE_FARMER({ commit }, { userName }) {

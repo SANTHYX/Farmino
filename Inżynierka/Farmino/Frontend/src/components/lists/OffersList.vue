@@ -16,7 +16,7 @@
         <not-found />
       </div>
 
-      <div id="spinner" v-if="fetchStatus">
+      <div id="spinner" v-if="fetchData">
         <loading-spinner />
       </div>
     </div>
@@ -56,11 +56,8 @@ export default {
   },
 
   async created() {
-    try {
-      await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
-    } catch (err) {
-      throw new Error(err.message);
-    }
+    await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
+    this.fetchData = false;
   },
 };
 </script>
