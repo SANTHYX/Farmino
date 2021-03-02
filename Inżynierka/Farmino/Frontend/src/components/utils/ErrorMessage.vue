@@ -19,4 +19,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#error-message{
+  background: rgb(216, 63, 63);
+}
+</style>

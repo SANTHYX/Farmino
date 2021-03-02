@@ -1,4 +1,5 @@
 ﻿using Farmino.Data.Enums;
+using Farmino.Data.Models.Aggregations;
 using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Service.DTO.Offer;
@@ -18,5 +19,6 @@ namespace Farmino.Service.Service.Interfaces
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
         Task<DTO.PagedResponseDTO<OffersDTO>> BrowseAllAsync(PagedQuery paged,OfferQuery query);
+        Task ObserveOfferAsync(string userName, Guid offerId);
     }
 }

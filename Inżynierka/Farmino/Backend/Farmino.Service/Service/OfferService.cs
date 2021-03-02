@@ -23,16 +23,18 @@ namespace Farmino.Service.Service
         private readonly IFarmerRepository _farmerRepository;
         private readonly IOfferRepository _offerRepository;
         private readonly ICustomerRepository _customerRepository;
-        private readonly IOrderRepository _orderRepository; 
+        private readonly IOrderRepository _orderRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
         public OfferService(IFarmerRepository farmerRepository, IOfferRepository offerRepository,
-            ICustomerRepository customerRepository, IMapper mapper, IOrderRepository orderRepository)
+            ICustomerRepository customerRepository, IMapper mapper, IOrderRepository orderRepository, IUserRepository userRepository)
         {
             _farmerRepository = farmerRepository;
             _offerRepository = offerRepository;
             _customerRepository = customerRepository;
             _orderRepository = orderRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -117,6 +119,12 @@ namespace Farmino.Service.Service
                 customer.User.Profile.Address), orderQuantity, summaryPrice, customAddress));
 
             await _orderRepository.SaveChanges();
+        }
+
+        public async Task ObserveOfferAsync(string userName, Guid offerId)
+        {
+            var user = await _userRepository.GetIfExistAsync(userName);
+            var offer = await _offerRepository.GetIfExistAsync(offerId);
         }
 
         public async Task RemoveOffer(Guid id)

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="auction-creator-form">
-      <div id="picture-add"></div>
+      <div id="picture-add">
+        <picture-picker/>
+      </div>
       <div id="creator-form">
         <h1>Stwórz Aukcje</h1>
         <hr />
@@ -84,6 +86,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { required, decimal, minValue } from 'vuelidate/lib/validators';
+import PicturePicker from '../../utils/PicturePicker.vue';
 
 export default {
   name: 'auction-creator-form',
@@ -108,6 +111,10 @@ export default {
       endDate: { required },
       startingPrice: { required, decimal, minValue: minValue(0.1) },
     },
+  },
+
+  components: {
+    PicturePicker,
   },
 
   computed: {
@@ -187,7 +194,7 @@ export default {
 }
 
 @media screen and(max-width: $tablet) {
-  #offer-creator {
+  #auction-creator-form {
     margin: 12rem 0;
     flex-direction: column;
 
