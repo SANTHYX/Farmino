@@ -10,8 +10,8 @@
         <div id="title">
           <h1>{{ offer.title }}</h1>
           <hr />
-          <p>Od: {{ offer.farmer.user.userName }}</p>
-          <div id="city-displayer">
+          <p v-if="offer.farmer">Od: {{ offer.farmer.user.userName }}</p>
+          <div id="city-displayer" v-if="offer.farmer">
             <city-displayer
               :lon="offer.farmer.user.profile.address.node.lon"
               :lat="offer.farmer.user.profile.address.node.lat"
@@ -19,21 +19,9 @@
           </div>
         </div>
 
-        <div id="params-description">
-          <div>
-            <button class="btn" @click="showParamsSection = false">Opis</button>
-            <button class="btn" @click="showParamsSection = true">Parametry</button>
-          </div>
-
-          <div id="description" class="parm-desc" v-if="!showParamsSection">
-            <h2>Opis</h2>
-            <p>{{ offer.description }}</p>
-          </div>
-
-          <div id="params" class="parm-desc" v-else>
-            <h2>Parametry</h2>
-            <p></p>
-          </div>
+        <div id="description" class="parm-desc">
+          <h2>Opis</h2>
+          <p>{{ offer.description }}</p>
         </div>
 
         <div id="details">
@@ -41,7 +29,7 @@
           <h3>Dowóz od</h3>
         </div>
 
-        <div id="make-order">
+        <div id="make-order" v-if="offer.product">
           <div id="interface">
             <p>
               <strong>{{ `${offer.product.basePrice}zł/${offer.product.baseWeightUnit}` }}</strong>
@@ -64,12 +52,6 @@ import CityDisplayer from '../maps/CityDisplayer.vue';
 export default {
   name: 'offer-template',
 
-  data() {
-    return {
-      showParamsSection: false,
-    };
-  },
-
   computed: {
     ...mapGetters({
       offer: 'offer/GET_OFFER',
@@ -85,7 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 #offer-template {
-  margin: 12rem 0;
+  margin: 10rem 0;
   display: flex;
   border: 1px solid rgb(216, 216, 216);
   width: 70vw;
@@ -124,23 +106,20 @@ export default {
       }
     }
 
-    #params-description {
+    #description {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       padding: 1rem;
 
-      .parm-desc {
-        margin: 1rem 0;
+      h2 {
+        margin: 0.2rem 0;
+        font-size: 1.7rem;
+      }
 
-        h2 {
-          margin: 0.2rem 0;
-          font-size: 1.7rem;
-        }
-
-        p {
-          margin: 0.7rem 0;
-          color: rgb(97, 97, 97);
-        }
+      p {
+        margin: 0.7rem 0;
+        color: rgb(97, 97, 97);
       }
     }
 

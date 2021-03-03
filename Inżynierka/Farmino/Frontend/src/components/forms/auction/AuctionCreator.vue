@@ -84,6 +84,7 @@
 </template>
 
 <script>
+// @ts-nocheck
 import { mapActions, mapGetters } from 'vuex';
 import { required, decimal, minValue } from 'vuelidate/lib/validators';
 import PicturePicker from '../../utils/PicturePicker.vue';

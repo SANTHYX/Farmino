@@ -3,7 +3,7 @@
     <div id="offer-template">
       <div id="images-place"></div>
       <div id="offer-place">
-        <div id="title">
+        <div id="title" v-if="auction.auctioner">
           <h1>{{ auction.title }}</h1>
           <hr />
           <p>Od: {{ auction.auctioner.user.userName }}</p>

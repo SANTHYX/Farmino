@@ -39,6 +39,17 @@ const order = {
     SET_DELIVERY_ORDERS(state, deliveryOrdersList) {
       state.deliveryOrders = deliveryOrdersList;
     },
+
+    RELEASE_ORDER(state, payload) {
+      const index = state.ordersAll.data.findIndex((x) => x.id === payload.orderId);
+      state.ordersAll.data[index].releaseDate = payload.realisationDate;
+      state.ordersAll.data[index].orderStatus = 'Przyjeta';
+    },
+
+    CANCEL_ORDER(state, payload) {
+      const index = state.ordersAll.data.findIndex((x) => x.id === payload.orderId);
+      state.ordersAll.data[index].orderStatus = 'Odrzucona';
+    },
   },
 
   actions: {
@@ -83,7 +94,7 @@ const order = {
     async CANCEL_ORDER({ commit }, { orderId }) {
       try {
         await api.put('/orders/cancel', { orderId });
-        commit();
+        commit('CANCEL_ORDER', { orderId });
       } catch (err) {
         throw new Error(err.message);
       }
@@ -92,7 +103,7 @@ const order = {
     async RELEASE_ORDER({ commit }, { orderId, realisationDate }) {
       try {
         await api.put('/orders', { orderId, realisationDate });
-        commit();
+        commit('RELEASE_ORDER', { orderId, realisationDate });
       } catch (err) {
         throw new Error(err.message);
       }

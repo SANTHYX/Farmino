@@ -131,6 +131,7 @@ export default {
 
 <style lang="scss" scoped>
 #offer-creator {
+  margin: 9rem 0;
   display: flex;
   align-items: center;
   border: 1px solid rgb(216, 216, 216);
@@ -159,6 +160,12 @@ export default {
 
       .form-field {
         min-width: 20vw;
+      }
+
+      textarea {
+        resize: none;
+        height: 20vh;
+        font-size: 1rem;
       }
     }
   }

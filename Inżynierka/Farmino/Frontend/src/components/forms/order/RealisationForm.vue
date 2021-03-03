@@ -10,7 +10,7 @@
           <input type="date" name="date" id="date" class="form-field" v-model="realsationDate" />
         </div>
 
-        <button @click="releaseOrderAsync">Realizuj</button>
+        <button class="btn" @click="releaseOrderAsync">Realizuj</button>
       </div>
     </div>
   </div>
@@ -55,28 +55,43 @@ export default {
 #realisation-form {
   #form-wraper {
     padding: 2rem;
-    border: 1px solid rgb(189, 189, 189);
+    border: 1px solid rgb(216, 216, 216);
     box-shadow: 1px 1px 6px rgb(179, 179, 179);
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: rgb(243, 243, 243);
 
     hr {
       margin-top: 0.2rem;
       width: 240px;
-      color: rgb(245, 245, 245);
+      border: solid 3px rgb(255, 125, 4);
     }
 
     h1 {
       text-align: center;
-      color: rgb(63, 63, 63);
+      color: rgb(119, 119, 119);
     }
 
     #inputs-wraper {
       display: flex;
       flex-direction: column;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      height: 30px;
+      width: 15vw;
+      background: none;
+      border: 1px solid rgb(165, 165, 165);
+      transition: 0s ease-in;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      color: orange;
+      border: 1px solid orange;
     }
   }
 }

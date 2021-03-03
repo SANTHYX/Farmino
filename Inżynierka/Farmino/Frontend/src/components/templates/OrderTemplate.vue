@@ -1,14 +1,43 @@
 <template>
   <div>
     <div id="order-template">
-      <div id="client-details">x</div>
+      <div id="overview"></div>
+      <div id="details">
+        <div id="order-details">
+          <h1>Szczegóły Zamówienia</h1>
+          <hr />
 
-      <div id="order-details">x</div>
+          <div id="content" v-if="order.offer">
+            <h2>{{ order.offer.title }}</h2>
 
-      <div id="decision-panel">
-        <button>Zadzwoń</button>
-        <button @click="releaseOrder">Realizuj</button>
-        <button @click="revokeOrder">Odrzuc</button>
+            <div id="order">
+              <p>Zamówiono: {{ `${order.orderQuantity} ${order.offer.product.baseWeightUnit}` }}</p>
+              <p>Data realizacji: {{ order.releaseDate | date }}</p>
+              <p>Status: {{ order.orderStatus }}</p>
+              <p>Należność: {{ order.priceSummary }} zł</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="address">
+          <h1>Adres Klienta</h1>
+          <hr />
+
+          <div id="content" v-if="order.orderDetails">
+            <p>{{ `${order.orderDetails.firstName} ${order.orderDetails.lastName}` }}</p>
+            <p>
+              {{ `${order.orderDetails.address.street} ${order.orderDetails.address.houseNumber}` }}
+            </p>
+            <p>
+              {{ `${order.orderDetails.address.postalCode} ${order.orderDetails.address.city}` }}
+            </p>
+          </div>
+        </div>
+
+        <div id="interface">
+          <button class="btn" @click="revokeOrder">Odrzuć</button>
+          <button class="btn" @click="releaseOrder">Przyjmij</button>
+        </div>
       </div>
     </div>
   </div>
@@ -27,10 +56,16 @@ export default {
     },
   },
 
-  data() {
-    return {
-      showRealisationFrom: false,
-    };
+  filters: {
+    date(value) {
+      let date = new Date(value).toLocaleDateString();
+
+      if (date === '1.01.1') {
+        date = 'Brak';
+      }
+
+      return date;
+    },
   },
 
   computed: {
@@ -56,25 +91,121 @@ export default {
   },
 
   async created() {
-    await this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
     await this.$store.dispatch('order/GET_ORDER', this.id);
+    await this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #order-template {
-  margin: 12rem 0;
-  border: 1px solid rgb(212, 212, 212);
-  width: 40vw;
-  height: 60vh;
+  margin: 10rem 0;
   display: flex;
-  justify-content: center;
+  border: 1px solid rgb(216, 216, 216);
+  width: 60vw;
+  min-width: 40vw;
+  min-height: 60vh;
+  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  color: rgb(102, 102, 102);
 
-  #decision-panel {
+  #details {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background: rgb(243, 243, 243);
+
+    #order-details {
+      min-height: 20vh;
+      width: 20vw;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #address {
+      min-height: 20vh;
+      width: 20vw;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    hr {
+      margin-top: 0.4rem;
+      margin-bottom: 0.7rem;
+      color: orange;
+      border: 2px solid orange;
+      width: 15vw;
+    }
+
+    #interface {
+      min-height: 20vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  }
+
+  .btn {
+    padding: 0.5rem;
+    background: none;
+    border: 1px solid rgb(187, 187, 187);
+    font-size: 1rem;
+    width: 8vw;
+    width: 18vw;
+  }
+
+  .btn:hover {
+    border: 1px solid orange;
+    color: rgb(233, 153, 4);
+  }
+
+  #overview {
+    height: auto;
+    width: 40vw;
+    background: rgb(206, 206, 206);
+  }
+}
+
+@media screen and(max-width: $tablet) {
+  #order-template {
+    flex-direction: column;
+    width: 80vw;
+
+    #details {
+      width: 80vw;
+
+      #order-details {
+        display: flex;
+        padding: 0;
+        text-align: center;
+        align-items: center;
+        width: 80vw;
+      }
+
+      #address {
+        display: flex;
+        padding: 0;
+        text-align: center;
+        align-items: center;
+        width: 80vw;
+
+        #content {
+          width: 80vw;
+        }
+      }
+    }
+    .btn {
+      width: 75vw;
+    }
+    #overview {
+      height: 50vh;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 </style>

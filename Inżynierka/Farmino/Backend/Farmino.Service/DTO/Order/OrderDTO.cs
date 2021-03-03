@@ -8,6 +8,7 @@ namespace Farmino.Service.DTO.Order
     {
         public Guid OfferId { get; set; }
         public OrderDetailsDTO OrderDetails { get; set; }
+        public OfferDTO Offer { get; set; }
         public double OrderQuantity { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public decimal PriceSummary { get; set; }
