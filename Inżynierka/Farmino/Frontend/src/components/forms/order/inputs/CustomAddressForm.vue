@@ -217,14 +217,16 @@ export default {
   methods: {
     ...mapMutations({
       setCustomOrderDetails: 'offer/SET_CUSTOM_ORDER_DETAILS',
-      customAddress: 'offer/SET_CUSTOM_ADDRESS',
     }),
 
     moveToSummary() {
       this.$router.push({ name: 'summary' });
       this.setCustomOrderDetails(this.orderDetails);
-      this.customAddress(true);
     },
+  },
+
+  created() {
+    this.$store.commit('offer/SET_CUSTOM_ADDRESS', true);
   },
 };
 </script>

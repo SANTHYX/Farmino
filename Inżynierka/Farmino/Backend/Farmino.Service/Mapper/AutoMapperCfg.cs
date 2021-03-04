@@ -47,7 +47,10 @@ namespace Farmino.Service.Mapper
             CreateMap<OrderDetails, DTO.Order.NestedModels.OrderDetailsDTO>();
             CreateMap<OrderDetails, DTO.DeliverOrder.NestedModels.OrderDetailsDTO>();
             CreateMap<ParticipantAuction, DTO.Auction.ParticipantAuctionDTO>();
-            CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>().ReverseMap();
+            CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>();
+            CreateMap<Farmer, DTO.Order.NestedModels.FarmerDTO>();
+            CreateMap<User, DTO.Order.NestedModels.UserDTO>();
+            CreateMap<Profile, DTO.Order.NestedModels.ProfileDTO>();
             CreateMap(typeof(PagedResponse<>), typeof(DTO.PagedResponseDTO<>)) ;
         }
     }

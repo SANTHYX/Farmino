@@ -44,7 +44,9 @@
       </div>
 
       <div id="order-details">
-        <button @click="buttonContent = '541-342-111'">{{ buttonContent }}</button>
+        <button id="btn" @click="buttonContent = orderItem.offer.farmer.user.profile.phoneNumber">
+          {{ buttonContent }}
+        </button>
       </div>
     </div>
   </div>
@@ -102,6 +104,19 @@ export default {
       color: rgb(124, 124, 124);
     }
   }
+}
+
+#btn {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  background: none;
+  border: 1px solid grey;
+  transition: 0.2s ease-in;
+}
+
+#btn:hover {
+  border: 1px solid rgb(255, 145, 0);
+  color: rgb(255, 145, 0);
 }
 
 @media screen and(max-width: $tablet) {

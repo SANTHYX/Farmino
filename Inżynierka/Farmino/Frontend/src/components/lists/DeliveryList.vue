@@ -1,7 +1,13 @@
 <template>
   <div>
     <div id="list-wraper">
-      <delivery-list-item v-for="order in orders" :key="order.id" :deliveryItem="order" />
+      <div id="info-wraper">
+        <h1>Moje Dostawy</h1>
+      </div>
+
+      <div id="list-item">
+        <delivery-list-item v-for="order in orders" :key="order.id" :deliveryItem="order" />
+      </div>
 
       <div id="not-found" v-if="JSON.stringify(orders) === '[]'">
         <not-found />
@@ -67,6 +73,16 @@ export default {
   width: 70vw;
   min-width: 50vw;
   min-height: 80vh;
+  background: rgb(245, 245, 245);
+
+  #info-wraper {
+    display: flex;
+    padding: 1rem;
+    width: 70vw;
+    background: rgb(233, 233, 233);
+    border-bottom: 1px solid rgb(216, 216, 216);
+    box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
+  }
 }
 
 #not-found,
@@ -82,6 +98,10 @@ export default {
     margin: 1rem 0;
     min-height: 90vh;
     width: 80vw;
+
+    #info-wraper {
+      width: 80vw;
+    }
   }
 }
 </style>

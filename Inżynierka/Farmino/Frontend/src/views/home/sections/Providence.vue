@@ -14,6 +14,7 @@
               <h1>Darmowy Dostęp</h1>
               <unicon name="money-bill-slash" height="100" width="100" fill="white" />
             </div>
+
             <transition name="fade">
               <div class="text-wraper" v-if="showFreeOffers">
                 <h2>Darmowy Dostęp</h2>
@@ -31,6 +32,7 @@
               <h1>Wygodę</h1>
               <unicon name="book-reader" height="100" width="100" fill="white" />
             </div>
+
             <transition name="fade">
               <div class="text-wraper" v-if="showComfort">
                 <h2>Wygoda</h2>
@@ -54,6 +56,7 @@
               <h1>Logistykę</h1>
               <unicon name="dropbox" height="100" width="100" fill="white" />
             </div>
+
             <transition name="fade">
               <div class="text-wraper" v-if="showLogistics">
                 <h2>Logistyka</h2>
@@ -106,7 +109,7 @@ export default {
     hr {
       margin: 0.6rem 0;
       width: 70vw;
-      color: whitesmoke;
+      border: 2px solid orange;
     }
 
     #cards-wraper {

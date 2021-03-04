@@ -73,17 +73,17 @@ export default {
     padding: 2rem;
     border: 1px solid rgb(189, 189, 189);
     box-shadow: 1px 1px 6px rgb(179, 179, 179);
-    border-radius: 10px;
+    background: rgb(248, 248, 248);
 
     hr {
       margin-top: 0.2rem;
       width: 240px;
-      color: rgb(245, 245, 245);
+      border: 2px solid orange;
     }
 
     h1 {
       text-align: center;
-      color: rgb(63, 63, 63);
+      color: rgb(129, 129, 129);
     }
 
     #inputs-wraper {
@@ -97,12 +97,18 @@ export default {
       justify-content: center;
 
       #btn {
-        padding: 0.2rem;
-        background: rgb(235, 209, 63);
+        padding: 0.5rem 0.2rem;
+        background: none;
         border: 2px solid rgba(179, 179, 179, 0.733);
-        border-radius: 7px;
         font-weight: bold;
         color: rgba(0, 0, 0, 0.658);
+        width: 240px;
+        transition: 0.1s ease-in;
+      }
+
+      #btn:hover {
+        border: 2px solid orange;
+        color: orange;
       }
     }
   }

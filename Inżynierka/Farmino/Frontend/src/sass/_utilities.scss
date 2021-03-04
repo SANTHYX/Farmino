@@ -1,13 +1,13 @@
 //Global Utilities//
 
 .form-field{
-    @include input-field(6px, 15rem, 2.1rem);
+    @include input-field(0, 15rem, 2.1rem);
 }
 .small-form-field{
-    @include input-field(6px, 8.4rem, 2.1rem)
+    @include input-field(0, 8.4rem, 2.1rem)
 }
 .smaller-form-field{
-    @include input-field(6px, 6rem, 2.1rem)
+    @include input-field(0, 6rem, 2.1rem)
 }
 
 .form-label{

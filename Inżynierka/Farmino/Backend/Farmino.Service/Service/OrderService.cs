@@ -69,8 +69,8 @@ namespace Farmino.Service.Service
                 orders = orders.Where(x => x.ReleaseDate.Date == query.Date);
             }
 
-            var result = orders.Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
-                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile);
+            var result = orders.Include(x => x.Offer).ThenInclude(x => x.Farmer).ThenInclude(z => z.User).ThenInclude(x=> x.Profile)
+                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile).OrderByDescending(z => z.CreatedAt);
             var pagedResponse = await PagedResponse<Order>.GetPagedResponse(result, paged);
                 
             return _mapper.Map<PagedResponseDTO<OrdersDTO>>(pagedResponse);

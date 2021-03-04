@@ -44,7 +44,7 @@
       </div>
 
       <div id="contact" class="order-details">
-        <button @click="moveToOrder">
+        <button id="btn" @click="moveToOrder">
           Sprawdz
         </button>
       </div>
@@ -103,6 +103,19 @@ export default {
     span {
       color: rgb(124, 124, 124);
     }
+  }
+
+  #btn {
+    background: none;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border: 1px solid rgb(190, 190, 190);
+    transition: 0.2s ease-in;
+  }
+
+  #btn:hover {
+    border: 1px solid orange;
+    color: orange;
   }
 }
 

@@ -32,10 +32,6 @@ const offer = {
         foundResults: state.offersAll.foundResults,
       };
     },
-
-    GET_FETCH_STATUS(state) {
-      return state.fetchDataStatus;
-    },
   },
 
   mutations: {

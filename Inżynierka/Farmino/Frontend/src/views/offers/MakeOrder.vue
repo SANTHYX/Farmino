@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import OrderAddressFrom from '@/components/forms/order/OrderAddressFrom.vue';
+import OrderAddressFrom from '@/components/forms/order/inputs/OrderAddressFrom.vue';
 
 export default {
   name: 'make-order',

@@ -34,9 +34,19 @@
             <p>
               <strong>{{ `${offer.product.basePrice}zł/${offer.product.baseWeightUnit}` }}</strong>
             </p>
-            <input type="number" name="" id="" class="small-form-field" />
+            <input
+              type="number"
+              name=""
+              id=""
+              class="small-form-field"
+              v-model.number="orderQuantity"
+            />
           </div>
-          <button class="btn" id="order" @click="$router.push({ name: 'make-order' })">
+          <button
+            class="btn"
+            id="order"
+            @click="setOrderQuantity(orderQuantity),$router.push({ name: 'make-order' })"
+          >
             Zamów
           </button>
         </div>
@@ -46,7 +56,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import CityDisplayer from '../maps/CityDisplayer.vue';
 
 export default {
@@ -56,6 +66,18 @@ export default {
     ...mapGetters({
       offer: 'offer/GET_OFFER',
       userName: 'auth/GET_USERNAME',
+    }),
+  },
+
+  data() {
+    return {
+      orderQuantity: 0,
+    };
+  },
+
+  methods: {
+    ...mapMutations({
+      setOrderQuantity: 'offer/SET_ORDER_QUANTITY',
     }),
   },
 

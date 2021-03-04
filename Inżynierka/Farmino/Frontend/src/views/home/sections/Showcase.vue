@@ -22,7 +22,7 @@
     justify-content: center;
     background: linear-gradient(0deg, rgba(236, 215, 147, 0.66) 0%, rgba(235, 206, 42, 0.64) 100%),
       url('../../../assets/images/noah-buscher-tractor-unsplash.jpg') no-repeat center center/cover;
-    height: 80vh;
+    height: 100vh;
     width: 100%;
 
     #text-wraper {

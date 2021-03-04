@@ -17,6 +17,7 @@ import {
   uniTruck,
   uniCamera,
   uniEye,
+  uniFilter,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -38,6 +39,7 @@ Unicons.add([
   uniTruck,
   uniCamera,
   uniEye,
+  uniFilter,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);

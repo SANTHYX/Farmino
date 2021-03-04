@@ -2,7 +2,7 @@
   <div>
     <div id="auction-creator-form">
       <div id="picture-add">
-        <picture-picker/>
+        <picture-picker />
       </div>
       <div id="creator-form">
         <h1>Stwórz Aukcje</h1>
@@ -26,13 +26,13 @@
             :class="[!$v.auction.description.$error ? 'form-label' : 'error-label']"
             >Opis Aukcji</label
           >
-          <input
-            type="text"
-            name="Opis"
-            :class="[!$v.auction.description.$error ? 'form-field' : 'error-field']"
-            @blur="$v.auction.description.$touch()"
+          <textarea
+            name=""
+            class="form-field"
+            cols="30"
+            rows="10"
             v-model="$v.auction.description.$model"
-          />
+          ></textarea>
         </div>
 
         <div id="inputs-wraper">
@@ -84,7 +84,6 @@
 </template>
 
 <script>
-// @ts-nocheck
 import { mapActions, mapGetters } from 'vuex';
 import { required, decimal, minValue } from 'vuelidate/lib/validators';
 import PicturePicker from '../../utils/PicturePicker.vue';
@@ -142,6 +141,7 @@ export default {
 
 <style lang="scss" scoped>
 #auction-creator-form {
+  margin: 10rem 0;
   display: flex;
   align-items: center;
   border: 1px solid rgb(216, 216, 216);
@@ -170,6 +170,11 @@ export default {
 
       .form-field {
         min-width: 20vw;
+      }
+
+      textarea {
+        resize: none;
+        height: 20vh;
       }
     }
   }

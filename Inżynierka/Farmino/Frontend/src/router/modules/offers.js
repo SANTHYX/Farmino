@@ -1,4 +1,5 @@
 import loacalStorageManager from '../../plugins/localStorageManager';
+import store from '../../store/store';
 
 const offerRoutes = [
   {
@@ -19,6 +20,20 @@ const offerRoutes = [
     beforeEnter(to, from, next) {
       if (!loacalStorageManager.isAuthorized()) {
         next({ name: 'login', query: { redirect: to.fullPath } });
+      }
+      if (store.state.offer.offer.farmer.user.userName === loacalStorageManager.getUserName()) {
+        next(false);
+      } else next();
+    },
+  },
+  {
+    path: '/offers/:id/custom-address',
+    name: 'custom-address',
+    props: true,
+    component: () => import('@/views/offers/CustomAddress.vue'),
+    beforeEnter(to, from, next) {
+      if (!loacalStorageManager.isAuthorized()) {
+        next({ path: '*' });
       } else next();
     },
   },

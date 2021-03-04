@@ -1,14 +1,29 @@
 <template>
   <div>
-    <div id="my-offer-list-item">
-        <h1>{{offerItem.title}}</h1>
+    <div id="offer-list-item" :offerItem="offerItem">
+      <div id="offer-img"></div>
+      <div id="offer-detail">
+        <h2>{{ offerItem.title }}</h2>
+
+        <div id="region">
+          <unicon name="globe" fill="gray" width="23" />
+          <p id="region-value">Lubelskie</p>
+        </div>
+      </div>
+
+      <div id="price-details">
+        <h2>{{ `${offerItem.product.basePrice}zł/${offerItem.product.baseWeightUnit}` }}</h2>
+        <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
+          Sprawdź
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'my-offer-list-item',
+  name: 'offer-list-item',
 
   props: {
     offerItem: {
@@ -20,43 +35,79 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#my-offer-list-item {
+#offer-list-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
-  background: rgb(243, 243, 243);
-  width: 25vw;
+  background: rgb(245, 245, 245);
+  width: 17vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
+  transition: 0.1s all;
 
   #offer-img {
-    height: 220px;
-    width: 25vw;
+    height: 250px;
+    width: 16.9vw;
     min-width: 240px;
     align-self: center;
-    background: rgb(122, 122, 122);
+    background: rgb(192, 192, 192);
+    transition: 0.1s all;
   }
 
-  #info-wraper {
+  #offer-detail {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 1rem;
+
+    #region {
+      display: flex;
+      align-items: center;
+
+      p {
+        color: rgb(73, 73, 73);
+      }
+    }
 
     h2 {
-      display: flex;
-      text-align: center;
-      margin: 0.3rem 0;
+      color: rgb(73, 73, 73);
+    }
+  }
+
+  #price-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    h2 {
+      color: rgb(73, 73, 73);
+      font-size: 1.3rem;
     }
 
-    h3 {
-      color: rgb(199, 161, 36);
+    #btn {
+      background: none;
+      padding: 0.4rem;
+      cursor: pointer;
+      border: 1px solid rgb(185, 185, 185);
+      width: 40%;
+      font-size: 0.9rem;
     }
+  }
+}
 
-    button {
-      margin: 0.5rem 0;
+#offer-list-item:hover {
+  box-shadow: 1px 1px 12px rgb(156, 156, 156);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  border-bottom: orange 5px solid;
+
+  #price-details {
+    #btn:hover {
+      transition: 0.3s ease-in;
+      background: none;
+      border: 1px solid orange;
+      color: rgb(233, 153, 4);
     }
   }
 }

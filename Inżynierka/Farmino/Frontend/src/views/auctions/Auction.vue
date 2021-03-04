@@ -2,14 +2,12 @@
   <div>
     <div id="auction">
       <auction-template />
-      <auctioners-list />
     </div>
   </div>
 </template>
 
 <script>
 import AuctionTemplate from '@/components/templates/AuctionTemplate.vue';
-import AuctionersList from '@/components/lists/AuctionersList.vue';
 
 export default {
   name: 'auction',
@@ -22,7 +20,6 @@ export default {
 
   components: {
     AuctionTemplate,
-    AuctionersList,
   },
 
   created() {
