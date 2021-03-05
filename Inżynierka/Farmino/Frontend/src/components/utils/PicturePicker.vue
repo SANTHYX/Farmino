@@ -41,7 +41,7 @@ export default {
     previewImage(file) {
       const fileReader = new FileReader();
 
-      fileReader.onload = e => {
+      fileReader.onload = (e) => {
         this.image = e.target.result;
       };
 
