@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="picture-picker">
-      <div id="photo-overview" v-if="containImage"></div>
+      <div id="photo-overview" v-if="containImage">
+        <img :src="image" alt="" id="image-handler" />
+      </div>
       <div id="picker" v-else>
         <div id="content">
           <div id="text">
@@ -9,8 +11,8 @@
             <h1>Kliknij by dodać</h1>
           </div>
         </div>
-        <input type="file" name="" id="" @change="imageUpload" />
       </div>
+      <input type="file" @change="dockImage" />
     </div>
   </div>
 </template>
@@ -22,14 +24,28 @@ export default {
   data() {
     return {
       containImage: false,
+      imageFile: null,
       image: null,
     };
   },
 
   methods: {
-    imageUpload(e) {
-      this.image = e.target.files;
-      console.log(this.image[0]);
+    dockImage(e) {
+      if (e.target.files[0].type.match('image.*')) {
+        this.imageFile = e.target.files;
+        this.containImage = true;
+        this.previewImage(this.imageFile[0]);
+      }
+    },
+
+    previewImage(file) {
+      const fileReader = new FileReader();
+
+      fileReader.onload = e => {
+        this.image = e.target.result;
+      };
+
+      fileReader.readAsDataURL(file);
     },
   },
 };
@@ -42,9 +58,14 @@ export default {
   align-items: center;
 
   #photo-overview {
-    background: grey;
     width: 25vw;
     height: 40vh;
+
+    #image-handler {
+      width: 25vw;
+      height: 40vh;
+      object-fit: cover;
+    }
   }
 
   #picker {
@@ -70,14 +91,13 @@ export default {
         }
       }
     }
-
-    input[type='file'] {
-      opacity: 0;
-      width: 20vw;
-      height: 30vh;
-      position: absolute;
-      cursor: pointer;
-    }
+  }
+  input[type='file'] {
+    opacity: 0;
+    width: 20vw;
+    height: 30vh;
+    position: absolute;
+    cursor: pointer;
   }
 }
 

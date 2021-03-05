@@ -8,7 +8,7 @@
       <h3>Jeśli tak, to czy chcesz go wykorzystać jako dane odbiory?</h3>
       <div id="interface">
         <button class="btn" @click="$router.push({ name: 'custom-address' })">Nie</button>
-        <button class="btn" @click="$router.push({ name: 'summary' }), setCustomAddress(true)">
+        <button class="btn" @click="$router.push({ name: 'summary' }), setCustomAddress(false)">
           Tak
         </button>
       </div>
