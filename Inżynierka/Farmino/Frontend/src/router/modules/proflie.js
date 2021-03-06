@@ -1,8 +1,11 @@
+import { isAuthorized } from '../guards';
+
 const profileRoutes = [
   {
     path: '/profile',
     redirect: 'home',
     component: () => import('@/views/profile/Profile.vue'),
+    beforeEnter: isAuthorized,
     children: [
       {
         path: '/profile/:id',

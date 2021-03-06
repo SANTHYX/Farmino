@@ -16,6 +16,7 @@ namespace Farmino.Data.Models.Aggregations
         public Guid AuctionerId { get; protected set; }
         public Auctioner Auctioner { get; protected set; }
         public IEnumerable<ParticipantAuction> Participants { get; protected set; }
+        public string ImageName { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; } 
 
@@ -111,6 +112,22 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             StartingPrice = startingPrice;
+            UpdatedAt = DateTime.Now;
+        }
+
+        public void SetImageName(string imageName)
+        {
+            if (string.IsNullOrWhiteSpace(imageName))
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidImageName,
+                    "Image name cannot be empty");
+            }
+            if (ImageName == imageName)
+            {
+                return;
+            }
+
+            ImageName = imageName;
             UpdatedAt = DateTime.Now;
         }
     }

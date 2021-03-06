@@ -29,5 +29,6 @@
         public static string InvalidDate => "invalid_date";
         public static string InvalidStartingPrice => "invalid_starting_price";
         public static string InvalidOrderQuantity => "invalid_order_quantity";
+        public static string InvalidImageName => "invalid_image_name";
     }
 }

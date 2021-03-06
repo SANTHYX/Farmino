@@ -17,7 +17,11 @@
               ><li><a>Oferty</a></li></router-link
             >
 
-            <router-link :to="{ name: 'register' }" exact="exact" id="registery-btn" class="pop-up"
+            <router-link
+              :to="{ name: 'register', query: { redirect: 'login' } }"
+              exact="exact"
+              id="registery-btn"
+              class="pop-up"
               ><li><a>Zarejestruj się</a></li></router-link
             >
 

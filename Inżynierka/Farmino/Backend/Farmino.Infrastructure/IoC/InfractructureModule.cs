@@ -9,6 +9,7 @@ namespace Farmino.Infrastructure.IoC
         {
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<GeolocationModule>();
+            builder.RegisterModule<ImageManagmentModule>();
         }
     }
 }

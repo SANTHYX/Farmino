@@ -58,6 +58,8 @@ namespace Farmino.API
 
             app.UseMiddleware(typeof(ExceptionMiddlewareHandler));
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

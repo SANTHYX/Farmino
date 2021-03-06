@@ -64,7 +64,7 @@ export default {
     #image-handler {
       width: 25vw;
       height: 40vh;
-      object-fit: cover;
+      object-fit: fill;
     }
   }
 
@@ -103,7 +103,16 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #picture-picker {
-    #photo-overview,
+    #photo-overview {
+      width: 80vw;
+      height: 50vh;
+      #image-handler {
+        object-fit: fill;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
     #picker {
       width: 80vw;
       height: 40vh;

@@ -18,6 +18,7 @@ namespace Farmino.Data.Models.Aggregations
         public Guid FarmerId { get; protected set; }
         public Farmer Farmer { get; protected set; }
         public Product Product { get; protected set; }
+        public string ImageName { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; } 
         public IEnumerable<Order> Orders { get; protected set; }
@@ -88,6 +89,22 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             Description = description;
+            UpdatedAt = DateTime.Now;
+        }
+
+        public void SetImageName(string imageName)
+        {
+            if (string.IsNullOrWhiteSpace(imageName))
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidImageName,
+                    "Image name cannot be empty");
+            }
+            if (ImageName == imageName)
+            {
+                return;
+            }
+
+            ImageName = imageName;
             UpdatedAt = DateTime.Now;
         }
 

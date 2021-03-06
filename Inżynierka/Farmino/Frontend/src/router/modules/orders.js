@@ -1,24 +1,30 @@
+import { isAuthorized } from '../guards';
+
 const orderRoutes = [
   {
     path: '/orders',
     redirect: 'home',
     name: 'orders',
     component: () => import('@/views/orders/Orders.vue'),
+    beforeEnter: isAuthorized,
   },
   {
     path: '/orders/my-orders',
     name: 'my-orders',
     component: () => import('@/views/orders/MyOrders.vue'),
+    beforeEnter: isAuthorized,
   },
   {
     path: '/orders/my-delivers',
     name: 'my-delivers',
     query: {},
     component: () => import('@/views/orders/MyDelivers.vue'),
+    beforeEnter: isAuthorized,
   },
   {
     path: '/orders/daily-delivers',
     component: () => import('@/views/orders/DailyDelivers.vue'),
+    beforeEnter: isAuthorized,
     children: [
       {
         path: '',
@@ -37,6 +43,7 @@ const orderRoutes = [
     path: '/orders',
     redirect: 'home',
     component: () => import('@/views/orders/Order.vue'),
+    beforeEnter: isAuthorized,
     children: [
       {
         path: '/orders/:id',

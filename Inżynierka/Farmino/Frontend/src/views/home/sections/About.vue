@@ -19,8 +19,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div id="about-section">
         <div class="content-wraper">
           <div class="text-wraper">
             <div class="text-fix">
@@ -47,11 +45,13 @@ export default {};
 <style lang="scss" scoped>
 #content {
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
   background: linear-gradient(0deg, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 100%);
 
   #about-section {
-    margin-top: 5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -61,10 +61,11 @@ export default {};
       align-items: center;
       flex-wrap: wrap;
       margin-bottom: 1rem;
+      border: 1px solid rgb(218, 218, 218);
 
       .img-wrap {
         width: 30vw;
-        min-height: 50vh;
+        min-height: 40vh;
       }
 
       #hands {
@@ -87,7 +88,7 @@ export default {};
         justify-content: center;
         width: 40vw;
         background: rgb(231, 231, 231);
-        min-height: 50vh;
+        min-height: 40vh;
 
         .text-fix {
           margin-left: 4rem;
@@ -110,14 +111,13 @@ export default {};
         }
       }
     }
-    #auction-section {
-    }
   }
 }
 
 @media screen and(max-width: $tablet) {
   #content {
     #about-section {
+      margin: 5rem 0;
       .content-wraper {
         flex-direction: column;
 

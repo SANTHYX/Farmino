@@ -100,7 +100,7 @@ export default {
     async RegisterUser() {
       try {
         await api.post('/auth/register', this.user);
-        this.$router.push('login');
+        this.$router.push({ name: this.$route.query.redirect });
       } catch (err) {
         throw new Error(err);
       }
@@ -138,7 +138,7 @@ export default {
       justify-content: center;
       margin-top: 1rem;
 
-       #btn {
+      #btn {
         padding: 0.5rem 0.2rem;
         background: none;
         border: 2px solid rgba(179, 179, 179, 0.733);

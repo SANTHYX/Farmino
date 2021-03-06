@@ -1,7 +1,39 @@
-﻿namespace Farmino.Infrastructure.ImageManager
+﻿using Farmino.Infrastructure.ImageManager.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
+namespace Farmino.Infrastructure.ImageManager
 {
-    public static class ImageManager
+    public class ImageManager : IImageManager
     {
-        
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public ImageManager(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
+        }
+
+        public async Task<string> SaveImage(IFormFile file, string destination)
+        {
+            var imageName = Guid.NewGuid().ToString("N");
+            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Images/Offers", imageName);
+
+            try
+            {
+                using(var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            return imageName;
+        }
     }
 }
