@@ -38,6 +38,7 @@ namespace Farmino.Infrastructure.ORM
                 x.HasOne(y => y.Customer).WithOne(z => z.User).HasForeignKey<Customer>(q => q.UserId);
                 x.HasOne(y => y.Auctioner).WithOne(z => z.User).HasForeignKey<Auctioner>(q => q.UserId);
                 x.HasOne(y => y.Participant).WithOne(z => z.User).HasForeignKey<Participant>(q => q.UserId);
+                x.HasMany(y => y.Observeds).WithOne(z => z.User).HasForeignKey(q => q.UserId).OnDelete(DeleteBehavior.Restrict);
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
                 x.Property(y => y.UpdatedAt).HasMaxLength(10).IsRequired();
             });
@@ -85,7 +86,6 @@ namespace Farmino.Infrastructure.ORM
                 x.HasOne(y => y.Offer).WithMany(z => z.Orders).HasForeignKey(q => q.OfferId)
                     .OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(y => y.Customer).WithMany(z => z.Orders).HasForeignKey(q => q.CustomerId);
-                x.Property(y => y.Released);
                 x.Property(y => y.OrderQuantity).IsRequired();
                 x.Property(y => y.PriceSummary).IsRequired();
                 x.Property(y => y.ReleaseDate);
@@ -116,6 +116,8 @@ namespace Farmino.Infrastructure.ORM
                 x.Property(y => y.Title).HasMaxLength(40).IsRequired();
                 x.Property(y => y.Description).IsRequired();
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
+                x.Property(y => y.ImageName).HasMaxLength(40);
+                x.HasMany(y => y.Observeds).WithOne(z => z.Offer).HasForeignKey(q => q.OfferId);
                 x.OwnsOne(y => y.Product, z =>
                 {
                     z.Property(q => q.BasePrice).IsRequired();
@@ -138,6 +140,7 @@ namespace Farmino.Infrastructure.ORM
                 x.Property(y => y.EndDate).HasMaxLength(10).IsRequired();
                 x.Property(y => y.StartDate).HasMaxLength(10).IsRequired();
                 x.Property(y => y.StartingPrice).IsRequired();
+                x.Property(y => y.ImageName).HasMaxLength(40);
             });
 
             builder.Entity<ParticipantAuction>(x =>

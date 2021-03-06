@@ -19,6 +19,7 @@ namespace Farmino.Data.Models.Aggregations
         public Auctioner Auctioner { get; protected set; }
         public Participant Participant { get; protected set; }
         public IEnumerable<RefreshToken> RefreshTokens { get; protected set; }
+        public IEnumerable<Observed> Observeds { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 

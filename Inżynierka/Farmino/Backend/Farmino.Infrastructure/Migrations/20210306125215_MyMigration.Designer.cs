@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210222175435_MyMigration")]
+    [Migration("20210306125215_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace Farmino.Infrastructure.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.3");
 
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Auction", b =>
                 {
@@ -40,6 +40,10 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasMaxLength(10)
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageName")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<DateTime>("StartDate")
                         .HasMaxLength(10)
@@ -130,6 +134,10 @@ namespace Farmino.Infrastructure.Migrations
 
                     b.Property<Guid>("FarmerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImageName")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<double>("MinQuantity")
                         .HasColumnType("float");
@@ -224,6 +232,21 @@ namespace Farmino.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Observed", b =>
+                {
+                    b.Property<Guid>("OfferId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("OfferId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Observeds");
+                });
+
             modelBuilder.Entity("Farmino.Data.Models.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -253,9 +276,6 @@ namespace Farmino.Infrastructure.Migrations
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Released")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -427,6 +447,25 @@ namespace Farmino.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Farmino.Data.Models.Entities.Observed", b =>
+                {
+                    b.HasOne("Farmino.Data.Models.Aggregations.Offer", "Offer")
+                        .WithMany("Observeds")
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Farmino.Data.Models.Aggregations.User", "User")
+                        .WithMany("Observeds")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Offer");
 
                     b.Navigation("User");
                 });
@@ -666,6 +705,8 @@ namespace Farmino.Infrastructure.Migrations
 
             modelBuilder.Entity("Farmino.Data.Models.Aggregations.Offer", b =>
                 {
+                    b.Navigation("Observeds");
+
                     b.Navigation("Orders");
                 });
 
@@ -676,6 +717,8 @@ namespace Farmino.Infrastructure.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Farmer");
+
+                    b.Navigation("Observeds");
 
                     b.Navigation("Participant");
 

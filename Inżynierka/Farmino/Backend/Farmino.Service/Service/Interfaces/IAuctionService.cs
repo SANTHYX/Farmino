@@ -10,7 +10,7 @@ namespace Farmino.Service.Service.Interfaces
     public interface IAuctionService : IService
     {
         Task CreateAuction(string userName, string title, string description, DateTime startDate,
-            DateTime endDate, decimal startingPrice);
+            DateTime endDate, string imageName, decimal startingPrice);
         Task<AuctionDTO> GetAuction(Guid id);
         Task<PagedResponseDTO<AuctionsDTO>> BrowseAuctions(PagedQuery paged, AuctionsQuery query);
         Task ToAuction(string userName, Guid auctionId, decimal proposedPrice);

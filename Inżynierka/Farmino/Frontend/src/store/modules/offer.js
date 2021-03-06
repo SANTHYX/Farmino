@@ -75,7 +75,7 @@ const offer = {
     },
 
     async BROWSE_OFFERS({ commit }, {
-      phrase, priceFrom, priceTo, farmerName, page,
+      phrase, priceFrom, priceTo, farmerName, page, results = 8,
     }) {
       try {
         const response = await api.get('/offers', {
@@ -85,6 +85,7 @@ const offer = {
             priceTo,
             farmerName,
             page,
+            results,
           },
         });
         commit('SET_OFFERS', response.data);
@@ -112,16 +113,19 @@ const offer = {
     },
 
     async CREATE_OFFER({ commit }, {
-      userName, title, description, minQuantity, product,
+      userName, title, description, minQuantity, image, product,
     }) {
+      const formFile = new FormData();
+      formFile.append('userName', userName);
+      formFile.append('title', title);
+      formFile.append('description', description);
+      formFile.append('minQuantity', minQuantity);
+      formFile.append('image', image);
+      formFile.append('product.basePrice', product.basePrice);
+      formFile.append('product.baseWeightUnit', product.baseWeightUnit);
+
       try {
-        await api.post('/offers', {
-          userName,
-          title,
-          description,
-          minQuantity,
-          product,
-        });
+        await api.post('/offers', formFile, { headers: { 'Content-Type': 'multipart/form-data' } });
         commit('SET_OFFER', {
           title,
           description,

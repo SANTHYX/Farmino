@@ -13,12 +13,11 @@ namespace Farmino.Service.Service.Interfaces
     public interface IOfferService : IService
     {
         Task CreateOffer(string userName, string title,
-            string description, WeightUnits minWeight, double minQuantity, Product product);
+            string description, string imageName, WeightUnits minWeight, double minQuantity, Product product);
         Task MakeOrder(Guid offerId, string customerName, double orderQuantity,
             bool customAddress, OrderDetails orderDetails = null);
         Task RemoveOffer(Guid id);
         Task<OfferDTO> GetOfferAsync(Guid id);
-        Task<DTO.PagedResponseDTO<OffersDTO>> BrowseAllAsync(PagedQuery paged,OfferQuery query);
-        Task ObserveOfferAsync(string userName, Guid offerId);
+        Task<DTO.PagedResponseDTO<OffersDTO>> BrowseAllAsync(PagedQuery paged, OfferQuery query);
     }
 }

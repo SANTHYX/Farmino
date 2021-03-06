@@ -1,6 +1,7 @@
 ﻿using Farmino.Data.Enums;
 using Farmino.Service.Commands.Interfaces;
 using Farmino.Service.Commands.OfferCommands.NestedModel;
+using Microsoft.AspNetCore.Http;
 
 namespace Farmino.Service.Commands.OfferCommands
 {
@@ -11,6 +12,7 @@ namespace Farmino.Service.Commands.OfferCommands
         public string Description { get; set; }
         public WeightUnits MinWeightUnit { get; set; }
         public double MinQuantity { get; set; }
+        public IFormFile Image { get; set; }
         public ProductCommand Product { get; set; }
     }
 }

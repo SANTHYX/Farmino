@@ -39,7 +39,7 @@ namespace Farmino.API.Controllers
             => Ok(await _auctionService.AuctionOverviewAsync(paged, auctionId));
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateAuction command)
+        public async Task<IActionResult> Post([FromForm] CreateAuction command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Auction has been created");

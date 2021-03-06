@@ -23,7 +23,7 @@ namespace Farmino.Data.Models.Aggregations
         protected Auction() { }
 
         public Auction(string title, string description, DateTime startDate, DateTime endDate,
-            decimal startingPrice, Auctioner auctioner)
+            decimal startingPrice, string imageName, Auctioner auctioner)
         {
             Id = Guid.NewGuid();
             SetTitle(title);
@@ -31,6 +31,7 @@ namespace Farmino.Data.Models.Aggregations
             SetEndDate(endDate);
             SetStartDate(startDate);
             SetStartingPrice(startingPrice);
+            SetImageName(imageName);
             Auctioner = auctioner;
             CreatedAt = UpdatedAt = DateTime.Now;
         }

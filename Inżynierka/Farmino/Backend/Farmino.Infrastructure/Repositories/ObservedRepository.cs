@@ -1,6 +1,8 @@
 ﻿using Farmino.Data.Models.Entities;
 using Farmino.Infrastructure.ORM;
 using Farmino.Infrastructure.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace Farmino.Infrastructure.Repositories
@@ -17,6 +19,9 @@ namespace Farmino.Infrastructure.Repositories
         {
             await _context.Observeds.AddAsync(observed);
         }
+
+        public async Task<Observed> GetAsync(Guid userId, Guid offerId)
+            => await _context.Observeds.FirstOrDefaultAsync(x => x.OfferId == offerId && x.UserId == userId);
 
         public void Remove(Observed observed)
         {

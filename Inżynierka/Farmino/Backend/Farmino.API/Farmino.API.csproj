@@ -18,5 +18,10 @@
     <ProjectReference Include="..\Farmino.Service\Farmino.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\Auction\" />
+    <Folder Include="Images\Offer\" />
+  </ItemGroup>
+
 
 </Project>

@@ -2,7 +2,7 @@
   <div>
     <div id="offer-creator">
       <div id="picture-add">
-        <picture-picker />
+        <picture-picker @sendImage="setImage" />
       </div>
       <div id="creator-form">
         <h1>Kretor Ofert</h1>
@@ -78,6 +78,7 @@ export default {
         title: '',
         description: '',
         minQuantity: 0,
+        image: '',
         product: {
           basePrice: 0,
           baseWeightUnit: 0,
@@ -112,6 +113,10 @@ export default {
     ...mapActions({
       createOffer: 'offer/CREATE_OFFER',
     }),
+
+    setImage(input) {
+      this.offer.image = input;
+    },
 
     create() {
       this.createOffer({

@@ -18,8 +18,13 @@ namespace Farmino.Infrastructure.ImageManager
 
         public async Task<string> SaveImage(IFormFile file, string destination)
         {
-            var imageName = Guid.NewGuid().ToString("N");
-            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Images/Offers", imageName);
+            if (file == null)
+            {
+                throw new Exception("Image cannot be empty!");
+            }
+
+            var imageName = new String($"{Guid.NewGuid().ToString("N")+Path.GetExtension(file.FileName)}");
+            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, destination, imageName);
 
             try
             {

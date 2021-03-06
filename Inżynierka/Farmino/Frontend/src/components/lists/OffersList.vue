@@ -8,16 +8,18 @@
         </p>
       </div>
 
-      <div id="items-list">
-        <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
-      </div>
+      <div id="list-content">
+        <div id="items-list">
+          <offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
+        </div>
 
-      <div id="not-found" v-if="JSON.stringify(offers) === '[]'">
-        <not-found />
-      </div>
+        <div id="not-found" v-if="JSON.stringify(offers) === '[]'">
+          <not-found />
+        </div>
 
-      <div id="spinner" v-if="fetchData">
-        <loading-spinner />
+        <div id="spinner" v-if="fetchData">
+          <loading-spinner />
+        </div>
       </div>
     </div>
     <offers-list-pagination />
@@ -85,12 +87,23 @@ export default {
   color: rgb(100, 100, 100);
 }
 
-#spinner,
-#not-found {
+#list-content {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
+
+  #items-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #spinner,
+  #not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 }
 
 @media screen and(max-width: $tablet) {

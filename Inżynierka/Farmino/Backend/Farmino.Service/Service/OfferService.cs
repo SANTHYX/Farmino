@@ -24,17 +24,15 @@ namespace Farmino.Service.Service
         private readonly IOfferRepository _offerRepository;
         private readonly ICustomerRepository _customerRepository;
         private readonly IOrderRepository _orderRepository;
-        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
         public OfferService(IFarmerRepository farmerRepository, IOfferRepository offerRepository,
-            ICustomerRepository customerRepository, IMapper mapper, IOrderRepository orderRepository, IUserRepository userRepository)
+            ICustomerRepository customerRepository, IMapper mapper, IOrderRepository orderRepository)
         {
             _farmerRepository = farmerRepository;
             _offerRepository = offerRepository;
             _customerRepository = customerRepository;
             _orderRepository = orderRepository;
-            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -46,17 +44,14 @@ namespace Farmino.Service.Service
             {
                 offers = offers.Where(x => x.Farmer.User.UserName == query.FarmerName);
             }
-
             if (query.Phrase != null)
             {
                 offers = offers.Where(x => x.Title.ToLower().Contains(query.Phrase.ToLower()));
             }
-
             if (query.PriceFrom != null)
             {
                 offers = offers.Where(x => x.Product.BasePrice >= query.PriceFrom);
             }
-
             if (query.PriceTo != null)
             {
                 offers = offers.Where(x => x.Product.BasePrice <= query.PriceTo);
@@ -68,13 +63,13 @@ namespace Farmino.Service.Service
             return _mapper.Map<PagedResponseDTO<OffersDTO>>(pagedResponse);
         }
 
-        public async Task CreateOffer(string userName, string title, string description, WeightUnits minUnit,
+        public async Task CreateOffer(string userName, string title, string description, string imageName, WeightUnits minUnit,
             double minQuantity, Product product)
         {
             var farmer = await _farmerRepository.GetIfExistAsync(userName);
 
             await _offerRepository.AddAsync(new Offer(farmer, title, description, minUnit,
-                minQuantity ,product));
+                minQuantity, imageName, product));
             await _offerRepository.SaveChangesAsync();
         }
 
@@ -119,12 +114,6 @@ namespace Farmino.Service.Service
                 customer.User.Profile.Address), orderQuantity, summaryPrice, customAddress));
 
             await _orderRepository.SaveChanges();
-        }
-
-        public async Task ObserveOfferAsync(string userName, Guid offerId)
-        {
-            var user = await _userRepository.GetIfExistAsync(userName);
-            var offer = await _offerRepository.GetIfExistAsync(offerId);
         }
 
         public async Task RemoveOffer(Guid id)

@@ -6,7 +6,6 @@ using Farmino.Service.Extensions;
 using Farmino.Service.Queries.Order;
 using Farmino.Service.Service.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -80,7 +79,7 @@ namespace Farmino.Service.Service
         {
             var order = await _orderRepository.GetIfExistAsync(orderId);
 
-            if (order.Released)
+            if (order.OrderStatus == OrderStatus.Dostarczona)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
                     "Cannot cancel released order");
@@ -101,7 +100,7 @@ namespace Farmino.Service.Service
         {
             var order = await _orderRepository.GetIfExistAsync(orderId);
 
-            if (order.Released)
+            if (order.OrderStatus == OrderStatus.Dostarczona)
             {
                 throw new ServiceExceptions(ServiceErrorCodes.CannotCancelReleasedOrder,
                     "Already released order");

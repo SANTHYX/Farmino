@@ -9,5 +9,6 @@ namespace Farmino.Service.DTO.Offer
         public string Title { get; protected set; }
         public FarmerDTO Farmer { get; set; }
         public ProductDTO Product { get; set; }
+        public string ImageName { get; set; }
     }
 }

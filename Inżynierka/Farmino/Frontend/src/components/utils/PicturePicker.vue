@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       containImage: false,
-      imageFile: null,
+      imageFile: '',
       image: null,
     };
   },
@@ -35,6 +35,7 @@ export default {
         this.imageFile = e.target.files;
         this.containImage = true;
         this.previewImage(this.imageFile[0]);
+        this.bindData();
       }
     },
 
@@ -46,6 +47,10 @@ export default {
       };
 
       fileReader.readAsDataURL(file);
+    },
+
+    bindData() {
+      this.$emit('sendImage', this.imageFile[0]);
     },
   },
 };

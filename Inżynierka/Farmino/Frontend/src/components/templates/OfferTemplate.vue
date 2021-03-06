@@ -5,6 +5,11 @@
         <button id="observe-btn">
           <unicon name="eye" id="eye" fill="#494949" width="40" height="40" />
         </button>
+        <img
+          :src="`http://localhost:4800/Images/Offer/${offer.imageName}`"
+          :alt="offer.imageName"
+          id="img"
+        />
       </div>
       <div id="offer-place">
         <div id="title">
@@ -45,7 +50,7 @@
           <button
             class="btn"
             id="order"
-            @click="setOrderQuantity(orderQuantity),$router.push({ name: 'make-order' })"
+            @click="setOrderQuantity(orderQuantity), $router.push({ name: 'make-order' })"
           >
             Zamów
           </button>
@@ -184,7 +189,14 @@ export default {
     width: 50vw;
     border-top: 4px solid orange;
 
+    #img {
+      width: 50vw;
+      height: 78vh;
+      object-fit: fill;
+    }
+
     #observe-btn {
+      position: absolute;
       display: flex;
       align-items: center;
       background: none;
@@ -245,6 +257,12 @@ export default {
     #images-place {
       height: 50vh;
       width: 90vw;
+
+      #img {
+        height: 50vh;
+        width: 90vw;
+        object-fit: fill;
+      }
     }
   }
 }

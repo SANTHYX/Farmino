@@ -1,4 +1,4 @@
-import { isAuthorized } from '../guards';
+import { isAuthorized, haveProfile } from '../guards';
 
 const auctionRoutes = [
   {
@@ -17,7 +17,7 @@ const auctionRoutes = [
     path: '/auctions/auction-creator',
     name: 'auction-creator',
     component: () => import('@/views/auctions/AuctionCreate.vue'),
-    beforeEnter: isAuthorized,
+    beforeEnter: haveProfile,
   },
   {
     path: '/auctions/:id',

@@ -1,4 +1,4 @@
-import { isAuthorized, isFarmer } from '../guards';
+import { isAuthorized, isFarmer, haveProfile } from '../guards';
 
 const offerRoutes = [
   {
@@ -7,6 +7,7 @@ const offerRoutes = [
     component: () => import('@/views/offers/MyOffers.vue'),
     beforeEnter: isAuthorized,
   },
+
   {
     path: '/offers/:id/make-order',
     name: 'make-order',
@@ -14,6 +15,7 @@ const offerRoutes = [
     component: () => import('@/views/offers/MakeOrder.vue'),
     beforeEnter: isFarmer,
   },
+
   {
     path: '/offers/:id/custom-address',
     name: 'custom-address',
@@ -21,6 +23,7 @@ const offerRoutes = [
     component: () => import('@/views/offers/CustomAddress.vue'),
     beforeEnter: isAuthorized,
   },
+
   {
     path: '/offers/:id/summary',
     name: 'summary',
@@ -28,24 +31,28 @@ const offerRoutes = [
     component: () => import('@/views/orders/Summary.vue'),
     beforeEnter: isAuthorized,
   },
+
   {
     path: '/offers/offer-creator',
     name: 'offer-creator',
     component: () => import('@/views/offers/OfferCreate.vue'),
-    beforeEnter: isAuthorized,
+    beforeEnter: haveProfile,
   },
+
   {
     path: '/offers/observed',
     name: 'observed',
     component: () => import('@/views/offers/Observed.vue'),
     beforeEnter: isAuthorized,
   },
+
   {
     path: '/offers/:id',
     name: 'offer',
     props: true,
     component: () => import('@/views/offers/Offer.vue'),
   },
+
   {
     path: '/offers',
     name: 'offers',

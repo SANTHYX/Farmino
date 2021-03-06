@@ -1,7 +1,12 @@
 <template>
   <div>
     <div id="auction-list-item" :auctionItem="auctionItem">
-      <div id="auction-img"></div>
+      <div id="auction-img">
+        <img
+          :src="`http://localhost:4800/Images/Offer/${auctionItem.imageName}`"
+          :alt="auctionItem.imageName"
+        />
+      </div>
 
       <div id="auction-details">
         <div id="title-wraper">

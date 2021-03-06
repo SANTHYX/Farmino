@@ -1,7 +1,7 @@
 import loacalStorageManager from '../plugins/localStorageManager';
 import store from '../store/store';
 
-export const isFarmer = (to, from, next) => {
+const isFarmer = (to, from, next) => {
   if (!loacalStorageManager.isAuthorized()) {
     next({ name: 'login', query: { redirect: to.fullPath } });
   }
@@ -10,8 +10,20 @@ export const isFarmer = (to, from, next) => {
   } else next();
 };
 
-export const isAuthorized = (to, from, next) => {
+const haveProfile = async (to, from, next) => {
+  await store.dispatch('user/GET_USER', store.state.auth.userName);
+  if (!loacalStorageManager.isAuthorized()) {
+    next({ path: '*' });
+  }
+  if (store.state.user.user.profile === null) {
+    next({ name: 'create-profile', query: { redirect: to.fullPath } });
+  } else next();
+};
+
+const isAuthorized = (to, from, next) => {
   if (!loacalStorageManager.isAuthorized()) {
     next({ path: '*' });
   } else next();
 };
+
+export { isAuthorized, isFarmer, haveProfile };

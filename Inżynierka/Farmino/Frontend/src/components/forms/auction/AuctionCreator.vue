@@ -2,7 +2,7 @@
   <div>
     <div id="auction-creator-form">
       <div id="picture-add">
-        <picture-picker />
+        <picture-picker @sendImage="setImage" />
       </div>
       <div id="creator-form">
         <h1>Stwórz Aukcje</h1>
@@ -98,6 +98,7 @@ export default {
         description: '',
         startDate: '',
         endDate: '',
+        image: '',
         startingPrice: 0,
       },
     };
@@ -127,6 +128,10 @@ export default {
     ...mapActions({
       createAuction: 'auction/CREATE_AUCTION',
     }),
+
+    setImage(input) {
+      this.auction.image = input;
+    },
 
     createAuctionAsync() {
       this.createAuction({ ...this.auction, userName: this.userName });

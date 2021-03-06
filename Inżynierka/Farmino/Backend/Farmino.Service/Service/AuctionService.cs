@@ -4,7 +4,6 @@ using Farmino.Data.Models.Entities;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.DTO;
 using Farmino.Service.DTO.Auction;
-using Farmino.Service.DTO.Auction.NestedModels;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
 using Farmino.Service.Queries;
@@ -36,13 +35,13 @@ namespace Farmino.Service.Service
             _mapper = mapper;
         }
 
-        public async Task CreateAuction(string userName, string title, string description, 
-            DateTime startDate, DateTime endDate, decimal startingPrice)
+        public async Task CreateAuction(string userName, string title, string description, DateTime startDate,
+            DateTime endDate, string imageName, decimal startingPrice)
         {
             var auctioner = await _auctionerRepository.GetIfExistAsync(userName);
 
             await _auctionRepository.AddAsync(new Auction(title, description, startDate, endDate,
-                startingPrice, auctioner));
+                startingPrice, imageName, auctioner));
             await _auctionRepository.SaveChangesAsync();
         }
 

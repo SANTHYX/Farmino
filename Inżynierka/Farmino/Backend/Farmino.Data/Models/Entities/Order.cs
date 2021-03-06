@@ -20,7 +20,6 @@ namespace Farmino.Data.Models.Entities
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public OrderStatus OrderStatus { get; protected set; }
         public DateTime ReleaseDate { get; protected set; }
-        public bool Released { get; protected set; }
         public bool CustomAddress { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
@@ -37,7 +36,6 @@ namespace Farmino.Data.Models.Entities
             SetOrderStatus(OrderStatus.Oczekujaca);
             SetOrderQuantity(orderQuantity);
             SetPriceSummary(priceSummary);
-            IsReleased(false);
             IsCustomAddress(customAddress);
             CreatedAt = UpdatedAt = DateTime.Now;
         }
@@ -82,17 +80,6 @@ namespace Farmino.Data.Models.Entities
             }
 
             PriceSummary = priceSummary;
-            UpdatedAt = DateTime.Now;
-        }
-
-        public void IsReleased(bool released)
-        {
-            if (Released == released)
-            {
-                return;
-            }
-
-            Released = released;
             UpdatedAt = DateTime.Now;
         }
 

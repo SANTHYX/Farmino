@@ -38,7 +38,7 @@ namespace Farmino.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateOffer command)
+        public async Task<IActionResult> Post([FromForm] CreateOffer command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Offer has been created");

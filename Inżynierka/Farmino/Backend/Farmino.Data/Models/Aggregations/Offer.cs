@@ -22,11 +22,12 @@ namespace Farmino.Data.Models.Aggregations
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; } 
         public IEnumerable<Order> Orders { get; protected set; }
+        public IEnumerable<Observed> Observeds { get; protected set; }
 
         protected Offer() { }
 
-        public Offer(Farmer farmer, string title, 
-            string description, WeightUnits minWeightUnit, double minQuantity, Product product) 
+        public Offer(Farmer farmer, string title, string description, WeightUnits minWeightUnit,
+            double minQuantity, string imageName ,Product product) 
         {
             Id = Guid.NewGuid();
             SetFarmer(farmer);
@@ -35,6 +36,7 @@ namespace Farmino.Data.Models.Aggregations
             SetMinWeightUnit(minWeightUnit);
             SetMinQuantity(minQuantity);
             SetProduct(product);
+            SetImageName(imageName);
             CreatedAt = UpdatedAt = DateTime.Now;
         }
 

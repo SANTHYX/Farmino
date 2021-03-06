@@ -1,5 +1,4 @@
-﻿using Farmino.Data.Enums;
-using Farmino.Service.DTO.Offer.NestedModels;
+﻿using Farmino.Service.DTO.Offer.NestedModels;
 using System;
 
 namespace Farmino.Service.DTO.Offer
@@ -12,5 +11,6 @@ namespace Farmino.Service.DTO.Offer
         public double MinQuantity { get; set; }
         public FarmerDTO Farmer { get; set; }
         public ProductDTO Product { get; set; }
+        public string ImageName { get; set; }
     }
 }

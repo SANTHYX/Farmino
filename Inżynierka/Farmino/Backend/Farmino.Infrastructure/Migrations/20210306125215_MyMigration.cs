@@ -156,6 +156,7 @@ namespace Farmino.Infrastructure.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
                     StartingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AuctionerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ImageName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -182,6 +183,7 @@ namespace Farmino.Infrastructure.Migrations
                     FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Product_BasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Product_BaseWeightUnit = table.Column<int>(type: "int", nullable: true),
+                    ImageName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -223,6 +225,30 @@ namespace Farmino.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Observeds",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OfferId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Observeds", x => new { x.OfferId, x.UserId });
+                    table.ForeignKey(
+                        name: "FK_Observeds_Offers_OfferId",
+                        column: x => x.OfferId,
+                        principalTable: "Offers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Observeds_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -242,7 +268,6 @@ namespace Farmino.Infrastructure.Migrations
                     PriceSummary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Released = table.Column<bool>(type: "bit", nullable: false),
                     CustomAddress = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -286,6 +311,11 @@ namespace Farmino.Infrastructure.Migrations
                 table: "Farmers",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Observeds_UserId",
+                table: "Observeds",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Offers_FarmerId",
@@ -332,6 +362,9 @@ namespace Farmino.Infrastructure.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Observeds");
+
             migrationBuilder.DropTable(
                 name: "Orders");
 
