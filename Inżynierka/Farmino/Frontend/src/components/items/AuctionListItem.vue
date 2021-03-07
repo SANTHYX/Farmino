@@ -3,8 +3,9 @@
     <div id="auction-list-item" :auctionItem="auctionItem">
       <div id="auction-img">
         <img
-          :src="`http://localhost:4800/Images/Offer/${auctionItem.imageName}`"
+          :src="`http://localhost:4800/Images/Auction/${auctionItem.imageName}`"
           :alt="auctionItem.imageName"
+          id="img"
         />
       </div>
 
@@ -78,11 +79,17 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    flex-wrap: wrap;
     height: 250px;
     width: 17vw;
     min-width: 240px;
     background: rgb(192, 192, 192);
     transition: 0.1s all;
+
+    #img {
+      height: 250px;
+      width: 17vw;
+    }
   }
 
   #auction-details {
@@ -150,6 +157,10 @@ export default {
 
     #auction-img {
       width: 73vw;
+
+      #img {
+        width: 73vw;
+      }
     }
   }
 }

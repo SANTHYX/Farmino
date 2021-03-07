@@ -1,9 +1,17 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using AutoMapper;
+using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using Farmino.Infrastructure.Repositories.Interfaces;
+using Farmino.Service.DTO;
+using Farmino.Service.DTO.Offer;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Extensions;
+using Farmino.Service.Queries;
 using Farmino.Service.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Service.Service
@@ -13,13 +21,15 @@ namespace Farmino.Service.Service
         private readonly IUserRepository _userRepository;
         private readonly IOfferRepository _offerRepository;
         private readonly IObservedRepository _observedRepository;
+        private readonly IMapper _mapper;
 
         public ObservedService(IUserRepository userRepository, IOfferRepository offerRepository,
-            IObservedRepository observedRepository)
+            IObservedRepository observedRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _observedRepository = observedRepository;
             _offerRepository = offerRepository;
+            _mapper = mapper;
         }
 
         public async Task ObserveOfferAsync(string userName, Guid offerId)

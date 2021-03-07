@@ -1,14 +1,21 @@
 <template>
   <div>
     <div id="list-wraper">
-      <my-offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
-
-      <div id="not-found" v-if="JSON.stringify(offers) === '[]'">
-        <not-found />
+      <div id="info-wraper">
+        <h1>Moje Oferty</h1>
       </div>
+      <div id="list-content">
+        <div id="items-list">
+          <my-offer-list-item v-for="offer in offers" :key="offer.id" :offerItem="offer" />
+        </div>
 
-      <div id="spinner" v-if="fetchingData">
-        <loading-spinner />
+        <div id="not-found" v-if="JSON.stringify(offers) === '[]'">
+          <not-found />
+        </div>
+
+        <div id="spinner" v-if="fetchingData">
+          <loading-spinner />
+        </div>
       </div>
     </div>
   </div>
@@ -48,27 +55,51 @@ export default {
 
 <style lang="scss" scoped>
 #list-wraper {
-  margin: 12rem 0;
+  margin: 12rem 0 1rem 0;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
-  width: 70vw;
+  width: 80vw;
   min-width: 50vw;
-  min-height: 80vh;
+  min-height: 100vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  background: rgb(245, 245, 245);
+}
 
-  #not-found,
-  #spinner {
+#info-wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgb(216, 216, 216);
+  box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
+  color: rgb(100, 100, 100);
+  background: rgb(235, 235, 235);
+}
+
+#list-content {
+  display: flex;
+  justify-content: center;
+
+  #items-list {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #spinner,
+  #not-found {
+    display: flex;
     align-items: center;
-    width: 100vw;
+    justify-content: center;
+    min-height: 100vh;
   }
 }
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
-    margin: 12rem 0;
+    margin: 4rem 0;
     min-height: 90vh;
     width: 80vw;
     flex-direction: column;

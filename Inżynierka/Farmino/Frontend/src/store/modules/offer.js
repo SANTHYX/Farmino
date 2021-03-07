@@ -156,6 +156,29 @@ const offer = {
         throw new Error(err.message);
       }
     },
+
+    async GET_OBSERVED_OFFERS({ commit }, { userName, results = 8, page }) {
+      try {
+        const response = await api.get(`/offers/${userName}/observed`, {
+          params: {
+            results,
+            page,
+          },
+        });
+        commit('SET_OFFERS', response.data);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async OBSERVE_OFFER({ commit }, { userName, offerId }) {
+      try {
+        await api.post('/observeds', { userName, offerId });
+        commit('');
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
   },
 };
 

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="order-template">
-      <div id="overview"></div>
+      <div id="overview">
+        <overview-map />
+      </div>
       <div id="details">
         <div id="order-details">
           <h1>Szczegóły Zamówienia</h1>
@@ -45,6 +47,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import OverviewMap from '../maps/OverviewMap.vue';
 
 export default {
   name: 'order-template',
@@ -54,6 +57,10 @@ export default {
       type: String,
       required: true,
     },
+  },
+
+  components: {
+    OverviewMap,
   },
 
   filters: {

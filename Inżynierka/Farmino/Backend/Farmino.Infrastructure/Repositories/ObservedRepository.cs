@@ -3,6 +3,7 @@ using Farmino.Infrastructure.ORM;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farmino.Infrastructure.Repositories
@@ -19,6 +20,9 @@ namespace Farmino.Infrastructure.Repositories
         {
             await _context.Observeds.AddAsync(observed);
         }
+
+        public IQueryable<Observed> GetAll()
+            => _context.Observeds.AsQueryable();
 
         public async Task<Observed> GetAsync(Guid userId, Guid offerId)
             => await _context.Observeds.FirstOrDefaultAsync(x => x.OfferId == offerId && x.UserId == userId);

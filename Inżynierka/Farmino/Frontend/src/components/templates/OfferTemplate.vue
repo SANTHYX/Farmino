@@ -2,9 +2,6 @@
   <div>
     <div id="offer-template">
       <div id="images-place">
-        <button id="observe-btn">
-          <unicon name="eye" id="eye" fill="#494949" width="40" height="40" />
-        </button>
         <img
           :src="`http://localhost:4800/Images/Offer/${offer.imageName}`"
           :alt="offer.imageName"
@@ -13,9 +10,16 @@
       </div>
       <div id="offer-place">
         <div id="title">
-          <h1>{{ offer.title }}</h1>
+          <div id="title-wraper">
+            <h1>{{ offer.title }}</h1>
+            <button id="observe-btn" @click="observeOffer({ userName, offerId: offer.id })">
+              <unicon name="eye" id="eye" fill="#494949" width="35" height="35" />
+            </button>
+          </div>
+
           <hr />
           <p v-if="offer.farmer">Od: {{ offer.farmer.user.userName }}</p>
+
           <div id="city-displayer" v-if="offer.farmer">
             <city-displayer
               :lon="offer.farmer.user.profile.address.node.lon"
@@ -61,7 +65,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 import CityDisplayer from '../maps/CityDisplayer.vue';
 
 export default {
@@ -83,6 +87,9 @@ export default {
   methods: {
     ...mapMutations({
       setOrderQuantity: 'offer/SET_ORDER_QUANTITY',
+    }),
+    ...mapActions({
+      observeOffer: 'offer/OBSERVE_OFFER',
     }),
   },
 
@@ -131,12 +138,27 @@ export default {
           padding: 1rem 0 1rem 1rem;
         }
       }
+
+      #title-wraper {
+        display: flex;
+        justify-content: space-between;
+
+        #observe-btn {
+          display: flex;
+          align-items: center;
+          padding: 0 0.2rem;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+      }
     }
 
     #description {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      word-break: break-all;
       padding: 1rem;
 
       h2 {
@@ -191,20 +213,8 @@ export default {
 
     #img {
       width: 50vw;
-      height: 78vh;
+      height: 80vh;
       object-fit: fill;
-    }
-
-    #observe-btn {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      background: none;
-      margin: 1rem;
-      font-size: 1rem;
-      color: rgb(97, 97, 97);
-      padding: 0.2rem;
-      border: none;
     }
   }
 
@@ -234,6 +244,10 @@ export default {
       #params-description {
         width: 90vw;
         justify-content: center;
+      }
+
+      #description {
+        width: 80vw;
       }
 
       .btn {

@@ -5,12 +5,13 @@ namespace Farmino.Service.DTO.Auction
 {
     public class AuctionDTO
     {
-        public Guid Id { get; protected set; }
-        public string Title { get; protected set; }
-        public string Description { get; protected set; }
-        public DateTime StartDate { get; protected set; }
-        public DateTime EndDate { get; protected set; }
-        public decimal StartingPrice { get; protected set; }
-        public AuctionerDTO Auctioner { get; protected set; }
+        public Guid Id { get;  set; }
+        public string Title { get;  set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal StartingPrice { get; set; }
+        public AuctionerDTO Auctioner { get; set; }
+        public string ImageName { get; set; }
     }
 }

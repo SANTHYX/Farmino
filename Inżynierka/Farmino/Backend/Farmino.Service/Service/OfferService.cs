@@ -123,5 +123,14 @@ namespace Farmino.Service.Service
             _offerRepository.RemoveAsync(offer);
             await _offerRepository.SaveChangesAsync();
         }
+
+        public async Task<PagedResponseDTO<OffersDTO>> GetObservedsAsync(string userName, PagedQuery paged)
+        {
+            var offer = _offerRepository.GetAllAsync().Where(x => x.Observeds.Any(y => y.User.UserName == userName));
+
+            var pagedResponse = await PagedResponse<Offer>.GetPagedResponse(offer, paged);
+            return _mapper.Map<PagedResponseDTO<OffersDTO>>(pagedResponse);
+        }
+
     }
 }

@@ -1,11 +1,7 @@
 ﻿using Farmino.Service.Commands.ObservedCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -25,7 +21,7 @@ namespace Farmino.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] ObserveOffer command)
+        public async Task<IActionResult> Post([FromBody] ObserveOffer command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Offer has been created");

@@ -53,7 +53,6 @@ export default {
     ...mapGetters({
       offers: 'offer/GET_OFFERS_ALL',
       pageDetails: 'offer/GET_PAGE_DETAILS',
-      fetchStatus: 'offer/GET_FETCH_STATUS',
     }),
   },
 
@@ -75,6 +74,7 @@ export default {
   min-width: 50vw;
   min-height: 100vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  background: rgb(245, 245, 245);
 }
 
 #info-wraper {
@@ -85,6 +85,7 @@ export default {
   border-bottom: 1px solid rgb(216, 216, 216);
   box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
   color: rgb(100, 100, 100);
+  background: rgb(235, 235, 235);
 }
 
 #list-content {

@@ -2,7 +2,7 @@
   <div>
     <div id="auctions-filter-bar">
       <div id="header">
-        <unicon name="filter" height="40" width="40" />
+        <unicon name="filter" height="40" width="40" fill="#615f5f" />
         <h1>Filtry</h1>
       </div>
 
@@ -124,16 +124,16 @@ export default {
   border: 1px solid rgb(223, 223, 223);
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   background: rgb(246, 246, 246);
-  width: 70vw;
+  width: 80vw;
 
   #header {
     padding: 0.7rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     background: rgb(235, 235, 235);
     border-bottom: 1px solid rgb(223, 223, 223);
     box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
-    width: 70vw;
+    width: 80vw;
     color: #615f5f;
   }
 

@@ -67,7 +67,7 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
-  width: 70vw;
+  width: 80vw;
   min-width: 50vw;
   min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
@@ -75,10 +75,11 @@ export default {
 
   #info-wraper {
     padding: 1rem;
-    width: 70vw;
+    width: 80vw;
     border-bottom: 1px solid rgb(216, 216, 216);
     box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
     background: rgb(235, 235, 235);
+    color: rgb(100, 100, 100);
   }
 
   #not-found,

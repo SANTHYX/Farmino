@@ -76,17 +76,20 @@ const auction = {
     async CREATE_AUCTION(
       { commit },
       {
-        userName, title, description, startDate, endDate, startingPrice,
+        userName, title, description, startDate, endDate, image, startingPrice,
       },
     ) {
+      const formFile = new FormData();
+      formFile.append('userName', userName);
+      formFile.append('title', title);
+      formFile.append('description', description);
+      formFile.append('startDate', startDate);
+      formFile.append('endDate', endDate);
+      formFile.append('image', image);
+      formFile.append('startingPrice', startingPrice);
       try {
-        await api.post('/auctions', {
-          userName,
-          title,
-          description,
-          startDate,
-          endDate,
-          startingPrice,
+        await api.post('/auctions', formFile, {
+          headers: { 'Content-Type': 'multipart/form-data' },
         });
         commit();
       } catch (err) {

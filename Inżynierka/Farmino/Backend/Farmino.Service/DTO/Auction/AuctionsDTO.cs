@@ -9,5 +9,6 @@ namespace Farmino.Service.DTO.Auction
         public string Title { get; set; }
         public AuctionerDTO Auctioner { get; set; }
         public DateTime EndDate { get; set; }
+        public string ImageName { get; set; }
     }
 }

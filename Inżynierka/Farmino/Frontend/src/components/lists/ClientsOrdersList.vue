@@ -44,16 +44,18 @@ export default {
   min-width: 20vw;
   min-height: 70vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  background: rgb(245, 245, 245);
 
   h1 {
     margin: 0.75rem 0 0 0;
-    color: rgb(51, 51, 51);
+    color: rgb(105, 105, 105);
   }
 
   hr {
     width: 200px;
-    color: rgb(228, 228, 228);
+    color: orange;
     margin: 0 0 1rem 0;
+    border: solid 2px orange;
   }
 
   #not-found,

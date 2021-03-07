@@ -4,17 +4,18 @@
       <div id="info-wraper">
         <h1>Aukcje</h1>
       </div>
+      <div id="list-content">
+        <div id="items-list">
+          <auction-list-item v-for="auction in auctions" :key="auction.id" :auctionItem="auction" />
+        </div>
 
-      <div id="items-list">
-        <auction-list-item v-for="auction in auctions" :key="auction.id" :auctionItem="auction" />
-      </div>
+        <div id="not-found" v-if="JSON.stringify(auctions) === '[]'">
+          <not-found />
+        </div>
 
-      <div id="not-found" v-if="JSON.stringify(auctions) === '[]'">
-        <not-found />
-      </div>
-
-      <div id="spinner" v-if="fetchingData">
-        <loading-spinner />
+        <div id="spinner" v-if="fetchingData">
+          <loading-spinner />
+        </div>
       </div>
     </div>
     <auctions-list-pagination />
@@ -65,7 +66,7 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   border: 1px solid rgb(216, 216, 216);
-  min-width: 70vw;
+  min-width: 80vw;
   min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   background: rgb(245, 245, 245);
@@ -78,14 +79,25 @@ export default {
     border-bottom: 1px solid rgb(216, 216, 216);
     box-shadow: 0 2px 1px rgba(211, 211, 211, 0.39);
     background: rgb(235, 235, 235);
+    color: rgb(100, 100, 100);
   }
-
-  #not-found,
-  #spinner {
+  #list-content {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 70vw;
+
+    #items-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    #not-found,
+    #spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80vw;
+    }
   }
 }
 

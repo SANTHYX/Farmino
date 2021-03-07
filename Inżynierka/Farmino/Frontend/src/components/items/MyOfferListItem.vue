@@ -1,7 +1,13 @@
 <template>
   <div>
     <div id="offer-list-item" :offerItem="offerItem">
-      <div id="offer-img"></div>
+      <div id="offer-img">
+        <img
+          :src="`http://localhost:4800/Images/Offer/${offerItem.imageName}`"
+          :alt="offerItem.imageName"
+          id="img"
+        />
+      </div>
       <div id="offer-detail">
         <h2>{{ offerItem.title }}</h2>
 
@@ -53,6 +59,11 @@ export default {
     align-self: center;
     background: rgb(192, 192, 192);
     transition: 0.1s all;
+
+    #img {
+      height: 250px;
+      width: 16.9vw;
+    }
   }
 
   #offer-detail {

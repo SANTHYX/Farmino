@@ -30,6 +30,10 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PagedQuery paged, [FromQuery] OfferQuery query)
             => Ok(await _offerService.BrowseAllAsync(paged,query));
 
+        [HttpGet("{userName}/observed")]
+        public async Task<IActionResult> Get(string userName, [FromQuery] PagedQuery paged)
+            => Ok(await _offerService.GetObservedsAsync(userName, paged));
+
         [HttpPost("make-order")]
         public async Task<IActionResult> Post([FromBody] MakeOrder command)
         {

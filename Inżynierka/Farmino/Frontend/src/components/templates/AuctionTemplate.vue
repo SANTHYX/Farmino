@@ -18,12 +18,12 @@
             <button class="btn" @click="showParamsSection = true">Parametry</button>
           </div>
 
-          <div id="description" class="parm-desc" v-if="!showParamsSection">
+          <div id="description" v-if="!showParamsSection">
             <h2>Opis</h2>
             <p>{{ auction.description }}</p>
           </div>
 
-          <div id="params" class="parm-desc" v-else>
+          <div id="params" v-else>
             <h2>Parametry</h2>
             <p></p>
           </div>
@@ -111,6 +111,7 @@ export default {
   #offer-place {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: rgb(243, 243, 243);
     border-bottom: 4px solid rgb(233, 153, 4);
@@ -142,19 +143,32 @@ export default {
       display: flex;
       flex-direction: column;
       padding: 1rem;
+      margin: 1rem 0;
 
-      .parm-desc {
-        margin: 1rem 0;
+      h2 {
+        margin: 0.2rem 0;
+        font-size: 1.7rem;
+      }
 
-        h2 {
-          margin: 0.2rem 0;
-          font-size: 1.7rem;
-        }
+      p {
+        margin: 0.7rem 0;
+        color: rgb(97, 97, 97);
+      }
+    }
 
-        p {
-          margin: 0.7rem 0;
-          color: rgb(97, 97, 97);
-        }
+    #description {
+      width: 20vw;
+      margin: 1rem 0;
+      word-break: break-all;
+
+      h2 {
+        margin: 0.2rem 0;
+        font-size: 1.7rem;
+      }
+
+      p {
+        margin: 0.7rem 0;
+        color: rgb(97, 97, 97);
       }
     }
 
@@ -224,6 +238,10 @@ export default {
       #params-description {
         width: 90vw;
         justify-content: center;
+      }
+
+      #description {
+        width: 80vw;
       }
 
       .btn {
