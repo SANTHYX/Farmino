@@ -56,19 +56,32 @@ namespace Farmino.Service.Service
             {
                 offers = offers.Where(x => x.Product.BasePrice <= query.PriceTo);
             }
+            if(query.City != null)
+            {
+                offers = offers.Where(x => x.Farmer.User.Profile.Address.City == query.City);
+            }
+            if (query.Region != null)
+            {
+                offers = offers.Where(x => x.Region == query.Region);
+            }
+            if (query.Category != null)
+            {
+                offers = offers.Where(x => x.Category == query.Category);
+            }
 
-            var result = offers.Include(x => x.Product).Include(y => y.Farmer).ThenInclude(z => z.User);
+            var result = offers.Include(x => x.Product).Include(y => y.Farmer).ThenInclude(z => z.User)
+                .ThenInclude(y=>y.Profile).ThenInclude(z => z.Address);
             var pagedResponse = await PagedResponse<Offer>.GetPagedResponse(result, paged);
 
             return _mapper.Map<PagedResponseDTO<OffersDTO>>(pagedResponse);
         }
 
-        public async Task CreateOffer(string userName, string title, string description, string imageName, WeightUnits minUnit,
-            double minQuantity, Product product)
+        public async Task CreateOffer(string userName, string title, string description, string imageName, 
+            WeightUnits minUnit,Categories category, Regions region, double minQuantity, Product product)
         {
             var farmer = await _farmerRepository.GetIfExistAsync(userName);
 
-            await _offerRepository.AddAsync(new Offer(farmer, title, description, minUnit,
+            await _offerRepository.AddAsync(new Offer(farmer, title, description, minUnit, region, category,
                 minQuantity, imageName, product));
             await _offerRepository.SaveChangesAsync();
         }

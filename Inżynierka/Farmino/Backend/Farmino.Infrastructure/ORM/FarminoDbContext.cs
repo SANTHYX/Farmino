@@ -117,6 +117,8 @@ namespace Farmino.Infrastructure.ORM
                 x.Property(y => y.Description).IsRequired();
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
                 x.Property(y => y.ImageName).HasMaxLength(40);
+                x.Property(y => y.Category).HasMaxLength(2);
+                x.Property(y => y.Region).HasMaxLength(2);
                 x.HasMany(y => y.Observeds).WithOne(z => z.Offer).HasForeignKey(q => q.OfferId);
                 x.OwnsOne(y => y.Product, z =>
                 {

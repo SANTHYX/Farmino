@@ -34,14 +34,27 @@
             <p>
               {{ `${order.orderDetails.address.postalCode} ${order.orderDetails.address.city}` }}
             </p>
+            <p id="phone-number">
+              <unicon name="phone" fill="#494949" />{{ order.orderDetails.phoneNumber }}
+            </p>
           </div>
         </div>
 
-        <div id="interface">
-          <button class="btn" @click="releaseOrder">
+        <div
+          id="interface"
+          v-if="order.orderStatus === 'Oczekujaca' || order.orderStatus === 'Odrzucona'"
+        >
+          <button class="btn" @click="release">
             Przyjmij
           </button>
-          <button class="btn" @click="revokeOrder">Odrzuć</button>
+          <button class="btn" @click="revoke">Odrzuć</button>
+        </div>
+
+        <div id="interface" v-else>
+          <button class="btn" @click="release">
+            Przenieś Termin
+          </button>
+          <button class="btn" @click="deliver">Dostarczona</button>
         </div>
       </div>
     </div>
@@ -88,15 +101,21 @@ export default {
   methods: {
     ...mapActions({
       cancelOrder: 'order/CANCEL_ORDER',
+      deliverOrder: 'order/DELIVER_ORDER',
     }),
 
-    revokeOrder() {
+    async revoke() {
       this.cancelOrder({ orderId: this.id });
       this.$router.push({ name: 'my-delivers' });
     },
 
-    releaseOrder() {
+    async release() {
       this.$router.push({ name: 'order-release', params: { id: this.id } });
+    },
+
+    async deliver() {
+      this.deliverOrder({ orderId: this.id });
+      this.$router.push({ name: 'my-delivers' });
     },
   },
 
@@ -122,7 +141,7 @@ export default {
   border: 1px solid rgb(216, 216, 216);
   width: 60vw;
   min-width: 40vw;
-  min-height: 60vh;
+  height: 72vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   color: rgb(102, 102, 102);
 
@@ -147,6 +166,12 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      #phone-number {
+        margin-top: 0.3rem;
+        display: flex;
+        align-self: center;
+      }
     }
 
     hr {
@@ -172,16 +197,19 @@ export default {
     border: 1px solid rgb(187, 187, 187);
     font-size: 1rem;
     width: 8vw;
-    width: 18vw;
+    color: rgb(255, 255, 255);
+    background: rgb(233, 153, 4);
+    transition: 0.2s ease-in;
   }
 
   .btn:hover {
     border: 1px solid orange;
-    color: rgb(233, 153, 4);
+    color: rgb(90, 90, 90);
+    background: none;
   }
 
   #overview {
-    height: auto;
+    height: 72vh;
     width: 40vw;
     background: rgb(206, 206, 206);
   }
@@ -219,10 +247,7 @@ export default {
       width: 75vw;
     }
     #overview {
-      height: 60vh;
       width: auto;
-      display: flex;
-      flex-direction: column;
     }
   }
 }

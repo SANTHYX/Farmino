@@ -77,8 +77,6 @@ export default {
 
 <style lang="scss" scoped>
 #delivers-map {
-  display: flex;
-  flex-direction: column;
   border: 1px solid rgb(216, 216, 216);
   width: 40vw;
   height: 72vh;

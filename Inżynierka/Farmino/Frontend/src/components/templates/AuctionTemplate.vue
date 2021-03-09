@@ -1,14 +1,23 @@
 <template>
   <div>
     <div id="offer-template">
-      <div id="images-place"></div>
+      <div id="images-place">
+        <img
+          :src="`http://localhost:4800/Images/Auction/${auction.imageName}`"
+          :alt="auction.imageName"
+          id="img"
+        />
+      </div>
       <div id="offer-place">
         <div id="title" v-if="auction.auctioner">
           <h1>{{ auction.title }}</h1>
           <hr />
           <p>Od: {{ auction.auctioner.user.userName }}</p>
           <div id="city-displayer">
-            <city-displayer :lon="0.0" :lat="0.0" />
+            <city-displayer
+              :lon="auction.auctioner.user.profile.address.node.lon"
+              :lat="auction.auctioner.user.profile.address.node.lat"
+            />
           </div>
         </div>
 
@@ -33,11 +42,19 @@
 
         <div id="make-order">
           <div id="interface">
-            <p>
-              <strong>{{ auction.startingPrice }}</strong>
-            </p>
-            <input type="number" name="" id="" class="small-form-field" />
+            <div>
+              <label><strong>Aktualna Cena</strong></label>
+              <p>
+                <strong>{{ auction.startingPrice }} zł</strong>
+              </p>
+            </div>
+
+            <div id="propose">
+              <label><strong>Propozycja</strong></label>
+              <input type="number" name="" id="" class="small-form-field" />
+            </div>
           </div>
+
           <button class="btn" id="order" @click="$router.push({ name: 'make-order' })">
             Zamów
           </button>
@@ -102,9 +119,8 @@ export default {
   margin: 12rem 0;
   display: flex;
   border: 1px solid rgb(216, 216, 216);
-  width: 70vw;
+  width: 60vw;
   min-width: 50vw;
-  min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   color: rgb(71, 71, 71);
 
@@ -192,16 +208,21 @@ export default {
       }
 
       p {
-        font-size: 2.2rem;
-        color: rgb(233, 153, 4);
+        font-size: 2rem;
+        color: rgb(124, 124, 124);
       }
 
       #interface {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
-        margin: 1rem 0;
+        justify-content: space-between;
+        padding: 1rem;
         width: 25vw;
+
+        #propose {
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }
@@ -210,20 +231,29 @@ export default {
     background-color: rgb(230, 230, 230);
     width: 50vw;
     border-top: 4px solid rgb(233, 153, 4);
+
+    #img {
+      width: 40vw;
+      height: 83vh;
+      object-fit: fill;
+    }
   }
 
   .btn {
     padding: 0.5rem;
     background: none;
-    border: 1px solid rgb(216, 216, 216);
+    border: 1px solid rgb(187, 187, 187);
     font-size: 1rem;
     width: 8vw;
+    color: rgb(255, 255, 255);
+    background: rgb(233, 153, 4);
     transition: 0.2s ease-in;
   }
 
   .btn:hover {
     border: 1px solid orange;
-    color: rgb(233, 153, 4);
+    color: rgb(90, 90, 90);
+    background: none;
   }
 }
 

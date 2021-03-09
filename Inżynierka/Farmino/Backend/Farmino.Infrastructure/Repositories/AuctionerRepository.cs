@@ -21,8 +21,9 @@ namespace Farmino.Infrastructure.Repositories
         }
 
         public async Task<Auctioner> GetAsync(string userName)
-            => await _context.Auctioners.Include(x => x.User)
-                .Include(y => y.Auctions).FirstOrDefaultAsync(z => z.User.UserName == userName);
+            => await _context.Auctioners.Include(x => x.User).ThenInclude(x => x.Profile)
+            .ThenInclude(x => x.Address).ThenInclude(x => x.Node).Include(y => y.Auctions)
+            .FirstOrDefaultAsync(z => z.User.UserName == userName);
 
         public async Task SaveChangesAsync()
         {

@@ -1,5 +1,4 @@
-﻿using Farmino.Data.Enums;
-using Farmino.Service.Commands.Interfaces;
+﻿using Farmino.Service.Commands.Interfaces;
 using Farmino.Service.Commands.OfferCommands.NestedModel;
 using System;
 

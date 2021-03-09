@@ -31,23 +31,34 @@
           <div id="inputs-wraper">
             <label for="region" class="form-label">Województwo</label>
             <select name="region" id="region" class="small-form-field" v-model="query.region">
-              <option value="dolnoslaskie">Dolnoslaskie</option>
-              <option value="kujawskopomorskie">Kujawsko-Pomorskie</option>
-              <option value="lubelskie">Lubelskie</option>
-              <option value="lubuskie">Lubuskie</option>
-              <option value="lodzkie">Łódzkie</option>
-              <option value="malopolskie">Małopolskie</option>
-              <option value="mazowieckie">Mazowieckie</option>
-              <option value="opolskie">Opolskie</option>
-              <option value="podkarpackie">Podkarpackie</option>
-              <option value="podlaskie">Podlaskie</option>
-              <option value="pomorskie">Pomorskie</option>
-              <option value="slaskie">Śląskie</option>
-              <option value="swietokrzyskie">Świętokrzyskie</option>
-              <option value="warminskomazurskie">Warmińsko-Mazurskie</option>
-              <option value="wielkopolskie">Wielkopolskie</option>
-              <option value="zachodnioPomorskie">Zachodniopomorskie</option>
+              <option value="Dolnośląskie">Dolnoslaskie</option>
+              <option value="KujawskoPomorskie">Kujawsko-Pomorskie</option>
+              <option value="Lubelskie">Lubelskie</option>
+              <option value="Lubuskie">Lubuskie</option>
+              <option value="Łódzkie">Łódzkie</option>
+              <option value="Małopolskie">Małopolskie</option>
+              <option value="Mazowieckie">Mazowieckie</option>
+              <option value="Opolskie">Opolskie</option>
+              <option value="Podkarpackie">Podkarpackie</option>
+              <option value="Podlaskie">Podlaskie</option>
+              <option value="Pomorskie">Pomorskie</option>
+              <option value="Śląskie">Śląskie</option>
+              <option value="Świętokrzyskie">Świętokrzyskie</option>
+              <option value="WarmińskoMazurskie">Warmińsko-Mazurskie</option>
+              <option value="Wielkopolskie">Wielkopolskie</option>
+              <option value="ZachodnioPomorskie">Zachodniopomorskie</option>
             </select>
+          </div>
+
+          <div id="inputs-wraper">
+            <label for="city" class="form-label">Miasto</label>
+            <input
+              type="text"
+              name="city"
+              id="city"
+              class="small-form-field"
+              v-model.number="query.city"
+            />
           </div>
 
           <div id="inputs-wraper">
@@ -60,17 +71,6 @@
               <option value="nabial">Nabiał</option>
               <option value="pieczywo">Pieczywo</option>
             </select>
-          </div>
-
-          <div id="inputs-wraper">
-            <label for="deliverPrice" class="form-label">Dowóz od</label>
-            <input
-              type="number"
-              name="delive-price"
-              id="deliver-price"
-              class="small-form-field"
-              v-model.number="query.deliverPrice"
-            />
           </div>
 
           <button id="btn" @click="search">Szukaj</button>
@@ -93,7 +93,7 @@ export default {
         priceTo: undefined,
         region: undefined,
         category: undefined,
-        deliverPrice: undefined,
+        city: undefined,
       },
       showFilter: false,
     };

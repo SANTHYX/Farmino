@@ -180,6 +180,8 @@ namespace Farmino.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MinQuantity = table.Column<double>(type: "float", nullable: false),
                     MinWeightUnit = table.Column<int>(type: "int", nullable: false),
+                    Region = table.Column<int>(type: "int", maxLength: 2, nullable: false),
+                    Category = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Product_BasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Product_BaseWeightUnit = table.Column<int>(type: "int", nullable: true),

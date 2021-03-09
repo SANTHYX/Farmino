@@ -102,6 +102,10 @@ export default {
       align-items: center;
       justify-content: space-between;
 
+      h2 {
+        word-break: break-all;
+      }
+
       #end {
         display: flex;
       }

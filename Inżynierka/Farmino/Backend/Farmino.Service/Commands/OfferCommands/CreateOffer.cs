@@ -11,6 +11,8 @@ namespace Farmino.Service.Commands.OfferCommands
         public string Title { get; set; } 
         public string Description { get; set; }
         public WeightUnits MinWeightUnit { get; set; }
+        public Regions Region { get; set; }
+        public Categories Category { get; set; }
         public double MinQuantity { get; set; }
         public IFormFile Image { get; set; }
         public ProductCommand Product { get; set; }

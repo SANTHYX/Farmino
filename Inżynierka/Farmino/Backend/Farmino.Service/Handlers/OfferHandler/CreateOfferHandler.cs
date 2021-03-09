@@ -24,7 +24,7 @@ namespace Farmino.Service.Handlers.OfferHandler
             var product = Product.Create(command.Product.BasePrice, command.Product.BaseWeightUnit);
 
             await _offerService.CreateOffer(command.UserName, command.Title, command.Description,
-                imgName ,command.MinWeightUnit, command.MinQuantity, product);
+                imgName ,command.MinWeightUnit, command.Category, command.Region, command.MinQuantity, product);
         }
     }
 }

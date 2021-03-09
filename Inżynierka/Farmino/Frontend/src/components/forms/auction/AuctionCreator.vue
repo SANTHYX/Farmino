@@ -35,6 +35,47 @@
           ></textarea>
         </div>
 
+        <div id="fix">
+          <div id="inputs-wraper">
+            <label for="region" class="form-label">Województwo</label>
+            <select name="region" id="region" class="small-form-field" v-model="auction.region">
+              <option value="dolnoslaskie">Dolnoslaskie</option>
+              <option value="kujawskopomorskie">Kujawsko-Pomorskie</option>
+              <option value="lubelskie">Lubelskie</option>
+              <option value="lubuskie">Lubuskie</option>
+              <option value="lodzkie">Łódzkie</option>
+              <option value="malopolskie">Małopolskie</option>
+              <option value="mazowieckie">Mazowieckie</option>
+              <option value="opolskie">Opolskie</option>
+              <option value="podkarpackie">Podkarpackie</option>
+              <option value="podlaskie">Podlaskie</option>
+              <option value="pomorskie">Pomorskie</option>
+              <option value="slaskie">Śląskie</option>
+              <option value="swietokrzyskie">Świętokrzyskie</option>
+              <option value="warminskomazurskie">Warmińsko-Mazurskie</option>
+              <option value="wielkopolskie">Wielkopolskie</option>
+              <option value="zachodnioPomorskie">Zachodniopomorskie</option>
+            </select>
+          </div>
+
+          <div id="inputs-wraper">
+            <label for="" class="form-label">Kategoria</label>
+            <select
+              name="category"
+              id="category"
+              class="small-form-field"
+              v-model="auction.category"
+            >
+              <option value="warzywa">Warzywa</option>
+              <option value="owoce">Owoce</option>
+              <option value="przetwory">Przetwory</option>
+              <option value="wedliny">Wędliny</option>
+              <option value="nabial">Nabiał</option>
+              <option value="pieczywo">Pieczywo</option>
+            </select>
+          </div>
+        </div>
+
         <div id="inputs-wraper">
           <label
             for="startDate"
@@ -98,6 +139,8 @@ export default {
         description: '',
         startDate: '',
         endDate: '',
+        region: '',
+        category: '',
         image: '',
         startingPrice: 0,
       },
@@ -167,6 +210,11 @@ export default {
       display: flex;
       border: 2px solid orange;
       width: 10vw;
+    }
+
+    #fix {
+      display: flex;
+      justify-content: space-evenly;
     }
 
     #inputs-wraper {

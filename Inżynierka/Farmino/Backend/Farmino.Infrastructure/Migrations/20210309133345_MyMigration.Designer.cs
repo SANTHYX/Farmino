@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210306125215_MyMigration")]
+    [Migration("20210309133345_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,6 +124,10 @@ namespace Farmino.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Category")
+                        .HasMaxLength(2)
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasMaxLength(10)
                         .HasColumnType("datetime2");
@@ -143,6 +147,10 @@ namespace Farmino.Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.Property<int>("MinWeightUnit")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Region")
+                        .HasMaxLength(2)
                         .HasColumnType("int");
 
                     b.Property<string>("Title")

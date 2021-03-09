@@ -8,6 +8,7 @@
           id="img"
         />
       </div>
+
       <div id="offer-place">
         <div id="title">
           <div id="title-wraper">
@@ -35,22 +36,29 @@
 
         <div id="details">
           <unicon name="truck" fill="#494949" />
-          <h3>Dowóz od</h3>
+          <h3>Dowóz od: {{ `${offer.minQuantity}${offer.product.baseWeightUnit}` }}</h3>
         </div>
 
         <div id="make-order" v-if="offer.product">
           <div id="interface">
-            <p>
-              <strong>{{ `${offer.product.basePrice}zł/${offer.product.baseWeightUnit}` }}</strong>
-            </p>
-            <input
-              type="number"
-              name=""
-              id=""
-              class="small-form-field"
-              v-model.number="orderQuantity"
-            />
+            <div>
+              <label><strong>Cena</strong></label>
+              <p>
+                <strong>{{
+                  `${offer.product.basePrice} zł/${offer.product.baseWeightUnit}`
+                }}</strong>
+              </p>
+            </div>
+
+            <div id="buy">
+              <label
+                ><strong>Kup({{ offer.product.baseWeightUnit }})</strong></label
+              >
+              <input type="number" class="small-form-field" v-model.number="orderQuantity" />
+              <label>Należność:{{ orderQuantity * offer.product.basePrice }} zł</label>
+            </div>
           </div>
+
           <button
             class="btn"
             id="order"
@@ -104,9 +112,8 @@ export default {
   margin: 10rem 0;
   display: flex;
   border: 1px solid rgb(216, 216, 216);
-  width: 70vw;
+  width: 60vw;
   min-width: 50vw;
-  min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   color: rgb(71, 71, 71);
 
@@ -174,7 +181,7 @@ export default {
 
     #details {
       display: flex;
-      padding: 1rem;
+      padding: 0 1rem;
     }
 
     #make-order {
@@ -192,28 +199,36 @@ export default {
       }
 
       p {
-        font-size: 2.2rem;
-        color: rgb(233, 153, 4);
+        font-size: 1.8rem;
+        color: rgb(129, 129, 129);
       }
 
       #interface {
         display: flex;
+        padding: 1rem;
         align-items: center;
-        justify-content: space-evenly;
-        margin: 1rem 0;
+        justify-content: space-between;
         width: 25vw;
+
+        #buy {
+          display: flex;
+          flex-direction: column;
+
+          input {
+            font-size: 1rem;
+          }
+        }
       }
     }
   }
 
   #images-place {
     background-color: rgb(230, 230, 230);
-    width: 50vw;
     border-top: 4px solid orange;
 
     #img {
-      width: 50vw;
-      height: 80vh;
+      width: 40vw;
+      height: 83vh;
       object-fit: fill;
     }
   }
@@ -224,12 +239,15 @@ export default {
     border: 1px solid rgb(187, 187, 187);
     font-size: 1rem;
     width: 8vw;
+    color: rgb(255, 255, 255);
+    background: rgb(233, 153, 4);
     transition: 0.2s ease-in;
   }
 
   .btn:hover {
     border: 1px solid orange;
-    color: rgb(233, 153, 4);
+    color: rgb(90, 90, 90);
+    background: none;
   }
 }
 
@@ -250,10 +268,6 @@ export default {
         width: 80vw;
       }
 
-      .btn {
-        width: 40vw;
-      }
-
       #make-order {
         width: 90vw;
 
@@ -266,6 +280,10 @@ export default {
           width: 90vw;
         }
       }
+    }
+
+    .btn {
+      width: 30vw;
     }
 
     #images-place {

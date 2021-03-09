@@ -122,6 +122,10 @@ namespace Farmino.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Category")
+                        .HasMaxLength(2)
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasMaxLength(10)
                         .HasColumnType("datetime2");
@@ -141,6 +145,10 @@ namespace Farmino.Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.Property<int>("MinWeightUnit")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Region")
+                        .HasMaxLength(2)
                         .HasColumnType("int");
 
                     b.Property<string>("Title")

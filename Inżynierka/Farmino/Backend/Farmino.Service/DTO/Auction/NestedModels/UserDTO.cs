@@ -3,5 +3,6 @@
     public class UserDTO
     {
         public string UserName { get; set; }
+        public ProfileDTO Profile { get; set; }
     }
 }

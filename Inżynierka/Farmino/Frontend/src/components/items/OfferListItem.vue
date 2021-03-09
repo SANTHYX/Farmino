@@ -13,7 +13,9 @@
 
         <div id="region">
           <unicon name="globe" fill="gray" width="23" />
-          <p id="region-value">Lubelskie-Pomorskie</p>
+          <p id="region-value">
+            {{ offerItem.region }},{{ offerItem.farmer.user.profile.address.city }}
+          </p>
         </div>
       </div>
 
@@ -82,6 +84,7 @@ export default {
 
     h2 {
       color: rgb(73, 73, 73);
+      word-break: break-all;
     }
   }
 

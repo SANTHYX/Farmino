@@ -74,9 +74,12 @@ const offer = {
       }
     },
 
-    async BROWSE_OFFERS({ commit }, {
-      phrase, priceFrom, priceTo, farmerName, page, results = 8,
-    }) {
+    async BROWSE_OFFERS(
+      { commit },
+      {
+        phrase, priceFrom, priceTo, category, region, farmerName, page, city, results = 8,
+      },
+    ) {
       try {
         const response = await api.get('/offers', {
           params: {
@@ -84,6 +87,9 @@ const offer = {
             priceFrom,
             priceTo,
             farmerName,
+            category,
+            region,
+            city,
             page,
             results,
           },
@@ -112,15 +118,20 @@ const offer = {
       }
     },
 
-    async CREATE_OFFER({ commit }, {
-      userName, title, description, minQuantity, image, product,
-    }) {
+    async CREATE_OFFER(
+      { commit },
+      {
+        userName, title, description, minQuantity, image, product, category, region,
+      },
+    ) {
       const formFile = new FormData();
       formFile.append('userName', userName);
       formFile.append('title', title);
       formFile.append('description', description);
       formFile.append('minQuantity', minQuantity);
       formFile.append('image', image);
+      formFile.append('category', category);
+      formFile.append('region', region);
       formFile.append('product.basePrice', product.basePrice);
       formFile.append('product.baseWeightUnit', product.baseWeightUnit);
 

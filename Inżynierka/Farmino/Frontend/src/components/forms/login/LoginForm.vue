@@ -56,12 +56,11 @@ export default {
     }),
 
     async LogUser() {
-      try {
-        await this.Login(this.user);
+      await this.Login(this.user);
+
+      if (this.$route.redirect !== null) {
         this.$router.push({ path: this.$route.query.redirect });
-      } catch (err) {
-        console.log(err);
-      }
+      } else this.$router.push({ name: 'home' });
     },
   },
 };

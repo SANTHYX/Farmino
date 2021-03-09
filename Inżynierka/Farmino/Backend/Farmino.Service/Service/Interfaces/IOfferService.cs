@@ -12,8 +12,8 @@ namespace Farmino.Service.Service.Interfaces
 {
     public interface IOfferService : IService
     {
-        Task CreateOffer(string userName, string title,
-            string description, string imageName, WeightUnits minWeight, double minQuantity, Product product);
+        Task CreateOffer(string userName, string title, string description, string imageName, WeightUnits minWeight, 
+            Categories category, Regions region, double minQuantity, Product product);
         Task MakeOrder(Guid offerId, string customerName, double orderQuantity,
             bool customAddress, OrderDetails orderDetails = null);
         Task RemoveOffer(Guid id);

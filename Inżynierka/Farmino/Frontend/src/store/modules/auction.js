@@ -76,7 +76,7 @@ const auction = {
     async CREATE_AUCTION(
       { commit },
       {
-        userName, title, description, startDate, endDate, image, startingPrice,
+        userName, title, description, startDate, endDate, category, region, image, startingPrice,
       },
     ) {
       const formFile = new FormData();
@@ -85,6 +85,8 @@ const auction = {
       formFile.append('description', description);
       formFile.append('startDate', startDate);
       formFile.append('endDate', endDate);
+      formFile.append('category', category);
+      formFile.append('region', region);
       formFile.append('image', image);
       formFile.append('startingPrice', startingPrice);
       try {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Farmino.Data.Enums;
 using Farmino.Service.DTO.Offer.NestedModels;
 
 namespace Farmino.Service.DTO.Offer
@@ -10,5 +11,6 @@ namespace Farmino.Service.DTO.Offer
         public FarmerDTO Farmer { get; set; }
         public ProductDTO Product { get; set; }
         public string ImageName { get; set; }
+        public Regions Region { get; set; }
     }
 }

@@ -15,6 +15,10 @@ namespace Farmino.Data.Models.Aggregations
         public double MinQuantity { get; protected set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public WeightUnits MinWeightUnit { get; protected set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Regions Region { get; protected set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Categories Category { get; protected set; }
         public Guid FarmerId { get; protected set; }
         public Farmer Farmer { get; protected set; }
         public Product Product { get; protected set; }
@@ -26,8 +30,8 @@ namespace Farmino.Data.Models.Aggregations
 
         protected Offer() { }
 
-        public Offer(Farmer farmer, string title, string description, WeightUnits minWeightUnit,
-            double minQuantity, string imageName ,Product product) 
+        public Offer(Farmer farmer, string title, string description, WeightUnits minWeightUnit, 
+            Regions region, Categories category, double minQuantity, string imageName ,Product product) 
         {
             Id = Guid.NewGuid();
             SetFarmer(farmer);
@@ -35,9 +39,33 @@ namespace Farmino.Data.Models.Aggregations
             SetDescription(description);
             SetMinWeightUnit(minWeightUnit);
             SetMinQuantity(minQuantity);
+            SetCategory(category);
+            SetRegion(region);
             SetProduct(product);
             SetImageName(imageName);
             CreatedAt = UpdatedAt = DateTime.Now;
+        }
+
+        public void SetRegion(Regions region)
+        {
+            if ((int)region > 15 || (int)region < 0)
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
+                    "Invalid product weight unit");
+            }
+
+            Region = region;
+        }
+
+        public void SetCategory(Categories category)
+        {
+            if ((int)category > 5 || (int)category < 0)
+            {
+                throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
+                    "Invalid product weight unit");
+            }
+
+            Category = category;
         }
 
         public void SetMinQuantity(double minQuantity)

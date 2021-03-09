@@ -27,6 +27,7 @@ namespace Farmino.Infrastructure.Repositories
 
         public async Task<Auction> GetAsync(Guid id)
             => await _context.Auctions.Include(x => x.Auctioner).ThenInclude(y=>y.User)
+            .ThenInclude(x => x.Profile).ThenInclude(x => x.Address).ThenInclude(x => x.Node)
                 .Include(z => z.Participants).FirstOrDefaultAsync(x => x.Id == id);
 
         public void Remove(Auction auction)

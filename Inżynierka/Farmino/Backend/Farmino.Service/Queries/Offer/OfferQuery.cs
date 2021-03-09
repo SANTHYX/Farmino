@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Farmino.Data.Enums;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Farmino.Service.Queries.Offer
 {
@@ -15,6 +16,10 @@ namespace Farmino.Service.Queries.Offer
         public string? FarmerName { get; set; }
         [FromQuery(Name = "City")]
         public string? City { get; set; }
+        [FromQuery(Name = "Region")]
+        public Regions? Region { get; set; }
+        [FromQuery(Name = "Category")]
+        public Categories? Category { get; set; }
         #nullable disable
     }
 }

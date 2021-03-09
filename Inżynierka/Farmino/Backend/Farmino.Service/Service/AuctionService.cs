@@ -65,7 +65,8 @@ namespace Farmino.Service.Service
                 auctions = auctions.Where(x => x.Auctioner.User.UserName == query.AuctionerName);
             }
 
-            var result = auctions.Include(x => x.Auctioner).ThenInclude(y=>y.User);
+            var result = auctions.Include(x => x.Auctioner).ThenInclude(y=>y.User)
+                .ThenInclude(z => z.Profile).ThenInclude(z => z.Address).ThenInclude(q => q.Node);
             var pagedResponse = await PagedResponse<Auction>.GetPagedResponse(result, paged);
 
             return _mapper.Map<PagedResponseDTO<AuctionsDTO>>(pagedResponse);
@@ -95,6 +96,7 @@ namespace Farmino.Service.Service
 
             await _participantAuctionRepository
                     .AddAsync(new ParticipantAuction(participant, auction, proposedPrice));
+            auction.SetStartingPrice(proposedPrice);
 
             await _participantAuctionRepository.SaveChangesAsync();
         }

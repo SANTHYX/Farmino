@@ -51,6 +51,9 @@ namespace Farmino.Service.Mapper
             CreateMap<Farmer, DTO.Order.NestedModels.FarmerDTO>();
             CreateMap<User, DTO.Order.NestedModels.UserDTO>();
             CreateMap<Profile, DTO.Order.NestedModels.ProfileDTO>();
+            CreateMap<Profile, DTO.Auction.NestedModels.ProfileDTO>();
+            CreateMap<Address, DTO.Auction.NestedModels.AddressDTO>();
+            CreateMap<Node, DTO.Auction.NestedModels.NodeDTO>();
             CreateMap(typeof(PagedResponse<>), typeof(DTO.PagedResponseDTO<>)) ;
         }
     }

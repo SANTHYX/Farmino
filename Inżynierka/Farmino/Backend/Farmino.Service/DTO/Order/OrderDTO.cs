@@ -14,6 +14,5 @@ namespace Farmino.Service.DTO.Order
         public OrderStatus OrderStatus { get; set; }
         public decimal PriceSummary { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public bool Released { get; set; }
     }
 }

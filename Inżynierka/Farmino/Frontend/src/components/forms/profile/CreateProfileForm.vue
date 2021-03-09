@@ -150,7 +150,7 @@
           </div>
         </div>
       </div>
-      <button @click="sendProfile">Stwórz</button>
+      <button class="btn" @click="sendProfile">Stwórz</button>
     </div>
   </div>
 </template>
@@ -235,9 +235,9 @@ export default {
 #profile-form {
   #profile-wraper {
     padding: 2rem;
-    border: 1px solid rgb(189, 189, 189);
+    border: 1px solid rgb(219, 219, 219);
     box-shadow: 1px 1px 6px rgb(214, 214, 214);
-    border-radius: 10px;
+    background: rgb(246, 246, 246);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -245,11 +245,13 @@ export default {
     #title-fix-box {
       hr {
         width: 200px;
-        color: rgb(245, 245, 245);
+        color: rgb(241, 160, 28);
+        border: 2px solid;
       }
+
       h1 {
         justify-self: center;
-        color: rgb(63, 63, 63);
+        color: rgb(124, 124, 124);
         text-align: center;
       }
     }
@@ -262,13 +264,28 @@ export default {
         display: flex;
         flex-direction: column;
         margin: 0 0.2rem;
+
+        input {
+          font-size: 1rem;
+        }
       }
     }
 
     #inputs-wraper {
       display: flex;
       flex-direction: column;
+
+      input {
+        font-size: 1rem;
+      }
     }
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    width: 200px;
   }
 }
 </style>
