@@ -4,9 +4,7 @@ const user = {
   namespaced: true,
 
   state: {
-    user: {
-      profile: null,
-    },
+    user: {},
   },
 
   getters: {

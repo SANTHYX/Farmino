@@ -48,5 +48,13 @@ namespace Farmino.API.Controllers
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Order has been canceled");
         }
+
+        [HttpPut("release")]
+        public async Task<IActionResult> Put([FromBody] ReleaseOrder command)
+        {
+            await _commandDispatcher.DispatchAsync(command);
+            return Ok("Order has been released");
+        }
+
     }
 }

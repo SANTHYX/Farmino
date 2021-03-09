@@ -22,7 +22,7 @@ export default {
     OfferTemplate,
   },
 
-  async created() {
+  async mounted() {
     await this.$store.dispatch('offer/GET_OFFER', this.id);
   },
 };

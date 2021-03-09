@@ -9,7 +9,6 @@ const direction = {
       data: {
         id: 'testData',
         type: 'Feature',
-        properties: {},
         geometry: {
           type: 'LineString',
           coordinates: [],

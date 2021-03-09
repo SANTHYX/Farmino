@@ -6,10 +6,12 @@
         :mapStyle.sync="mapStyle"
         :center="[user.profile.address.node.lon, user.profile.address.node.lat]"
         :zoom="zoom"
+        v-if="user.profile"
       >
         <MglMarker
           :coordinates="[user.profile.address.node.lon, user.profile.address.node.lat]"
           color="red"
+          v-if="user.profile"
         />
 
         <MglMarker
@@ -19,11 +21,13 @@
             deliverOrder.orderDetails.address.node.lon,
             deliverOrder.orderDetails.address.node.lat,
           ]"
+          @click="moveToOrder(deliverOrder)"
         />
+
         <MglGeojsonLayer
           :sourceId="geoJsonSource.data.id"
           :source="geoJsonSource"
-          layerId="myLayer"
+          layerId="route"
           :layer="geoJsonLayer"
         />
       </MglMap>
@@ -59,7 +63,7 @@ export default {
           'line-cap': 'round',
         },
         paint: {
-          'line-color': '#888',
+          'line-color': 'blue',
           'line-width': 4,
         },
       },
@@ -72,6 +76,12 @@ export default {
       user: 'user/GET_STATE_USER',
       geoJsonSource: 'direction/GET_CLIENT_GEONODE',
     }),
+  },
+
+  methods: {
+    moveToOrder(deliverOrder) {
+      this.$router.push({ name: 'order', params: { id: deliverOrder.id } });
+    },
   },
 };
 </script>

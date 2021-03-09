@@ -12,4 +12,10 @@ const directionsApi = axios.create({
   baseURL: 'https://api.mapbox.com/directions/v5/mapbox/driving',
 });
 
-export { api, geoApi, directionsApi };
+const optimizationApi = axios.create({
+  baseURL: 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving',
+});
+
+export {
+  api, geoApi, directionsApi, optimizationApi,
+};

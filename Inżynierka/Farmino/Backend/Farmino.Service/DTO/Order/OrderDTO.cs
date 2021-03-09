@@ -6,6 +6,7 @@ namespace Farmino.Service.DTO.Order
 {
     public class OrderDTO
     {
+        public Guid Id { get; set; }
         public Guid OfferId { get; set; }
         public OrderDetailsDTO OrderDetails { get; set; }
         public OfferDTO Offer { get; set; }

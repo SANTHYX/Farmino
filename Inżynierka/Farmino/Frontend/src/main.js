@@ -5,7 +5,6 @@ import {
   uniInfoCircle,
   uniEnvelope,
   uniAngleDown,
-  uniEdit,
   uniPlusCircle,
   uniMapMarkerInfo,
   uniSearch,
@@ -18,6 +17,9 @@ import {
   uniCamera,
   uniEye,
   uniFilter,
+  uniPhone,
+  uniCheckCircle,
+  uniCalender,
 } from 'vue-unicons/src/icons';
 import App from './App.vue';
 import router from './router';
@@ -27,7 +29,6 @@ Unicons.add([
   uniInfoCircle,
   uniEnvelope,
   uniAngleDown,
-  uniEdit,
   uniPlusCircle,
   uniMapMarkerInfo,
   uniSearch,
@@ -40,6 +41,9 @@ Unicons.add([
   uniCamera,
   uniEye,
   uniFilter,
+  uniPhone,
+  uniCheckCircle,
+  uniCalender,
 ]);
 Vue.use(Vuelidate);
 Vue.use(Unicons);

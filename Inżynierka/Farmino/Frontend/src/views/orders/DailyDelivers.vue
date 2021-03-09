@@ -2,13 +2,12 @@
   <div>
     <div id="daily-delivers">
       <delivers-map />
-      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import DeliversMap from '../../components/maps/DeliversMap.vue';
+import DeliversMap from '@/components/maps/DeliversMap.vue';
 
 export default {
   name: 'daily-delivers',

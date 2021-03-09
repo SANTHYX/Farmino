@@ -4,6 +4,7 @@
       <div id="overview">
         <overview-map />
       </div>
+
       <div id="details">
         <div id="order-details">
           <h1>Szczegóły Zamówienia</h1>
@@ -37,8 +38,10 @@
         </div>
 
         <div id="interface">
+          <button class="btn" @click="releaseOrder">
+            Przyjmij
+          </button>
           <button class="btn" @click="revokeOrder">Odrzuć</button>
-          <button class="btn" @click="releaseOrder">Przyjmij</button>
         </div>
       </div>
     </div>
@@ -99,7 +102,15 @@ export default {
 
   async created() {
     await this.$store.dispatch('order/GET_ORDER', this.id);
-    await this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
+    await this.$store.dispatch('direction/GET_ROUTE_NODES', {
+      farmerNodes: this.user.profile.address.node,
+      clientNodes: this.order.orderDetails.address.node,
+    });
+  },
+
+  destroyed() {
+    this.$store.commit('direction/SET_CLIENT_GEONODE', []);
+    this.$store.commit('order/SET_ORDER', {});
   },
 };
 </script>
@@ -208,7 +219,7 @@ export default {
       width: 75vw;
     }
     #overview {
-      height: 50vh;
+      height: 60vh;
       width: auto;
       display: flex;
       flex-direction: column;

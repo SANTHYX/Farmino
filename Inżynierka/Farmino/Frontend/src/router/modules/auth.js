@@ -4,6 +4,7 @@ const authRoutes = [
     name: 'login',
     component: () => import('@/views/login/Login.vue'),
   },
+
   {
     path: '/register',
     name: 'register',

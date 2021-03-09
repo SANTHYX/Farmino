@@ -9,6 +9,10 @@
 <script>
 export default {
   name: 'order',
+
+  async beforeCreate() {
+    await this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
+  },
 };
 </script>
 

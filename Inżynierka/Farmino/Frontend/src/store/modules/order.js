@@ -41,7 +41,7 @@ const order = {
     },
 
     RELEASE_ORDER(state, payload) {
-      const index = state.ordersAll.data.findIndex((x) => x.id === payload.orderId);
+      const index = state.deliveryOrders.data.findIndex((x) => x.id === payload.orderId);
       state.ordersAll.data[index].releaseDate = payload.realisationDate;
       state.ordersAll.data[index].orderStatus = 'Przyjeta';
     },
@@ -49,6 +49,16 @@ const order = {
     CANCEL_ORDER(state, payload) {
       const index = state.ordersAll.data.findIndex((x) => x.id === payload.orderId);
       state.ordersAll.data[index].orderStatus = 'Odrzucona';
+    },
+
+    SET_DELIVERY_NODE_COLOR(state, payload) {
+      const index = state.deliveryOrders.data.findIndex((x) => x.id === payload.orderId);
+      state.deliveryOrders.data[index].orderDetails.address.node.color = payload.color;
+    },
+
+    REMOVE_ORDER(state, payload) {
+      const index = state.deliveryOrders.data.findIndex((x) => x.id === payload.orderId);
+      state.deliveryOrders.data.slice(index, 1);
     },
   },
 
@@ -104,6 +114,15 @@ const order = {
       try {
         await api.put('/orders', { orderId, realisationDate });
         commit('RELEASE_ORDER', { orderId, realisationDate });
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async DELIVER_ORDER({ commit }, { orderId }) {
+      try {
+        await api.put('/orders/release', { orderId });
+        commit('REMOVE_ORDER', { orderId });
       } catch (err) {
         throw new Error(err.message);
       }
