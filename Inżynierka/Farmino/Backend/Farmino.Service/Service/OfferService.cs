@@ -56,7 +56,7 @@ namespace Farmino.Service.Service
             {
                 offers = offers.Where(x => x.Product.BasePrice <= query.PriceTo);
             }
-            if(query.City != null)
+            if (query.City != null)
             {
                 offers = offers.Where(x => x.Farmer.User.Profile.Address.City == query.City);
             }

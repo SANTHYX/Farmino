@@ -4,12 +4,10 @@ import profileRoutes from './modules/proflie';
 import authRoutes from './modules/auth';
 import offerRoutes from './modules/offers';
 import orderRoutes from './modules/orders';
-import auctionRoutes from './modules/auction';
 
 Vue.use(VueRouter);
 
 const routes = [
-  ...auctionRoutes,
   ...orderRoutes,
   ...offerRoutes,
   ...profileRoutes,

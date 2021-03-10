@@ -13,10 +13,6 @@ namespace Farmino.Infrastructure.ORM
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Auctioner> Auctioners { get; set; }
-        public virtual DbSet<Participant> Participants { get; set; }
-        public virtual DbSet<Auction> Auctions { get; set; }
-        public virtual DbSet<ParticipantAuction> ParticipantAuctions { get; set; }
         public virtual DbSet<Observed> Observeds { get; set; }
 
         public FarminoDbContext(DbContextOptions<FarminoDbContext> options) : base(options)
@@ -36,8 +32,6 @@ namespace Farmino.Infrastructure.ORM
                 x.HasMany(y => y.RefreshTokens).WithOne(z => z.User).HasForeignKey(q => q.UserId);
                 x.HasOne(y => y.Farmer).WithOne(z => z.User).HasForeignKey<Farmer>(q => q.UserId);
                 x.HasOne(y => y.Customer).WithOne(z => z.User).HasForeignKey<Customer>(q => q.UserId);
-                x.HasOne(y => y.Auctioner).WithOne(z => z.User).HasForeignKey<Auctioner>(q => q.UserId);
-                x.HasOne(y => y.Participant).WithOne(z => z.User).HasForeignKey<Participant>(q => q.UserId);
                 x.HasMany(y => y.Observeds).WithOne(z => z.User).HasForeignKey(q => q.UserId).OnDelete(DeleteBehavior.Restrict);
                 x.Property(y => y.CreatedAt).HasMaxLength(10).IsRequired();
                 x.Property(y => y.UpdatedAt).HasMaxLength(10).IsRequired();
@@ -125,33 +119,6 @@ namespace Farmino.Infrastructure.ORM
                     z.Property(q => q.BasePrice).IsRequired();
                     z.Property(q => q.BaseWeightUnit).IsRequired();
                 });
-            });
-
-            builder.Entity<Auctioner>(x =>
-            {
-                x.HasKey(y => y.Id);
-                x.HasMany(y => y.Auctions).WithOne(z => z.Auctioner).HasForeignKey(q => q.AuctionerId);
-            });
-
-            builder.Entity<Participant>().HasKey(x => x.Id);
-
-            builder.Entity<Auction>(x => {
-                x.HasKey(y => y.Id);
-                x.Property(y => y.Title).HasMaxLength(40).IsRequired();
-                x.Property(y => y.Description).IsRequired();
-                x.Property(y => y.EndDate).HasMaxLength(10).IsRequired();
-                x.Property(y => y.StartDate).HasMaxLength(10).IsRequired();
-                x.Property(y => y.StartingPrice).IsRequired();
-                x.Property(y => y.ImageName).HasMaxLength(40);
-            });
-
-            builder.Entity<ParticipantAuction>(x =>
-            {
-                x.HasKey(y => y.Id);
-                x.HasOne(y => y.Participant).WithMany(z => z.Auctions).HasForeignKey(q => q.ParticipantId)
-                    .OnDelete(DeleteBehavior.Restrict);
-                x.HasOne(y => y.Auction).WithMany(z => z.Participants).HasForeignKey(q => q.AuctionId);
-                x.Property(y => y.ProposedPrice).IsRequired();
             });
 
             builder.Entity<Observed>(x =>

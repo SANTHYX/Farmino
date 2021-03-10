@@ -9,10 +9,6 @@
 
         <div id="nav-menu" v-if="!isAuthorized">
           <ul>
-            <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
-              ><li><a>Aukcje</a></li></router-link
-            >
-
             <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
               ><li><a>Oferty</a></li></router-link
             >
@@ -37,30 +33,6 @@
 
         <div id="nav-menu" v-else>
           <ul>
-            <div @mouseleave="showAuctionMenu = false">
-              <router-link :to="{ name: 'auctions' }" exact="exact" class="pop-up"
-                ><li @mouseover="showAuctionMenu = true">
-                  <a>Aukcje</a>
-                </li></router-link
-              >
-
-              <transition name="movedropdown">
-                <div id="drop-menu" v-if="showAuctionMenu">
-                  <router-link :to="{ name: 'auction-creator' }" exact="exact" class="pop-up"
-                    ><li><a>Stwórz Aukcję</a></li></router-link
-                  >
-
-                  <router-link :to="{ name: 'my-auctions' }" exact="exact" class="pop-up"
-                    ><li><a>Moje Aukcje</a></li></router-link
-                  >
-
-                  <router-link :to="{ name: 'followed' }" exact="exact" class="pop-up"
-                    ><li><a>Śledź Aukcje</a></li></router-link
-                  >
-                </div>
-              </transition>
-            </div>
-
             <div @mouseleave="showOfferMenu = false">
               <router-link :to="{ name: 'offers' }" exact="exact" class="pop-up"
                 ><li @mouseover="showOfferMenu = true"><a>Oferty</a></li></router-link

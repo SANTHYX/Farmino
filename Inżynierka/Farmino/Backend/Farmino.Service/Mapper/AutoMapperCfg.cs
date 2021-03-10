@@ -13,7 +13,6 @@ namespace Farmino.Service.Mapper
             CreateMap<User, DTO.User.UserDTO>();
             CreateMap<User, DTO.User.UsersDTO>();
             CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
-            CreateMap<User, DTO.Auction.NestedModels.UserDTO>();
             CreateMap<User, DTO.Offer.NestedModels.UserDTO>();
             CreateMap<Profile, DTO.User.NestedModels.ProfileDTO>();
             CreateMap<Profile, DTO.Offer.NestedModels.ProfileDTO>();
@@ -36,24 +35,16 @@ namespace Farmino.Service.Mapper
             CreateMap<Farmer, DTO.Offer.NestedModels.FarmerDTO>();
             CreateMap<Product, DTO.Offer.NestedModels.ProductDTO>();
             CreateMap<Farmer, DTO.Farmer.FarmerDTO>();
-            CreateMap<Auction, DTO.Auction.AuctionDTO>();
-            CreateMap<Auction, DTO.Auction.AuctionsDTO>();
-            CreateMap<Auctioner, DTO.Auction.NestedModels.AuctionerDTO>();
-            CreateMap<Participant, DTO.Auction.NestedModels.ParticipantDTO>();
             CreateMap<Customer, DTO.Customer.CustomerDTO>();
             CreateMap<Order, DTO.Order.OrderDTO>();
             CreateMap<Order, DTO.Order.OrdersDTO>();
             CreateMap<Order, DTO.DeliverOrder.DeliverOrdersDTO>();
             CreateMap<OrderDetails, DTO.Order.NestedModels.OrderDetailsDTO>();
             CreateMap<OrderDetails, DTO.DeliverOrder.NestedModels.OrderDetailsDTO>();
-            CreateMap<ParticipantAuction, DTO.Auction.ParticipantAuctionDTO>();
             CreateMap<LoginAvalibility, DTO.User.LoginAvalibilityDTO>();
             CreateMap<Farmer, DTO.Order.NestedModels.FarmerDTO>();
             CreateMap<User, DTO.Order.NestedModels.UserDTO>();
             CreateMap<Profile, DTO.Order.NestedModels.ProfileDTO>();
-            CreateMap<Profile, DTO.Auction.NestedModels.ProfileDTO>();
-            CreateMap<Address, DTO.Auction.NestedModels.AddressDTO>();
-            CreateMap<Node, DTO.Auction.NestedModels.NodeDTO>();
             CreateMap(typeof(PagedResponse<>), typeof(DTO.PagedResponseDTO<>)) ;
         }
     }

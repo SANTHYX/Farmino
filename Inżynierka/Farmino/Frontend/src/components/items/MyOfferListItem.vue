@@ -19,9 +19,14 @@
 
       <div id="price-details">
         <h2>{{ `${offerItem.product.basePrice}zł/${offerItem.product.baseWeightUnit}` }}</h2>
-        <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
-          Sprawdź
-        </button>
+        <div id="btn-wraper">
+          <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
+            Sprawdź
+          </button>
+          <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
+            Edytuj
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -88,7 +93,7 @@ export default {
   #price-details {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     padding: 1rem;
 
     h2 {
@@ -96,13 +101,27 @@ export default {
       font-size: 1.3rem;
     }
 
-    #btn {
-      background: none;
-      padding: 0.4rem;
-      cursor: pointer;
-      border: 1px solid rgb(185, 185, 185);
-      width: 40%;
-      font-size: 0.9rem;
+    #btn-wraper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      #btn {
+        background: none;
+        padding: 0.4rem;
+        margin-top: 0.2rem;
+        cursor: pointer;
+        width: 6vw;
+        border: 1px solid rgb(185, 185, 185);
+        font-size: 0.9rem;
+      }
+
+      #btn:hover {
+        transition: 0.3s ease-in;
+        background: none;
+        border: 1px solid orange;
+        color: rgb(233, 153, 4);
+      }
     }
   }
 }
@@ -112,15 +131,6 @@ export default {
   transform: translateY(-5px);
   transition: all 0.3s ease;
   border-bottom: orange 5px solid;
-
-  #price-details {
-    #btn:hover {
-      transition: 0.3s ease-in;
-      background: none;
-      border: 1px solid orange;
-      color: rgb(233, 153, 4);
-    }
-  }
 }
 
 @media screen and(max-width: $tablet) {

@@ -16,8 +16,6 @@ namespace Farmino.Data.Models.Aggregations
         public Profile Profile { get;protected set; }
         public Farmer Farmer { get; protected set; }
         public Customer Customer { get; protected set; }
-        public Auctioner Auctioner { get; protected set; }
-        public Participant Participant { get; protected set; }
         public IEnumerable<RefreshToken> RefreshTokens { get; protected set; }
         public IEnumerable<Observed> Observeds { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
