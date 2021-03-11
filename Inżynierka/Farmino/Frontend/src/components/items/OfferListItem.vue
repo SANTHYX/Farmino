@@ -14,7 +14,7 @@
         <div id="region">
           <unicon name="globe" fill="gray" width="23" />
           <p id="region-value">
-            {{ offerItem.region }},{{ offerItem.farmer.user.profile.address.city }}
+            {{ offerItem.region }}, {{ offerItem.farmer.user.profile.address.city }}
           </p>
         </div>
       </div>
@@ -49,14 +49,14 @@ export default {
   margin: 1rem;
   border: 1px solid rgb(177, 177, 177);
   background: rgb(245, 245, 245);
-  width: 17vw;
+  width: 18vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
   transition: 0.1s all;
 
   #offer-img {
     height: 250px;
-    width: 16.9vw;
+    width: 17.9vw;
     min-width: 240px;
     align-self: center;
     background: rgb(192, 192, 192);
@@ -64,7 +64,7 @@ export default {
 
     #img {
       height: 250px;
-      width: 16.9vw;
+      width: 17.9vw;
     }
   }
 

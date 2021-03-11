@@ -10,5 +10,6 @@ namespace Farmino.Data.Enums
         g,
         kg,
         T,
+        szt
     }
 }

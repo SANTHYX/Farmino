@@ -72,7 +72,7 @@ export default {
     padding: 2rem;
     border: 1px solid rgb(189, 189, 189);
     box-shadow: 1px 1px 6px rgb(179, 179, 179);
-    background: rgb(248, 248, 248);
+    background: rgba(248, 248, 248, 0.883);
 
     hr {
       margin-top: 0.2rem;

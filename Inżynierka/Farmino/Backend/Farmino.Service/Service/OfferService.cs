@@ -68,9 +68,17 @@ namespace Farmino.Service.Service
             {
                 offers = offers.Where(x => x.Category == query.Category);
             }
+            if (query.IsActive != null)
+            {
+                offers = offers.Where(x => x.IsActive == query.IsActive);
+            }
 
-            var result = offers.Include(x => x.Product).Include(y => y.Farmer).ThenInclude(z => z.User)
-                .ThenInclude(y=>y.Profile).ThenInclude(z => z.Address);
+            var result = offers.Include(x => x.Product)
+                .Include(y => y.Farmer)
+                .ThenInclude(z => z.User)
+                .ThenInclude(y=>y.Profile)
+                .ThenInclude(z => z.Address);
+
             var pagedResponse = await PagedResponse<Offer>.GetPagedResponse(result, paged);
 
             return _mapper.Map<PagedResponseDTO<OffersDTO>>(pagedResponse);
@@ -129,17 +137,44 @@ namespace Farmino.Service.Service
             await _orderRepository.SaveChanges();
         }
 
-        public async Task RemoveOffer(Guid id)
+        public async Task DeactivateOffer(Guid id, string userName)
         {
             var offer = await _offerRepository.GetIfExistAsync(id);
+            
+            if(offer.Farmer.User.UserName != userName)
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.CannotDeactiveOffer,
+                    "Invalid Creedentials");
+            }
 
-            _offerRepository.RemoveAsync(offer);
+            offer.SetActivity(false);
+            _offerRepository.EditAsync(offer);
+            await _offerRepository.SaveChangesAsync();
+        }
+
+        public async Task UpdateOffer(Guid id, string userName, string title, string description, string imageName,
+            WeightUnits minUnit,Categories category, Regions region, double minQuantity, Product product)
+        {
+            var offer = await _offerRepository.GetIfExistAsync(id);
+            var farmer = await _farmerRepository.GetIfExistAsync(userName);
+
+            offer.SetTitle(title);
+            offer.SetDescription(description);
+            offer.SetImageName(imageName);
+            offer.SetMinWeightUnit(minUnit);
+            offer.SetCategory(category);
+            offer.SetRegion(region);
+            offer.SetMinQuantity(minQuantity);
+            offer.SetProduct(product);
+
+            _offerRepository.EditAsync(offer);
             await _offerRepository.SaveChangesAsync();
         }
 
         public async Task<PagedResponseDTO<OffersDTO>> GetObservedsAsync(string userName, PagedQuery paged)
         {
-            var offer = _offerRepository.GetAllAsync().Where(x => x.Observeds.Any(y => y.User.UserName == userName));
+            var offer = _offerRepository.GetAllAsync()
+                .Where(x => x.Observeds.Any(y => y.User.UserName == userName));
 
             var pagedResponse = await PagedResponse<Offer>.GetPagedResponse(offer, paged);
             return _mapper.Map<PagedResponseDTO<OffersDTO>>(pagedResponse);

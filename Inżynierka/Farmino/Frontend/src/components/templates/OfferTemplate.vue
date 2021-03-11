@@ -34,9 +34,9 @@
           <p>{{ offer.description }}</p>
         </div>
 
-        <div id="details">
+        <div id="details" v-if="offer.product">
           <unicon name="truck" fill="#494949" />
-          <h3>Dowóz od: {{ `${offer.minQuantity}${offer.product.baseWeightUnit}` }}</h3>
+          <h3>Realizacja Od: {{ `${offer.minQuantity}${offer.product.baseWeightUnit}` }}</h3>
         </div>
 
         <div id="make-order" v-if="offer.product">
@@ -50,18 +50,19 @@
               </p>
             </div>
 
-            <div id="buy">
+            <div id="buy" v-if="offer.product">
               <label
                 ><strong>Kup({{ offer.product.baseWeightUnit }})</strong></label
               >
               <input type="number" class="small-form-field" v-model.number="orderQuantity" />
-              <label>Należność:{{ orderQuantity * offer.product.basePrice }} zł</label>
+              <label>Należność: {{ orderQuantity * offer.product.basePrice }} zł</label>
             </div>
           </div>
 
           <button
             class="btn"
             id="order"
+            :disabled="!offer.isActive || orderQuantity <= offer.minQuantity"
             @click="setOrderQuantity(orderQuantity), $router.push({ name: 'make-order' })"
           >
             Zamów
@@ -121,12 +122,12 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgb(243, 243, 243);
+    background-color: rgba(243, 243, 243, 0.87);
     border-bottom: 4px solid orange;
 
     #title {
       padding: 1rem;
-      background-color: rgb(235, 235, 235);
+      background-color: rgba(235, 235, 235, 0.876);
 
       hr {
         margin-top: 0.4rem;
@@ -191,7 +192,7 @@ export default {
       flex-direction: column;
       padding: 1rem;
       width: 25vw;
-      background-color: rgb(235, 235, 235);
+      background-color: rgba(235, 235, 235, 0.897);
 
       #order {
         width: 24vw;
@@ -223,8 +224,9 @@ export default {
   }
 
   #images-place {
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(121, 121, 121);
     border-top: 4px solid orange;
+    width: 40vw;
 
     #img {
       width: 40vw;
@@ -246,7 +248,7 @@ export default {
 
   .btn:hover {
     border: 1px solid orange;
-    color: rgb(90, 90, 90);
+    color: orange;
     background: none;
   }
 }

@@ -110,7 +110,8 @@ export default {
   #picture-picker {
     #photo-overview {
       width: 80vw;
-      height: 50vh;
+      height: 70vh;
+
       #image-handler {
         object-fit: fill;
         width: 100%;

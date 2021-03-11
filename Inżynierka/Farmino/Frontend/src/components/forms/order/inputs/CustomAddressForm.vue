@@ -156,7 +156,9 @@
         </div>
 
         <div id="button-wraper">
-          <button @click="moveToSummary">Zatwierdź</button>
+          <button class="btn" @click="moveToSummary" :disabled="$v.orderDetails.$invalid">
+            Zatwierdź
+          </button>
         </div>
       </div>
     </div>
@@ -164,7 +166,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapMutations } from 'vuex';
 import { required, numeric } from 'vuelidate/lib/validators';
 
 export default {
@@ -206,14 +208,6 @@ export default {
     },
   },
 
-  computed: {
-    ...mapGetters({
-      order: 'offer/GET_ORDER',
-      offer: 'offer/GET_OFFER',
-      user: 'user/GET_STATE_USER',
-    }),
-  },
-
   methods: {
     ...mapMutations({
       setCustomOrderDetails: 'offer/SET_CUSTOM_ORDER_DETAILS',
@@ -236,31 +230,71 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  height: auto;
+  padding: 1rem;
+  background: rgba(238, 238, 238, 0.87);
+  border: 1px solid rgb(226, 226, 226);
+  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
 
   #customer-details {
     margin: 1rem 0.6rem;
-
-    h1 {
-      text-align: center;
-    }
   }
 
   #address-details {
     margin: 1rem 0.6rem;
-
-    h1 {
-      text-align: center;
-    }
   }
 
   #inputs-wraper {
     display: flex;
     flex-direction: column;
+    font-size: 1rem;
   }
+
   #button-wraper {
     margin: 0.5rem 0;
     display: flex;
     justify-content: center;
+  }
+
+  h1 {
+    text-align: center;
+    color: rgb(119, 119, 119);
+  }
+
+  hr {
+    color: orange;
+    border: 2px solid orange;
+  }
+
+  .btn {
+    width: 12.5vw;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    background: none;
+    border: 1px solid grey;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: none;
+    border: 1px solid orange;
+    color: orange;
+  }
+}
+
+@media screen and(max-width:$tablet) {
+  #custom-order-details {
+    margin: 10rem 0;
+    width: 80vw;
+    min-height: 90vh;
+
+    .btn {
+      width: 50vw;
+      padding: 0.4rem;
+      font-size: 0.9rem;
+      transition: 0.2s ease-in;
+    }
   }
 }
 </style>

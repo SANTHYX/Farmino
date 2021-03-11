@@ -15,6 +15,8 @@ const direction = {
         },
       },
     },
+
+    optimizationQuery: '',
   },
 
   getters: {

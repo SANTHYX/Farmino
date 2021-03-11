@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmino.Infrastructure.Migrations
 {
     [DbContext(typeof(FarminoDbContext))]
-    [Migration("20210310122159_MyMigration")]
+    [Migration("20210310203812_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,6 +79,10 @@ namespace Farmino.Infrastructure.Migrations
                     b.Property<string>("ImageName")
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
+
+                    b.Property<bool>("IsActive")
+                        .HasMaxLength(3)
+                        .HasColumnType("bit");
 
                     b.Property<double>("MinQuantity")
                         .HasColumnType("float");

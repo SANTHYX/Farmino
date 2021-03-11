@@ -61,7 +61,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgb(243, 243, 243);
+    background: rgba(243, 243, 243, 0.856);
 
     hr {
       margin-top: 0.2rem;

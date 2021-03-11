@@ -41,18 +41,18 @@ namespace Farmino.API.Controllers
             return Ok("Order has been created");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromForm] CreateOffer command)
+        [HttpPost("deactivate")]
+        public async Task<IActionResult> Post([FromBody] DeactiveOffer command)
         {
             await _commandDispatcher.DispatchAsync(command);
             return Ok("Offer has been created");
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] RemoveOffer command)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromForm] CreateOffer command)
         {
             await _commandDispatcher.DispatchAsync(command);
-            return Ok("Offer has been removed");
+            return Ok("Offer has been created");
         }
     }
 }

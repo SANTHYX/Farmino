@@ -86,7 +86,7 @@ export default {
 @media screen and(max-width: 845px) {
   #delivers-map {
     width: 80vw;
-    height: 60vh;
+    height: 50vh;
   }
 }
 </style>

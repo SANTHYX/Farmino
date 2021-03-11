@@ -78,6 +78,10 @@ namespace Farmino.Infrastructure.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
+                    b.Property<bool>("IsActive")
+                        .HasMaxLength(3)
+                        .HasColumnType("bit");
+
                     b.Property<double>("MinQuantity")
                         .HasColumnType("float");
 

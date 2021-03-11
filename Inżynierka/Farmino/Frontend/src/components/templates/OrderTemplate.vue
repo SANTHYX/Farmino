@@ -149,7 +149,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: rgb(243, 243, 243);
+    background: rgba(243, 243, 243, 0.883);
 
     #order-details {
       min-height: 20vh;
@@ -166,11 +166,13 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-self: center;
 
       #phone-number {
         margin-top: 0.3rem;
         display: flex;
-        align-self: center;
+        width: 20vw;
+        align-self: flex-start;
       }
     }
 
@@ -217,6 +219,7 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #order-template {
+    margin: 8rem 0 24rem 0;
     flex-direction: column;
     width: 80vw;
 
@@ -240,12 +243,19 @@ export default {
 
         #content {
           width: 80vw;
+
+          #phone-number {
+            justify-content: center;
+            width: 80vw;
+          }
         }
       }
     }
+
     .btn {
       width: 75vw;
     }
+
     #overview {
       width: auto;
     }

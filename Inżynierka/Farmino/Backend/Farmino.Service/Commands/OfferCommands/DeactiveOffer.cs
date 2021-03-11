@@ -3,8 +3,9 @@ using System;
 
 namespace Farmino.Service.Commands.OfferCommands
 {
-    public class RemoveOffer : ICommand
+    public class DeactiveOffer : ICommand
     {
         public Guid Id { get; set; }
+        public string UserName { get; set; }
     }
 }

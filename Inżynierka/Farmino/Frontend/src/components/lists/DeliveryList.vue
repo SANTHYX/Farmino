@@ -73,7 +73,7 @@ export default {
   width: 80vw;
   min-width: 50vw;
   min-height: 80vh;
-  background: rgb(245, 245, 245);
+  background: rgba(245, 245, 245, 0.87);
 
   #info-wraper {
     display: flex;

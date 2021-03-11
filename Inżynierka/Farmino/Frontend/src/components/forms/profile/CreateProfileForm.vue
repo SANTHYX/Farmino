@@ -5,6 +5,7 @@
         <h1>Stwórz Profil</h1>
         <hr />
       </div>
+
       <div id="row-input-wraper">
         <div id="small-inputs-wraper">
           <label
@@ -23,6 +24,7 @@
             <p class="error-message" v-if="!$v.profile.firstName.required">Pole jest wymagane</p>
           </div>
         </div>
+
         <div id="small-inputs-wraper">
           <label
             for="lastName"
@@ -41,6 +43,7 @@
           </div>
         </div>
       </div>
+
       <div id="inputs-wraper">
         <label
           for="phoneNumber"
@@ -64,10 +67,12 @@
           </p>
         </div>
       </div>
+
       <div id="title-fix-box">
         <h1>Adres</h1>
         <hr />
       </div>
+
       <div id="row-input-wraper">
         <div id="small-inputs-wraper">
           <label
@@ -86,6 +91,7 @@
             <p class="error-message" v-if="!$v.profile.address.city.required">Pole jest wymagane</p>
           </div>
         </div>
+
         <div id="small-inputs-wraper">
           <label
             for="street"
@@ -106,6 +112,7 @@
           </div>
         </div>
       </div>
+
       <div id="row-input-wraper">
         <div id="small-inputs-wraper">
           <label
@@ -128,6 +135,7 @@
             </p>
           </div>
         </div>
+
         <div id="small-inputs-wraper">
           <label
             for="houseNumber"
@@ -226,6 +234,8 @@ export default {
         postalCode: this.profile.address.postalCode,
         houseNumber: this.profile.address.houseNumber,
       });
+
+      this.$router.push({ name: this.$route.redirect });
     },
   },
 };
@@ -233,11 +243,13 @@ export default {
 
 <style lang="scss" scoped>
 #profile-form {
+  margin: 12rem 0;
+
   #profile-wraper {
     padding: 2rem;
     border: 1px solid rgb(219, 219, 219);
     box-shadow: 1px 1px 6px rgb(214, 214, 214);
-    background: rgb(246, 246, 246);
+    background: rgba(246, 246, 246, 0.856);
     display: flex;
     align-items: center;
     flex-direction: column;

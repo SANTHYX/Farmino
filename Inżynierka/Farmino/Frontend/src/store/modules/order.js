@@ -53,7 +53,6 @@ const order = {
 
     DELIVER_ORDER(state, payload) {
       const index = state.ordersAll.data.findIndex((x) => x.id === payload.orderId);
-      state.ordersAll.data[index].releaseDate = payload.realisationDate;
       state.ordersAll.data[index].orderStatus = 'Dostarczona';
     },
   },
@@ -68,9 +67,12 @@ const order = {
       }
     },
 
-    async GET_ORDERS({ commit }, {
-      offerId, farmerName, customerName, orderStatus, date, page,
-    }) {
+    async GET_ORDERS(
+      { commit },
+      {
+        offerId, farmerName, customerName, orderStatus, date, page, results = 8,
+      },
+    ) {
       try {
         const response = await api.get('/orders', {
           params: {
@@ -80,6 +82,7 @@ const order = {
             orderStatus,
             date,
             page,
+            results,
           },
         });
         commit('SET_ORDERS', response.data);

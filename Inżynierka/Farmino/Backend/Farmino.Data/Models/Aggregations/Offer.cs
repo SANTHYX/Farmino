@@ -20,6 +20,7 @@ namespace Farmino.Data.Models.Aggregations
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Categories Category { get; protected set; }
         public Guid FarmerId { get; protected set; }
+        public bool IsActive { get; set; }
         public Farmer Farmer { get; protected set; }
         public Product Product { get; protected set; }
         public string ImageName { get; protected set; }
@@ -43,6 +44,7 @@ namespace Farmino.Data.Models.Aggregations
             SetRegion(region);
             SetProduct(product);
             SetImageName(imageName);
+            IsActive = true; 
             CreatedAt = UpdatedAt = DateTime.Now;
         }
 
@@ -81,7 +83,7 @@ namespace Farmino.Data.Models.Aggregations
 
         public void SetMinWeightUnit(WeightUnits minWeightUnit)
         { 
-            if ((int)minWeightUnit > 4 || (int)minWeightUnit < 0)
+            if ((int)minWeightUnit > 5 || (int)minWeightUnit < 0)
             {
                 throw new DataExceptions(DataErrorCodes.InvalidProductWeightUnit,
                     "Invalid product weight unit");
@@ -135,6 +137,17 @@ namespace Farmino.Data.Models.Aggregations
             }
 
             ImageName = imageName;
+            UpdatedAt = DateTime.Now;
+        }
+
+        public void SetActivity(bool activity)
+        {
+            if(IsActive == activity)
+            {
+                return;
+            }
+
+            IsActive = activity;
             UpdatedAt = DateTime.Now;
         }
 

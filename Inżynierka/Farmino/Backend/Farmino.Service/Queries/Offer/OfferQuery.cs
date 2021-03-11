@@ -20,6 +20,8 @@ namespace Farmino.Service.Queries.Offer
         public Regions? Region { get; set; }
         [FromQuery(Name = "Category")]
         public Categories? Category { get; set; }
+        [FromQuery(Name = "IsActive")]
+        public bool? IsActive { get; set; }
         #nullable disable
     }
 }

@@ -71,7 +71,7 @@ export default {
   min-width: 50vw;
   min-height: 80vh;
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
-  background: rgb(245, 245, 245);
+  background: rgba(245, 245, 245, 0.89);
 
   #info-wraper {
     padding: 1rem;

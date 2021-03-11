@@ -19,10 +19,6 @@
     </ul>
 
     <ul v-if="showMenu && isAuthorized">
-      <router-link :to="{ name: 'auctions' }" exact="exact"
-        ><li><a>Aukcje</a></li></router-link
-      >
-
       <router-link :to="{ name: 'offers' }" exact="exact"
         ><li><a>Oferty</a></li></router-link
       >

@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace Farmino.Service.Handlers.OfferHandler
 {
-    public class RemoveOfferHandler : ICommandHandler<RemoveOffer>
+    public class UpdateOfferHandler : ICommandHandler<UpdateOffer>
     {
-        private readonly IOfferService _offerService; 
+        private readonly IOfferService _offerService;
 
-        public RemoveOfferHandler(IOfferService offerService)
+        public UpdateOfferHandler(IOfferService offerService)
         {
             _offerService = offerService;
         }
 
-        public async Task HandleAsync(RemoveOffer command)
+        public async Task HandleAsync(UpdateOffer command)
         {
-            await _offerService.RemoveOffer(command.Id);
+            
         }
     }
 }

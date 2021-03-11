@@ -3,7 +3,7 @@
     <div>
       <the-navbar />
       <transition name="fade">
-        <router-view id="view" />
+        <router-view id="view" class="background-svg" />
       </transition>
       <the-footer />
     </div>
@@ -28,6 +28,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
 #app {
   #view {
     min-height: 100vh;

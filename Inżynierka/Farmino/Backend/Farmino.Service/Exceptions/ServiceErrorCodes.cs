@@ -32,6 +32,7 @@
         public static string ProductStorageIsEmpty => "product_storage_is_empty";
         public static string AuctionHasNotEndYet => "auction_has_not_end_yet";
         public static string InvalidOrder => "invalid_order";
+        public static string CannotDeactiveOffer => "cannot_deactive_offer";
         public static string CannotTakePartInOwnAuction => "cannot_take_part_in_own_auction";
         public static string AlreadyObserved => "already_observed";
         public static string CannotObserveOwnOffer => "already_observed";

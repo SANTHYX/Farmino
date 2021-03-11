@@ -66,7 +66,10 @@
         <p class="error-message" v-if="!$v.address.houseNumber.required">Pole jest wymagane</p>
       </div>
     </div>
-    <button @click="submitAddress">Wyslij</button>
+
+    <div id="btn-wraper">
+      <button class="btn" @click="submitAddress">Wyslij</button>
+    </div>
   </div>
 </template>
 
@@ -127,12 +130,12 @@ export default {
   padding: 2rem;
   border: 1px solid rgb(189, 189, 189);
   box-shadow: 1px 1px 6px rgb(214, 214, 214);
-  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.863);
 
   hr {
     margin-top: 0.2rem;
     width: 200px;
-    color: rgb(245, 245, 245);
+    border: 2px solid orange;
   }
 
   h1 {
@@ -142,6 +145,26 @@ export default {
   #inputs-wraper {
     display: flex;
     flex-direction: column;
+  }
+
+  #btn-wraper {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+
+    .btn {
+      padding: 0.4rem;
+      width: 200px;
+      font-size: 0.9rem;
+      background: none;
+      border: 1px solid rgb(151, 151, 151);
+      transition: 0.2s ease-in;
+    }
+
+    .btn:hover {
+      border: 1px solid orange;
+      color: orange;
+    }
   }
 }
 </style>

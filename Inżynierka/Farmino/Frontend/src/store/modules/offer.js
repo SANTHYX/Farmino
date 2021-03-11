@@ -35,14 +35,6 @@ const offer = {
   },
 
   mutations: {
-    SET_DESCRIPTION(state, description) {
-      state.offer.description = description;
-    },
-
-    SET_TITLE(state, title) {
-      state.offer.title = title;
-    },
-
     SET_OFFER(state, offerObj) {
       state.offer = offerObj;
     },
@@ -77,7 +69,16 @@ const offer = {
     async BROWSE_OFFERS(
       { commit },
       {
-        phrase, priceFrom, priceTo, category, region, farmerName, page, city, results = 8,
+        phrase,
+        priceFrom,
+        priceTo,
+        category,
+        region,
+        farmerName,
+        page,
+        city,
+        results = 8,
+        isActive = true,
       },
     ) {
       try {
@@ -92,6 +93,7 @@ const offer = {
             city,
             page,
             results,
+            isActive,
           },
         });
         commit('SET_OFFERS', response.data);
@@ -185,6 +187,15 @@ const offer = {
     async OBSERVE_OFFER({ commit }, { userName, offerId }) {
       try {
         await api.post('/observeds', { userName, offerId });
+        commit('');
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+
+    async DEACTIVATE_OFFER({ commit }, { id, userName }) {
+      try {
+        await api.post('/offers/deactivate', { id, userName });
         commit('');
       } catch (err) {
         throw new Error(err.message);

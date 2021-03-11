@@ -12,5 +12,6 @@ namespace Farmino.Service.DTO.Offer
         public ProductDTO Product { get; set; }
         public string ImageName { get; set; }
         public Regions Region { get; set; }
+        public bool IsActive { get; set; }
     }
 }

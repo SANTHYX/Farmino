@@ -4,6 +4,7 @@
       <div id="text-content">
         <h1>Serwis zapewnia</h1>
         <hr />
+
         <div id="cards-wraper">
           <div
             class="logic-card"

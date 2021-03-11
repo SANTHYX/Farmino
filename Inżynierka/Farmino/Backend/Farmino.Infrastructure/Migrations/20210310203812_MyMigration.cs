@@ -121,6 +121,7 @@ namespace Farmino.Infrastructure.Migrations
                     Region = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     Category = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", maxLength: 3, nullable: false),
                     Product_BasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Product_BaseWeightUnit = table.Column<int>(type: "int", nullable: true),
                     ImageName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),

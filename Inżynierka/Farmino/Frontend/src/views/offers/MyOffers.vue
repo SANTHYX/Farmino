@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 #my-offers {
+  min-height: 100vh;
   @include flex-centred-site-col;
 }
 </style>

@@ -47,7 +47,7 @@ export default {};
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: linear-gradient(0deg, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 100%);
+  background: linear-gradient(0deg, rgba(240, 240, 240, 0.623) 0%, rgba(255, 255, 255, 0.692) 100%);
 
   #about-section {
     display: flex;
@@ -87,7 +87,7 @@ export default {};
         align-items: center;
         justify-content: center;
         width: 40vw;
-        background: rgb(231, 231, 231);
+        background: rgb(214, 214, 214);
         min-height: 40vh;
 
         .text-fix {

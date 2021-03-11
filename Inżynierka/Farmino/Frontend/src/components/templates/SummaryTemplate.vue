@@ -1,26 +1,26 @@
 <template>
   <div>
     <div id="summary-template">
-      <div id="column-setup">
-        <div id="row-setup">
-          <div id="img-wraper"></div>
+      <div id="image-place">
+        <img :src="`http://localhost:4800/Images/Offer/${offer.imageName}`" id="img" />
+      </div>
 
-          <div id="offer-wraper">
-            <h1>{{ offer.title }}</h1>
-            <div id="details">
-              <p>
-                Cena jednostkowa:
-                {{ offer.product.basePrice + 'zł/' + offer.product.baseWeightUnit }}
-              </p>
-              <p>Zamówiona ilość: {{ `${order.orderQuantity}${offer.product.baseWeightUnit}` }}</p>
-              <p>Przewidywany koszt: {{ predictedCost + 'zł' }}</p>
-            </div>
-
-            <div>
-              <button @click="makeOrder">Zamów</button>
-            </div>
-          </div>
+      <div id="content">
+        <div id="title">
+          <h1>{{ offer.title }}</h1>
+          <hr />
         </div>
+
+        <div id="summary-overview">
+          <p>
+            Cena jednostkowa:
+            {{ offer.product.basePrice + 'zł/' + offer.product.baseWeightUnit }}
+          </p>
+          <p>Zamówiona ilość: {{ `${order.orderQuantity}${offer.product.baseWeightUnit}` }}</p>
+          <p>Przewidywany koszt: {{ predictedCost + 'zł' }}</p>
+        </div>
+
+        <button class="btn" @click="makeOrder">Złóż zamówienie</button>
       </div>
     </div>
   </div>
@@ -50,14 +50,15 @@ export default {
       createCustomer: 'offer/CREATE_CUSTOMER',
     }),
 
-    async makeOrder() {
-      await this.makeOrderAsync({
+    makeOrder() {
+      this.makeOrderAsync({
         offerId: this.offer.id,
         customerName: this.userName,
         orderQuantity: this.order.orderQuantity,
         customAddress: this.order.customAddress,
         orderDetails: this.order.orderDetails,
       });
+      this.$router.push({ name: 'my-orders' });
     },
   },
 
@@ -69,75 +70,63 @@ export default {
 
 <style lang="scss" scoped>
 #summary-template {
-  margin: 12rem 0;
-  padding: 0.2rem;
-  border: 1px solid rgb(196, 196, 196);
-  box-shadow: 1px 1px 6px rgb(179, 179, 179);
-  border-radius: 10px;
+  display: flex;
+  border: 1px solid rgb(216, 216, 216);
+  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  width: 50vw;
+  height: 60vh;
 
-  #column-setup {
+  #image-place {
+    #img {
+      width: 20vw;
+      height: 60vh;
+      object-fit: cover;
+    }
+  }
+
+  #content {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
+    width: 30vw;
+    background: rgba(231, 231, 231, 0.822);
+    height: 60vh;
 
-    #row-setup {
+    #title {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      color: rgb(112, 112, 112);
 
-      #img-wraper {
-        width: 25vw;
-        height: 47vh;
-        background: rgb(211, 211, 211);
-        border-radius: 10px;
+      hr {
+        border: 2px solid orange;
+        width: 20vw;
       }
+    }
 
-      #offer-wraper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        margin: 0 0.5rem;
+    #summary-overview {
+      padding: 1rem;
+      font-size: 1.1rem;
+      color: rgb(124, 124, 124);
+    }
 
-        h1 {
-          text-align: center;
-          width: 20vw;
-          padding: 0.2rem;
-        }
+    .btn {
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      background: none;
+      border: 1px solid rgb(145, 145, 145);
+      color: rgb(117, 117, 117);
+      transition: 0.1s ease-in;
+    }
 
-        #details {
-          text-align: center;
-          margin: 0.5rem 0;
-        }
-      }
+    .btn:hover{
+      border: 1px solid orange;
+      color:orange;
     }
   }
 }
 
 @media screen and(max-width: $tablet) {
-  #offer-template {
-    margin: 12rem 0;
-
-    #column-setup {
-      #row-setup {
-        flex-direction: column;
-        align-items: center;
-        #img-wraper {
-          width: 80vw;
-        }
-
-        #offer-wraper {
-          width: 70vw;
-          text-align: center;
-
-          h1 {
-            width: 60vw;
-          }
-
-          #farmer-widget {
-            width: 75vw;
-          }
-        }
-      }
-    }
-  }
 }
 </style>

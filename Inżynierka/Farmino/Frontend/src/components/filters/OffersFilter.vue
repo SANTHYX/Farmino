@@ -130,7 +130,7 @@ export default {
   flex-wrap: wrap;
   border: 1px solid rgb(223, 223, 223);
   box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
-  background: rgb(246, 246, 246);
+  background: rgba(246, 246, 246, 0.856);
   width: 80vw;
 
   #header {
@@ -169,6 +169,7 @@ export default {
       }
     }
   }
+
   #btn {
     align-self: flex-end;
     margin-top: 0.5rem;

@@ -14,12 +14,12 @@ export default {
 
   components: { DeliversMap },
 
-  created() {
-    this.$store.dispatch('order/GET_DELIVERY_ORDERS', {
+  async created() {
+    await this.$store.dispatch('order/GET_DELIVERY_ORDERS', {
       date: new Date().toDateString(),
       userName: this.$store.state.auth.userName,
     });
-    this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
+    await this.$store.dispatch('user/GET_USER', this.$store.state.auth.userName);
   },
 };
 </script>

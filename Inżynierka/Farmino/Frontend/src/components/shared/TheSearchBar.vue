@@ -8,11 +8,6 @@
       v-model="query.phrase"
     />
 
-    <select name="types" id="type-picker" v-model="endpoint">
-      <option value="offers" id="option-field">Oferta</option>
-      <option value="auctions" id="option-field">Aukcje</option>
-    </select>
-
     <button id="search-btn" @click="search" :disabled="$v.query.$invalid">
       <unicon name="search" height="20" />
     </button>
@@ -44,18 +39,11 @@ export default {
   methods: {
     ...mapActions({
       getOffers: 'offer/BROWSE_OFFERS',
-      getAuctions: 'auction/GET_AUCTIONS',
     }),
 
     search() {
-      if (this.$route.name === 'offers') {
-        this.getOffers(this.query);
-        this.$router.replace({ name: this.endpoint, query: this.query });
-      }
-      if (this.$route.name === 'auctions') {
-        this.getAuctions(this.query);
-        this.$router.replace({ name: this.endpoint, query: this.query });
-      }
+      this.getOffers(this.query);
+      this.$router.replace({ name: this.endpoint, query: this.query });
       this.$router.replace({ name: this.endpoint, query: this.query });
     },
   },

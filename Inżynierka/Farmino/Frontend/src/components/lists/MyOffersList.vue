@@ -47,7 +47,10 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('offer/BROWSE_OFFERS', { farmerName: this.$store.state.auth.userName });
+    this.$store.dispatch('offer/BROWSE_OFFERS', {
+      farmerName: this.$store.state.auth.userName,
+      isActive: false,
+    });
     this.fetchingData = false;
   },
 };
@@ -99,7 +102,7 @@ export default {
 
 @media screen and(max-width: $tablet) {
   #list-wraper {
-    margin: 4rem 0;
+    margin: 8rem 0;
     min-height: 90vh;
     width: 80vw;
     flex-direction: column;
