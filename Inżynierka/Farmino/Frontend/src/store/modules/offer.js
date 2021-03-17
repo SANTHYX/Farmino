@@ -1,5 +1,4 @@
 import { api } from '../../plugins/axios';
-import localStorageManager from '../../plugins/localStorageManager';
 
 const offer = {
   namespaced: true,
@@ -105,11 +104,7 @@ const offer = {
 
     async CREATE_FARMER({ commit }, { userName }) {
       try {
-        await api.post(
-          '/farmers',
-          { userName },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/farmers', { userName });
         commit();
       } catch (err) {
         throw new Error(err.message);
@@ -118,11 +113,7 @@ const offer = {
 
     async CREATE_CUSTOMER({ commit }, { userName }) {
       try {
-        await api.post(
-          '/customers',
-          { userName },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/customers', { userName });
         commit();
       } catch (err) {
         throw new Error(err.message);
@@ -147,12 +138,7 @@ const offer = {
       formFile.append('product.baseWeightUnit', product.baseWeightUnit);
 
       try {
-        await api.post('/offers', formFile, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${localStorageManager.getToken()}`,
-          },
-        });
+        await api.post('/offers', formFile, { headers: { 'Content-Type': 'multipart/form-data' } });
         commit('SET_OFFER', {
           title,
           description,
@@ -171,17 +157,13 @@ const offer = {
       },
     ) {
       try {
-        await api.post(
-          '/offers/make-order',
-          {
-            offerId,
-            customerName,
-            orderQuantity,
-            customAddress,
-            orderDetails,
-          },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/offers/make-order', {
+          offerId,
+          customerName,
+          orderQuantity,
+          customAddress,
+          orderDetails,
+        });
         commit();
       } catch (err) {
         throw new Error(err.message);
@@ -195,7 +177,6 @@ const offer = {
             results,
             page,
           },
-          headers: { Authorization: `Bearer ${localStorageManager.getToken()}` },
         });
         commit('SET_OFFERS', response.data);
       } catch (err) {
@@ -205,11 +186,7 @@ const offer = {
 
     async OBSERVE_OFFER({ commit }, { userName, offerId }) {
       try {
-        await api.post(
-          '/observeds',
-          { userName, offerId },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/observeds', { userName, offerId });
         commit('');
       } catch (err) {
         throw new Error(err.message);
@@ -218,11 +195,7 @@ const offer = {
 
     async DEACTIVATE_OFFER({ commit }, { id, userName }) {
       try {
-        await api.post(
-          '/offers/deactivate',
-          { id, userName },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/offers/deactivate', { id, userName });
         commit('');
       } catch (err) {
         throw new Error(err.message);

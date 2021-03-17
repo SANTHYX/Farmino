@@ -56,7 +56,7 @@ export default {
 
   #offer-img {
     height: 250px;
-    width: 18vw;
+    width: 17.9vw;
     min-width: 240px;
     align-self: center;
     background: rgb(192, 192, 192);
@@ -64,9 +64,7 @@ export default {
 
     #img {
       height: 250px;
-      width: 18vw;
-      object-fit: fill;
-      min-width: 240px;
+      width: 17.9vw;
     }
   }
 

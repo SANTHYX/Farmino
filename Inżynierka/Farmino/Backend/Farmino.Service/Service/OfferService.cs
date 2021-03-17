@@ -130,8 +130,7 @@ namespace Farmino.Service.Service
                 await _orderRepository.AddAsync(new Order(offer, customer, orderDetails,
                     orderQuantity, summaryPrice, customAddress));
             }
-            else await _orderRepository.AddAsync(new Order(offer, customer, OrderDetails
-                .Create(customer.User.Profile.FirstName,
+            else await _orderRepository.AddAsync(new Order(offer, customer, OrderDetails.Create(customer.User.Profile.FirstName,
                 customer.User.Profile.LastName,customer.User.Profile.PhoneNumber,
                 customer.User.Profile.Address), orderQuantity, summaryPrice, customAddress));
 

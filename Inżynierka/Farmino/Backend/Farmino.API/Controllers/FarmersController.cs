@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Farmino.Service.Commands.FarmerCommands;
 using Farmino.Service.Dispatchers.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farmino.API.Controllers
@@ -20,7 +19,6 @@ namespace Farmino.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateFarmer command)
         {

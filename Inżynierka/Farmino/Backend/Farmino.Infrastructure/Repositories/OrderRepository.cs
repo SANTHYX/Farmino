@@ -32,10 +32,8 @@ namespace Farmino.Infrastructure.Repositories
 
         public async Task<Order> GetAsync(Guid orderId)
             => await _context.Orders.Include(x => x.Offer)
-            .Include(y => y.Customer)
-            .ThenInclude(z => z.User)
-            .ThenInclude(q => q.Profile)
-            .FirstOrDefaultAsync(q => q.Id == orderId);
+                .Include(y => y.Customer).ThenInclude(z => z.User)
+                .ThenInclude(q => q.Profile).FirstOrDefaultAsync(q => q.Id == orderId);
 
 
         public void Remove(Order order)

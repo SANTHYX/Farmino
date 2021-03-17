@@ -3,7 +3,6 @@ using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.Queries;
 using Farmino.Service.Queries.Offer;
 using Farmino.Service.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -31,12 +30,10 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PagedQuery paged, [FromQuery] OfferQuery query)
             => Ok(await _offerService.BrowseAllAsync(paged,query));
 
-        [Authorize]
         [HttpGet("{userName}/observed")]
         public async Task<IActionResult> Get(string userName, [FromQuery] PagedQuery paged)
             => Ok(await _offerService.GetObservedsAsync(userName, paged));
 
-        [Authorize]
         [HttpPost("make-order")]
         public async Task<IActionResult> Post([FromBody] MakeOrder command)
         {
@@ -44,7 +41,6 @@ namespace Farmino.API.Controllers
             return Ok("Order has been created");
         }
 
-        [Authorize]
         [HttpPost("deactivate")]
         public async Task<IActionResult> Post([FromBody] DeactiveOffer command)
         {
@@ -52,7 +48,6 @@ namespace Farmino.API.Controllers
             return Ok("Offer has been created");
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] CreateOffer command)
         {

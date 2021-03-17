@@ -31,11 +31,8 @@ namespace Farmino.Infrastructure.Repositories
             => _context.Offers.AsQueryable();
             
         public async Task<Offer> GetAsync(Guid id)
-            => await _context.Offers.Include(x => x.Product)
-            .Include(y => y.Farmer)
-            .ThenInclude(z => z.User)
-            .ThenInclude(p => p.Profile)
-            .FirstOrDefaultAsync(q => q.Id == id);
+            => await _context.Offers.Include(x => x.Product).Include(y => y.Farmer)
+                .ThenInclude(z => z.User).ThenInclude(p => p.Profile).FirstOrDefaultAsync(q => q.Id == id);
 
         public void RemoveAsync(Offer offer)
         {

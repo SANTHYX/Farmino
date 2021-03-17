@@ -96,7 +96,7 @@ namespace Farmino.Data.Models.Entities
 
         public void SetReleaseDate(DateTime date)
         {
-            if (date < DateTime.Now.Date)
+            if (date < DateTime.Now)
             {
                 throw new DataExceptions(DataErrorCodes.InvalidDate,
                     "Invalid Date");

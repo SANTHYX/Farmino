@@ -2,7 +2,6 @@
 using Farmino.Service.Commands.CustomerCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farmino.API.Controllers
@@ -25,7 +24,6 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get(string userName)
             => Ok(await _customerService.GetAsync(userName));
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCustomer command)
         {

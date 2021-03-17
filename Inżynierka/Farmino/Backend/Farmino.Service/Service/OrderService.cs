@@ -30,13 +30,9 @@ namespace Farmino.Service.Service
 
         public async Task<PagedResponseDTO<DeliverOrdersDTO>> BrowseDeliverOrdersAsync(PagedQuery paged,DateTime date, string userName)
         {
-            var deliverOrders = _orderRepository.GetAllAsync()
-                .Include(x => x.Offer)
-                .ThenInclude(x => x.Farmer)
-                .ThenInclude(z => z.User)
-                .Include(y => y.Customer)
-                .ThenInclude(z => z.User)
-                .ThenInclude(q => q.Profile)
+            var deliverOrders = _orderRepository.GetAllAsync().Include(x => x.Offer)
+                .ThenInclude(x => x.Farmer).ThenInclude(z => z.User)
+                .Include(y => y.Customer).ThenInclude(z => z.User).ThenInclude(q => q.Profile)
                 .Where(x => x.ReleaseDate.Date == date && x.OrderStatus == OrderStatus.Przyjeta &&
                 x.Offer.Farmer.User.UserName == userName);
 
@@ -74,12 +70,9 @@ namespace Farmino.Service.Service
                 orders = orders.Where(x => x.ReleaseDate.Date == query.Date);
             }
 
-            var result = orders.Include(x => x.Offer)
-                .ThenInclude(x => x.Farmer)
-                .ThenInclude(z => z.User)
-                .ThenInclude(x=> x.Profile)
-                .Include(y => y.Customer)
-                .ThenInclude(z => z.User)
+            var result = orders.Include(x => x.Offer).ThenInclude(x => x.Farmer)
+                .ThenInclude(z => z.User).ThenInclude(x=> x.Profile)
+                .Include(y => y.Customer).ThenInclude(z => z.User)
                 .ThenInclude(q => q.Profile).OrderByDescending(z => z.CreatedAt);
 
             var pagedResponse = await PagedResponse<Order>.GetPagedResponse(result, paged);

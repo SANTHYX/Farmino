@@ -62,7 +62,7 @@
           <button
             class="btn"
             id="order"
-            :disabled="!offer.isActive || orderQuantity < offer.minQuantity"
+            :disabled="!offer.isActive || orderQuantity <= offer.minQuantity"
             @click="setOrderQuantity(orderQuantity), $router.push({ name: 'make-order' })"
           >
             Zamów

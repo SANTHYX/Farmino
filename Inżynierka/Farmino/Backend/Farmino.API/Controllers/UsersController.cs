@@ -6,7 +6,6 @@ using Farmino.Service.DTO;
 using Farmino.Service.DTO.User;
 using Farmino.Service.Queries.UserQueries;
 using Farmino.Service.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -27,12 +26,10 @@ namespace Farmino.API.Controllers
             _userService = userService;
         }
 
-        [Authorize]
         [HttpGet("{userName}")]
         public async Task<IActionResult> Get(string userName)
             => Ok(await _userService.GetUserAsync(userName));
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get()
           => Ok(await _userService.GetAllUsersAsync());
@@ -41,7 +38,6 @@ namespace Farmino.API.Controllers
         public async Task<IActionResult> Get([FromQuery] CheckIfLoginIsAvaliable query)
           => Ok(await _queryDispatcher.HandleAsync<CheckIfLoginIsAvaliable, LoginAvalibilityDTO>(query));
 
-        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditUser command)
         {

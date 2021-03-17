@@ -53,20 +53,6 @@ const auth = {
       }
     },
 
-    async REFRESH_TOKEN({ commit }) {
-      try {
-        const response = await api.post('/auth/refresh-token', { refresh: localStorageManager.getRefresh() });
-        localStorageManager.storeRefresh(
-          response.data.token,
-          response.data.refresh,
-          response.data.expiresAt,
-        );
-        commit('');
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
-
     LOGOUT({ commit }) {
       localStorageManager.clearStorage();
       commit('CLEAR_STORE');

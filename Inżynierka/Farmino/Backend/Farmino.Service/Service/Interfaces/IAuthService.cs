@@ -7,7 +7,7 @@ namespace Farmino.Service.Service.Interfaces
     {
         Task RegisterAsync(string userName, string password, string email);
         Task<TokenDTO> Login(string userName, string password);
-        Task<TokenDTO> RefreshToken(string refresh);
+        Task<TokenDTO> RefreshToken(string token, string refresh);
         Task RevokeToken(string refresh);
     }
 }

@@ -16,7 +16,7 @@ namespace Farmino.Service.Handlers.AuthHandler
 
         public async Task HandleAsync(RefreshToken command)
         {
-            command.TokenResponse = await _authService.RefreshToken(command.Refresh);
+            command.TokenResponse = await _authService.RefreshToken(command.Token, command.Refresh);
         }
     }
 }

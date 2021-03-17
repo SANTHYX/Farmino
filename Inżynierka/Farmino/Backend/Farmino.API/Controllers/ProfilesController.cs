@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Farmino.Service.Commands.ProfileCommands;
 using Farmino.Service.Dispatchers.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farmino.API.Controllers
@@ -17,7 +16,6 @@ namespace Farmino.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SetProfil command)
         {
@@ -25,7 +23,6 @@ namespace Farmino.API.Controllers
             return Ok("Profil has been setted");
         }
 
-        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditProfile command)
         {

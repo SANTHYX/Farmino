@@ -1,5 +1,4 @@
-import { api } from '../../plugins/axios';
-import localStorageManager from '../../plugins/localStorageManager';
+import { api } from '@/plugins/axios';
 
 const user = {
   namespaced: true,
@@ -34,9 +33,7 @@ const user = {
   actions: {
     async GET_USER({ commit }, userName) {
       try {
-        const response = await api.get(`/users/${userName}`, {
-          headers: { Authorization: `Bearer ${localStorageManager.getToken()}` },
-        });
+        const response = await api.get(`/users/${userName}`);
         commit('SET_USER', response.data);
       } catch (err) {
         console.log(err);
@@ -47,16 +44,12 @@ const user = {
       userName, firstName, lastName, phoneNumber,
     }) {
       try {
-        await api.post(
-          '/profiles',
-          {
-            userName,
-            firstName,
-            lastName,
-            phoneNumber,
-          },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/profiles', {
+          userName,
+          firstName,
+          lastName,
+          phoneNumber,
+        });
         commit('SET_PROFILE', { firstName, lastName, phoneNumber });
       } catch (err) {
         throw new Error(err);
@@ -67,16 +60,12 @@ const user = {
       userName, firstName, lastName, phoneNumber,
     }) {
       try {
-        await api.put(
-          '/profiles',
-          {
-            userName,
-            firstName,
-            lastName,
-            phoneNumber,
-          },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.put('/profiles', {
+          userName,
+          firstName,
+          lastName,
+          phoneNumber,
+        });
         commit('SET_PROFILE', { firstName, lastName, phoneNumber });
       } catch (err) {
         throw new Error(err);
@@ -87,17 +76,13 @@ const user = {
       userName, city, street, postalCode, houseNumber,
     }) {
       try {
-        await api.post(
-          '/address',
-          {
-            userName,
-            city,
-            street,
-            postalCode,
-            houseNumber,
-          },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.post('/address', {
+          userName,
+          city,
+          street,
+          postalCode,
+          houseNumber,
+        });
         commit('SET_ADDRESS', {
           city,
           street,
@@ -113,17 +98,13 @@ const user = {
       userName, city, street, postalCode, houseNumber,
     }) {
       try {
-        await api.put(
-          '/address',
-          {
-            userName,
-            city,
-            street,
-            postalCode,
-            houseNumber,
-          },
-          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
-        );
+        await api.put('/address', {
+          userName,
+          city,
+          street,
+          postalCode,
+          houseNumber,
+        });
         commit('SET_ADDRESS', {
           city,
           street,
