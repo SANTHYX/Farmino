@@ -57,6 +57,10 @@ export default {
     });
     this.fetchingData = false;
   },
+
+  destroyed() {
+    this.$store.commit('order/CLEAR_ORDERS');
+  },
 };
 </script>
 

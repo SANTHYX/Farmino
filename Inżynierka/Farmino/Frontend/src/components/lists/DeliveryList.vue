@@ -59,6 +59,10 @@ export default {
       orderStatus: this.$route.query.orderStatus,
     });
   },
+
+  destroyed() {
+    this.$store.commit('order/CLEAR_ORDERS');
+  },
 };
 </script>
 

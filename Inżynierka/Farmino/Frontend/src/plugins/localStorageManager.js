@@ -7,9 +7,19 @@ const localStorageManager = {
       localStorage.setItem('userName', userName);
     }
   },
+
+  storeRefresh(token, refresh, expiresAt) {
+    if (token && refresh && expiresAt) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('refresh', refresh);
+      localStorage.setItem('expiresAt', expiresAt);
+    }
+  },
+
   clearTokens() {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh');
+    localStorage.removeItem('expiresAt');
   },
 
   clearStorage() {

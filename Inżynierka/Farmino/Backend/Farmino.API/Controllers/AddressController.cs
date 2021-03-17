@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Farmino.Service.Commands.AddressCommands;
 using Farmino.Service.Dispatchers.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farmino.API.Controllers
@@ -16,6 +17,7 @@ namespace Farmino.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SetAddress command)
         {
@@ -23,6 +25,7 @@ namespace Farmino.API.Controllers
             return Ok("Address has been added");
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] EditAddress command)
         {

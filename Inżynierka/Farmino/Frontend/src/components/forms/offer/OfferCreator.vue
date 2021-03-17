@@ -79,6 +79,7 @@
             <option value="g">g</option>
             <option value="kg">kg</option>
             <option value="T">T</option>
+            <option value="szt">sztuka</option>
           </select>
         </div>
 

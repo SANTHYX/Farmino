@@ -17,7 +17,8 @@ namespace Farmino.Infrastructure.Geolocation
             _configuration = configuration;
         }
 
-        public async Task<GeolocationModel> GetNode(string postalCode, string city, string street, string houseNumber)
+        public async Task<GeolocationModel> GetNode(string postalCode, string city, 
+            string street, string houseNumber)
         {
             try
             {

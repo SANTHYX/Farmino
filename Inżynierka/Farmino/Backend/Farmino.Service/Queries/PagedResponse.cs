@@ -41,7 +41,8 @@ namespace Farmino.Service.Queries
             }
 
             var _data = await context.Skip((_page - 1) * _resultPerPage)
-                .Take(paged.Results).ToListAsync();
+                .Take(paged.Results)
+                .ToListAsync();
 
             var _foundResults = await context.CountAsync();
             var _pagesNumber = (int)Math.Ceiling((decimal)_foundResults/_resultPerPage);

@@ -21,7 +21,8 @@ namespace Farmino.Infrastructure.Repositories
         }
 
         public async Task<Farmer> GetAsync(string userName)
-            => await _context.Farmers.Include(x => x.User).Include(x => x.Offers)
+            => await _context.Farmers.Include(x => x.User)
+            .Include(x => x.Offers)
             .FirstOrDefaultAsync(x => x.User.UserName == userName);
 
         public async Task SaveAsync()
