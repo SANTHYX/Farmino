@@ -1,9 +1,13 @@
 import loacalStorageManager from '../plugins/localStorageManager';
 import store from '../store/store';
 
-const isFarmer = (to, from, next) => {
+const isFarmer = async (to, from, next) => {
   if (!loacalStorageManager.isAuthorized()) {
     next({ name: 'login', query: { redirect: to.fullPath } });
+  }
+  if (new Date() > new Date(loacalStorageManager.getExpiresAt())) {
+    next();
+    await store.dispatch('auth/REFRESH_TOKEN');
   }
   if (store.state.offer.offer.farmer.user.userName === loacalStorageManager.getUserName()) {
     next(false);
@@ -15,14 +19,22 @@ const haveProfile = async (to, from, next) => {
   if (!loacalStorageManager.isAuthorized()) {
     next({ path: '*' });
   }
+  if (new Date() > new Date(loacalStorageManager.getExpiresAt())) {
+    next();
+    await store.dispatch('auth/REFRESH_TOKEN');
+  }
   if (store.state.user.user.profile === null) {
     next({ name: 'create-profile', query: { redirect: to.fullPath } });
   } else next();
 };
 
-const isAuthorized = (to, from, next) => {
+const isAuthorized = async (to, from, next) => {
   if (!loacalStorageManager.isAuthorized()) {
     next({ path: '*' });
+  }
+  if (new Date() > new Date(loacalStorageManager.getExpiresAt())) {
+    next();
+    await store.dispatch('auth/REFRESH_TOKEN');
   } else next();
 };
 

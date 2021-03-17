@@ -1,6 +1,7 @@
 ﻿using Farmino.Service.Commands.ObservedCommands;
 using Farmino.Service.Dispatchers.Interfaces;
 using Farmino.Service.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -20,6 +21,7 @@ namespace Farmino.API.Controllers
             _observedService = observedService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ObserveOffer command)
         {
@@ -27,6 +29,7 @@ namespace Farmino.API.Controllers
             return Ok("Offer has been created");
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] UnobserveOffer command)
         {

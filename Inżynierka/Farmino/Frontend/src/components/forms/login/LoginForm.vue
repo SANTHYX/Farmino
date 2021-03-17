@@ -58,7 +58,7 @@ export default {
     async LogUser() {
       await this.Login(this.user);
 
-      if (this.$route.redirect !== null) {
+      if (this.$route.query.redirect) {
         this.$router.push({ path: this.$route.query.redirect });
       } else this.$router.push({ name: 'home' });
     },

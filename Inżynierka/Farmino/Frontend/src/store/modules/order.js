@@ -1,4 +1,5 @@
-import { api } from '@/plugins/axios';
+import { api } from '../../plugins/axios';
+import localStorageManager from '../../plugins/localStorageManager';
 
 const order = {
   namespaced: true,
@@ -55,12 +56,18 @@ const order = {
       const index = state.ordersAll.data.findIndex((x) => x.id === payload.orderId);
       state.ordersAll.data[index].orderStatus = 'Dostarczona';
     },
+
+    CLEAR_ORDERS(state) {
+      state.ordersAll.date = [];
+    },
   },
 
   actions: {
     async GET_ORDER({ commit }, orderId) {
       try {
-        const response = await api.get(`/orders/${orderId}`);
+        const response = await api.get(`/orders/${orderId}`, {
+          headers: { Authorization: `Bearer ${localStorageManager.getToken()}` },
+        });
         commit('SET_ORDER', response.data);
       } catch (err) {
         throw new Error(err.message);
@@ -84,6 +91,7 @@ const order = {
             page,
             results,
           },
+          headers: { Authorization: `Bearer ${localStorageManager.getToken()}` },
         });
         commit('SET_ORDERS', response.data);
       } catch (err) {
@@ -93,7 +101,9 @@ const order = {
 
     async GET_DELIVERY_ORDERS({ commit }, { date, userName }) {
       try {
-        const response = await api.get(`/orders/delivery-orders/${date},${userName}`);
+        const response = await api.get(`/orders/delivery-orders/${date},${userName}`, {
+          headers: { Authorization: `Bearer ${localStorageManager.getToken()}` },
+        });
         commit('SET_DELIVERY_ORDERS', response.data);
       } catch (err) {
         throw new Error(err.message);
@@ -102,7 +112,11 @@ const order = {
 
     async CANCEL_ORDER({ commit }, { orderId }) {
       try {
-        await api.put('/orders/cancel', { orderId });
+        await api.put(
+          '/orders/cancel',
+          { orderId },
+          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
+        );
         commit('CANCEL_ORDER', { orderId });
       } catch (err) {
         throw new Error(err.message);
@@ -111,7 +125,11 @@ const order = {
 
     async RELEASE_ORDER({ commit }, { orderId, realisationDate }) {
       try {
-        await api.put('/orders', { orderId, realisationDate });
+        await api.put(
+          '/orders',
+          { orderId, realisationDate },
+          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
+        );
         commit('RELEASE_ORDER', { orderId, realisationDate });
       } catch (err) {
         throw new Error(err.message);
@@ -120,7 +138,11 @@ const order = {
 
     async DELIVER_ORDER({ commit }, { orderId }) {
       try {
-        await api.put('/orders/release', { orderId });
+        await api.put(
+          '/orders/release',
+          { orderId },
+          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
+        );
         commit('DELIVER_ORDER', { orderId });
       } catch (err) {
         throw new Error(err.message);

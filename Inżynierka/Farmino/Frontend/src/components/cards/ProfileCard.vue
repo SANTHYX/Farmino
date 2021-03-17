@@ -36,7 +36,7 @@
       <div id="no-profile-info" v-else>
         <unicon name="info-circle" width="50" height="50"></unicon>
         <p>{{ 'Profil nie istnieje należy go stworzyć' }}</p>
-        <button id="btn" @click="createProfile">Stwórz Profil</button>
+        <button class="btn" @click="createProfile">Stwórz Profil</button>
       </div>
     </div>
   </div>

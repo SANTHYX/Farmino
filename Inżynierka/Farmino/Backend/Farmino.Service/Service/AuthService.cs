@@ -62,7 +62,7 @@ namespace Farmino.Service.Service
             };
         }
 
-        public async Task<TokenDTO> RefreshToken(string token, string refresh)
+        public async Task<TokenDTO> RefreshToken(string refresh)
         {
             var refreshToken = await _refreshTokenRepository.GetIfExistAsync(refresh);
 

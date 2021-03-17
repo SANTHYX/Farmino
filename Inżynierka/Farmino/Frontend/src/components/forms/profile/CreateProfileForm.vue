@@ -235,7 +235,7 @@ export default {
         houseNumber: this.profile.address.houseNumber,
       });
 
-      this.$router.push({ name: this.$route.redirect });
+      this.$router.push({ path: this.$route.query.redirect });
     },
   },
 };
@@ -294,10 +294,20 @@ export default {
   }
 
   .btn {
-    font-size: 0.9rem;
+    margin: 2rem 0;
     padding: 0.5rem;
-    margin-top: 2rem;
+    background: none;
+    border: 1px solid rgba(179, 179, 179, 0.733);
+    font-weight: bold;
+    font-size: 0.9rem;
     width: 200px;
+    color: rgba(0, 0, 0, 0.658);
+    transition: 0.1s ease-in;
+  }
+
+  .btn:hover {
+    border: 1px solid rgb(241, 158, 2);
+    color: rgb(240, 157, 4);
   }
 }
 </style>
