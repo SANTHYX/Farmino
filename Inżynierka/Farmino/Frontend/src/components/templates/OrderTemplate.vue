@@ -138,11 +138,10 @@ export default {
 #order-template {
   margin: 10rem 0;
   display: flex;
-  border: 1px solid rgb(216, 216, 216);
   width: 60vw;
   min-width: 40vw;
   height: 72vh;
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
   color: rgb(102, 102, 102);
 
   #details {

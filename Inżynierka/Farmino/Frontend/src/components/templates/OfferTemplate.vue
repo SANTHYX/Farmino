@@ -112,11 +112,10 @@ export default {
 #offer-template {
   margin: 10rem 0;
   display: flex;
-  border: 1px solid rgb(216, 216, 216);
   width: 60vw;
   min-width: 50vw;
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   color: rgb(71, 71, 71);
+  @include container-border;
 
   #offer-place {
     display: flex;

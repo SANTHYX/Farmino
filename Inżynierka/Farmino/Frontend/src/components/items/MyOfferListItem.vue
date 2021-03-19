@@ -22,7 +22,10 @@
       <div id="price-details">
         <h2>{{ `${offerItem.product.basePrice}zł/${offerItem.product.baseWeightUnit}` }}</h2>
         <div id="btn-wraper">
-          <button id="btn" @click="$router.push({ name: 'offer', params: { id: offerItem.id } })">
+          <button
+            id="btn"
+            @click="$router.push({ name: 'offer-editor', params: { id: offerItem.id } })"
+          >
             Edytuj
           </button>
 

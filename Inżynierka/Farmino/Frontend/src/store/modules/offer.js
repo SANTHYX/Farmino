@@ -79,7 +79,7 @@ const offer = {
         page,
         city,
         results = 8,
-        isActive = true,
+        isActive,
       },
     ) {
       try {
@@ -164,6 +164,27 @@ const offer = {
       }
     },
 
+    async UPDATE_OFFER({ commit }, {
+      id, userName, title, description, minQuantity, product,
+    }) {
+      try {
+        await api.put(
+          '/offers',
+          {
+            id,
+            userName,
+            title,
+            description,
+            minQuantity,
+            product,
+          },
+          { headers: { Authorization: `Bearer ${localStorageManager.getToken()}` } },
+        );
+        commit('');
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
     async MAKE_ORDER(
       { commit },
       {

@@ -1,7 +1,6 @@
 ﻿using Farmino.Data.Models.Aggregations;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.Service;
-using Farmino.Service.Extensions;
 using Moq;
 using System.Threading.Tasks;
 using Xunit;

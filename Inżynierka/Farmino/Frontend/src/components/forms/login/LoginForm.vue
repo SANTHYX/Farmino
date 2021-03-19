@@ -57,7 +57,6 @@ export default {
 
     async LogUser() {
       await this.Login(this.user);
-
       if (this.$route.query.redirect) {
         this.$router.push({ path: this.$route.query.redirect });
       } else this.$router.push({ name: 'home' });
@@ -70,8 +69,7 @@ export default {
 #login-form {
   #form-wraper {
     padding: 2rem;
-    border: 1px solid rgb(189, 189, 189);
-    box-shadow: 1px 1px 6px rgb(179, 179, 179);
+    @include container-border;
     background: rgba(248, 248, 248, 0.883);
 
     hr {

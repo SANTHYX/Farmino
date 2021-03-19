@@ -1,12 +1,8 @@
 <template>
   <div>
     <div id="offer-creator">
-      <div id="picture-add">
-        <picture-picker @sendImage="setImage" />
-      </div>
-
       <div id="creator-form">
-        <h1>Kretor Ofert</h1>
+        <h1>Edytor Ofert</h1>
         <hr />
 
         <div id="inputs-wraper">
@@ -37,52 +33,6 @@
 
           <div id="error-message-wraper" v-if="$v.offer.description.$error">
             <p class="error-message" v-if="!$v.offer.description.required">Pole jest wymagane</p>
-          </div>
-        </div>
-
-        <div id="fix">
-          <div id="inputs-wraper">
-            <label for="region" class="form-label">Województwo</label>
-            <select
-              name="region"
-              id="region"
-              :class="[!$v.offer.region.$error ? 'small-form-field' : 'small-error-field']"
-              v-model="$v.offer.region.$model"
-            >
-              <option value="Dolnośląskie">Dolnoslaskie</option>
-              <option value="KujawskoPomorskie">Kujawsko-Pomorskie</option>
-              <option value="Lubelskie">Lubelskie</option>
-              <option value="Lubuskie">Lubuskie</option>
-              <option value="Łódzkie">Łódzkie</option>
-              <option value="Małopolskie">Małopolskie</option>
-              <option value="Mazowieckie">Mazowieckie</option>
-              <option value="Opolskie">Opolskie</option>
-              <option value="Podkarpackie">Podkarpackie</option>
-              <option value="Podlaskie">Podlaskie</option>
-              <option value="Pomorskie">Pomorskie</option>
-              <option value="Śląskie">Śląskie</option>
-              <option value="Świętokrzyskie">Świętokrzyskie</option>
-              <option value="WarmińskoMazurskie">Warmińsko-Mazurskie</option>
-              <option value="Wielkopolskie">Wielkopolskie</option>
-              <option value="ZachodnioPomorskie">Zachodniopomorskie</option>
-            </select>
-          </div>
-
-          <div id="inputs-wraper">
-            <label for="" class="form-label">Kategoria</label>
-            <select
-              name="category"
-              id="category"
-              :class="[!$v.offer.category.$error ? 'small-form-field' : 'small-error-field']"
-              v-model="$v.offer.category.$model"
-            >
-              <option value="warzywa">Warzywa</option>
-              <option value="owoce">Owoce</option>
-              <option value="przetwory">Przetwory</option>
-              <option value="wedliny">Wędliny</option>
-              <option value="nabial">Nabiał</option>
-              <option value="pieczywo">Pieczywo</option>
-            </select>
           </div>
         </div>
 
@@ -149,7 +99,7 @@
         </div>
 
         <div>
-          <button @click="create" class="btn" :disabled="$v.offer.$invalid">Stwórz</button>
+          <button @click="update" class="btn" :disabled="$v.offer.$invalid">Edytuj</button>
         </div>
       </div>
     </div>
@@ -159,10 +109,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { required, minValue, decimal } from 'vuelidate/lib/validators';
-import PicturePicker from '../../utils/PicturePicker.vue';
 
 export default {
-  name: 'offer-creator',
+  name: 'offer-editor',
 
   data() {
     return {
@@ -170,9 +119,6 @@ export default {
         title: '',
         description: '',
         minQuantity: 0,
-        image: '',
-        region: '',
-        category: '',
         product: {
           basePrice: 0,
           baseWeightUnit: 0,
@@ -186,18 +132,11 @@ export default {
       title: { required },
       description: { required },
       minQuantity: { required, minValue: minValue(1) },
-      image: { required },
-      region: { required },
-      category: { required },
       product: {
         basePrice: { required, decimal, minValue: minValue(1) },
         baseWeightUnit: { required },
       },
     },
-  },
-
-  components: {
-    PicturePicker,
   },
 
   computed: {
@@ -208,26 +147,17 @@ export default {
 
   methods: {
     ...mapActions({
-      createOffer: 'offer/CREATE_OFFER',
+      updateOffer: 'offer/UPDATE_OFFER',
     }),
 
-    setImage(input) {
-      this.offer.image = input;
-    },
-
-    async create() {
-      await this.createOffer({
+    async update() {
+      await this.updateOffer({
+        id: this.$route.params.id,
         userName: this.userName,
         ...this.offer,
       });
       this.$router.push({ name: 'offers' });
     },
-  },
-
-  async created() {
-    await this.$store.dispatch('offer/CREATE_FARMER', {
-      userName: this.$store.state.auth.userName,
-    });
   },
 };
 </script>
@@ -237,7 +167,7 @@ export default {
   margin: 9rem 0;
   display: flex;
   align-items: center;
-  border: 1px solid rgb(216, 216, 216);
+  @include container-border;
   background: rgba(185, 185, 185, 0.794);
 
   #creator-form {

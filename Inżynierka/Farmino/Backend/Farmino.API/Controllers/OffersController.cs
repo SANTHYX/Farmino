@@ -45,6 +45,14 @@ namespace Farmino.API.Controllers
         }
 
         [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateOffer command)
+        {
+            await _commandDispatcher.DispatchAsync(command);
+            return Ok("Order has been updated");
+        }
+
+        [Authorize]
         [HttpPost("deactivate")]
         public async Task<IActionResult> Post([FromBody] DeactiveOffer command)
         {

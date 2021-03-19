@@ -36,22 +36,6 @@ namespace Farmino.Service.Service
             return _mapper.Map<IEnumerable<UsersDTO>>(users);
         }
 
-        public async Task EditAsync(string userName, string newUserName,
-            string newPassword, string newEmail)
-        {
-       
-            var user = await _userRepository.GetIfExistAsync(userName);
-            var salt = _encryption.GenerateSalt(newPassword);
-            var HashedPassword = _encryption.GenerateHash(newPassword, salt);
-
-            user.SetUserName(newUserName);
-            user.SetPassword(HashedPassword);
-            user.SetEmail(newEmail);
-
-            _userRepository.EditAsync(user);
-            await _userRepository.SaveChanges();
-        }
-
         public async Task<LoginAvalibilityDTO> IsLoginAvaliableAsync(string userName)
         {
             if (!await _userRepository.IsUserExistAsync(userName))

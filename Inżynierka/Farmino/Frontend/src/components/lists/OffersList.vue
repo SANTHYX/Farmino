@@ -57,7 +57,7 @@ export default {
   },
 
   async created() {
-    await this.$store.dispatch('offer/BROWSE_OFFERS', this.$route.query);
+    await this.$store.dispatch('offer/BROWSE_OFFERS', { ...this.$route.query, isActive: true });
     this.fetchData = false;
   },
 };
@@ -69,11 +69,10 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 1px solid rgb(216, 216, 216);
   width: 80vw;
   min-width: 50vw;
   min-height: 100vh;
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
   background: rgba(245, 245, 245, 0.753);
 }
 

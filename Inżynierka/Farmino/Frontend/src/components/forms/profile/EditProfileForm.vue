@@ -127,8 +127,7 @@ export default {
 <style lang="scss" scoped>
 #profile-form {
   padding: 2rem;
-  border: 1px solid rgb(192, 192, 192);
-  box-shadow: 1px 1px 6px rgb(214, 214, 214);
+  @include container-border;
   background: rgba(243, 243, 243, 0.884);
 
   hr {

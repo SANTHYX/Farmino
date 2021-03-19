@@ -153,18 +153,15 @@ namespace Farmino.Service.Service
             await _offerRepository.SaveChangesAsync();
         }
 
-        public async Task UpdateOffer(Guid id, string userName, string title, string description, string imageName,
-            WeightUnits minUnit,Categories category, Regions region, double minQuantity, Product product)
+        public async Task UpdateOffer(Guid id, string userName, string title, string description,
+            WeightUnits minUnit, double minQuantity, Product product)
         {
             var offer = await _offerRepository.GetIfExistAsync(id);
             var farmer = await _farmerRepository.GetIfExistAsync(userName);
 
             offer.SetTitle(title);
             offer.SetDescription(description);
-            offer.SetImageName(imageName);
             offer.SetMinWeightUnit(minUnit);
-            offer.SetCategory(category);
-            offer.SetRegion(region);
             offer.SetMinQuantity(minQuantity);
             offer.SetProduct(product);
 

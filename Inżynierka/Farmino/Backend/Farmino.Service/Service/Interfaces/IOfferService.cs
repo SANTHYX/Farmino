@@ -17,8 +17,8 @@ namespace Farmino.Service.Service.Interfaces
         Task MakeOrder(Guid offerId, string customerName, double orderQuantity,
             bool customAddress, OrderDetails orderDetails = null);
         Task DeactivateOffer(Guid id, string userName);
-        Task UpdateOffer(Guid id, string userName, string title, string description, string imageName, WeightUnits minWeight,
-            Categories category, Regions region, double minQuantity, Product product);
+        Task UpdateOffer(Guid id, string userName, string title, string description,
+            WeightUnits minWeight, double minQuantity, Product product);
         Task<OfferDTO> GetOfferAsync(Guid id);
         Task<PagedResponseDTO<OffersDTO>> BrowseAllAsync(PagedQuery paged, OfferQuery query);
         Task<PagedResponseDTO<OffersDTO>> GetObservedsAsync(string userName, PagedQuery paged);

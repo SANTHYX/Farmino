@@ -2,7 +2,7 @@
   <div>
     <div id="the-footer">
       <div id="footer">
-        <h2>Footer</h2>
+        <h2>Praca Inżynierska Damian Dorocicz 58911</h2>
       </div>
     </div>
   </div>

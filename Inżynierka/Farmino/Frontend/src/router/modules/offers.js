@@ -40,6 +40,14 @@ const offerRoutes = [
   },
 
   {
+    path: '/offers/offer-editor/:id',
+    name: 'offer-editor',
+    props: true,
+    component: () => import('@/views/offers/EditOffer.vue'),
+    beforeEnter: isAuthorized,
+  },
+
+  {
     path: '/offers/observed',
     name: 'observed',
     component: () => import('@/views/offers/Observed.vue'),

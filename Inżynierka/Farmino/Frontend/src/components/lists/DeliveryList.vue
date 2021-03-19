@@ -13,7 +13,7 @@
         <not-found />
       </div>
 
-      <div id="spinner" v-if="fetchingData">
+      <div id="spinner" v-if="fetchData">
         <loading-spinner />
       </div>
     </div>
@@ -40,7 +40,7 @@ export default {
 
   data() {
     return {
-      fetchingData: false,
+      fetchData: true,
     };
   },
 
@@ -51,13 +51,14 @@ export default {
     }),
   },
 
-  created() {
-    this.$store.dispatch('order/GET_ORDERS', {
+  async created() {
+    await this.$store.dispatch('order/GET_ORDERS', {
       date: this.$route.query.date,
       farmerName: this.$store.state.auth.userName,
       customerName: this.$route.query.customerName,
       orderStatus: this.$route.query.orderStatus,
     });
+    this.fetchData = false;
   },
 
   destroyed() {
@@ -72,8 +73,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 1px solid rgb(216, 216, 216);
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
   width: 80vw;
   min-width: 50vw;
   min-height: 80vh;

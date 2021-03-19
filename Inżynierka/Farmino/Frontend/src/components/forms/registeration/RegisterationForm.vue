@@ -113,9 +113,8 @@ export default {
 #registeration-form {
   #form-wrapper {
     padding: 2rem;
-    border: 1px solid rgb(211, 211, 211);
-    box-shadow: 1px 1px 6px rgb(214, 214, 214);
     background: rgba(245, 245, 245, 0.856);
+    @include container-border;
 
     hr {
       margin-top: 0.2rem;

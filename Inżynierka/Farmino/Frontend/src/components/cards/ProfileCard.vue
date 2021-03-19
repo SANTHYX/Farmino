@@ -93,9 +93,9 @@ export default {
 <style lang="scss" scoped>
 #profile-card {
   margin: 12rem 0;
+
   #profile-card-wraper {
-    border: 1px solid rgba(189, 189, 189, 0.932);
-    box-shadow: 1px 1px 6px rgb(179, 179, 179);
+    @include container-border;
     width: 30vw;
     flex-wrap: wrap;
     background: rgba(228, 228, 228, 0.884);
@@ -172,6 +172,21 @@ export default {
   .btn:hover {
     border: 1px solid rgb(241, 158, 2);
     color: rgb(240, 157, 4);
+  }
+}
+
+@media screen and(max-width: $tablet) {
+  #profile-card {
+    #profile-card-wraper {
+      width: 80vw;
+
+      #info-wraper {
+        #profile-info,
+        #address-info {
+          width: 80vw;
+        }
+      }
+    }
   }
 }
 </style>

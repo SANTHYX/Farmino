@@ -13,7 +13,7 @@
         <not-found />
       </div>
 
-      <div id="spinner" v-if="fetchingData">
+      <div id="spinner" v-if="fetchData">
         <loading-spinner />
       </div>
     </div>
@@ -40,7 +40,7 @@ export default {
 
   data() {
     return {
-      fetchingData: true,
+      fetchData: true,
     };
   },
 
@@ -55,7 +55,7 @@ export default {
     await this.$store.dispatch('order/GET_ORDERS', {
       customerName: this.$store.state.auth.userName,
     });
-    this.fetchingData = false;
+    this.fetchData = false;
   },
 
   destroyed() {
@@ -70,12 +70,11 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 1px solid rgb(216, 216, 216);
   width: 80vw;
   min-width: 50vw;
   min-height: 80vh;
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   background: rgba(245, 245, 245, 0.89);
+  @include container-border;
 
   #info-wraper {
     padding: 1rem;

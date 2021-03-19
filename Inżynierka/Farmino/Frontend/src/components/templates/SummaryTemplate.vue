@@ -71,8 +71,7 @@ export default {
 <style lang="scss" scoped>
 #summary-template {
   display: flex;
-  border: 1px solid rgb(216, 216, 216);
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
   width: 50vw;
   height: 60vh;
 
@@ -120,9 +119,9 @@ export default {
       transition: 0.1s ease-in;
     }
 
-    .btn:hover{
+    .btn:hover {
       border: 1px solid orange;
-      color:orange;
+      color: orange;
     }
   }
 }

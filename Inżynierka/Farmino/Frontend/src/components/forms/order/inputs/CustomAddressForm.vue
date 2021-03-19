@@ -233,8 +233,7 @@ export default {
   height: auto;
   padding: 1rem;
   background: rgba(238, 238, 238, 0.87);
-  border: 1px solid rgb(226, 226, 226);
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
 
   #customer-details {
     margin: 1rem 0.6rem;

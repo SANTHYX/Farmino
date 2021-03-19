@@ -41,8 +41,8 @@ namespace Farmino.Service.Security
             var tokenHandler = new JwtSecurityTokenHandler();
             var createdToken = new JwtSecurityTokenHandler().CreateToken(descriptor);
 
-            var refreshToken = new RefreshToken(
-                Guid.Parse(createdToken.Id), GenerateRefresh(), user, expirationTime);
+            var refreshToken = new RefreshToken(Guid.Parse(createdToken.Id),
+                GenerateRefresh(), user, expirationTime);
 
             var token = new TokenDTO
             {

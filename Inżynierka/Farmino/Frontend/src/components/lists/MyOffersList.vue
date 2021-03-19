@@ -46,10 +46,9 @@ export default {
     }),
   },
 
-  created() {
-    this.$store.dispatch('offer/BROWSE_OFFERS', {
+  async created() {
+    await this.$store.dispatch('offer/BROWSE_OFFERS', {
       farmerName: this.$store.state.auth.userName,
-      isActive: false,
     });
     this.fetchingData = false;
   },
@@ -62,11 +61,10 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 1px solid rgb(216, 216, 216);
+  @include container-border;
   width: 80vw;
   min-width: 50vw;
   min-height: 100vh;
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
   background: rgb(245, 245, 245);
 }
 

@@ -31,7 +31,7 @@ export default {
     }),
 
     fetchPage(pagesNumber) {
-      this.getOffers({ ...this.$route.query, page: pagesNumber });
+      this.getOffers({ ...this.$route.query, page: pagesNumber, isActive: true });
       this.$router.replace({
         name: this.$route.name,
         query: { ...this.$route.query, page: pagesNumber },
@@ -59,7 +59,6 @@ export default {
   #page-btn:hover {
     width: 30px;
     height: 35px;
-    background: rgb(248, 237, 218);
     border: 1px solid rgba(255, 166, 0, 0.534);
   }
 }

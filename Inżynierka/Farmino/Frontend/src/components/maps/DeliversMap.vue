@@ -91,10 +91,9 @@ export default {
   margin: 12rem 3rem 12rem 0;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(216, 216, 216);
   width: 50vw;
   height: 70vh;
-  box-shadow: 1px 1px 6px rgba(187, 187, 187, 0.746);
+  @include container-border;
 }
 
 @media screen and(max-width: 845px) {

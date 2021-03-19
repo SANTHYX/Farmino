@@ -247,8 +247,7 @@ export default {
 
   #profile-wraper {
     padding: 2rem;
-    border: 1px solid rgb(219, 219, 219);
-    box-shadow: 1px 1px 6px rgb(214, 214, 214);
+    @include container-border;
     background: rgba(246, 246, 246, 0.856);
     display: flex;
     align-items: center;

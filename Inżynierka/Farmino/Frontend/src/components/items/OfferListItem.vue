@@ -47,12 +47,11 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  border: 1px solid rgb(177, 177, 177);
-  background: rgb(245, 245, 245);
   width: 18vw;
   min-width: 240px;
   box-shadow: 1px 1px 6px rgb(179, 179, 179);
   transition: 0.1s all;
+  @include container-border;
 
   #offer-img {
     height: 250px;

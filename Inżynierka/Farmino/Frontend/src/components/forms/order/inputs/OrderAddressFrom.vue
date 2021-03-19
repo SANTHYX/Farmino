@@ -32,13 +32,12 @@ export default {
 #form-wraper {
   height: 25vh;
   width: 35vw;
-  border: 1px solid rgb(224, 224, 224);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   background: rgba(240, 240, 240, 0.877);
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
 
   h1 {
     color: rgb(95, 95, 95);

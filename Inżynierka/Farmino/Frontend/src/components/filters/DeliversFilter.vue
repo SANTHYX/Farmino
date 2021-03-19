@@ -94,8 +94,7 @@ export default {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  border: 1px solid rgb(223, 223, 223);
-  box-shadow: 1px 1px 6px rgba(179, 179, 179, 0.746);
+  @include container-border;
   background: rgba(246, 246, 246, 0.897);
   width: 80vw;
 

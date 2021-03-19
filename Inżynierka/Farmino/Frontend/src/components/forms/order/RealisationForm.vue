@@ -55,8 +55,7 @@ export default {
 #realisation-form {
   #form-wraper {
     padding: 2rem;
-    border: 1px solid rgb(216, 216, 216);
-    box-shadow: 1px 1px 6px rgb(179, 179, 179);
+    @include container-border;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,5 +1,4 @@
 ﻿using Farmino.Service.Commands.Interfaces;
-using Farmino.Service.DTO;
 using Farmino.Service.DTO.Token;
 
 namespace Farmino.Service.Commands.AuthCommands

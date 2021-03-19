@@ -1,12 +1,11 @@
-﻿using Farmino.Data.Models.Entities;
+﻿using Farmino.Data.Models.Aggregations;
+using Farmino.Data.Models.Entities;
 using Farmino.Data.Models.ValueObjects;
 using Farmino.Infrastructure.Repositories.Interfaces;
 using Farmino.Service.Exceptions;
 using Farmino.Service.Service;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -27,9 +26,11 @@ namespace Farmino.UnitTests.Service
         public async Task SetAddressAsync_should_throw_when_user_object_not_found()
         {
             var userName = "Barnaba21";
+            var user = new User(userName, "password", "sadwqewqewewq", "user@gmail.com");
+            var profile = new Profile("Jack", "Krist", "216634722");
+
             _userRepository.Setup(x => x.GetAsync(userName)).ReturnsAsync(() => null);
-            _profileRepository.Setup(x => x.GetByUserIdAsync(Guid.Empty))
-                .ReturnsAsync(() => new Profile("Jack", "Krist", "216634722"));
+            _profileRepository.Setup(x => x.GetByUserIdAsync(Guid.Empty)).ReturnsAsync(() => profile);
 
             await Assert.ThrowsAsync<ServiceExceptions>(async 
                 () => await _addressService.SetAddressAsync(userName, "Białystok",
@@ -40,8 +41,10 @@ namespace Farmino.UnitTests.Service
         public async Task SetAddressAsync_should_throw_when_address_not_empty()
         {
             var userName = "Barnaba21";
-            var testProfile = new Profile("Jack", "Krist", "216634722");
-            testProfile.SetAddress(Address.Create("Białystok", "Szkolna", "24-111", "2B",
+            var user = new User(userName, "password", "sadwqewqewewq", "user@gmail.com");
+            var profile = new Profile("Jack", "Krist", "216634722");
+
+            profile.SetAddress(Address.Create("Białystok", "Szkolna", "24-111", "2B",
                 new Data.Models.ValueObjects.Node(Double.MaxValue, Double.MaxValue)));
 
             _userRepository.Setup(x => x.GetAsync(userName)).ReturnsAsync(() => null);
@@ -65,6 +68,5 @@ namespace Farmino.UnitTests.Service
                 () => await _addressService.SetAddressAsync(userName, "Dowolne",
                 "Dowolne", "24-111", "2B", new Data.Models.ValueObjects.Node(Double.MaxValue, Double.MaxValue)));
         }
-
     }
 }
