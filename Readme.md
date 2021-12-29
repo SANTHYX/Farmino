@@ -14,6 +14,7 @@ Farmino is small platform to contact farmers and clients for business purposes. 
 * Autofac
 * xUnit (Unit testing)
 * Moq (Unit testing)
+* AutoMapper
 
 ### Important!: don't recomend to update any of libraries, current version of Sdk is .NET 6 and most of libraries won't be compatible with .NET Core 3.1
 
